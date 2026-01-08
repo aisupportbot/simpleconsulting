@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Consulting | E-commerce & Operations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global */
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: 'Poppins', sans-serif; line-height:1.6; color:#333; scroll-behavior: smooth; background:#f0f2f5; }
+    a { text-decoration:none; }
+    h1,h2,h3 { font-weight:700; color:#fff; }
+    h2,h3 { margin-bottom:20px; }
+    section { padding:80px 20px; max-width:1200px; margin:0 auto; }
+    ul { list-style: none; padding-left:0; }
+    li { margin-bottom:10px; }
+
+    /* Header */
+    header { position:sticky; top:0; background:rgba(30,60,114,0.95); backdrop-filter: blur(10px); padding:20px 0; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+    nav { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    nav a { color:#00f0ff; font-weight:600; padding:10px 20px; border:2px solid #00f0ff; border-radius:50px; transition:0.3s; }
+    nav a:hover { background:#00f0ff; color:#1e1e1e; box-shadow:0 0 15px #00f0ff; }
+
+    /* Hero */
+    #hero { background: linear-gradient(135deg,#1e3c72,#2a5298); text-align:center; padding:120px 20px; position:relative; }
+    #hero h1 { font-size:3em; margin-bottom:20px; text-shadow: 0 0 20px rgba(0,240,255,0.6); }
+    #hero p { font-size:1.2em; color:#e0f7ff; margin-bottom:30px; }
+    #hero a { font-size:1.2em; }
+
+    /* Sections */
+    section { background:#f0f2f5; margin-bottom:40px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.05); padding:60px 40px; }
+    section h2 { color:#1e3c72; font-size:2em; margin-bottom:30px; }
+    section ul li { color:#555; font-size:1.1em; }
+
+    /* Services cards */
+    .card { background:white; padding:20px; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,0.1); margin-bottom:30px; transition:0.3s; }
+    .card:hover { transform:translateY(-5px); box-shadow:0 15px 25px rgba(0,0,0,0.2); }
+
+    /* Contact Form */
+    form { display:flex; flex-direction:column; max-width:600px; margin:0 auto; }
+    form input, form textarea { padding:15px; margin-bottom:20px; border-radius:10px; border:1px solid #ccc; font-size:1em; transition:0.3s; }
+    form input:focus, form textarea:focus { border-color:#00f0ff; box-shadow:0 0 10px #00f0ff; outline:none; }
+    form button { padding:15px; border:none; border-radius:50px; background:#00f0ff; color:#1e1e1e; font-weight:600; cursor:pointer; font-size:1.1em; transition:0.3s; }
+    form button:hover { background:#1e1e1e; color:#00f0ff; box-shadow:0 0 15px #00f0ff; }
+
+    /* Footer */
+    footer { text-align:center; padding:40px; color:#777; background:#1e1e1e; border-top:5px solid #00f0ff; }
+    footer p { color:#fff; }
+
+    /* Responsive */
+    @media(max-width:768px){
+      #hero h1 { font-size:2.2em; }
+      section { padding:40px 20px; }
+      nav { flex-direction:column; gap:10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div><strong>Simple Consulting</strong></div>
+    <a href="#contact">Contact us</a>
+  </nav>
+</header>
+
+<section id="hero">
+  <h1>Simple solutions for complex e-commerce operations</h1>
+  <p>We help growing brands scale profitably by fixing the systems behind the scenes—operations, logistics, technology, and strategy.</p>
+  <p><strong>What we do:</strong> E-commerce • Operations • Logistics • ERP • Growth • Training</p>
+</section>
+
+<section id="who">
+  <h2>Who We Help</h2>
+  <ul>
+    <li>Scaling DTC and omni-channel brands</li>
+    <li>Founder-led and PE-backed businesses</li>
+    <li>Teams that have outgrown spreadsheets, manual processes, or patchwork tools</li>
+  </ul>
+  <p>If your growth is being slowed by operational friction, disconnected systems, or unclear ownership—we can help.</p>
+</section>
+
+<section id="services">
+  <h2>Services</h2>
+
+  <div class="card">
+    <h3>E-commerce & Digital Operations</h3>
+    <ul>
+      <li>Platform optimization (Shopify, Amazon, Walmart, Best Buy)</li>
+      <li>Marketplace operations, compliance, and performance optimization</li>
+      <li>Conversion and UX improvements</li>
+      <li>Inventory and order management workflows</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Operations & Logistics</h3>
+    <ul>
+      <li>SOPs and process design</li>
+      <li>Fulfillment and 3PL optimization</li>
+      <li>Inventory planning and demand forecasting</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>ERP & Systems Implementation</h3>
+    <ul>
+      <li>ERP selection and rollout</li>
+      <li>System integrations and data flow</li>
+      <li>Process alignment and change management</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Growth & Strategy</h3>
+    <ul>
+      <li>Operational readiness for growth</li>
+      <li>KPI frameworks and reporting</li>
+      <li>Margin improvement and cost optimization</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Training & Enablement</h3>
+    <ul>
+      <li>Team onboarding and documentation</li>
+      <li>Operational playbooks</li>
+      <li>Leadership and operator training</li>
+    </ul>
+  </div>
+</section>
+
+<section id="why">
+  <h2>Why Simple Consulting</h2>
+  <ul>
+    <li><strong>Operator-led:</strong> We’ve run e-commerce and operations, not just advised on them</li>
+    <li><strong>Marketplace-proven:</strong> Experience across Amazon, Walmart, Best Buy, and omni-channel ecosystems</li>
+    <li><strong>Practical:</strong> Clear recommendations, no fluff</li>
+    <li><strong>Scalable:</strong> Built for where you’re going, not where you are today</li>
+    <li><strong>Hands-on:</strong> We execute alongside your team</li>
+  </ul>
+</section>
+
+<section id="engagements">
+  <h2>Engagements</h2>
+  <ul>
+    <li>Project-based (systems, ERP, logistics)</li>
+    <li>Fractional operations leadership</li>
+    <li>Advisory & strategy retainers</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Let’s talk about what’s slowing your business down—and how to fix it.</p>
+  <p><strong>Email:</strong> hello@simpleconsulting.ca</p>
+
+  <form action="https://formspree.io/f/mnqkldpg" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="_replyto" placeholder="Email" required>
+    <textarea name="message" placeholder="Message" rows="5" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<footer>
+  <p>© Simple Consulting</p>
+</footer>
+
+</body>
+</html>
