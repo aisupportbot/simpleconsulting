@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Consulting | E-commerce & Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* GLOBAL */
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: 'Poppins', sans-serif; line-height:1.5; color:#1e1e1e; scroll-behavior: smooth; background:#ffffff; }
+a { text-decoration:none; }
+h1,h2,h3 { font-weight:700; color:#1e1e1e; margin-bottom:10px; }
+p, li { color:#555; font-size:1em; line-height:1.4; }
+section { padding:60px 20px; max-width:1200px; margin:0 auto; opacity:0; transform: translateY(20px); transition: all 1s ease; }
+
+/* HEADER */
+header { position:sticky; top:0; background:#ffffff; padding:15px 0; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+nav { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+nav a { color:#1e1e1e; font-weight:600; padding:8px 20px; border:2px solid #1e1e1e; border-radius:50px; transition:0.3s; }
+nav a:hover { background:#1e1e1e; color:#fff; box-shadow:0 0 15px rgba(0,0,0,0.1); }
+
+/* HERO */
+#hero { text-align:center; padding:100px 20px; position:relative; overflow:hidden; background: linear-gradient(135deg,#ffffff,#f8f8f8); }
+#hero canvas { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+#hero h1, #hero p, #hero .sub, #hero a { position: relative; z-index:1; }
+#hero h1 { font-size:2.8em; margin-bottom:20px; }
+#hero p { font-size:1.1em; color:#555; margin-bottom:15px; }
+#hero .sub { font-weight:600; margin-bottom:30px; }
+#hero a { display:inline-block;padding:12px 30px;border-radius:50px;background:#1e1e1e;color:#fff;font-weight:600; transition:0.3s; animation: pulse 2s infinite; }
+#hero a:hover { background:#fff;color:#1e1e1e;border:2px solid #1e1e1e; }
+
+/* SERVICES */
+.service-wrapper { position: relative; }
+#services .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; margin-top:30px; }
+#services canvas { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+.card { background:white; padding:25px; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.05); transition:0.4s; display:flex; flex-direction:column; }
+.card:hover { transform:translateY(-8px); box-shadow:0 15px 35px rgba(0,0,0,0.1); }
+.card h3 { margin-bottom:10px; font-size:1.3em; display:flex; align-items:center; gap:10px; }
+.card ul { padding-left:20px; margin-top:10px; }
+.card ul li { margin-bottom:8px; opacity:0; transform:translateX(-10px); transition:0.4s; }
+.card a { margin-top:auto; font-weight:600; color:#1e1e1e; transition:0.3s; }
+.card a:hover { color:#00bfff; }
+
+/* WHY US */
+.why-wrapper { position: relative; }
+.why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:30px; margin-top:30px; }
+.why-card { background:#fff; padding:20px; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.05); text-align:center; transition:0.4s; transform:translateY(20px); opacity:0; }
+.why-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,0.1); }
+.why-card .icon { font-size:2em; margin-bottom:10px; transition:0.3s; }
+.why-card:hover .icon { transform:scale(1.2); color:#00bfff; }
+.why-card h3 { font-size:1.2em; margin-bottom:10px; }
+.why-card p { color:#555; font-size:0.95em; line-height:1.3; }
+
+/* ENGAGEMENTS */
+#engagements ul { padding-left:20px; }
+#engagements ul li { margin-bottom:10px; opacity:0; transform:translateX(-10px); transition:0.4s; }
+
+/* CONTACT FORM */
+form { display:flex; flex-direction:column; max-width:600px; margin:0 auto; }
+form input, form textarea { padding:15px; margin-bottom:15px; border-radius:10px; border:1px solid #ccc; font-size:1em; transition:0.3s; }
+form input:focus, form textarea:focus { border-color:#1e1e1e; box-shadow:0 0 10px rgba(30,30,30,0.1); outline:none; }
+form button { padding:15px; border:none; border-radius:50px; background:#1e1e1e; color:#fff; font-weight:600; cursor:pointer; font-size:1.05em; transition:0.3s; }
+form button:hover { background:#fff; color:#1e1e1e; border:2px solid #1e1e1e; box-shadow:0 0 15px rgba(0,0,0,0.05); }
+
+/* FOOTER */
+footer { text-align:center; padding:40px 20px; color:#777; background:#fff; border-top:2px solid #1e1e1e; }
+footer p { color:#1e1e1e; }
+
+/* ANIMATIONS */
+@keyframes fadeInUp { to { opacity:1; transform: translateY(0); } }
+@keyframes gradientShift { 0%{background-position:0% 50%} 100%{background-position:100% 50%} }
+@keyframes pulse { 0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)} }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  #hero h1 { font-size:2.2em; }
+  section { padding:40px 15px; }
+  nav { flex-direction:column; gap:10px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div><strong>Simple Consulting</strong></div>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="hero">
+  <canvas id="heroParticles"></canvas>
+  <h1>Simple solutions for complex e-commerce operations</h1>
+  <p>We help growing brands scale profitably by fixing the systems behind the scenes.</p>
+  <p class="sub"><strong>What we do:</strong> E-commerce • Marketplace Sales • Operations • Logistics • ERP • Growth • Training</p>
+  <a href="#contact">Get in Touch</a>
+</section>
+
+<section id="who">
+  <h2>Who We Help</h2>
+  <ul>
+    <li>Scaling DTC and omni-channel brands</li>
+    <li>Founder-led and PE-backed businesses</li>
+    <li>Teams that have outgrown spreadsheets, manual processes, or patchwork tools</li>
+  </ul>
+  <p>If your growth is slowed by operational friction, disconnected systems, or unclear ownership—we can help.</p>
+</section>
+
+<section id="services">
+  <div class="service-wrapper">
+    <canvas id="servicesParticles"></canvas>
+    <h2>Services</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>💻 E-commerce & Marketplace Sales</h3>
+        <ul>
+          <li>Optimize Shopify & marketplaces (Amazon, Walmart, Best Buy)</li>
+          <li>Marketplace operations, compliance & performance</li>
+          <li>Sales growth strategies for DTC & omni-channel</li>
+          <li>Conversion, UX improvements & order workflows</li>
+        </ul>
+        <a href="#contact">Contact Us →</a>
+      </div>
+      <div class="card">
+        <h3>⚙️ Operations & Logistics</h3>
+        <ul>
+          <li>Build scalable operational systems</li>
+          <li>Streamline fulfillment & reduce errors</li>
+          <li>Inventory planning & demand forecasting</li>
+          <li>Process optimization & SOP implementation</li>
+        </ul>
+        <a href="#contact">Contact Us →</a>
+      </div>
+      <div class="card">
+        <h3>🧩 ERP & Systems Implementation</h3>
+        <ul>
+          <li>Select, implement, and integrate ERP & operational tools</li>
+          <li>Align processes with business goals</li>
+          <li>Ensure team adoption & effective workflows</li>
+          <li>System integration & data flow optimization</li>
+        </ul>
+        <a href="#contact">Contact Us →</a>
+      </div>
+      <div class="card">
+        <h3>📈 Growth & Strategy</h3>
+        <ul>
+          <li>Operational readiness for growth</li>
+          <li>KPI frameworks and reporting</li>
+          <li>Margin improvement & cost optimization</li>
+          <li>Data-driven growth recommendations</li>
+        </ul>
+        <a href="#contact">Contact Us →</a>
+      </div>
+      <div class="card">
+        <h3>🎓 Training & Enablement</h3>
+        <ul>
+          <li>Onboard teams & create operational playbooks</li>
+          <li>Train leadership & operators</li>
+          <li>Ensure scalable processes stick</li>
+          <li>Team enablement & knowledge transfer</li>
+        </ul>
+        <a href="#contact">Contact Us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="why-wrapper">
+    <h2>Why Simple Consulting</h2>
+    <div class="why-grid">
+      <div class="why-card"><div class="icon">🛠️</div><h3>Operator-led</h3><p>We’ve run e-commerce and operations ourselves, not just advised.</p></div>
+      <div class="why-card"><div class="icon">🛒</div><h3>Marketplace-proven</h3><p>Experience across Amazon, Walmart, Best Buy & omni-channel ecosystems.</p></div>
+      <div class="why-card"><div class="icon">📋</div><h3>Practical</h3><p>Clear recommendations, actionable insights, no fluff.</p></div>
+      <div class="why-card"><div class="icon">📈</div><h3>Scalable</h3><p>Built for where your business is going, not just where it is today.</p></div>
+      <div class="why-card"><div class="icon">🤝</div><h3>Hands-on</h3><p>We execute alongside your team to make systems stick.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="engagements">
+  <h2>Engagements</h2>
+  <ul>
+    <li>Project-based (systems, ERP, logistics)</li>
+    <li>Fractional operations leadership</li>
+    <li>Advisory & strategy retainers</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Let’s talk about what’s slowing your business down—and how to fix it.</p>
+  <p><strong>Email:</strong> hello@simpleconsulting.ca</p>
+  <form action="https://formspree.io/f/mnqkldpg" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="_replyto" placeholder="Email" required>
+    <textarea name="message" placeholder="Message" rows="5" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<footer>
+  <p>© Simple Consulting</p>
+</footer>
+
+<script>
+// Scroll animations
+const sections = document.querySelectorAll('section');
+const cards = document.querySelectorAll('.card ul li');
+const engagements = document.querySelectorAll('#engagements ul li');
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+      // Animate bullets inside services
+      if(entry.target.classList.contains('card')){
+        const bullets = entry.target.querySelectorAll('li');
+        bullets.forEach((b,i) => { setTimeout(()=>{ b.style.opacity=1; b.style.transform='translateX(0)'; }, i*150); });
+      }
+      // Animate engagements bullets
+      if(entry.target.id==='engagements'){
+        engagements.forEach((b,i) => { setTimeout(()=>{ b.style.opacity=1; b.style.transform='translateX(0)'; }, i*150); });
+      }
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+sections.forEach(section => observer.observe(section));
+
+// Particle animation with connecting lines
+function initParticles(canvasId, num) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = canvas.offsetWidth;
+  let h = canvas.height = canvas.offsetHeight;
+  
+  window.addEventListener('resize', ()=>{ w=canvas.width=canvas.offsetWidth; h=canvas.height=canvas.offsetHeight; });
+
+  let particles = [];
+  for(let i=0;i<num;i++){
+    particles.push({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*2+1,
+      dx: (Math.random()-0.5)/1.5,
+      dy: (Math.random()-0.5)/1.5,
+      alpha: Math.random()*0.5+0.3
+    });
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,w,h);
+    // Draw connections
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        let dx = particles[i].x - particles[j].x;
+        let dy = particles[i].y - particles[j].y;
+        let dist = Math.sqrt(dx*dx+dy*dy);
+        if(dist<100){
+          ctx.strokeStyle = `rgba(0,191,255,${0.1})`;
+          ctx.lineWidth=1;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2,false);
+      ctx.fillStyle = `rgba(0,191,255,${p.alpha})`;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if(p.x> w || p.x<0) p.dx*=-1;
+      if(p.y> h || p.y<0) p.dy*=-1;
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+
+initParticles('heroParticles', 50);
+initParticles('servicesParticles', 30);
+</script>
+
+</body>
+</html>
