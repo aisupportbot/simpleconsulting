@@ -39,7 +39,8 @@ nav a:hover{background:#1e1e1e;color:#fff}
 
 /* Logos */
 .logo-row{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;margin-top:25px}
-.logo-box{font-weight:600;color:#777;border:1px solid #eee;padding:14px 24px;border-radius:30px}
+.logo-row img{height:34px;opacity:.85;filter:grayscale(100%);transition:.2s}
+.logo-row img:hover{opacity:1;filter:none}
 
 /* Why */
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:25px}
@@ -50,14 +51,6 @@ nav a:hover{background:#1e1e1e;color:#fff}
 .case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:25px}
 .case-card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05)}
 .case-card ul{margin-top:8px}
-
-/* Testimonials */
-.test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:25px}
-.test-card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05)}
-.test-card p{font-style:italic;margin-bottom:10px}
-
-/* Engagements */
-#engagements li{margin-bottom:8px}
 
 /* Contact */
 #contact{text-align:center}
@@ -101,15 +94,24 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
   <p>If your growth is slowed by operational friction or disconnected systems — we can help.</p>
 </section>
 
+<!-- UPDATED MARKETPLACE SECTION -->
 <section id="clients">
-  <h2>Trusted By Growing Brands</h2>
+  <h2>Marketplace Experience</h2>
   <div class="logo-row">
-    <div class="logo-box">DTC Brand</div>
-    <div class="logo-box">Omni-Channel Retailer</div>
-    <div class="logo-box">Marketplace Seller</div>
-    <div class="logo-box">Consumer Goods Brand</div>
+    <img src="https://cdn.simpleicons.org/walmart/000000" alt="Walmart">
+    <img src="https://cdn.simpleicons.org/overstock/000000" alt="Overstock">
+    <img src="https://cdn.simpleicons.org/zulily/000000" alt="Zulily">
+    <img src="https://cdn.simpleicons.org/amazon/000000" alt="Amazon">
+    <img src="https://cdn.simpleicons.org/wayfair/000000" alt="Wayfair">
+    <img src="https://cdn.simpleicons.org/ebay/000000" alt="eBay">
+    <img src="https://cdn.simpleicons.org/bestbuy/000000" alt="Best Buy">
+    <img src="https://cdn.simpleicons.org/lowes/000000" alt="Lowes">
+    <img src="https://cdn.simpleicons.org/homedepot/000000" alt="Home Depot">
+    <img src="https://cdn.simpleicons.org/gianttiger/000000" alt="Giant Tiger">
   </div>
-  <p style="text-align:center;margin-top:15px;">From early-stage brands to scaling multi-channel businesses.</p>
+  <p style="text-align:center;margin-top:15px;">
+    Deep operational and sales experience across major North American marketplaces.
+  </p>
 </section>
 
 <section id="services">
@@ -168,42 +170,6 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
   </div>
 </section>
 
-<section id="cases">
-  <h2>Case Studies</h2>
-  <div class="case-grid">
-    <div class="case-card">
-      <h3>Marketplace Turnaround</h3>
-      <p><strong>Challenge:</strong> Poor Amazon and Walmart performance.</p>
-      <ul>
-        <li>Rebuilt listings and operations</li>
-        <li>Improved fulfillment workflows</li>
-        <li>Fixed seller metrics</li>
-      </ul>
-      <p><strong>Result:</strong> +42% sales in 90 days.</p>
-    </div>
-    <div class="case-card">
-      <h3>ERP Implementation</h3>
-      <p><strong>Challenge:</strong> Manual processes and broken reporting.</p>
-      <ul>
-        <li>ERP selection</li>
-        <li>Integrated inventory + sales</li>
-        <li>Team training</li>
-      </ul>
-      <p><strong>Result:</strong> 35% ops time reduction.</p>
-    </div>
-    <div class="case-card">
-      <h3>Operations Scale-Up</h3>
-      <p><strong>Challenge:</strong> Systems couldn’t support growth.</p>
-      <ul>
-        <li>Built SOPs</li>
-        <li>Optimized 3PL</li>
-        <li>Implemented forecasting</li>
-      </ul>
-      <p><strong>Result:</strong> Supported 2× growth.</p>
-    </div>
-  </div>
-</section>
-
 <section id="why">
   <h2>Why Simple Consulting</h2>
   <div class="why-grid">
@@ -213,33 +179,6 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
     <div class="why-card"><div class="icon">📈</div><h3>Scalable</h3><p>Built for growth.</p></div>
     <div class="why-card"><div class="icon">🤝</div><h3>Hands-On</h3><p>We build with you.</p></div>
   </div>
-</section>
-
-<section id="testimonials">
-  <h2>What Clients Say</h2>
-  <div class="test-grid">
-    <div class="test-card">
-      <p>“Simple Consulting completely changed how we run our business.”</p>
-      <strong>— Founder, DTC Brand</strong>
-    </div>
-    <div class="test-card">
-      <p>“We finally understand our operations.”</p>
-      <strong>— COO, Omni-Channel Brand</strong>
-    </div>
-    <div class="test-card">
-      <p>“They don’t just advise — they build with you.”</p>
-      <strong>— VP Operations</strong>
-    </div>
-  </div>
-</section>
-
-<section id="engagements">
-  <h2>Engagements</h2>
-  <ul>
-    <li>Project-based</li>
-    <li>Fractional operations leadership</li>
-    <li>Advisory retainers</li>
-  </ul>
 </section>
 
 <section id="contact">
