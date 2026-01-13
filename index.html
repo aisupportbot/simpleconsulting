@@ -39,8 +39,9 @@ nav a:hover{background:#1e1e1e;color:#fff}
 
 /* Logos */
 .logo-row{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;margin-top:25px}
-.logo-row img{height:34px;opacity:.85;filter:grayscale(100%);transition:.2s}
-.logo-row img:hover{opacity:1;filter:none}
+.logo-row img, .logo-row .logo-box{height:34px;display:flex;align-items:center;justify-content:center;padding:0 12px;border-radius:14px;font-weight:600;color:#555;border:1px solid #eee;transition: all 0.2s;}
+.logo-row img{opacity:.85;filter:grayscale(100%)}
+.logo-row img:hover, .logo-row .logo-box:hover{opacity:1;filter:none;transform:scale(1.05);border-color:#1e1e1e}
 
 /* Why */
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:25px}
@@ -98,16 +99,19 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 <section id="clients">
   <h2>Marketplace Experience</h2>
   <div class="logo-row">
-<img src="https://logo.clearbit.com/walmart.com" alt="Walmart">
-<img src="https://logo.clearbit.com/overstock.com" alt="Overstock">
-<img src="https://logo.clearbit.com/zulily.com" alt="Zulily">
-<img src="https://logo.clearbit.com/amazon.com" alt="Amazon">
-<img src="https://logo.clearbit.com/wayfair.com" alt="Wayfair">
-<img src="https://logo.clearbit.com/ebay.com" alt="eBay">
-<img src="https://logo.clearbit.com/bestbuy.com" alt="Best Buy">
-<img src="https://logo.clearbit.com/lowes.com" alt="Lowes">
-<img src="https://logo.clearbit.com/homedepot.com" alt="Home Depot">
-<img src="https://logo.clearbit.com/gianttiger.com" alt="Giant Tiger">
+    <!-- Logos -->
+    <img src="https://cdn.simpleicons.org/walmart/000000" alt="Walmart">
+    <img src="https://cdn.simpleicons.org/amazon/000000" alt="Amazon">
+    <img src="https://cdn.simpleicons.org/wayfair/000000" alt="Wayfair">
+    <img src="https://cdn.simpleicons.org/ebay/000000" alt="eBay">
+    <img src="https://cdn.simpleicons.org/bestbuy/000000" alt="Best Buy">
+    <img src="https://cdn.simpleicons.org/lowes/000000" alt="Lowe's">
+    <img src="https://cdn.simpleicons.org/homedepot/000000" alt="Home Depot">
+
+    <!-- Text badges for unavailable logos -->
+    <span class="logo-box">Overstock</span>
+    <span class="logo-box">Zulily</span>
+    <span class="logo-box">Giant Tiger</span>
   </div>
   <p style="text-align:center;margin-top:15px;">
     Deep operational and sales experience across major North American marketplaces.
