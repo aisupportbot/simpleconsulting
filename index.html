@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins,sans-serif;color:#1e1e1e;background:#fff;line-height:1.5}
+section{max-width:1100px;margin:0 auto;padding:50px 20px}
+h1,h2,h3{font-weight:700;margin-bottom:12px}
+p,li{color:#555}
+a{text-decoration:none;color:#1e1e1e;font-weight:600}
+ul{padding-left:18px}
+
+/* Header */
+header{position:sticky;top:0;background:#fff;padding:15px 0;border-bottom:1px solid #eee;z-index:100}
+nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px}
+nav a:hover{background:#1e1e1e;color:#fff}
+
+/* Hero */
+#hero{text-align:center;padding:90px 20px;background:#fafafa}
+#hero h1{font-size:2.6em}
+#hero p{margin-bottom:12px}
+#hero .sub{font-weight:600;margin:18px 0}
+#hero a{display:inline-block;margin-top:15px;padding:14px 34px;background:#1e1e1e;color:#fff;border-radius:40px}
+#hero a:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
+
+/* Services */
+#services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:25px}
+.card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column}
+.card h3{display:flex;gap:8px;align-items:center}
+.card ul{margin-top:10px}
+.card li{margin-bottom:6px}
+.card a{margin-top:auto;color:#1e1e1e}
+.card a:hover{color:#0077ff}
+
+/* Logos */
+.logo-row{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;margin-top:25px}
+.logo-box{font-weight:600;color:#777;border:1px solid #eee;padding:14px 24px;border-radius:30px}
+
+/* Why */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:25px}
+.why-card{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);text-align:center}
+.why-card .icon{font-size:2em;margin-bottom:8px}
+
+/* Case Studies */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:25px}
+.case-card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05)}
+.case-card ul{margin-top:8px}
+
+/* Testimonials */
+.test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:25px}
+.test-card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05)}
+.test-card p{font-style:italic;margin-bottom:10px}
+
+/* Engagements */
+#engagements li{margin-bottom:8px}
+
+/* Contact */
+#contact{text-align:center}
+#contact p{margin-bottom:10px}
+form{max-width:520px;margin:25px auto 0;display:flex;flex-direction:column}
+form input,form textarea{padding:14px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:1em}
+form button{padding:14px;border:none;border-radius:40px;background:#1e1e1e;color:#fff;font-size:1em;font-weight:600}
+form button:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
+
+/* Footer */
+footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
+
+@media(max-width:768px){
+  #hero h1{font-size:2.1em}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <strong>Simple Consulting</strong>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="hero">
+  <h1>Simple solutions for complex e-commerce operations</h1>
+  <p>We help growing brands scale profitably by fixing the systems behind the scenes.</p>
+  <p class="sub">E-commerce • Marketplace Sales • Operations • Logistics • ERP • Growth • Training</p>
+  <a href="#contact">Get in Touch</a>
+</section>
+
+<section id="who">
+  <h2>Who We Help</h2>
+  <ul>
+    <li>Scaling DTC and omni-channel brands</li>
+    <li>Founder-led and PE-backed businesses</li>
+    <li>Teams that have outgrown spreadsheets and manual processes</li>
+  </ul>
+  <p>If your growth is slowed by operational friction or disconnected systems — we can help.</p>
+</section>
+
+<section id="clients">
+  <h2>Trusted By Growing Brands</h2>
+  <div class="logo-row">
+    <div class="logo-box">DTC Brand</div>
+    <div class="logo-box">Omni-Channel Retailer</div>
+    <div class="logo-box">Marketplace Seller</div>
+    <div class="logo-box">Consumer Goods Brand</div>
+  </div>
+  <p style="text-align:center;margin-top:15px;">From early-stage brands to scaling multi-channel businesses.</p>
+</section>
+
+<section id="services">
+  <h2>Services</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>💻 E-commerce & Marketplace Sales</h3>
+      <ul>
+        <li>Shopify and marketplace optimization</li>
+        <li>Amazon, Walmart, Best Buy strategy</li>
+        <li>Sales growth and conversion improvements</li>
+        <li>Order and inventory workflows</li>
+      </ul>
+      <a href="#contact">Contact Us →</a>
+    </div>
+    <div class="card">
+      <h3>⚙️ Operations & Logistics</h3>
+      <ul>
+        <li>Scalable operational systems</li>
+        <li>Fulfillment and 3PL optimization</li>
+        <li>Inventory planning and forecasting</li>
+        <li>SOP and process design</li>
+      </ul>
+      <a href="#contact">Contact Us →</a>
+    </div>
+    <div class="card">
+      <h3>🧩 ERP & Systems</h3>
+      <ul>
+        <li>ERP selection and rollout</li>
+        <li>System integration</li>
+        <li>Workflow alignment</li>
+        <li>Team adoption</li>
+      </ul>
+      <a href="#contact">Contact Us →</a>
+    </div>
+    <div class="card">
+      <h3>📈 Growth & Strategy</h3>
+      <ul>
+        <li>KPI frameworks</li>
+        <li>Margin improvement</li>
+        <li>Operational readiness</li>
+        <li>Data-driven growth</li>
+      </ul>
+      <a href="#contact">Contact Us →</a>
+    </div>
+    <div class="card">
+      <h3>🎓 Training</h3>
+      <ul>
+        <li>Team onboarding</li>
+        <li>Operational playbooks</li>
+        <li>Leadership training</li>
+        <li>Knowledge transfer</li>
+      </ul>
+      <a href="#contact">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <h2>Case Studies</h2>
+  <div class="case-grid">
+    <div class="case-card">
+      <h3>Marketplace Turnaround</h3>
+      <p><strong>Challenge:</strong> Poor Amazon and Walmart performance.</p>
+      <ul>
+        <li>Rebuilt listings and operations</li>
+        <li>Improved fulfillment workflows</li>
+        <li>Fixed seller metrics</li>
+      </ul>
+      <p><strong>Result:</strong> +42% sales in 90 days.</p>
+    </div>
+    <div class="case-card">
+      <h3>ERP Implementation</h3>
+      <p><strong>Challenge:</strong> Manual processes and broken reporting.</p>
+      <ul>
+        <li>ERP selection</li>
+        <li>Integrated inventory + sales</li>
+        <li>Team training</li>
+      </ul>
+      <p><strong>Result:</strong> 35% ops time reduction.</p>
+    </div>
+    <div class="case-card">
+      <h3>Operations Scale-Up</h3>
+      <p><strong>Challenge:</strong> Systems couldn’t support growth.</p>
+      <ul>
+        <li>Built SOPs</li>
+        <li>Optimized 3PL</li>
+        <li>Implemented forecasting</li>
+      </ul>
+      <p><strong>Result:</strong> Supported 2× growth.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <h2>Why Simple Consulting</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="icon">🛠️</div><h3>Operator-Led</h3><p>We’ve run businesses — not just advised.</p></div>
+    <div class="why-card"><div class="icon">🛒</div><h3>Marketplace-Proven</h3><p>Amazon, Walmart, Best Buy, omni-channel.</p></div>
+    <div class="why-card"><div class="icon">📋</div><h3>Practical</h3><p>No fluff — only execution.</p></div>
+    <div class="why-card"><div class="icon">📈</div><h3>Scalable</h3><p>Built for growth.</p></div>
+    <div class="why-card"><div class="icon">🤝</div><h3>Hands-On</h3><p>We build with you.</p></div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2>What Clients Say</h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <p>“Simple Consulting completely changed how we run our business.”</p>
+      <strong>— Founder, DTC Brand</strong>
+    </div>
+    <div class="test-card">
+      <p>“We finally understand our operations.”</p>
+      <strong>— COO, Omni-Channel Brand</strong>
+    </div>
+    <div class="test-card">
+      <p>“They don’t just advise — they build with you.”</p>
+      <strong>— VP Operations</strong>
+    </div>
+  </div>
+</section>
+
+<section id="engagements">
+  <h2>Engagements</h2>
+  <ul>
+    <li>Project-based</li>
+    <li>Fractional operations leadership</li>
+    <li>Advisory retainers</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Let’s talk about what’s slowing your business down — and how to fix it.</p>
+  <p><strong>Email:</strong> hello@simpleconsulting.ca</p>
+  <form action="https://formspree.io/f/mnqkldpg" method="POST">
+    <input name="name" placeholder="Name" required>
+    <input type="email" name="_replyto" placeholder="Email" required>
+    <textarea name="message" placeholder="Message" rows="5" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<footer>
+  <p>© Simple Consulting</p>
+</footer>
+
+</body>
+</html>
