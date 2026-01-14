@@ -186,10 +186,18 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
   <h2>Contact</h2>
   <p>Let’s talk about what’s slowing your business down — and how to fix it.</p>
   <p><strong>Email:</strong> hello@simpleconsulting.ca</p>
-  <form action="https://formspree.io/f/mnqkldpg" method="POST">
-    <input name="name" placeholder="Name" required>
+
+  <form action="https://formspree.io/f/mreegwjn" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
     <input type="email" name="_replyto" placeholder="Email" required>
     <textarea name="message" placeholder="Message" rows="5" required></textarea>
+
+    <!-- Optional: subject line in the email you receive -->
+    <input type="hidden" name="_subject" value="New Website Contact">
+
+    <!-- Optional: redirect after submit -->
+    <input type="hidden" name="_redirect" value="https://yourdomain.com/thanks.html">
+
     <button type="submit">Submit</button>
   </form>
 </section>
