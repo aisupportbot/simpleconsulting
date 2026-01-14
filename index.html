@@ -29,10 +29,48 @@ nav a:hover{background:#1e1e1e;color:#fff}
 #hero a:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 
 /* Services */
-#services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:25px}
-.card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column}
-.card h3{display:flex;gap:8px;align-items:center}
-.card ul{margin-top:10px}
+#services .grid, .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:25px}
+.card, .why-card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column;position:relative;transition: all 0.3s ease}
+.card h3, .why-card h3{display:flex;gap:8px;align-items:center}
+
+/* Hover icon animation */
+.card .icon, .why-card .icon {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.card:hover .icon, .why-card:hover .icon {
+  transform: scale(1.4) rotate(10deg);
+}
+
+/* Tooltip */
+.card::after, .why-card::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: rgba(0, 119, 204, 0.95);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.card:hover::after, .why-card:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-18px);
+}
+
+/* Card hover glow */
+.card:hover, .why-card:hover {
+  box-shadow: 0 15px 25px rgba(0, 119, 204, 0.2);
+}
+
+/* Other styling */
+.card ul, .why-card p{margin-top:10px}
 .card li{margin-bottom:6px}
 .card a{margin-top:auto;color:#1e1e1e}
 .card a:hover{color:#0077ff}
@@ -42,16 +80,6 @@ nav a:hover{background:#1e1e1e;color:#fff}
 .logo-row img, .logo-row .logo-box{height:34px;display:flex;align-items:center;justify-content:center;padding:0 12px;border-radius:14px;font-weight:600;color:#555;border:1px solid #eee;transition: all 0.2s;}
 .logo-row img{opacity:.85;filter:grayscale(100%)}
 .logo-row img:hover, .logo-row .logo-box:hover{opacity:1;filter:none;transform:scale(1.05);border-color:#1e1e1e}
-
-/* Why */
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:25px}
-.why-card{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);text-align:center}
-.why-card .icon{font-size:2em;margin-bottom:8px}
-
-/* Case Studies */
-.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:25px}
-.case-card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05)}
-.case-card ul{margin-top:8px}
 
 /* Contact */
 #contact{text-align:center}
@@ -98,11 +126,9 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
   <p style="margin-top:20px;">We step in where operations slow growth — simplifying systems, streamlining workflows, and enabling scalable success. From domestic fulfillment to international shipping, we help brands expand efficiently and profitably.</p>
 </section>
 
-<!-- UPDATED MARKETPLACE SECTION -->
 <section id="clients">
   <h2>Marketplace Experience</h2>
   <div class="logo-row">
-    <!-- Logos -->
     <img src="https://download.logo.wine/logo/Walmart_Canada/Walmart_Canada-Logo.wine.png" alt="Walmart">
     <img src="https://shopkeeper.com/cms/files/964034571/amazon-seller-central-f73ddc.webp" alt="Amazon Seller Central">
     <img src="https://cdn.prod.website-files.com/64909dd65a703aa9864ebaff/64909dd65a703aa9864ebdec_amazon_vendor.png" alt="Amazon Vendor Central">
@@ -114,7 +140,6 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
     <img src="https://www.infinityinstruments.com/wp-content/uploads/overstock-logo-vector.png" alt="Overstock">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Zulily_logo_2019.svg/1280px-Zulily_logo_2019.svg.png" alt="Zulily">
     <img src="https://press.gianttiger.com/download/logo-guidelines-fy21-GTlogo-wordmark-en-colour.jpeg" alt="Giant Tiger">
-    
   </div>
   <p style="text-align:center;margin-top:15px;">
     Deep operational and sales experience across major North American marketplaces.
@@ -124,8 +149,8 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 <section id="services">
   <h2>Services</h2>
   <div class="grid">
-    <div class="card">
-      <h3>💻 E-commerce & Marketplace Sales</h3>
+    <div class="card" data-tooltip="Optimize Shopify stores and marketplace listings for maximum sales.">
+      <h3><span class="icon">💻</span> E-commerce & Marketplace Sales</h3>
       <ul>
         <li>Shopify and marketplace optimization</li>
         <li>Amazon, Walmart, Best Buy strategy</li>
@@ -133,8 +158,8 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
         <li>Order and inventory workflows</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>⚙️ Operations & Logistics</h3>
+    <div class="card" data-tooltip="Design scalable operational systems and improve fulfillment efficiency.">
+      <h3><span class="icon">⚙️</span> Operations & Logistics</h3>
       <ul>
         <li>Scalable operational systems</li>
         <li>Fulfillment and 3PL optimization</li>
@@ -142,8 +167,8 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
         <li>SOP and process design</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>🧩 ERP & Systems</h3>
+    <div class="card" data-tooltip="Implement ERP systems and integrate workflows across your business.">
+      <h3><span class="icon">🧩</span> ERP & Systems</h3>
       <ul>
         <li>ERP selection and rollout</li>
         <li>System integration</li>
@@ -151,8 +176,8 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
         <li>Team adoption</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>📈 Growth & Strategy</h3>
+    <div class="card" data-tooltip="Set up KPI frameworks and drive margin-improving strategies.">
+      <h3><span class="icon">📈</span> Growth & Strategy</h3>
       <ul>
         <li>KPI frameworks</li>
         <li>Margin improvement</li>
@@ -160,25 +185,46 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
         <li>Data-driven growth</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>🎓 Training</h3>
+    <div class="card" data-tooltip="Train teams on operations, leadership, and knowledge transfer.">
+      <h3><span class="icon">🎓</span> Training</h3>
       <ul>
         <li>Team onboarding</li>
         <li>Operational playbooks</li>
         <li>Leadership training</li>
         <li>Knowledge transfer</li>
       </ul>
+    </div>
   </div>
 </section>
 
 <section id="why">
   <h2>Why Simple Consulting</h2>
   <div class="why-grid">
-    <div class="why-card"><div class="icon">🛠️</div><h3>Operator-Led</h3><p>We’ve run businesses — not just advised.</p></div>
-    <div class="why-card"><div class="icon">🛒</div><h3>Marketplace-Proven</h3><p>Amazon, Walmart, Best Buy, omni-channel.</p></div>
-    <div class="why-card"><div class="icon">📋</div><h3>Practical</h3><p>No fluff — only execution.</p></div>
-    <div class="why-card"><div class="icon">📈</div><h3>Scalable</h3><p>Built for growth.</p></div>
-    <div class="why-card"><div class="icon">🤝</div><h3>Hands-On</h3><p>We build with you.</p></div>
+    <div class="why-card" data-tooltip="Our leaders have hands-on experience running businesses, not just advising.">
+      <div class="icon">🛠️</div>
+      <h3>Operator-Led</h3>
+      <p>We’ve run businesses — not just advised.</p>
+    </div>
+    <div class="why-card" data-tooltip="We’ve proven results on Amazon, Walmart, Best Buy, and other marketplaces.">
+      <div class="icon">🛒</div>
+      <h3>Marketplace-Proven</h3>
+      <p>Amazon, Walmart, Best Buy, omni-channel.</p>
+    </div>
+    <div class="why-card" data-tooltip="We focus on practical execution — no fluff, no vague strategies.">
+      <div class="icon">📋</div>
+      <h3>Practical</h3>
+      <p>No fluff — only execution.</p>
+    </div>
+    <div class="why-card" data-tooltip="Scalable solutions built to grow with your business.">
+      <div class="icon">📈</div>
+      <h3>Scalable</h3>
+      <p>Built for growth.</p>
+    </div>
+    <div class="why-card" data-tooltip="We work closely with your team to implement solutions hands-on.">
+      <div class="icon">🤝</div>
+      <h3>Hands-On</h3>
+      <p>We build with you.</p>
+    </div>
   </div>
 </section>
 
@@ -191,13 +237,8 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
     <input type="text" name="name" placeholder="Name" required>
     <input type="email" name="_replyto" placeholder="Email" required>
     <textarea name="message" placeholder="Message" rows="5" required></textarea>
-
-    <!-- Optional: subject line in the email you receive -->
     <input type="hidden" name="_subject" value="New Website Contact">
-
-    <!-- Optional: redirect after submit -->
     <input type="hidden" name="_redirect" value="https://yourdomain.com/thanks.html">
-
     <button type="submit">Submit</button>
   </form>
 </section>
