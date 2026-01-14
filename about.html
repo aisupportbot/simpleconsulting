@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Simple Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins,sans-serif;color:#1e1e1e;background:#fff;line-height:1.5}
+section{max-width:1100px;margin:0 auto;padding:50px 20px}
+h1,h2,h3{font-weight:700;margin-bottom:12px}
+p,li{color:#555}
+a{text-decoration:none;color:#1e1e1e;font-weight:600}
+ul{padding-left:18px}
+
+/* Header */
+header{position:sticky;top:0;background:#fff;padding:15px 0;border-bottom:1px solid #eee;z-index:100}
+nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px}
+nav a:hover{background:#1e1e1e;color:#fff}
+
+/* Hero */
+#hero{text-align:center;padding:90px 20px;background:#fafafa}
+#hero h1{font-size:2.4em;margin-bottom:15px}
+#hero p{margin-bottom:12px}
+#hero a{display:inline-block;margin-top:20px;padding:14px 34px;background:#1e1e1e;color:#fff;border-radius:40px}
+#hero a:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
+
+/* About */
+#about img{width:200px;border-radius:50%;margin-top:20px}
+#about p{margin-bottom:16px;line-height:1.7}
+
+/* Contact */
+#contact{text-align:center;margin-top:50px}
+form{max-width:520px;margin:25px auto 0;display:flex;flex-direction:column}
+form input,form textarea{padding:14px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:1em}
+form button{padding:14px;border:none;border-radius:40px;background:#1e1e1e;color:#fff;font-size:1em;font-weight:600}
+form button:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
+
+/* Footer */
+footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
+
+@media(max-width:768px){
+  #hero h1{font-size:2.1em}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <strong>Simple Consulting</strong>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section id="hero">
+  <h1>About Simple Consulting</h1>
+  <p>We bring clarity, systems, and operational excellence to help e-commerce brands scale profitably.</p>
+  <a href="#contact">Get in Touch</a>
+</section>
+
+<section id="about">
+  <h2>Our Story</h2>
+  <p>Founded by [Your Name], Simple Consulting was born out of a desire to simplify complex e-commerce operations. With years of hands-on experience across Shopify, Amazon, Walmart, Best Buy, and cross-border logistics, we know what it takes to scale a brand efficiently and profitably.</p>
+  
+  <h2>Our Approach</h2>
+  <p>We focus on practical, data-driven solutions tailored to your business. From streamlining workflows to implementing scalable systems, our approach is always hands-on and results-oriented. We step in where operations slow growth, helping your team focus on what matters most: scaling and delivering exceptional customer experiences.</p>
+
+  <h2>Why Work With Us</h2>
+  <ul>
+    <li>Operator-led: We’ve run businesses ourselves, not just advised.</li>
+    <li>Marketplace Expertise: Deep experience with Amazon, Walmart, Best Buy, and more.</li>
+    <li>Practical & Scalable: No fluff, just solutions that grow with your business.</li>
+    <li>Hands-On Support: We implement, train, and guide your team for success.</li>
+  </ul>
+
+  <img src="your-photo.jpg" alt="[Your Name]">
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Let’s talk about what’s slowing your business down — and how to fix it.</p>
+  <p><strong>Email:</strong> hello@simpleconsulting.ca</p>
+
+  <form action="https://formspree.io/f/mreegwjn" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="_replyto" placeholder="Email" required>
+    <textarea name="message" placeholder="Message" rows="5" required></textarea>
+    <input type="hidden" name="_subject" value="New Website Contact">
+    <input type="hidden" name="_redirect" value="https://yourdomain.com/thanks.html">
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<footer>
+  <p>© Simple Consulting 2016-2026</p>
+</footer>
+
+</body>
+</html>
