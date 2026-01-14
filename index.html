@@ -17,12 +17,12 @@ ul{padding-left:18px}
 /* Header */
 header{position:sticky;top:0;background:#fff;padding:15px 0;border-bottom:1px solid #eee;z-index:100}
 nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
-nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px;margin-left:10px}
+nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px}
 nav a:hover{background:#1e1e1e;color:#fff}
 
 /* Hero */
 #hero{text-align:center;padding:90px 20px;background:#fafafa}
-#hero h1{font-size:2.6em;margin-bottom:15px}
+#hero h1{font-size:2.6em}
 #hero p{margin-bottom:12px}
 #hero .sub{font-weight:600;margin:18px 0}
 #hero a{display:inline-block;margin-top:15px;padding:14px 34px;background:#1e1e1e;color:#fff;border-radius:40px}
@@ -48,11 +48,6 @@ nav a:hover{background:#1e1e1e;color:#fff}
 .why-card{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);text-align:center}
 .why-card .icon{font-size:2em;margin-bottom:8px}
 
-/* Case Studies */
-.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:25px}
-.case-card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05)}
-.case-card ul{margin-top:8px}
-
 /* Contact */
 #contact{text-align:center}
 #contact p{margin-bottom:10px}
@@ -74,18 +69,15 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 <header>
   <nav>
     <strong>Simple Consulting</strong>
-    <div>
-      <a href="about.html">About</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <a href="booking.html">Book a Consultation</a>
   </nav>
 </header>
 
 <section id="hero">
-  <h1>Clear systems. Profitable growth.</h1>
-  <p>We help e-commerce brands scale efficiently by fixing the systems behind the scenes.</p>
+  <h1>Helping brands scale profitably, effortlessly</h1>
+  <p>We streamline operations, optimize marketplaces, and fix the systems behind growth.</p>
   <p class="sub">E-commerce • Marketplace Sales • Operations • Logistics • ERP • Growth • Training</p>
-  <a href="about.html">Learn More About Us</a>
+  <a href="booking.html">Book a Consultation</a>
 </section>
 
 <section id="who">
@@ -115,7 +107,6 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Zulily_logo_2019.svg/1280px-Zulily_logo_2019.svg.png" alt="Zulily">
     <img src="https://press.gianttiger.com/download/logo-guidelines-fy21-GTlogo-wordmark-en-colour.jpeg" alt="Giant Tiger">
   </div>
-  <p style="text-align:center;margin-top:15px;">Deep operational and sales experience across major North American marketplaces.</p>
 </section>
 
 <section id="services">
@@ -165,27 +156,22 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
         <li>Leadership training</li>
         <li>Knowledge transfer</li>
       </ul>
-    </div>
   </div>
 </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Let’s talk about what’s slowing your business down — and how to fix it.</p>
-  <p><strong>Email:</strong> hello@simpleconsulting.ca</p>
-
-  <form action="https://formspree.io/f/mreegwjn" method="POST">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="_replyto" placeholder="Email" required>
-    <textarea name="message" placeholder="Message" rows="5" required></textarea>
-    <input type="hidden" name="_subject" value="New Website Contact">
-    <input type="hidden" name="_redirect" value="https://yourdomain.com/thanks.html">
-    <button type="submit">Submit</button>
-  </form>
+<section id="why">
+  <h2>Why Simple Consulting</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="icon">🛠️</div><h3>Operator-Led</h3><p>We’ve run businesses — not just advised.</p></div>
+    <div class="why-card"><div class="icon">🛒</div><h3>Marketplace-Proven</h3><p>Amazon, Walmart, Best Buy, omni-channel.</p></div>
+    <div class="why-card"><div class="icon">📋</div><h3>Practical</h3><p>No fluff — only execution.</p></div>
+    <div class="why-card"><div class="icon">📈</div><h3>Scalable</h3><p>Built for growth.</p></div>
+    <div class="why-card"><div class="icon">🤝</div><h3>Hands-On</h3><p>We build with you.</p></div>
+  </div>
 </section>
 
 <footer>
-  <p>© Simple Consulting 2016-2026</p>
+  <p>© Simple Consulting 2016-2026 </p>
 </footer>
 
 </body>
