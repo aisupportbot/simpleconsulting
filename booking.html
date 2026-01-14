@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Consultation - Simple Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: Poppins, sans-serif;
+  color: #1e1e1e;
+  background: #fff;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+header a {
+  text-decoration: none;
+  color: #1e1e1e;
+  font-weight: 600;
+  border: 2px solid #1e1e1e;
+  padding: 10px 22px;
+  border-radius: 30px;
+  transition: all 0.2s;
+}
+
+header a:hover {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+section {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+h1, h2 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.calendly-inline-widget {
+  min-width: 320px;
+  height: 700px;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 20px;
+  border-top: 1px solid #eee;
+  color: #555;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <strong>Simple Consulting</strong>
+  <a href="index.html">Home</a>
+</header>
+
+<section>
+  <h1>Book a Consultation</h1>
+  <p>Pick a time that works for you and schedule a consultation. You’ll receive an email confirmation immediately, and I’ll get notified too.</p>
+
+  <!-- Replace "yourusername" with your actual Calendly username or link -->
+  <div class="calendly-inline-widget" data-url="https://calendly.com/scottnguyen416/30min" ></div>
+</section>
+
+<footer>
+  <p>© Simple Consulting 2016-2026</p>
+</footer>
+
+<!-- Calendly Widget Script -->
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+</body>
+</html>
