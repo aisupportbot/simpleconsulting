@@ -4,72 +4,83 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simple Consulting</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* Reset & Base */
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter, sans-serif;color:#333;background:#fefefe;line-height:1.6}
+body{font-family:Poppins,sans-serif;color:#1e1e1e;background:#fff;line-height:1.5}
 a{text-decoration:none;color:inherit}
 ul{list-style:disc;padding-left:20px}
 
 /* Header */
-header{position:sticky;top:0;background:#ffffff;padding:18px 0;box-shadow:0 1px 8px rgba(0,0,0,0.05);z-index:100}
-nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
-nav strong{font-size:1.4em;color:#111111}
-nav a{padding:10px 20px;color:#111111;font-weight:500;border-radius:4px;transition:0.3s}
-nav a:hover{background:#f0f0f0}
+header{
+  position:sticky;
+  top:0;
+  background:#fff;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+  z-index:100;
+}
+nav{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 20px;
+}
+nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px}
+nav a:hover{background:#1e1e1e;color:#fff}
 
 /* Hero */
-#hero{padding:120px 20px;text-align:center;background:#f0f4f8;display:flex;align-items:center;justify-content:center}
-#hero .hero-container{max-width:800px}
-#hero h1{font-size:2.8em;font-weight:700;margin-bottom:20px;line-height:1.2;color:#111111}
-#hero p{font-size:1.1em;margin-bottom:15px;color:#555555}
-#hero .sub{font-weight:500;margin-bottom:25px;color:#444444}
-#hero a.primary-btn{display:inline-block;padding:14px 36px;background:#111111;color:#ffffff;border-radius:30px;font-weight:600;transition:0.3s}
-#hero a.primary-btn:hover{background:#333333}
+#hero{
+  text-align:center;
+  padding:90px 20px;
+  background:#fafafa; /* matches About page */
+}
+#hero h1{font-size:2.4em;margin-bottom:15px}
+#hero p{margin-bottom:12px}
+#hero .sub{margin-bottom:18px}
+#hero a{display:inline-block;margin-top:20px;padding:14px 34px;background:#1e1e1e;color:#fff;border-radius:40px}
+#hero a:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 
-/* Sections */
-section{max-width:1100px;margin:auto;padding:60px 20px}
-section h2{font-size:2em;font-weight:700;margin-bottom:25px;text-align:center;color:#111111}
+/* Services */
+#services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:25px}
+.card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column;transition:0.3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.card h3{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.card ul{margin-top:10px}
+.card li{margin-bottom:6px;color:#555}
+.card a{margin-top:auto;color:#1e1e1e;font-weight:600}
+.card a:hover{color:#0077ff}
 
-/* Services Grid */
-#services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:40px}
-.card{background:#ffffff;padding:30px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.05);transition:0.3s}
-.card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
-.card h3{font-size:1.2em;margin-bottom:15px;color:#111111}
-.card ul li{margin-bottom:8px;color:#555555}
-.card a{margin-top:15px;display:inline-block;color:#111111;font-weight:500}
-.card a:hover{color:#333333}
+/* Logos */
+.logo-row{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;margin-top:25px}
+.logo-row img{height:34px;display:flex;align-items:center;justify-content:center;padding:0 12px;border-radius:14px;font-weight:600;color:#555;border:1px solid #eee;transition: all 0.2s;opacity:.85;filter:grayscale(100%)}
+.logo-row img:hover{opacity:1;filter:none;transform:scale(1.05);border-color:#1e1e1e}
 
-/* Logos / Clients */
-.logo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:25px;margin-top:35px}
-.logo-row img{height:36px;filter:grayscale(100%);opacity:0.8;transition:0.3s}
-.logo-row img:hover{filter:none;opacity:1;transform:scale(1.05)}
-
-/* Why Section */
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;margin-top:40px}
-.why-card{background:#ffffff;padding:25px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.05);text-align:center;transition:0.3s}
-.why-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
-.why-card .icon{font-size:2.2em;margin-bottom:12px}
-.why-card h3{margin-bottom:10px;color:#111111}
+/* Why */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:25px}
+.why-card{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);text-align:center;transition:0.3s}
+.why-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.why-card .icon{font-size:2em;margin-bottom:8px}
+.why-card h3{margin-bottom:8px;color:#1e1e1e}
+.why-card p{color:#555}
 
 /* Contact */
-#contact{text-align:center}
-form{max-width:520px;margin:30px auto;display:flex;flex-direction:column}
-form input,form textarea{padding:14px;margin-bottom:15px;border-radius:6px;border:1px solid #ddd;font-size:1em;background:#fafafa}
-form button{padding:14px;background:#111111;color:#ffffff;border:none;border-radius:30px;font-weight:600;cursor:pointer;transition:0.3s}
-form button:hover{background:#333333}
+#contact{text-align:center;margin-top:50px}
+form{max-width:520px;margin:25px auto 0;display:flex;flex-direction:column}
+form input,form textarea{padding:14px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:1em}
+form button{padding:14px;border:none;border-radius:40px;background:#1e1e1e;color:#fff;font-size:1em;font-weight:600}
+form button:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 
 /* Footer */
-footer{text-align:center;padding:40px 20px;background:#ffffff;color:#555555;border-top:1px solid #e0e0e0}
-footer a{color:#111111}
-footer a:hover{color:#333333}
+footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 
-/* Responsive */
+/* Mobile tweaks */
 @media(max-width:768px){
-  #hero h1{font-size:2.2em}
-  nav{padding:0 15px}
-  .card, .why-card{padding:20px}
+  #hero h1{font-size:2.1em}
+  nav{padding:0 14px;}
 }
 </style>
 </head>
@@ -86,19 +97,17 @@ footer a:hover{color:#333333}
 </header>
 
 <section id="hero">
-  <div class="hero-container">
-    <h1>Helping Brands Scale Profitably & Effortlessly</h1>
-    <p>We streamline operations, optimize marketplaces, and fix the systems behind growth.</p>
-    <p class="sub">E-commerce • Marketplace Sales • Operations • Logistics • ERP • Growth • Training</p>
-    <a href="booking.html" class="primary-btn">Book a Consultation</a>
-  </div>
+  <h1>Helping Brands Scale Profitably & Effortlessly</h1>
+  <p>We streamline operations, optimize marketplaces, and fix the systems behind growth.</p>
+  <p class="sub">E-commerce • Marketplace Sales • Operations • Logistics • ERP • Growth • Training</p>
+  <a href="booking.html">Book a Consultation</a>
 </section>
 
 <section id="services">
   <h2>Our Services</h2>
   <div class="grid">
     <div class="card">
-      <h3>E-commerce & Marketplace Sales</h3>
+      <h3>💻 E-commerce & Marketplace Sales</h3>
       <ul>
         <li>Shopify and marketplace optimization</li>
         <li>Amazon, Walmart, Best Buy strategy</li>
@@ -107,7 +116,7 @@ footer a:hover{color:#333333}
       </ul>
     </div>
     <div class="card">
-      <h3>Operations & Logistics</h3>
+      <h3>⚙️ Operations & Logistics</h3>
       <ul>
         <li>Scalable operational systems</li>
         <li>Fulfillment and 3PL optimization</li>
@@ -116,7 +125,7 @@ footer a:hover{color:#333333}
       </ul>
     </div>
     <div class="card">
-      <h3>ERP & Systems</h3>
+      <h3>🧩 ERP & Systems</h3>
       <ul>
         <li>ERP selection and rollout</li>
         <li>System integration</li>
@@ -125,7 +134,7 @@ footer a:hover{color:#333333}
       </ul>
     </div>
     <div class="card">
-      <h3>Growth & Strategy</h3>
+      <h3>📈 Growth & Strategy</h3>
       <ul>
         <li>KPI frameworks</li>
         <li>Margin improvement</li>
@@ -134,7 +143,7 @@ footer a:hover{color:#333333}
       </ul>
     </div>
     <div class="card">
-      <h3>Training</h3>
+      <h3>🎓 Training</h3>
       <ul>
         <li>Team onboarding</li>
         <li>Operational playbooks</li>
@@ -174,7 +183,7 @@ footer a:hover{color:#333333}
 </section>
 
 <footer>
-  <p>© Simple Consulting 2016-2026 | <a href="privacy.html">Privacy Policy</a></p>
+  <p>© Simple Consulting 2016-2026</p>
 </footer>
 
 </body>
