@@ -8,55 +8,63 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Poppins,sans-serif;color:#1e1e1e;background:#fff;line-height:1.5}
-a{text-decoration:none;color:#1e1e1e;font-weight:600}
-ul{padding-left:18px}
+section{max-width:1100px;margin:0 auto;padding:50px 20px}
 h1,h2,h3{font-weight:700;margin-bottom:12px}
 p,li{color:#555}
-
-.container{max-width:1100px;margin:0 auto;padding:40px 20px}
+a{text-decoration:none;color:#1e1e1e;font-weight:600}
+ul{padding-left:18px}
 
 /* Header */
-header{position:sticky;top:0;background:#fff;padding:12px 0;border-bottom:1px solid #eee;z-index:100}
-nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px;flex-wrap:wrap;gap:10px}
-nav strong{font-size:1.1em}
-nav a{padding:8px 18px;border:2px solid #1e1e1e;border-radius:30px;font-size:.9em}
+header{position:sticky;top:0;background:#fff;padding:15px 0;border-bottom:1px solid #eee;z-index:100}
+nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px}
 nav a:hover{background:#1e1e1e;color:#fff}
 
 /* Hero */
-#hero{padding:60px 0}
-#hero .container{background:#fafafa;text-align:center;padding:60px 20px;border-radius:14px}
-#hero h1{font-size:2em;margin-bottom:12px}
-#hero .sub{font-size:.9em}
-#hero a{margin-top:18px;padding:12px 28px}
+#hero{text-align:center;padding:90px 20px;background:#fafafa}
+#hero h1{font-size:2.6em}
+#hero p{margin-bottom:12px}
+#hero .sub{font-weight:600;margin:18px 0}
+#hero a{display:inline-block;margin-top:15px;padding:14px 34px;background:#1e1e1e;color:#fff;border-radius:40px}
+#hero a:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 
 /* Services */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:20px}
-.card{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);transition:.3s}
+#services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:25px}
+.card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column}
+.card h3{display:flex;gap:8px;align-items:center}
+.card ul{margin-top:10px}
 .card li{margin-bottom:6px}
+.card a{margin-top:auto;color:#1e1e1e}
+.card a:hover{color:#0077ff}
 
 /* Logos */
-.logo-row{gap:18px}
-.logo-row img{height:28px;padding:0 8px}
+.logo-row{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;margin-top:25px}
+.logo-row img, .logo-row .logo-box{height:34px;display:flex;align-items:center;justify-content:center;padding:0 12px;border-radius:14px;font-weight:600;color:#555;border:1px solid #eee;transition: all 0.2s;}
+.logo-row img{opacity:.85;filter:grayscale(100%)}
+.logo-row img:hover, .logo-row .logo-box:hover{opacity:1;filter:none;transform:scale(1.05);border-color:#1e1e1e}
 
 /* Why */
-.why-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px}
-.why-card{padding:16px}
-.why-card .icon{font-size:1.6em}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:25px}
+.why-card{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);text-align:center}
+.why-card .icon{font-size:2em;margin-bottom:8px}
+
+/* Contact */
+#contact{text-align:center}
+#contact p{margin-bottom:10px}
+form{max-width:520px;margin:25px auto 0;display:flex;flex-direction:column}
+form input,form textarea{padding:14px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:1em}
+form button{padding:14px;border:none;border-radius:40px;background:#1e1e1e;color:#fff;font-size:1em;font-weight:600}
+form button:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 
 /* Footer */
-footer{padding:28px 16px;font-size:.9em}
+footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 
-/* Mobile Specific */
-@media(max-width:600px){
-  .container{padding:30px 16px}
-  nav{flex-direction:column;align-items:flex-start}
-  nav div{display:flex;gap:8px}
-  #hero{padding:30px 0}
-  #hero .container{padding:40px 16px}
-  #hero h1{font-size:1.7em}
-  .sub{font-size:.85em}
-  .grid{grid-template-columns:1fr}
-  .why-grid{grid-template-columns:1fr 1fr}
+/* Responsive */
+@media(max-width:768px){
+  #hero h1{font-size:2.1em}
+
+  /* Add padding to nav for mobile so brand isn’t flush left */
+  nav{padding:0 15px}
 }
 </style>
 </head>
@@ -65,63 +73,98 @@ footer{padding:28px 16px;font-size:.9em}
 <header>
   <nav>
     <strong>Simple Consulting</strong>
-    <div>
-      <a href="about.html">About</a>
-      <a href="booking.html">Book</a>
-    </div>
+    <a href="about.html">About Us</a>
   </nav>
 </header>
 
 <section id="hero">
-  <div class="container">
-    <h1>Helping Brands Scale Profitably & Effortlessly</h1>
-    <p>We streamline operations, optimize marketplaces, and fix the systems behind growth.</p>
-    <p class="sub">E-commerce • Marketplace • Ops • Logistics • ERP • Growth • Training</p>
-    <a href="booking.html">Book a Consultation</a>
+  <h1>Helping brands scale profitably, effortlessly</h1>
+  <p>We streamline operations, optimize marketplaces, and fix the systems behind growth.</p>
+  <p class="sub">E-commerce • Marketplace Sales • Operations • Logistics • ERP • Growth • Training</p>
+  <a href="booking.html">Book a Consultation</a>
+</section>
+
+
+<section id="clients">
+  <h2>Marketplace Experience</h2>
+  <div class="logo-row">
+    <img src="https://download.logo.wine/logo/Walmart_Canada/Walmart_Canada-Logo.wine.png" alt="Walmart">
+    <img src="https://shopkeeper.com/cms/files/964034571/amazon-seller-central-f73ddc.webp" alt="Amazon Seller Central">
+    <img src="https://cdn.prod.website-files.com/64909dd65a703aa9864ebaff/64909dd65a703aa9864ebdec_amazon_vendor.png" alt="Amazon Vendor Central">
+    <img src="https://mma.prnewswire.com/media/2008141/Wayfair_Logo.jpg?p=facebook" alt="Wayfair">
+    <img src="https://www.citypng.com/public/uploads/preview/hd-ebay-logo-transparent-background-701751694774005ejhp2fuirf.png" alt="eBay">
+    <img src="https://img.favpng.com/13/8/5/greater-sudbury-best-buy-logo-retail-png-favpng-TY4U6aSgA5n8NYBfVVDQpieV0.jpg" alt="Best Buy">
+    <img src="https://1000logos.net/wp-content/uploads/2023/03/Lowes-logo.png" alt="Lowe's">
+    <img src="https://logos-world.net/wp-content/uploads/2021/08/Home-Depot-Logo.png" alt="Home Depot">
+    <img src="https://www.infinityinstruments.com/wp-content/uploads/overstock-logo-vector.png" alt="Overstock">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Zulily_logo_2019.svg/1280px-Zulily_logo_2019.svg.png" alt="Zulily">
+    <img src="https://press.gianttiger.com/download/logo-guidelines-fy21-GTlogo-wordmark-en-colour.jpeg" alt="Giant Tiger">
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <h2>Services</h2>
-    <div class="grid">
-      <div class="card"><h3>E-commerce</h3><ul><li>Shopify & marketplaces</li><li>Amazon, Walmart</li></ul></div>
-      <div class="card"><h3>Operations</h3><ul><li>3PL</li><li>Inventory</li></ul></div>
-      <div class="card"><h3>ERP</h3><ul><li>Rollout</li><li>Integrations</li></ul></div>
-      <div class="card"><h3>Growth</h3><ul><li>KPI</li><li>Margins</li></ul></div>
-      <div class="card"><h3>Training</h3><ul><li>Onboarding</li><li>Leadership</li></ul></div>
+<section id="services">
+  <h2>Services</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>💻 E-commerce & Marketplace Sales</h3>
+      <ul>
+        <li>Shopify and marketplace optimization</li>
+        <li>Amazon, Walmart, Best Buy strategy</li>
+        <li>Sales growth and conversion improvements</li>
+        <li>Order and inventory workflows</li>
+      </ul>
     </div>
+    <div class="card">
+      <h3>⚙️ Operations & Logistics</h3>
+      <ul>
+        <li>Scalable operational systems</li>
+        <li>Fulfillment and 3PL optimization</li>
+        <li>Inventory planning and forecasting</li>
+        <li>SOP and process design</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🧩 ERP & Systems</h3>
+      <ul>
+        <li>ERP selection and rollout</li>
+        <li>System integration</li>
+        <li>Workflow alignment</li>
+        <li>Team adoption</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📈 Growth & Strategy</h3>
+      <ul>
+        <li>KPI frameworks</li>
+        <li>Margin improvement</li>
+        <li>Operational readiness</li>
+        <li>Data-driven growth</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎓 Training</h3>
+      <ul>
+        <li>Team onboarding</li>
+        <li>Operational playbooks</li>
+        <li>Leadership training</li>
+        <li>Knowledge transfer</li>
+      </ul>
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <h2>Marketplace Experience</h2>
-    <div class="logo-row">
-      <img src="https://download.logo.wine/logo/Walmart_Canada/Walmart_Canada-Logo.wine.png">
-      <img src="https://shopkeeper.com/cms/files/964034571/amazon-seller-central-f73ddc.webp">
-      <img src="https://mma.prnewswire.com/media/2008141/Wayfair_Logo.jpg">
-      <img src="https://www.citypng.com/public/uploads/preview/hd-ebay-logo-transparent-background-701751694774005ejhp2fuirf.png">
-      <img src="https://1000logos.net/wp-content/uploads/2023/03/Lowes-logo.png">
-      <img src="https://logos-world.net/wp-content/uploads/2021/08/Home-Depot-Logo.png">
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2>Why Simple Consulting</h2>
-    <div class="why-grid">
-      <div class="why-card"><div class="icon">🛠️</div><h3>Operator</h3></div>
-      <div class="why-card"><div class="icon">🛒</div><h3>Marketplace</h3></div>
-      <div class="why-card"><div class="icon">📋</div><h3>Practical</h3></div>
-      <div class="why-card"><div class="icon">📈</div><h3>Scalable</h3></div>
-    </div>
+<section id="why">
+  <h2>Why Simple Consulting</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="icon">🛠️</div><h3>Operator-Led</h3><p>We’ve run businesses — not just advised.</p></div>
+    <div class="why-card"><div class="icon">🛒</div><h3>Marketplace-Proven</h3><p>Amazon, Walmart, Best Buy, omni-channel.</p></div>
+    <div class="why-card"><div class="icon">📋</div><h3>Practical</h3><p>No fluff — only execution.</p></div>
+    <div class="why-card"><div class="icon">📈</div><h3>Scalable</h3><p>Built for growth.</p></div>
+    <div class="why-card"><div class="icon">🤝</div><h3>Hands-On</h3><p>We build with you.</p></div>
   </div>
 </section>
 
 <footer>
-  <p>© Simple Consulting 2016-2026</p>
+  <p>© Simple Consulting 2016-2026 </p>
 </footer>
 
 </body>
