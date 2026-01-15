@@ -1,4 +1,4 @@
-n<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -15,8 +15,22 @@ a{text-decoration:none;color:#1e1e1e;font-weight:600}
 ul{padding-left:18px}
 
 /* Header */
-header{position:sticky;top:0;background:#fff;padding:15px 0;border-bottom:1px solid #eee;z-index:100}
-nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+header{
+  position:sticky;
+  top:0;
+  background:#fff;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+  z-index:100;
+}
+nav{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 20px;   /* FIXED MOBILE EDGE */
+}
 nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px}
 nav a:hover{background:#1e1e1e;color:#fff}
 
@@ -41,8 +55,12 @@ form button:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 /* Footer */
 footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 
+/* Mobile tweaks */
 @media(max-width:768px){
   #hero h1{font-size:2.1em}
+}
+@media(max-width:480px){
+  nav{padding:0 14px;}
 }
 </style>
 </head>
@@ -68,17 +86,17 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
   <p>Founded by Scott Nguyen, Simple Consulting was born out of a desire to simplify complex e-commerce operations. With years of hands-on experience across Shopify, Amazon, Walmart, eBay, and cross-border logistics, we know what it takes to scale a brand efficiently and profitably.</p>
   
   <h2>Our Approach</h2>
-  <p>We focus on practical, data-driven solutions tailored to your business. From streamlining workflows to implementing scalable systems, our approach is always hands-on and results-oriented. We step in where operations slow growth, helping your team focus on what matters most: scaling and delivering exceptional customer experiences.</p>
+  <p>We focus on practical, data-driven solutions tailored to your business. From streamlining workflows to implementing scalable systems, our approach is always hands-on and results-oriented.</p>
 
   <h2>Why Work With Us</h2>
   <ul>
-    <li>Operator-led: We’ve run businesses ourselves, not just advised.</li>
-    <li>Marketplace Expertise: Deep experience with Amazon, Walmart, Best Buy, and more.</li>
-    <li>Practical & Scalable: No fluff, just solutions that grow with your business.</li>
-    <li>Hands-On Support: We implement, train, and guide your team for success.</li>
+    <li>Operator-led: We’ve run businesses ourselves.</li>
+    <li>Marketplace expertise across major platforms.</li>
+    <li>Practical, scalable solutions.</li>
+    <li>Hands-on implementation and training.</li>
   </ul>
 
-  <img src="" alt="[Scott]">
+  <img src="" alt="Scott Nguyen">
 </section>
 
 <section id="contact">
@@ -91,7 +109,6 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
     <input type="email" name="_replyto" placeholder="Email" required>
     <textarea name="message" placeholder="Message" rows="5" required></textarea>
     <input type="hidden" name="_subject" value="New Website Contact">
-    <input type="hidden" name="_redirect" value="https://yourdomain.com/thanks.html">
     <button type="submit">Submit</button>
   </form>
 </section>
