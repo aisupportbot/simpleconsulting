@@ -7,46 +7,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Poppins,sans-serif;color:#1e1e1e;background:#fff;line-height:1.5}
-section{max-width:1100px;margin:0 auto;padding:50px 20px}
-h1,h2,h3{font-weight:700;margin-bottom:12px}
+body{font-family:Poppins,sans-serif;color:#1e1e1e;background:#fff;line-height:1.6}
+section{max-width:1100px;margin:0 auto;padding:70px 20px}
+h1,h2,h3{font-weight:700;margin-bottom:14px}
 p,li{color:#555}
 a{text-decoration:none;color:#1e1e1e;font-weight:600}
 ul{padding-left:18px}
 
 /* Header */
-header{
-  position:sticky;
-  top:0;
-  background:#fff;
-  padding:15px 0;
-  border-bottom:1px solid #eee;
-  z-index:100;
-}
-nav{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0 20px;   /* FIXED MOBILE EDGE */
-}
+header{position:sticky;top:0;background:#fff;padding:15px 0;border-bottom:1px solid #eee;z-index:100}
+nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
 nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px}
 nav a:hover{background:#1e1e1e;color:#fff}
 
 /* Hero */
 #hero{text-align:center;padding:90px 20px;background:#fafafa}
-#hero h1{font-size:2.4em;margin-bottom:15px}
+#hero h1{font-size:2.5em;margin-bottom:15px}
 #hero p{margin-bottom:12px}
 #hero a{display:inline-block;margin-top:20px;padding:14px 34px;background:#1e1e1e;color:#fff;border-radius:40px}
 #hero a:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 
-/* About */
-#about img{width:200px;border-radius:50%;margin-top:20px}
-#about p{margin-bottom:16px;line-height:1.7}
+/* Founder Section */
+#founder{background:#f9f9f9}
+.founder-grid{
+  display:grid;
+  grid-template-columns:1fr 1.3fr;
+  gap:40px;
+  align-items:center;
+}
+.founder-grid img{
+  width:100%;
+  max-width:320px;
+  border-radius:50%;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+.founder-title{
+  font-size:2em;
+}
+.badge{
+  display:inline-block;
+  margin-top:6px;
+  padding:6px 14px;
+  border-radius:20px;
+  background:#1e1e1e;
+  color:#fff;
+  font-size:.85em;
+}
+
+/* Why */
+#why ul li{margin-bottom:8px}
 
 /* Contact */
-#contact{text-align:center;margin-top:50px}
+#contact{text-align:center}
 form{max-width:520px;margin:25px auto 0;display:flex;flex-direction:column}
 form input,form textarea{padding:14px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:1em}
 form button{padding:14px;border:none;border-radius:40px;background:#1e1e1e;color:#fff;font-size:1em;font-weight:600}
@@ -55,12 +67,11 @@ form button:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 /* Footer */
 footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 
-/* Mobile tweaks */
+/* Mobile */
 @media(max-width:768px){
   #hero h1{font-size:2.1em}
-}
-@media(max-width:480px){
-  nav{padding:0 14px;}
+  .founder-grid{grid-template-columns:1fr;text-align:center}
+  .founder-grid img{margin:0 auto}
 }
 </style>
 </head>
@@ -69,9 +80,7 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 <header>
   <nav>
     <strong>Simple Consulting</strong>
-    <div>
-      <a href="index.html">Home</a>
-    </div>
+    <a href="index.html">Home</a>
   </nav>
 </header>
 
@@ -81,22 +90,43 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
   <a href="booking.html">Book a Consultation</a>
 </section>
 
-<section id="about">
-  <h2>My Story</h2>
-  <p>I started Simple Consulting because I was tired of seeing good businesses get stuck in messy systems, bad processes, and confusing tech. E-commerce doesn’t have to be complicated—but too often, it is. I’ve spent years in the trenches working with Shopify, Amazon, Walmart, eBay, and cross-border logistics. I’ve seen what works, what breaks, and what quietly kills margins. Simple Consulting is my way of taking all of that experience and using it to help brands grow smarter, not harder. My goal is simple: build clean systems, clear processes, and real results—so you can focus on growing your business without fighting your backend every day.</p>
-  
-  <h2>My Approach</h2>
-  <p>I focus on practical, data-driven solutions tailored to your business. From streamlining workflows to implementing scalable systems, our approach is always hands-on and results-oriented.</p>
+<section id="founder">
+  <div class="founder-grid">
+    <img src="https://media.licdn.com/dms/image/v2/D4E03AQH0l_SKpHLRow/profile-displayphoto-crop_800_800/B4EZsqFLefKoAQ-/0/1765937561010?e=1770249600&v=beta&t=KSLLdRFgiKqGc8Yd_R4EpLPNSxNoa-Nhiv-rjXb3JgQ" alt="Scott Nguyen">
 
+    <div>
+      <h2 class="founder-title">Hi, I’m Scott Nguyen</h2>
+      <p><strong>Founder, Simple Consulting</strong></p>
+      <span class="badge">Lean Certified • E-commerce Operations</span>
+
+      <p style="margin-top:16px;">
+        I built Simple Consulting because too many good businesses get stuck behind bad systems.
+        E-commerce doesn’t have to be complicated—but too often, it is.
+      </p>
+
+      <p>
+        I’ve spent years working across Shopify, Amazon, Walmart, eBay, and cross-border logistics—
+        onboarding products, fixing broken workflows, untangling inventory issues, and protecting margins.
+        I’ve seen what scales, what breaks, and what quietly kills profit.
+      </p>
+
+      <p>
+        My job is simple: build clean systems, clear processes, and real results—so you can grow
+        without fighting your backend every day.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="why">
   <h2>Why Work With Me</h2>
   <ul>
-    <li>Operator-led: We’ve run businesses ourselves.</li>
-    <li>Marketplace expertise across major platforms.</li>
-    <li>Practical, scalable solutions.</li>
-    <li>Hands-on implementation and training.</li>
+    <li>Operator-led — I’ve run businesses, not just advised them.</li>
+    <li>Lean-certified — focused on efficiency, margin, and removing waste.</li>
+    <li>Deep marketplace experience onboarding and scaling products.</li>
+    <li>Expert in inventory, fulfillment, and operational workflows.</li>
+    <li>Hands-on — I build with you, not just talk.</li>
   </ul>
-
-  <img src="https://media.licdn.com/dms/image/v2/D4E03AQH0l_SKpHLRow/profile-displayphoto-crop_800_800/B4EZsqFLefKoAQ-/0/1765937561010?e=1770249600&v=beta&t=KSLLdRFgiKqGc8Yd_R4EpLPNSxNoa-Nhiv-rjXb3JgQ" alt="Scott Nguyen">
 </section>
 
 <section id="contact">
@@ -113,7 +143,7 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 </section>
 
 <footer>
-  <p>© Simple Consulting 2016-2026</p>
+  <p>© Simple Consulting 2016–2026</p>
 </footer>
 
 </body>
