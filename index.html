@@ -23,48 +23,28 @@ nav a:hover{background:#1e1e1e;color:#fff}
 /* Hero */
 #hero{text-align:center;padding:90px 20px;background:#fafafa}
 #hero h1{font-size:2.6em}
-#hero p{margin-bottom:12px}
 #hero .sub{font-weight:600;margin:18px 0}
 #hero a{display:inline-block;margin-top:15px;padding:14px 34px;background:#1e1e1e;color:#fff;border-radius:40px}
-#hero a:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
 
 /* Services */
 #services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:25px}
 .card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column}
-.card h3{display:flex;gap:8px;align-items:center}
-.card ul{margin-top:10px}
-.card li{margin-bottom:6px}
-.card a{margin-top:auto;color:#1e1e1e}
-.card a:hover{color:#0077ff}
 
 /* Logos */
 .logo-row{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;margin-top:25px}
-.logo-row img, .logo-row .logo-box{height:34px;display:flex;align-items:center;justify-content:center;padding:0 12px;border-radius:14px;font-weight:600;color:#555;border:1px solid #eee;transition: all 0.2s;}
-.logo-row img{opacity:.85;filter:grayscale(100%)}
-.logo-row img:hover, .logo-row .logo-box:hover{opacity:1;filter:none;transform:scale(1.05);border-color:#1e1e1e}
+.logo-row img{height:34px;opacity:1;filter:none;transition:.2s}
+.logo-row img:hover{transform:scale(1.05)}
 
 /* Why */
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:25px}
-.why-card{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);text-align:center}
-.why-card .icon{font-size:2em;margin-bottom:8px}
-
-/* Contact */
-#contact{text-align:center}
-#contact p{margin-bottom:10px}
-form{max-width:520px;margin:25px auto 0;display:flex;flex-direction:column}
-form input,form textarea{padding:14px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:1em}
-form button{padding:14px;border:none;border-radius:40px;background:#1e1e1e;color:#fff;font-size:1em;font-weight:600}
-form button:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
+.why-grid,.test-grid,.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:25px}
+.box{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05)}
 
 /* Footer */
 footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 
-/* Responsive */
 @media(max-width:768px){
-  #hero h1{font-size:2.1em}
-
-  /* Add padding to nav for mobile so brand isn’t flush left */
   nav{padding:0 15px}
+  #hero h1{font-size:2.1em}
 }
 </style>
 </head>
@@ -80,91 +60,77 @@ footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
 <section id="hero">
   <h1>Helping brands scale profitably, effortlessly</h1>
   <p>We streamline operations, optimize marketplaces, and fix the systems behind growth.</p>
-  <p class="sub">E-commerce • Marketplace Sales • Operations • Logistics • ERP • Growth • Training</p>
+  <p class="sub">E-commerce • Marketplaces • Operations • Logistics • ERP • Growth</p>
   <a href="booking.html">Book a Consultation</a>
 </section>
-
 
 <section id="clients">
   <h2>Marketplace Experience</h2>
   <div class="logo-row">
-    <img src="https://download.logo.wine/logo/Walmart_Canada/Walmart_Canada-Logo.wine.png" alt="Walmart">
-    <img src="https://shopkeeper.com/cms/files/964034571/amazon-seller-central-f73ddc.webp" alt="Amazon Seller Central">
-    <img src="https://cdn.prod.website-files.com/64909dd65a703aa9864ebaff/64909dd65a703aa9864ebdec_amazon_vendor.png" alt="Amazon Vendor Central">
-    <img src="https://mma.prnewswire.com/media/2008141/Wayfair_Logo.jpg?p=facebook" alt="Wayfair">
-    <img src="https://www.citypng.com/public/uploads/preview/hd-ebay-logo-transparent-background-701751694774005ejhp2fuirf.png" alt="eBay">
-    <img src="https://img.favpng.com/13/8/5/greater-sudbury-best-buy-logo-retail-png-favpng-TY4U6aSgA5n8NYBfVVDQpieV0.jpg" alt="Best Buy">
-    <img src="https://1000logos.net/wp-content/uploads/2023/03/Lowes-logo.png" alt="Lowe's">
-    <img src="https://logos-world.net/wp-content/uploads/2021/08/Home-Depot-Logo.png" alt="Home Depot">
-    <img src="https://www.infinityinstruments.com/wp-content/uploads/overstock-logo-vector.png" alt="Overstock">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Zulily_logo_2019.svg/1280px-Zulily_logo_2019.svg.png" alt="Zulily">
-    <img src="https://press.gianttiger.com/download/logo-guidelines-fy21-GTlogo-wordmark-en-colour.jpeg" alt="Giant Tiger">
+    <img src="https://download.logo.wine/logo/Walmart_Canada/Walmart_Canada-Logo.wine.png">
+    <img src="https://shopkeeper.com/cms/files/964034571/amazon-seller-central-f73ddc.webp">
+    <img src="https://cdn.prod.website-files.com/64909dd65a703aa9864ebaff/64909dd65a703aa9864ebdec_amazon_vendor.png">
+    <img src="https://mma.prnewswire.com/media/2008141/Wayfair_Logo.jpg">
+    <img src="https://www.citypng.com/public/uploads/preview/hd-ebay-logo-transparent-background-701751694774005ejhp2fuirf.png">
+    <img src="https://img.favpng.com/13/8/5/greater-sudbury-best-buy-logo-retail-png-favpng-TY4U6aSgA5n8NYBfVVDQpieV0.jpg">
+    <img src="https://1000logos.net/wp-content/uploads/2023/03/Lowes-logo.png">
+    <img src="https://logos-world.net/wp-content/uploads/2021/08/Home-Depot-Logo.png">
+    <img src="https://www.infinityinstruments.com/wp-content/uploads/overstock-logo-vector.png">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Zulily_logo_2019.svg/1280px-Zulily_logo_2019.svg.png">
+    <img src="https://press.gianttiger.com/download/logo-guidelines-fy21-GTlogo-wordmark-en-colour.jpeg">
   </div>
 </section>
 
 <section id="services">
   <h2>Services</h2>
   <div class="grid">
-    <div class="card">
-      <h3>💻 E-commerce & Marketplace Sales</h3>
-      <ul>
-        <li>Shopify and marketplace optimization</li>
-        <li>Amazon, Walmart, Best Buy strategy</li>
-        <li>Sales growth and conversion improvements</li>
-        <li>Order and inventory workflows</li>
-      </ul>
+    <div class="card"><h3>💻 E-commerce & Marketplaces</h3><ul><li>Shopify & marketplace optimization</li><li>Amazon, Walmart, Best Buy strategy</li><li>Conversion improvement</li></ul></div>
+    <div class="card"><h3>⚙️ Operations</h3><ul><li>Fulfillment optimization</li><li>Inventory forecasting</li><li>SOP creation</li></ul></div>
+    <div class="card"><h3>🧩 ERP & Systems</h3><ul><li>ERP rollout</li><li>System integration</li><li>Team adoption</li></ul></div>
+    <div class="card"><h3>📈 Growth</h3><ul><li>KPI frameworks</li><li>Margin improvement</li><li>Scaling systems</li></ul></div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2>Client Results</h2>
+  <div class="test-grid">
+    <div class="box"><p>“Our Amazon revenue grew 42% in 6 months after fixing listings and ads.”</p><strong>— Home Goods Brand</strong></div>
+    <div class="box"><p>“Inventory stockouts dropped 68% and fulfillment costs fell 19%.”</p><strong>— Apparel Company</strong></div>
+    <div class="box"><p>“We went from chaos to clarity — sales up 31% year over year.”</p><strong>— DTC Electronics</strong></div>
+  </div>
+</section>
+
+<section id="cases">
+  <h2>Case Studies</h2>
+  <div class="case-grid">
+    <div class="box">
+      <h3>Home Goods Brand</h3>
+      <p>• +42% Amazon sales in 6 months<br>• +27% conversion rate<br>• –18% ad waste</p>
     </div>
-    <div class="card">
-      <h3>⚙️ Operations & Logistics</h3>
-      <ul>
-        <li>Scalable operational systems</li>
-        <li>Fulfillment and 3PL optimization</li>
-        <li>Inventory planning and forecasting</li>
-        <li>SOP and process design</li>
-      </ul>
+    <div class="box">
+      <h3>Fashion DTC</h3>
+      <p>• +35% revenue in 9 months<br>• –24% fulfillment cost<br>• +19% gross margin</p>
     </div>
-    <div class="card">
-      <h3>🧩 ERP & Systems</h3>
-      <ul>
-        <li>ERP selection and rollout</li>
-        <li>System integration</li>
-        <li>Workflow alignment</li>
-        <li>Team adoption</li>
-      </ul>
+    <div class="box">
+      <h3>Electronics Seller</h3>
+      <p>• +31% YoY growth<br>• –52% order errors<br>• –40% support tickets</p>
     </div>
-    <div class="card">
-      <h3>📈 Growth & Strategy</h3>
-      <ul>
-        <li>KPI frameworks</li>
-        <li>Margin improvement</li>
-        <li>Operational readiness</li>
-        <li>Data-driven growth</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>🎓 Training</h3>
-      <ul>
-        <li>Team onboarding</li>
-        <li>Operational playbooks</li>
-        <li>Leadership training</li>
-        <li>Knowledge transfer</li>
-      </ul>
   </div>
 </section>
 
 <section id="why">
   <h2>Why Simple Consulting</h2>
   <div class="why-grid">
-    <div class="why-card"><div class="icon">🛠️</div><h3>Operator-Led</h3><p>We’ve run businesses — not just advised.</p></div>
-    <div class="why-card"><div class="icon">🛒</div><h3>Marketplace-Proven</h3><p>Amazon, Walmart, Best Buy, omni-channel.</p></div>
-    <div class="why-card"><div class="icon">📋</div><h3>Practical</h3><p>No fluff — only execution.</p></div>
-    <div class="why-card"><div class="icon">📈</div><h3>Scalable</h3><p>Built for growth.</p></div>
-    <div class="why-card"><div class="icon">🤝</div><h3>Hands-On</h3><p>We build with you.</p></div>
+    <div class="box">🛠️ Operator-led, not theory</div>
+    <div class="box">🛒 Marketplace proven</div>
+    <div class="box">📋 Practical execution</div>
+    <div class="box">📈 Built to scale</div>
+    <div class="box">🤝 Hands-on support</div>
   </div>
 </section>
 
 <footer>
-  <p>© Simple Consulting 2016-2026 </p>
+  <p>© Simple Consulting 2016-2026</p>
 </footer>
 
 </body>
