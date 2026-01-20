@@ -30,9 +30,21 @@ nav a:hover{background:#1e1e1e;color:#fff}
 #services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:25px}
 .card{background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column}
 
-/* Logos */
-.logo-row{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;margin-top:25px}
-.logo-row img{height:34px;opacity:1;filter:none;transition:.2s}
+/* Logos — FIXED */
+.logo-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:30px;
+  justify-content:center;
+  align-items:center;
+  margin-top:25px
+}
+.logo-row img{
+  width:120px;
+  height:50px;
+  object-fit:contain;
+  transition:.2s
+}
 .logo-row img:hover{transform:scale(1.05)}
 
 /* Why */
