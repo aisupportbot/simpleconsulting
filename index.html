@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Consulting — E-commerce, Operations & Growth</title>
+<title>About | Simple Consulting</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,8 +15,6 @@
   --border: #e8e8e5;
   --muted: #999;
   --text: #555;
-  --hero-bg: #f6f6f4;
-  --hero-text: #111;
 }
 
 html { scroll-behavior: smooth; }
@@ -26,40 +24,11 @@ body {
   background: var(--white);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
-
-/* ── ANNOUNCEMENT BAR ── */
-#announcement {
-  background: #1a1a1a;
-  color: #aaa;
-  text-align: center;
-  padding: 11px 20px;
-  font-size: .8em;
-  font-weight: 500;
-  letter-spacing: .03em;
-}
-#announcement a {
-  color: var(--white);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,.3);
-  margin-left: 10px;
-  padding-bottom: 1px;
-  transition: border-color .2s;
-}
-#announcement a:hover { border-color: var(--white); }
 
 /* ── HEADER ── */
 header {
-  position: sticky; top: 0; z-index: 200;
-  transition: background .3s, border-color .3s;
-}
-header.light {
-  background: rgba(255,255,255,.97);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-}
-header.dark {
+  position: sticky; top: 0; z-index: 100;
   background: rgba(255,255,255,.97);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(12px);
@@ -72,298 +41,138 @@ nav {
 .logo {
   font-family: 'DM Serif Display', serif;
   font-size: 1.2em; letter-spacing: -.01em;
-  text-decoration: none; transition: color .3s;
+  color: var(--black); text-decoration: none;
 }
-header.dark .logo { color: var(--black); }
-header.light .logo { color: var(--black); }
-.nav-links { display: flex; gap: 4px; align-items: center; }
+.nav-links { display: flex; gap: 6px; align-items: center; }
 .nav-links a {
-  font-size: .85em; font-weight: 500;
+  font-size: .86em; font-weight: 500; color: var(--text);
   padding: 8px 14px; border-radius: 6px;
   text-decoration: none; transition: background .15s, color .15s;
 }
-header.dark .nav-links a { color: var(--text); }
-header.dark .nav-links a:hover { background: var(--off); color: var(--black); }
-header.light .nav-links a { color: var(--text); }
-header.light .nav-links a:hover { background: var(--off); color: var(--black); }
+.nav-links a:hover { background: var(--off); color: var(--black); }
 .nav-links a.btn {
-  font-weight: 600; margin-left: 8px;
-  border: 1.5px solid transparent;
+  background: var(--black); color: var(--white);
+  font-weight: 600; margin-left: 6px;
 }
-header.dark .nav-links a.btn { background: var(--black); color: var(--white); }
-header.dark .nav-links a.btn:hover { background: #2a2a2a; }
-header.light .nav-links a.btn { background: var(--black); color: var(--white); }
-header.light .nav-links a.btn:hover { background: #2a2a2a; }
+.nav-links a.btn:hover { background: #2a2a2a; }
 
 /* ── HERO ── */
 #hero {
   background: var(--off);
-  position: relative; overflow: hidden;
-  padding: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 96px 32px 88px;
+  text-align: center;
 }
-.hero-grid-bg {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 80%);
-}
-.hero-glow {
-  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
-  width: 800px; height: 600px;
-  background: radial-gradient(ellipse, rgba(255,255,255,.04) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-inner {
-  max-width: 1160px; margin: auto;
-  padding: 110px 32px 100px;
-  display: grid; grid-template-columns: 1.15fr 1fr; gap: 80px; align-items: center;
-  position: relative; z-index: 1;
-}
-.hero-eyebrow {
+#hero .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
   font-size: .74em; font-weight: 600; letter-spacing: .14em;
   text-transform: uppercase; color: var(--muted);
-  margin-bottom: 26px;
+  margin-bottom: 22px;
 }
-.hero-eyebrow span {
-  display: inline-block; width: 28px; height: 1px; background: #444;
-}
-.hero-left h1 {
+#hero .eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--muted); }
+#hero h1 {
   font-family: 'DM Serif Display', serif;
-  font-size: 4em; line-height: 1.06;
-  letter-spacing: -.03em; color: var(--black);
+  font-size: 3.4em; letter-spacing: -.025em;
+  line-height: 1.1; margin-bottom: 22px;
+  max-width: 640px; margin-left: auto; margin-right: auto;
+}
+#hero p {
+  font-size: 1.05em; color: var(--text);
+  max-width: 500px; margin: 0 auto 36px;
+  line-height: 1.75;
+}
+#hero a {
+  display: inline-block; text-decoration: none;
+  background: var(--black); color: var(--white);
+  font-size: .9em; font-weight: 600;
+  padding: 13px 30px; border-radius: 6px; transition: background .15s;
+}
+#hero a:hover { background: #2a2a2a; }
+
+/* ── FOUNDER ── */
+#founder {
+  max-width: 1160px; margin: auto;
+  padding: 96px 32px;
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center;
+}
+.founder-img-wrap {
+  position: relative;
+}
+.founder-img-wrap img {
+  width: 100%; max-width: 340px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  display: block;
+  object-fit: cover; aspect-ratio: 4/5;
+  background: var(--off);
+}
+.founder-img-placeholder {
+  width: 100%; max-width: 340px;
+  aspect-ratio: 4/5;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--off);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px;
+}
+.founder-img-placeholder .initials {
+  font-family: 'DM Serif Display', serif;
+  font-size: 4em; color: #ccc; line-height: 1;
+}
+.founder-img-placeholder p { font-size: .78em; color: var(--muted); }
+
+.founder-eyebrow {
+  font-size: .72em; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+.founder-right h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.6em; letter-spacing: -.025em;
+  line-height: 1.1; margin-bottom: 8px;
+}
+.founder-right .title {
+  font-size: .88em; color: var(--muted); font-weight: 500;
   margin-bottom: 28px;
 }
-.hero-left h1 em {
-  font-style: italic; color: #888;
+.cred-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
 }
-.hero-left p {
-  font-size: 1.02em; color: var(--text);
-  line-height: 1.8; max-width: 420px;
-  margin-bottom: 36px; font-weight: 400;
-}
-.hero-checks {
-  display: flex; flex-wrap: wrap; gap: 10px 24px;
-  margin-bottom: 40px;
-}
-.hero-checks span {
-  font-size: .8em; color: var(--text); font-weight: 500;
-  display: flex; align-items: center; gap: 7px;
-}
-.hero-checks span::before {
-  content: '';
-  display: inline-block; width: 5px; height: 5px;
-  border-radius: 50%; background: var(--muted); flex-shrink: 0;
-}
-.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-.hero-btns a {
-  display: inline-block; text-decoration: none;
-  font-size: .88em; font-weight: 600;
-  padding: 13px 28px; border-radius: 6px; transition: .15s;
-}
-.hero-btns a.primary {
-  background: var(--black); color: var(--white);
-}
-.hero-btns a.primary:hover { background: #2a2a2a; }
-.hero-btns a.ghost {
-  border: 1.5px solid var(--border); color: var(--black);
-}
-.hero-btns a.ghost:hover { border-color: #bbb; background: #eee; }
-
-/* Hero stats */
-.hero-right {}
-.stat-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
-}
-.stat {
-  background: var(--white); padding: 32px 28px;
-  transition: background .2s;
-}
-.stat:hover { background: var(--off); }
-.stat .num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.8em; color: var(--black);
-  line-height: 1; margin-bottom: 10px;
-}
-.stat .label { font-size: .76em; color: var(--muted); font-weight: 400; line-height: 1.5; }
-
-/* ── TICKER ── */
-#ticker {
-  background: var(--off);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 0; overflow: hidden;
-}
-.ticker-track {
-  display: flex; gap: 0;
-  animation: ticker 30s linear infinite;
-  width: max-content;
-}
-.ticker-track:hover { animation-play-state: paused; }
-.ticker-item {
-  display: inline-flex; align-items: center; gap: 12px;
-  padding: 0 36px; white-space: nowrap;
-  font-size: .78em; font-weight: 600; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--muted);
-}
-.ticker-item .sep { color: var(--border); }
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ── CREDENTIALS ── */
-#credentials {
-  border-bottom: 1px solid var(--border);
-  background: var(--off);
-  padding: 38px 32px;
-}
-#credentials .inner {
-  max-width: 1160px; margin: auto;
-  display: flex; align-items: center; gap: 36px; flex-wrap: wrap;
-}
-.cred-label {
-  font-size: .72em; font-weight: 600; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--muted);
-  white-space: nowrap; flex-shrink: 0;
-}
-.cred-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .cred-pill {
   display: inline-flex; align-items: center; gap: 6px;
-  background: var(--white); border: 1px solid var(--border);
+  background: var(--off); border: 1px solid var(--border);
   border-radius: 30px; padding: 6px 14px;
-  font-size: .77em; font-weight: 600; color: var(--black);
-  white-space: nowrap; transition: border-color .15s, box-shadow .15s;
+  font-size: .76em; font-weight: 600; color: var(--black);
+  white-space: nowrap;
 }
-.cred-pill:hover { border-color: #bbb; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
 .cred-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--black); flex-shrink: 0; }
+.founder-right p {
+  font-size: .96em; color: var(--text);
+  line-height: 1.8; margin-bottom: 18px;
+}
+.founder-right p strong { color: var(--black); font-weight: 600; }
+.founder-right p:last-child { margin-bottom: 0; }
 
-/* ── PLATFORMS ── */
-#clients { border-bottom: 1px solid var(--border); padding: 52px 32px; }
-#clients .inner { max-width: 1160px; margin: auto; }
-#clients .lbl {
-  font-size: .72em; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--muted);
-  margin-bottom: 32px; text-align: center; display: block;
-}
-.logo-row {
-  display: flex; flex-wrap: wrap;
-  gap: 40px; justify-content: center; align-items: center;
-}
-.logo-row img {
-  width: 96px; height: 34px; object-fit: contain;
-  filter: opacity(75%);
-  transition: filter .25s;
-}
-.logo-row img:hover { filter: opacity(100%); }
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); }
 
-/* ── SECTIONS ── */
-.section { max-width: 1160px; margin: auto; padding: 96px 32px; }
+/* ── SECTION ── */
+.section { max-width: 1160px; margin: auto; padding: 88px 32px; }
 .section-label {
   font-size: .72em; font-weight: 600; letter-spacing: .12em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
 }
 .section h2 {
   font-family: 'DM Serif Display', serif;
-  font-size: 2.6em; letter-spacing: -.025em;
-  margin-bottom: 14px; line-height: 1.1;
+  font-size: 2.3em; letter-spacing: -.02em;
+  margin-bottom: 12px; line-height: 1.15;
 }
 .section .sub {
   font-size: .97em; color: var(--text);
-  max-width: 500px; margin-bottom: 56px; line-height: 1.75;
+  max-width: 500px; margin-bottom: 52px; line-height: 1.75;
 }
 
-/* ── SERVICES ── */
-.service-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
-}
-.service-card {
-  background: var(--white); padding: 36px 30px;
-  transition: background .15s;
-}
-.service-card:hover { background: var(--off); }
-.service-card .icon { font-size: 1.25em; margin-bottom: 18px; display: block; }
-.service-card h3 {
-  font-size: .9em; font-weight: 700;
-  margin-bottom: 18px; color: var(--black); letter-spacing: -.01em;
-}
-.service-card ul { padding-left: 0; list-style: none; }
-.service-card ul li {
-  font-size: .84em; color: var(--text);
-  padding: 6px 0; border-bottom: 1px solid var(--border);
-  display: flex; gap: 10px; line-height: 1.5;
-}
-.service-card ul li::before { content: '—'; color: #d8d8d5; flex-shrink: 0; }
-.service-card ul li:last-child { border-bottom: none; }
-
-/* ── NUMBERS STRIP ── */
-#numbers {
-  background: var(--off);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.numbers-grid {
-  max-width: 1160px; margin: auto;
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: var(--border);
-}
-.number-item {
-  padding: 52px 40px; background: var(--off);
-  border-right: 1px solid var(--border);
-  transition: background .2s;
-}
-.number-item:hover { background: #efefec; }
-.number-item .big {
-  font-family: 'DM Serif Display', serif;
-  font-size: 3.6em; color: var(--black);
-  line-height: 1; margin-bottom: 10px; letter-spacing: -.02em;
-}
-.number-item p { font-size: .82em; color: var(--text); line-height: 1.5; }
-
-/* ── TESTIMONIALS ── */
-#testimonials { background: var(--off); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.test-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 20px; margin-top: 52px;
-}
-.test-card {
-  background: var(--white); padding: 38px 32px;
-  border: 1px solid var(--border); border-radius: 14px;
-  transition: box-shadow .2s, border-color .2s;
-}
-.test-card:hover { border-color: #ccc; box-shadow: 0 12px 40px rgba(0,0,0,.07); }
-.test-card p {
-  font-size: .95em; color: var(--text);
-  line-height: 1.8; margin-bottom: 24px;
-  font-style: italic;
-}
-.test-card strong { font-size: .8em; color: var(--muted); font-weight: 600; }
-
-/* ── CASE STUDIES ── */
-.case-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-}
-.case-card {
-  border: 1px solid var(--border); border-radius: 14px;
-  padding: 36px 30px; transition: box-shadow .2s, border-color .2s;
-}
-.case-card:hover { border-color: #ccc; box-shadow: 0 12px 40px rgba(0,0,0,.07); }
-.case-card h3 { font-size: .9em; font-weight: 700; margin-bottom: 22px; }
-.case-card .metric {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .84em;
-}
-.case-card .metric:last-child { border-bottom: none; }
-.case-card .metric span:first-child { color: var(--text); }
-.case-card .metric span:last-child { font-weight: 700; color: var(--black); }
-
-/* ── WHY ── */
+/* ── WHY GRID ── */
 .why-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px; background: var(--border);
@@ -377,37 +186,45 @@ header.light .nav-links a.btn:hover { background: #2a2a2a; }
 .why-item h4 { font-size: .88em; font-weight: 700; color: var(--black); margin-bottom: 8px; }
 .why-item p { font-size: .82em; color: var(--text); line-height: 1.6; }
 
-/* ── CTA ── */
-#cta {
-  background: var(--off);
-  padding: 110px 32px; text-align: center; position: relative; overflow: hidden;
-  border-top: 1px solid var(--border);
+/* ── CREDENTIALS ── */
+#credentials-section { background: var(--off); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.cred-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
 }
+.cred-card {
+  background: var(--white); padding: 34px 28px; transition: background .15s;
+}
+.cred-card:hover { background: var(--off); }
+.cred-card h3 { font-size: .9em; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+.cred-card p { font-size: .84em; color: var(--text); line-height: 1.65; }
 
-#cta .inner { max-width: 600px; margin: auto; position: relative; z-index: 1; }
-#cta h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 3em; letter-spacing: -.03em;
-  color: var(--black); margin-bottom: 20px; line-height: 1.1;
+/* ── CONTACT ── */
+#contact { text-align: center; border-top: 1px solid var(--border); }
+#contact .inner { max-width: 540px; margin: auto; }
+#contact p { font-size: .97em; color: var(--text); margin-bottom: 40px; line-height: 1.75; }
+form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+form input, form textarea {
+  padding: 13px 16px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: .9em;
+  color: var(--black); background: var(--white);
+  transition: border-color .15s;
+  outline: none;
 }
-#cta h2 em { font-style: italic; color: var(--muted); }
-#cta p { color: var(--text); margin-bottom: 40px; font-size: .98em; line-height: 1.75; }
-.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.cta-btns a {
-  display: inline-block; text-decoration: none;
-  font-size: .88em; font-weight: 600;
-  padding: 14px 32px; border-radius: 6px; transition: .15s;
+form input:focus, form textarea:focus { border-color: #aaa; }
+form textarea { resize: vertical; min-height: 130px; }
+form button {
+  padding: 13px 28px; border: none; border-radius: 6px;
+  background: var(--black); color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: .9em; font-weight: 600;
+  cursor: pointer; transition: background .15s; align-self: flex-start;
 }
-.cta-btns a.primary { background: var(--black); color: var(--white); }
-.cta-btns a.primary:hover { background: #2a2a2a; }
-.cta-btns a.ghost { border: 1.5px solid var(--border); color: var(--black); }
-.cta-btns a.ghost:hover { border-color: #bbb; background: #eee; }
+form button:hover { background: #2a2a2a; }
 
 /* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 30px 32px;
-}
+footer { border-top: 1px solid var(--border); padding: 30px 32px; }
 .footer-inner {
   max-width: 1160px; margin: auto;
   display: flex; justify-content: space-between; align-items: center;
@@ -417,79 +234,52 @@ footer {
 .footer-links a { color: var(--muted); text-decoration: none; transition: color .15s; }
 .footer-links a:hover { color: var(--black); }
 
-/* ── MOBILE CTA ── */
-.mobile-cta {
-  display: none;
-  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-  background: var(--black); color: var(--white);
-  padding: 14px 32px; border-radius: 40px;
-  font-size: .86em; font-weight: 700;
-  text-decoration: none; z-index: 300;
-  box-shadow: 0 8px 32px rgba(0,0,0,.3);
-  white-space: nowrap;
-}
-
 /* ── SCROLL REVEAL ── */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .65s ease, transform .65s ease;
+  opacity: 0; transform: translateY(22px);
+  transition: opacity .6s ease, transform .6s ease;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-delay-1 { transition-delay: .1s; }
 .reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .3s; }
 
-/* ── PAGE LOAD FADES ── */
+/* ── FADE IN ── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.fade { opacity: 0; animation: fadeUp .6s ease forwards; }
+.fade { opacity: 0; animation: fadeUp .55s ease forwards; }
 .d1 { animation-delay: .05s; } .d2 { animation-delay: .18s; }
 .d3 { animation-delay: .3s;  } .d4 { animation-delay: .42s; }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 960px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 56px; padding: 72px 24px 64px; }
-  .hero-right { display: none; }
-  .hero-left h1 { font-size: 2.9em; }
-  .service-grid { grid-template-columns: 1fr 1fr; }
-  .test-grid { grid-template-columns: 1fr; gap: 14px; }
-  .case-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  #founder { grid-template-columns: 1fr; gap: 48px; padding: 64px 24px; text-align: center; }
+  .founder-img-wrap { display: flex; justify-content: center; }
+  .cred-pills { justify-content: center; }
   .why-grid { grid-template-columns: 1fr 1fr; }
-  .numbers-grid { grid-template-columns: 1fr 1fr; }
-  .section { padding: 68px 24px; }
+  .cred-grid { grid-template-columns: 1fr; }
+  .section { padding: 64px 24px; }
+  #hero { padding: 72px 24px 64px; }
+  #hero h1 { font-size: 2.6em; }
   nav { padding: 15px 24px; }
   .nav-links a:not(.btn) { display: none; }
-  .mobile-cta { display: block; }
 }
 @media (max-width: 600px) {
-  .service-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
-  .numbers-grid { grid-template-columns: 1fr 1fr; }
-  .hero-left h1 { font-size: 2.3em; }
-  #credentials .inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  #hero h1 { font-size: 2.1em; }
 }
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT -->
-<div id="announcement">
-  Now accepting new clients &mdash; <a href="booking.html">Book a free consultation →</a>
-</div>
-
 <!-- HEADER -->
-<header class="dark" id="site-header">
+<header>
   <nav>
-    <a class="logo" href="/">Simple Consulting</a>
+    <a class="logo" href="index.html">Simple Consulting</a>
     <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#cases">Work</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cases">Work</a>
       <a href="about.html">About</a>
       <a href="booking.html" class="btn">Book a Call</a>
     </div>
@@ -498,347 +288,133 @@ footer {
 
 <!-- HERO -->
 <div id="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-eyebrow fade d1"><span></span>15+ Years of Operator Experience</div>
-      <h1 class="fade d2">Scale smarter.<br><em>Grow profitably.</em></h1>
-      <p class="fade d3">We streamline operations, optimize marketplaces, drive qualified traffic, and build the digital presence behind lasting business growth.</p>
-      <div class="hero-checks fade d3">
-        <span>Google Certified</span>
-        <span>Lean Six Sigma</span>
-        <span>ERP Certified</span>
-        <span>CompTIA A+</span>
-      </div>
-      <div class="hero-btns fade d4">
-        <a href="booking.html" class="primary">Book a Free Consultation</a>
-        <a href="#services" class="ghost">View Services</a>
-      </div>
-    </div>
-    <div class="hero-right fade d3">
-      <div class="stat-grid">
-        <div class="stat">
-          <div class="num">42%</div>
-          <div class="label">Amazon revenue lift — Westex International</div>
-        </div>
-        <div class="stat">
-          <div class="num">68%</div>
-          <div class="label">Reduction in stockouts — Zenex Enterprises</div>
-        </div>
-        <div class="stat">
-          <div class="num">31%</div>
-          <div class="label">YoY revenue growth — Surplus by Design</div>
-        </div>
-        <div class="stat">
-          <div class="num">15+</div>
-          <div class="label">Years across retail, e-commerce & operations</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="eyebrow fade d1"><span></span>Simple Consulting</div>
+  <h1 class="fade d2">Operator-led.<br>Results-driven.</h1>
+  <p class="fade d3">15+ years building and running the systems behind e-commerce growth — across retail, marketplaces, operations, and digital.</p>
+  <a href="booking.html" class="fade d4">Book a Free Consultation</a>
 </div>
 
-<!-- TICKER -->
-<div id="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">E-commerce Strategy <span class="sep">·</span></span>
-    <span class="ticker-item">Google Ads Management <span class="sep">·</span></span>
-    <span class="ticker-item">SEO & Content <span class="sep">·</span></span>
-    <span class="ticker-item">Marketplace Optimization <span class="sep">·</span></span>
-    <span class="ticker-item">Operations & Fulfillment <span class="sep">·</span></span>
-    <span class="ticker-item">ERP & Systems <span class="sep">·</span></span>
-    <span class="ticker-item">Lean Six Sigma <span class="sep">·</span></span>
-    <span class="ticker-item">Analytics & Reporting <span class="sep">·</span></span>
-    <span class="ticker-item">Web Design & Development <span class="sep">·</span></span>
-    <span class="ticker-item">Fractional E-commerce Management <span class="sep">·</span></span>
-    <span class="ticker-item">E-commerce Strategy <span class="sep">·</span></span>
-    <span class="ticker-item">Google Ads Management <span class="sep">·</span></span>
-    <span class="ticker-item">SEO & Content <span class="sep">·</span></span>
-    <span class="ticker-item">Marketplace Optimization <span class="sep">·</span></span>
-    <span class="ticker-item">Operations & Fulfillment <span class="sep">·</span></span>
-    <span class="ticker-item">ERP & Systems <span class="sep">·</span></span>
-    <span class="ticker-item">Lean Six Sigma <span class="sep">·</span></span>
-    <span class="ticker-item">Analytics & Reporting <span class="sep">·</span></span>
-    <span class="ticker-item">Web Design & Development <span class="sep">·</span></span>
-    <span class="ticker-item">Fractional E-commerce Management <span class="sep">·</span></span>
+<!-- FOUNDER -->
+<div id="founder">
+  <div class="founder-img-wrap reveal">
+    <img src="https://github.com/aisupportbot/simpleconsulting/blob/main/1765937561010.png?raw=true" alt="Scott Nguyen">
   </div>
-</div>
-
-<!-- CREDENTIALS -->
-<div id="credentials">
-  <div class="inner">
-    <span class="cred-label">Certified in</span>
-    <div class="cred-list">
-      <span class="cred-pill"><span class="dot"></span>Google Ads Search</span>
-      <span class="cred-pill"><span class="dot"></span>Google Ads Shopping</span>
-      <span class="cred-pill"><span class="dot"></span>Google Analytics</span>
-      <span class="cred-pill"><span class="dot"></span>Campaign Manager 360</span>
+  <div class="founder-right">
+    <p class="founder-eyebrow reveal">Founder</p>
+    <h2 class="reveal reveal-delay-1">Scott Nguyen</h2>
+    <p class="title reveal reveal-delay-1">Founder, Simple Consulting &nbsp;·&nbsp; E-commerce & Operations Leader</p>
+    <div class="cred-pills reveal reveal-delay-2">
       <span class="cred-pill"><span class="dot"></span>Lean Six Sigma</span>
-      <span class="cred-pill"><span class="dot"></span>ERP & Database Integration</span>
+      <span class="cred-pill"><span class="dot"></span>Google Certified</span>
+      <span class="cred-pill"><span class="dot"></span>ERP Certified</span>
       <span class="cred-pill"><span class="dot"></span>CompTIA A+</span>
     </div>
+    <p class="reveal reveal-delay-2">
+      <strong>I built Simple Consulting because too many good businesses get stuck behind bad systems.</strong> Business doesn't have to be complicated — but too often, it is.
+    </p>
+    <p class="reveal reveal-delay-2">
+      Over 15+ years I've worked across Shopify, Amazon, Walmart, eBay, ERP systems, and cross-border logistics — onboarding products, fixing broken workflows, untangling inventory issues, and protecting margins at companies including Westex International, Zenex Enterprises, and Staples Canada.
+    </p>
+    <p class="reveal reveal-delay-2">
+      My job is simple: build clean systems, clear processes, and real results — so you can grow without fighting your backend every day. That includes building the website your business deserves — conversion-focused, professionally designed, and built to perform.
+    </p>
   </div>
 </div>
 
-<!-- PLATFORMS -->
-<div id="clients">
-  <div class="inner">
-    <span class="lbl">Built, scaled, and operated on these platforms</span>
-    <div class="logo-row">
-      <img src="https://images.seeklogo.com/logo-png/15/1/walmart-logo-png_seeklogo-151324.png" alt="Walmart">
-      <img src="https://shopkeeper.com/cms/files/964034571/amazon-seller-central-f73ddc.webp" alt="Amazon">
-      <img src="https://cdn.prod.website-files.com/64909dd65a703aa9864ebaff/64909dd65a703aa9864ebdec_amazon_vendor.png" alt="Amazon Vendor">
-      <img src="https://mma.prnewswire.com/media/2008141/Wayfair_Logo.jpg" alt="Wayfair">
-      <img src="https://www.logo.wine/a/logo/Costco/Costco-Logo.wine.svg" alt="Costco">
-      <img src="https://1000logos.net/wp-content/uploads/2018/10/Ebay-logo.jpg" alt="eBay">
-      <img src="https://corporate.bestbuy.com/wp-content/uploads/2022/11/BBY-logo-white-background.jpeg" alt="Best Buy">
-      <img src="https://1000logos.net/wp-content/uploads/2023/03/Lowes-logo.png" alt="Lowe's">
-      <img src="https://logos-world.net/wp-content/uploads/2021/08/Home-Depot-Logo.png" alt="Home Depot">
-      <img src="https://press.gianttiger.com/download/logo-guidelines-fy21-GTlogo-wordmark-en-colour.jpeg" alt="Giant Tiger">
-    </div>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<div id="services">
-  <div class="section">
-    <p class="section-label reveal">What we do</p>
-    <h2 class="reveal reveal-delay-1">Services</h2>
-    <p class="sub reveal reveal-delay-2">End-to-end consulting built on real operator experience — not theory. Every engagement is hands-on, practical, and built to deliver measurable outcomes.</p>
-    <div class="service-grid reveal reveal-delay-2">
-
-      <div class="service-card">
-        <span class="icon">🌐</span>
-        <h3>Website Design & Development</h3>
-        <ul>
-          <li>Business website builds & redesigns</li>
-          <li>Conversion-focused landing pages</li>
-          <li>E-commerce & marketplace-ready sites</li>
-          <li>Hosting & ongoing maintenance</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">🔍</span>
-        <h3>SEO & Content Strategy</h3>
-        <ul>
-          <li>Local & national SEO setup</li>
-          <li>Google Business Profile optimization</li>
-          <li>Service page copywriting</li>
-          <li>Monthly rankings & traffic reporting</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">📣</span>
-        <h3>Google Ads Management</h3>
-        <ul>
-          <li>Search, Shopping & Display campaigns</li>
-          <li>Performance Max strategy</li>
-          <li>ROAS optimization & bid management</li>
-          <li>Monthly reporting & recommendations</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">💻</span>
-        <h3>E-commerce & Marketplaces</h3>
-        <ul>
-          <li>Shopify & marketplace optimization</li>
-          <li>Amazon, Walmart, Best Buy strategy</li>
-          <li>Listing optimization & conversion</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">⚙️</span>
-        <h3>Operations & Fulfillment</h3>
-        <ul>
-          <li>Fulfillment & 3PL optimization</li>
-          <li>Inventory forecasting</li>
-          <li>SOP creation & team training</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">🧩</span>
-        <h3>ERP & Systems</h3>
-        <ul>
-          <li>ERP rollout & configuration</li>
-          <li>System & data integration</li>
-          <li>Power BI dashboards & reporting</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">📊</span>
-        <h3>Analytics & Reporting</h3>
-        <ul>
-          <li>Google Analytics 4 setup & audits</li>
-          <li>KPI dashboard builds</li>
-          <li>Attribution & funnel analysis</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">⚡</span>
-        <h3>Process Optimization</h3>
-        <ul>
-          <li>Lean Six Sigma methodology</li>
-          <li>Workflow audits & redesign</li>
-          <li>Cost reduction & margin improvement</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">📈</span>
-        <h3>Growth Strategy</h3>
-        <ul>
-          <li>KPI frameworks & goal setting</li>
-          <li>Channel expansion planning</li>
-          <li>Scaling systems & playbooks</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <span class="icon">🧑‍💼</span>
-        <h3>Fractional E-commerce Manager</h3>
-        <ul>
-          <li>Senior e-commerce leadership on retainer</li>
-          <li>Channel strategy & day-to-day execution</li>
-          <li>Team oversight & vendor management</li>
-          <li>Ideal for growing brands without an in-house lead</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- NUMBERS -->
-<div id="numbers">
-  <div class="numbers-grid">
-    <div class="number-item reveal">
-      <div class="big">15+</div>
-      <p>Years running real e-commerce and operations across retail, DTC, and marketplace environments</p>
-    </div>
-    <div class="number-item reveal reveal-delay-1">
-      <div class="big">10+</div>
-      <p>Major retail platforms including Amazon, Walmart, Best Buy, Wayfair, Costco, and more</p>
-    </div>
-    <div class="number-item reveal reveal-delay-2">
-      <div class="big">7</div>
-      <p>Google and industry certifications across Ads, Analytics, ERP, and process improvement</p>
-    </div>
-    <div class="number-item reveal reveal-delay-3">
-      <div class="big">3x</div>
-      <p>Average client results — from revenue growth to cost reduction and operational efficiency</p>
-    </div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<div id="testimonials">
-  <div class="section">
-    <p class="section-label reveal">Client results</p>
-    <h2 class="reveal reveal-delay-1">What clients say</h2>
-    <p class="sub reveal reveal-delay-2">Real outcomes from real engagements.</p>
-    <div class="test-grid">
-      <div class="test-card reveal">
-        <p>"Our Amazon revenue grew 42% in 6 months after fixing listings and ads. The results were immediate and measurable."</p>
-        <strong>— Westex International</strong>
-      </div>
-      <div class="test-card reveal reveal-delay-1">
-        <p>"Inventory stockouts dropped 68% and fulfillment costs fell 19%. We finally have systems we can rely on."</p>
-        <strong>— Zenex Enterprises</strong>
-      </div>
-      <div class="test-card reveal reveal-delay-2">
-        <p>"We went from chaos to clarity — sales up 31% year over year. Simple Consulting changed how we operate."</p>
-        <strong>— Surplus By Design</strong>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CASE STUDIES -->
-<div id="cases">
-  <div class="section">
-    <p class="section-label reveal">Case studies</p>
-    <h2 class="reveal reveal-delay-1">The work</h2>
-    <p class="sub reveal reveal-delay-2">Measurable outcomes across operations, marketplaces, and growth.</p>
-    <div class="case-grid">
-      <div class="case-card reveal">
-        <h3>Westex International</h3>
-        <div class="metric"><span>Amazon sales</span><span>+42% in 6 months</span></div>
-        <div class="metric"><span>Conversion rate</span><span>+27%</span></div>
-        <div class="metric"><span>Ad waste reduced</span><span>–18%</span></div>
-      </div>
-      <div class="case-card reveal reveal-delay-1">
-        <h3>Zenex Enterprises</h3>
-        <div class="metric"><span>Revenue</span><span>+35% in 9 months</span></div>
-        <div class="metric"><span>Fulfillment cost</span><span>–24%</span></div>
-        <div class="metric"><span>Gross margin</span><span>+19%</span></div>
-      </div>
-      <div class="case-card reveal reveal-delay-2">
-        <h3>Surplus by Design</h3>
-        <div class="metric"><span>YoY growth</span><span>+31%</span></div>
-        <div class="metric"><span>Order errors</span><span>–52%</span></div>
-        <div class="metric"><span>Support tickets</span><span>–40%</span></div>
-      </div>
-    </div>
-  </div>
-</div>
+<hr class="divider">
 
 <!-- WHY -->
-<div id="why" style="border-top: 1px solid var(--border);">
+<div>
   <div class="section">
-    <p class="section-label reveal">Why Simple Consulting</p>
-    <h2 class="reveal reveal-delay-1">How we work</h2>
-    <p class="sub reveal reveal-delay-2">No theory. No fluff. Operators who've run the exact systems you're trying to fix.</p>
+    <p class="section-label reveal">Why work with me</p>
+    <h2 class="reveal reveal-delay-1">What sets Simple Consulting apart</h2>
+    <p class="sub reveal reveal-delay-2">Not a generalist agency. Not theory. An operator who has run the exact systems you're trying to fix.</p>
     <div class="why-grid reveal reveal-delay-2">
       <div class="why-item">
         <span class="icon">🛠️</span>
         <h4>Operator-led</h4>
-        <p>15+ years running real e-commerce and operations — not consulting from the sidelines.</p>
+        <p>I've run businesses, not just advised them — 15+ years of hands-on execution across retail and e-commerce.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">⚡</span>
+        <h4>Lean Six Sigma certified</h4>
+        <p>Focused on efficiency, margin protection, and removing waste from the systems that cost you the most.</p>
       </div>
       <div class="why-item">
         <span class="icon">🛒</span>
-        <h4>Marketplace proven</h4>
-        <p>Deep experience across Amazon, Walmart, Best Buy, Wayfair, Costco, and more.</p>
+        <h4>Marketplace expert</h4>
+        <p>Deep experience across Amazon, Walmart, Best Buy, Wayfair, Costco, eBay, and more.</p>
       </div>
       <div class="why-item">
         <span class="icon">📣</span>
         <h4>Google certified</h4>
-        <p>Certified across Search, Shopping, Display, Video, Analytics, and Campaign Manager.</p>
+        <p>Certified across Search, Shopping, Display, Video, Analytics, and Campaign Manager 360.</p>
       </div>
       <div class="why-item">
-        <span class="icon">⚡</span>
-        <h4>Lean Six Sigma</h4>
-        <p>Process improvement grounded in certified Lean Six Sigma methodology.</p>
-      </div>
-      <div class="why-item">
-        <span class="icon">📋</span>
-        <h4>Practical execution</h4>
-        <p>We build the systems, SOPs, and workflows — then make sure they actually work.</p>
+        <span class="icon">🧩</span>
+        <h4>Systems & ERP</h4>
+        <p>Certified in ERP & database integration — from rollout to team adoption and reporting.</p>
       </div>
       <div class="why-item">
         <span class="icon">🤝</span>
         <h4>Hands-on support</h4>
-        <p>Direct access, fast turnaround, and a partner invested in your outcomes.</p>
+        <p>I build with you, not just advise you — direct access, fast turnaround, real accountability.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CTA -->
-<div id="cta">
-  <div class="inner">
-    <h2 class="reveal">Ready to grow<br><em>your business?</em></h2>
-    <p class="reveal reveal-delay-1">Book a free consultation. We'll walk through what's holding you back and tell you exactly what we'd do about it — no commitment required.</p>
-    <div class="cta-btns reveal reveal-delay-2">
-      <a href="booking.html" class="primary">Book a Free Call</a>
-      <a href="about.html" class="ghost">About Us</a>
+<hr class="divider">
+
+<!-- CREDENTIALS -->
+<div id="credentials-section">
+  <div class="section">
+    <p class="section-label reveal">Background</p>
+    <h2 class="reveal reveal-delay-1">Credentials & Experience</h2>
+    <p class="sub reveal reveal-delay-2">Formal training backed by real-world execution across some of Canada's largest retail channels.</p>
+    <div class="cred-grid reveal reveal-delay-2">
+      <div class="cred-card">
+        <h3>Google Ads & Analytics</h3>
+        <p>Certified across Search, Shopping, Display, Video, Mobile, Campaign Manager 360, and Google Analytics — individual and advanced qualifications.</p>
+      </div>
+      <div class="cred-card">
+        <h3>Lean Six Sigma</h3>
+        <p>Process improvement, margin protection, and operational efficiency grounded in certified Lean Six Sigma methodology.</p>
+      </div>
+      <div class="cred-card">
+        <h3>ERP & Systems</h3>
+        <p>A2000, Oracle ERP Cloud, Power BI, database integrations, and backend operations — rollout through ongoing reporting.</p>
+      </div>
+      <div class="cred-card">
+        <h3>E-commerce Operations</h3>
+        <p>8+ years as E-commerce Manager at Westex International, managing Amazon, Walmart, Best Buy, Wayfair, and more.</p>
+      </div>
+      <div class="cred-card">
+        <h3>Retail & Marketplace</h3>
+        <p>Staples Canada e-commerce team for 9 years — from Sales Associate through E-commerce Supervisor.</p>
+      </div>
+      <div class="cred-card">
+        <h3>CompTIA A+</h3>
+        <p>Foundational IT and technical systems certification — supporting systems integration and technical consulting work.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="section">
+    <div class="inner">
+      <p class="section-label reveal">Get in touch</p>
+      <h2 class="reveal reveal-delay-1">Let's talk</h2>
+      <p class="reveal reveal-delay-2">Tell me what's slowing your business down — and I'll tell you exactly how I'd fix it.</p>
+      <form action="https://formspree.io/f/mreegwjn" method="POST" class="reveal reveal-delay-2">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="_replyto" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" rows="5" required></textarea>
+        <input type="hidden" name="_subject" value="New Website Contact">
+        <button type="submit">Send Message</button>
+      </form>
     </div>
   </div>
 </div>
@@ -846,37 +422,17 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span>© Simple Consulting 2016 — Toronto, Ontario</span>
+    <span>© Simple Consulting 2016 — Erin, Ontario</span>
     <div class="footer-links">
-      <a href="#services">Services</a>
-      <a href="#cases">Work</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cases">Work</a>
       <a href="about.html">About</a>
       <a href="booking.html">Contact</a>
     </div>
   </div>
 </footer>
 
-<!-- MOBILE STICKY CTA -->
-<a href="booking.html" class="mobile-cta">Book a Free Call</a>
-
 <script>
-// Header switches dark/light based on scroll position
-const header = document.getElementById('site-header');
-const hero = document.getElementById('hero');
-function updateHeader() {
-  const heroBottom = hero.getBoundingClientRect().bottom;
-  if (heroBottom <= 0) {
-    header.classList.remove('dark');
-    header.classList.add('light');
-  } else {
-    header.classList.remove('light');
-    header.classList.add('dark');
-  }
-}
-window.addEventListener('scroll', updateHeader, { passive: true });
-updateHeader();
-
-// Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -885,7 +441,7 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
 </script>
 
