@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog & Insights | Simple Consulting — E-commerce & Operations</title>
+<meta name="description" content="Practical insights on e-commerce strategy, Google Ads, marketplace optimization, operations, and business growth from Simple Consulting.">
+<meta name="keywords" content="e-commerce blog Canada, Google Ads tips, Amazon optimization, marketplace strategy, operations consulting blog, Shopify tips Ontario">
+<meta name="author" content="Scott Nguyen — Simple Consulting">
+<meta property="og:title" content="Blog & Insights | Simple Consulting">
+<meta property="og:description" content="Practical e-commerce, operations, and growth insights from 15+ years of operator experience.">
+<meta property="og:url" content="https://www.simpleconsulting.ca/blog.html">
+<link rel="canonical" href="https://www.simpleconsulting.ca/blog.html">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0d0d0d; --white: #fff; --off: #f6f6f4;
+  --border: #e8e8e5; --muted: #999; --text: #555;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--black); background: var(--white);
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+nav {
+  max-width: 1160px; margin: auto;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 32px;
+}
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2em; letter-spacing: -.01em;
+  color: var(--black); text-decoration: none;
+}
+.nav-links { display: flex; gap: 6px; align-items: center; }
+.nav-links a {
+  font-size: .86em; font-weight: 500; color: var(--text);
+  padding: 8px 14px; border-radius: 6px;
+  text-decoration: none; transition: background .15s, color .15s;
+}
+.nav-links a:hover { background: var(--off); color: var(--black); }
+.nav-links a.btn {
+  background: var(--black); color: var(--white);
+  font-weight: 600; margin-left: 6px;
+}
+.nav-links a.btn:hover { background: #2a2a2a; }
+
+/* ── HERO ── */
+#hero {
+  background: var(--off); border-bottom: 1px solid var(--border);
+  padding: 88px 32px 72px; text-align: center;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: .74em; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+}
+.eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--muted); }
+#hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3em; letter-spacing: -.025em;
+  line-height: 1.1; margin-bottom: 18px;
+}
+#hero p { font-size: 1em; color: var(--text); max-width: 480px; margin: 0 auto; line-height: 1.75; }
+
+/* ── AI GENERATOR ── */
+#generator {
+  max-width: 1160px; margin: auto;
+  padding: 72px 32px 0;
+}
+.gen-box {
+  background: var(--black); border-radius: 16px;
+  padding: 48px; position: relative; overflow: hidden;
+}
+.gen-box::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(ellipse, rgba(255,255,255,.03) 0%, transparent 70%);
+}
+.gen-label {
+  font-size: .72em; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: #555; margin-bottom: 14px;
+}
+.gen-box h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.9em; color: var(--white);
+  letter-spacing: -.02em; margin-bottom: 10px;
+}
+.gen-box p { font-size: .9em; color: #666; margin-bottom: 28px; }
+.gen-controls {
+  display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.topic-grid {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+}
+.topic-btn {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  color: #aaa; border-radius: 30px; padding: 7px 16px;
+  font-size: .8em; font-weight: 500; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.topic-btn:hover, .topic-btn.active {
+  background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); color: var(--white);
+}
+.gen-input-row { display: flex; gap: 10px; }
+#custom-topic {
+  flex: 1; padding: 12px 16px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px; color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: .88em;
+  outline: none; transition: border-color .15s;
+}
+#custom-topic::placeholder { color: #555; }
+#custom-topic:focus { border-color: rgba(255,255,255,.3); }
+#generate-btn {
+  padding: 12px 28px; background: var(--white); color: var(--black);
+  border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif;
+  font-size: .88em; font-weight: 700; cursor: pointer; transition: background .15s;
+  white-space: nowrap;
+}
+#generate-btn:hover { background: #e8e8e8; }
+#generate-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Generated post output */
+#gen-output { display: none; margin-top: 32px; }
+#gen-output .post-inner {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px; padding: 36px;
+}
+#gen-output h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6em; color: var(--white);
+  letter-spacing: -.02em; margin-bottom: 20px; line-height: 1.2;
+}
+#gen-output .post-body { font-size: .92em; color: #999; line-height: 1.85; }
+#gen-output .post-body p { margin-bottom: 16px; }
+#gen-output .post-body h4 { color: #ccc; font-size: .95em; margin: 24px 0 10px; }
+#gen-output .post-body ul { padding-left: 20px; margin-bottom: 16px; }
+#gen-output .post-body ul li { margin-bottom: 6px; }
+.gen-actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.gen-actions button {
+  padding: 9px 20px; border-radius: 6px;
+  font-family: 'DM Sans', sans-serif; font-size: .82em; font-weight: 600;
+  cursor: pointer; transition: .15s;
+}
+.btn-copy { background: var(--white); color: var(--black); border: none; }
+.btn-copy:hover { background: #e8e8e8; }
+.btn-new { background: transparent; color: #aaa; border: 1px solid rgba(255,255,255,.15); }
+.btn-new:hover { border-color: rgba(255,255,255,.3); color: var(--white); }
+.gen-loading {
+  display: none; text-align: center; padding: 40px 0;
+  color: #555; font-size: .88em;
+}
+.gen-loading .spinner {
+  width: 28px; height: 28px; border: 2px solid #333;
+  border-top-color: #777; border-radius: 50%;
+  animation: spin .7s linear infinite;
+  margin: 0 auto 14px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── BLOG GRID ── */
+#posts {
+  max-width: 1160px; margin: auto;
+  padding: 72px 32px 96px;
+}
+.section-label {
+  font-size: .72em; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+#posts h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.2em; letter-spacing: -.02em; margin-bottom: 48px;
+}
+.post-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.post-card {
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 32px 28px; cursor: pointer;
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+  display: flex; flex-direction: column;
+}
+.post-card:hover {
+  border-color: #ccc;
+  box-shadow: 0 12px 40px rgba(0,0,0,.08);
+  transform: translateY(-2px);
+}
+.post-tag {
+  display: inline-block; font-size: .72em; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 14px;
+}
+.post-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2em; letter-spacing: -.01em;
+  color: var(--black); margin-bottom: 12px; line-height: 1.3; flex: 1;
+}
+.post-card p { font-size: .84em; color: var(--text); line-height: 1.7; margin-bottom: 20px; }
+.post-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .76em; color: var(--muted); border-top: 1px solid var(--border);
+  padding-top: 16px; margin-top: auto;
+}
+.read-more { font-weight: 600; color: var(--black); }
+
+/* ── POST MODAL ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.5); z-index: 500;
+  align-items: flex-start; justify-content: center;
+  padding: 40px 20px; overflow-y: auto;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--white); border-radius: 16px;
+  max-width: 720px; width: 100%; padding: 52px;
+  position: relative; margin: auto;
+}
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  background: var(--off); border: none; border-radius: 6px;
+  width: 32px; height: 32px; cursor: pointer;
+  font-size: 1em; color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.modal-close:hover { background: var(--border); }
+.modal-tag { font-size: .72em; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; display: block; }
+.modal h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2em; letter-spacing: -.02em;
+  line-height: 1.2; margin-bottom: 24px;
+}
+.modal-body { font-size: .95em; color: var(--text); line-height: 1.85; }
+.modal-body p { margin-bottom: 18px; }
+.modal-body h3 { font-size: 1.1em; color: var(--black); margin: 28px 0 12px; }
+.modal-body ul { padding-left: 20px; margin-bottom: 18px; }
+.modal-body ul li { margin-bottom: 8px; }
+.modal-body strong { color: var(--black); }
+.modal-footer {
+  margin-top: 40px; padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;
+}
+.modal-footer a {
+  display: inline-block; text-decoration: none;
+  background: var(--black); color: var(--white);
+  font-size: .86em; font-weight: 600;
+  padding: 11px 24px; border-radius: 6px; transition: background .15s;
+}
+.modal-footer a:hover { background: #2a2a2a; }
+.modal-footer span { font-size: .8em; color: var(--muted); }
+
+/* ── CTA ── */
+#cta {
+  background: var(--off); border-top: 1px solid var(--border);
+  padding: 88px 32px; text-align: center;
+}
+#cta .inner { max-width: 540px; margin: auto; }
+#cta h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.4em; letter-spacing: -.025em; margin-bottom: 16px;
+}
+#cta p { color: var(--text); margin-bottom: 32px; font-size: .97em; line-height: 1.75; }
+#cta a {
+  display: inline-block; text-decoration: none;
+  background: var(--black); color: var(--white);
+  font-size: .9em; font-weight: 600;
+  padding: 14px 32px; border-radius: 6px; transition: background .15s;
+}
+#cta a:hover { background: #2a2a2a; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 30px 32px; }
+.footer-inner {
+  max-width: 1160px; margin: auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .8em; color: var(--muted); flex-wrap: wrap; gap: 14px;
+}
+.footer-links { display: flex; gap: 22px; }
+.footer-links a { color: var(--muted); text-decoration: none; transition: color .15s; }
+.footer-links a:hover { color: var(--black); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.fade { opacity:0; animation: fadeUp .55s ease forwards; }
+.d1{animation-delay:.05s} .d2{animation-delay:.18s} .d3{animation-delay:.3s}
+
+@media(max-width:960px){
+  .post-grid { grid-template-columns: 1fr 1fr; }
+  .gen-box { padding: 32px 24px; }
+  nav { padding: 15px 24px; }
+  .nav-links a:not(.btn) { display: none; }
+  .modal { padding: 36px 28px; }
+}
+@media(max-width:600px){
+  .post-grid { grid-template-columns: 1fr; }
+  #hero h1 { font-size: 2.2em; }
+  .gen-input-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <a class="logo" href="index.html">Simple Consulting</a>
+    <div class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cases">Work</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="booking.html" class="btn">Book a Call</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="eyebrow fade d1"><span></span>Insights & Ideas</div>
+  <h1 class="fade d2">The Simple Consulting Blog</h1>
+  <p class="fade d3">Practical insights on e-commerce, operations, Google Ads, and growth — from 15+ years of operator experience.</p>
+</div>
+
+<!-- AI GENERATOR -->
+<div id="generator">
+  <div class="gen-box">
+    <p class="gen-label">AI-Powered</p>
+    <h2>Generate a Blog Post</h2>
+    <p>Pick a topic or type your own — get a full post in seconds.</p>
+    <div class="topic-grid">
+      <button class="topic-btn" onclick="selectTopic(this, 'How to reduce Amazon ad waste and improve ROAS')">Amazon Ad Waste</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'Why your Shopify store is not converting and how to fix it')">Shopify Conversions</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'How to win the Amazon Buy Box in 2025')">Amazon Buy Box</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'Signs your e-commerce operations need a systems overhaul')">Operations Red Flags</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'How to scale from one marketplace to multiple channels profitably')">Multi-Channel Scaling</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'Google Ads vs Amazon Ads: which is right for your business')">Google vs Amazon Ads</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'How to build an inventory forecasting system that actually works')">Inventory Forecasting</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'What is a fractional e-commerce manager and does your business need one')">Fractional Manager</button>
+    </div>
+    <div class="gen-input-row">
+      <input type="text" id="custom-topic" placeholder="Or type your own topic...">
+      <button id="generate-btn" onclick="generatePost()">Generate Post</button>
+    </div>
+    <div class="gen-loading" id="gen-loading">
+      <div class="spinner"></div>
+      Writing your post...
+    </div>
+    <div id="gen-output">
+      <div class="post-inner">
+        <h3 id="gen-title"></h3>
+        <div class="post-body" id="gen-body"></div>
+      </div>
+      <div class="gen-actions">
+        <button class="btn-copy" onclick="copyPost()">Copy Post</button>
+        <button class="btn-new" onclick="resetGenerator()">Generate Another</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG POSTS -->
+<div id="posts">
+  <p class="section-label reveal">Latest insights</p>
+  <h2 class="reveal reveal-delay-1">From the blog</h2>
+  <div class="post-grid">
+
+    <div class="post-card reveal" onclick="openPost(0)">
+      <span class="post-tag">E-commerce</span>
+      <h3>5 Reasons Your Amazon Listings Aren't Converting (And How to Fix Them)</h3>
+      <p>Most sellers focus on driving traffic but ignore the conversion problems sitting right on their product pages.</p>
+      <div class="post-meta"><span>Scott Nguyen</span><span class="read-more">Read →</span></div>
+    </div>
+
+    <div class="post-card reveal reveal-delay-1" onclick="openPost(1)">
+      <span class="post-tag">Google Ads</span>
+      <h3>Why Your Google Ads ROAS Is Low — And the Fix Most Agencies Miss</h3>
+      <p>A poor ROAS isn't always a bidding problem. Here's what to look at first before touching your budget.</p>
+      <div class="post-meta"><span>Scott Nguyen</span><span class="read-more">Read →</span></div>
+    </div>
+
+    <div class="post-card reveal reveal-delay-2" onclick="openPost(2)">
+      <span class="post-tag">Operations</span>
+      <h3>The Hidden Cost of Bad Inventory Management (And How to Fix It)</h3>
+      <p>Stockouts and overstock aren't just annoying — they're quietly destroying your margins every month.</p>
+      <div class="post-meta"><span>Scott Nguyen</span><span class="read-more">Read →</span></div>
+    </div>
+
+    <div class="post-card reveal" onclick="openPost(3)">
+      <span class="post-tag">Marketplaces</span>
+      <h3>How to Expand From Amazon to Walmart Without Killing Your Margins</h3>
+      <p>Multi-channel selling sounds simple until your fulfillment costs eat your profit. Here's how to do it right.</p>
+      <div class="post-meta"><span>Scott Nguyen</span><span class="read-more">Read →</span></div>
+    </div>
+
+    <div class="post-card reveal reveal-delay-1" onclick="openPost(4)">
+      <span class="post-tag">Growth</span>
+      <h3>What a Lean Six Sigma Approach Actually Looks Like in E-commerce</h3>
+      <p>Process improvement isn't just for manufacturers. Here's how Lean Six Sigma principles apply directly to online retail.</p>
+      <div class="post-meta"><span>Scott Nguyen</span><span class="read-more">Read →</span></div>
+    </div>
+
+    <div class="post-card reveal reveal-delay-2" onclick="openPost(5)">
+      <span class="post-tag">Web & SEO</span>
+      <h3>Why Your Business Website Is Costing You Customers (Not Winning Them)</h3>
+      <p>An outdated or slow website doesn't just look bad — it actively drives potential customers away before they even read a word.</p>
+      <div class="post-meta"><span>Scott Nguyen</span><span class="read-more">Read →</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div id="cta">
+  <div class="inner">
+    <h2>Ready to put this into practice?</h2>
+    <p>Book a free consultation and let's talk about what's holding your business back.</p>
+    <a href="booking.html">Book a Free Call</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>© Simple Consulting 2016 — Erin, Ontario</span>
+    <div class="footer-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cases">Work</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="booking.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- POST MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closePostIfOverlay(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closePost()">✕</button>
+    <span class="modal-tag" id="modal-tag"></span>
+    <h2 id="modal-title"></h2>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <a href="booking.html">Book a Free Consultation</a>
+      <span>By Scott Nguyen — Simple Consulting</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATIC POSTS ──
+const posts = [
+  {
+    tag: 'E-commerce',
+    title: '5 Reasons Your Amazon Listings Aren\'t Converting (And How to Fix Them)',
+    body: `
+      <p>You've done the hard work of getting traffic to your Amazon listings. But if your conversion rate is sitting below 10–12%, something on the page itself is killing your sales. Here are the five most common culprits I see when auditing client listings.</p>
+      <h3>1. Your Main Image Doesn't Stop the Scroll</h3>
+      <p>On Amazon, your main image is your billboard. Most sellers use a plain product shot on white and call it a day. But your competitors are investing in lifestyle imagery, infographics, and high-contrast visuals that stand out in search results. If your image looks like everyone else's, shoppers scroll past.</p>
+      <h3>2. Your Title Is Stuffed With Keywords But Says Nothing</h3>
+      <p>A keyword-heavy title might help you rank, but it doesn't help you convert. Buyers scan titles for relevance and clarity. Lead with your most important benefit or use case, then layer in keywords naturally.</p>
+      <h3>3. Your Bullet Points List Features, Not Benefits</h3>
+      <p>Features tell. Benefits sell. "Made with 100% cotton" is a feature. "Stays soft after 50 washes — no shrinking, no pilling" is a benefit. Rewrite every bullet from the buyer's perspective: what problem does this solve?</p>
+      <h3>4. You Have No A+ Content</h3>
+      <p>If you're brand registered and not using A+ content, you're leaving conversion rate on the table. A+ content lets you add comparison charts, lifestyle images, and brand story modules that build trust and reduce buyer hesitation.</p>
+      <h3>5. Your Reviews Are Lagging Behind Competitors</h3>
+      <p>Social proof is the silent closer. If your competitors have 500 reviews and you have 40, buyers will choose them even if your product is better. Enrol in Amazon's Vine program for new products and use the Request a Review button consistently.</p>
+      <p><strong>The fix:</strong> Run a full listing audit against your top three competitors. For every element — image, title, bullets, A+, reviews — ask honestly: are we winning or losing this comparison?</p>
+    `
+  },
+  {
+    tag: 'Google Ads',
+    title: 'Why Your Google Ads ROAS Is Low — And the Fix Most Agencies Miss',
+    body: `
+      <p>A low ROAS on Google Ads is one of the most common complaints I hear from businesses who've tried working with agencies. The agency blames the budget. The client blames the agency. The real problem is usually neither.</p>
+      <h3>The First Thing to Check: Search Term Reports</h3>
+      <p>Most agencies set up campaigns and let them run. What they don't do consistently is dig into the search term report — the actual queries that triggered your ads. If you're running broad or phrase match keywords without aggressive negative keyword lists, you're almost certainly paying for irrelevant traffic that will never convert.</p>
+      <h3>Your Landing Page Is the Real Problem</h3>
+      <p>This is the fix most agencies miss because it's outside their scope. They optimize the ad. They ignore the page it sends traffic to. If your landing page is slow, confusing, or doesn't match the ad's promise, your Quality Score drops, your CPCs rise, and your conversion rate tanks. The ad and the landing page are one system.</p>
+      <h3>You're Bidding on the Wrong Campaigns</h3>
+      <p>Performance Max campaigns are powerful but opaque. If you're running PMax without proper asset groups, audience signals, and brand exclusions, Google will spend your budget on whatever it decides is relevant — which often isn't what you'd choose.</p>
+      <h3>Attribution Is Lying to You</h3>
+      <p>Last-click attribution makes Google Ads look worse than it is for upper-funnel campaigns and better than it is for branded terms. Switch to data-driven attribution and look at assisted conversions before making budget decisions.</p>
+      <p><strong>The fix:</strong> Pull your search term report right now. Add negative keywords for anything that isn't directly relevant. Then load your landing page on mobile and time how long it takes to load. Fix those two things before touching your bids.</p>
+    `
+  },
+  {
+    tag: 'Operations',
+    title: 'The Hidden Cost of Bad Inventory Management (And How to Fix It)',
+    body: `
+      <p>Inventory problems are quietly one of the biggest margin killers in e-commerce — and most businesses don't realize how much they're losing until they run the numbers.</p>
+      <h3>The Two Ways Inventory Destroys Margin</h3>
+      <p><strong>Stockouts</strong> cost you the sale, damage your marketplace rankings, and hand your customer to a competitor who may keep them. On Amazon, a stockout on a high-velocity ASIN can take weeks to recover from in terms of organic rank.</p>
+      <p><strong>Overstock</strong> ties up cash, creates storage fees (especially on FBA), and often forces you into discounting that erodes your average selling price over time.</p>
+      <h3>The Root Cause: Reactive Ordering</h3>
+      <p>Most small and mid-size e-commerce businesses order reactively — when stock gets low, they reorder. This works until it doesn't. A supplier delay, a demand spike, or a slow PO approval process turns a low-stock situation into a stockout fast.</p>
+      <h3>Building a Simple Forecasting System</h3>
+      <p>You don't need expensive software to forecast better. Start with a 90-day rolling average of daily sales velocity per SKU. Add your supplier lead time. Multiply velocity by lead time to get your reorder point. Add a safety stock buffer of 10–20% for variability. That's your trigger.</p>
+      <h3>The Tools That Actually Help</h3>
+      <p>For most growing businesses, a well-built Google Sheet or Excel model with automatic reorder point calculations is enough to start. Once you're managing 200+ SKUs across multiple channels, dedicated inventory software like Skubana, Linnworks, or SPS Commerce starts to make sense.</p>
+      <p><strong>The fix:</strong> Calculate your stockout rate for the last 90 days. If any SKU went out of stock, work backwards to understand why and build the reorder trigger that would have prevented it.</p>
+    `
+  },
+  {
+    tag: 'Marketplaces',
+    title: 'How to Expand From Amazon to Walmart Without Killing Your Margins',
+    body: `
+      <p>Walmart Marketplace has grown significantly over the last three years and now represents a real opportunity for brands already selling on Amazon. But the expansion has trapped a lot of sellers who assumed it would work the same way.</p>
+      <h3>Walmart Is Not Amazon</h3>
+      <p>The buyer intent, the search algorithm, the content requirements, and the fulfillment expectations are all different. Sellers who copy-paste their Amazon listings to Walmart typically see poor results and conclude the platform doesn't work. It works — but it requires its own strategy.</p>
+      <h3>The Pricing Trap</h3>
+      <p>Walmart's algorithm is heavily price-sensitive. If your product is priced higher on Walmart than on Amazon or your own site, Walmart will suppress your listing. But if you race to the bottom on price to win the algorithm, you're eroding margin across your entire business. The answer is channel-specific pricing strategy, not uniform pricing.</p>
+      <h3>Fulfillment: WFS vs Self-Fulfillment</h3>
+      <p>Walmart Fulfillment Services (WFS) is the equivalent of FBA. It improves your search visibility and unlocks the Walmart+ badge, which drives conversion. But the fee structure is different from FBA and needs to be modelled specifically for your product dimensions and weight before you commit.</p>
+      <h3>Content Requirements Are Stricter Than You Think</h3>
+      <p>Walmart has specific content standards — item specs, image requirements, attribute completeness — and listings that don't meet them get suppressed without clear notification. Run a content audit against Walmart's requirements before launch, not after.</p>
+      <p><strong>The fix:</strong> Model your WFS unit economics before listing a single product. If the margin works, build Walmart-specific content from scratch rather than repurposing Amazon assets.</p>
+    `
+  },
+  {
+    tag: 'Growth',
+    title: 'What a Lean Six Sigma Approach Actually Looks Like in E-commerce',
+    body: `
+      <p>When most people hear "Lean Six Sigma," they think of manufacturing floors and process engineers with clipboards. But the principles translate directly and powerfully to e-commerce operations — and most online businesses are sitting on significant waste they don't know about.</p>
+      <h3>What Lean Six Sigma Actually Is</h3>
+      <p>Lean is about eliminating waste — any activity that consumes resources without creating value for the customer. Six Sigma is about reducing variation and defects in processes. Together, they give you a framework for systematically finding what's broken, fixing it, and keeping it fixed.</p>
+      <h3>Where the Waste Hides in E-commerce</h3>
+      <p>In an e-commerce business, waste shows up as: manual order processing that could be automated, customer service tickets caused by unclear product descriptions, returns driven by expectation mismatches, ad spend going to non-converting queries, and inventory sitting in warehouses past its optimal sell-through window.</p>
+      <h3>The DMAIC Framework Applied</h3>
+      <p><strong>Define:</strong> Pick one problem with a measurable cost. Return rate too high? Ad waste over 20%? Define it precisely.</p>
+      <p><strong>Measure:</strong> Baseline the current state. What is the actual return rate by SKU? What percentage of ad spend goes to non-converting terms?</p>
+      <p><strong>Analyze:</strong> Find the root cause. Returns driven by sizing issues require a different fix than returns driven by shipping damage.</p>
+      <p><strong>Improve:</strong> Implement the targeted fix — updated size guides, improved packaging, negative keyword lists.</p>
+      <p><strong>Control:</strong> Build a monitoring system so the problem doesn't creep back.</p>
+      <p><strong>The result:</strong> One client reduced their return rate by 31% in 90 days by applying this framework to a single product category. The fix cost nothing except time.</p>
+    `
+  },
+  {
+    tag: 'Web & SEO',
+    title: 'Why Your Business Website Is Costing You Customers (Not Winning Them)',
+    body: `
+      <p>Most small business owners think of their website as a digital brochure — something that exists so customers can find their phone number. But your website is actually your highest-leverage sales tool, and an outdated or poorly built one is actively costing you customers every day.</p>
+      <h3>First Impressions Happen in 50 Milliseconds</h3>
+      <p>Research consistently shows that visitors form an opinion about your website in under a tenth of a second. If your site looks outdated, loads slowly, or feels cluttered, potential customers leave before reading a single word. They don't give you a second chance.</p>
+      <h3>Mobile Is Not Optional</h3>
+      <p>Over 60% of web traffic now comes from mobile devices. If your website isn't fully optimized for mobile — fast loading, easy to navigate with a thumb, readable without zooming — you're losing the majority of your visitors before they engage.</p>
+      <h3>No Clear Call to Action</h3>
+      <p>The most common mistake on small business websites: no clear next step. A visitor lands on your page and doesn't know what you want them to do. Every page should have one clear, prominent action — book a call, get a quote, contact us — visible without scrolling.</p>
+      <h3>Page Speed Is a Ranking Factor</h3>
+      <p>Google uses page speed as a ranking signal. A slow website doesn't just frustrate visitors — it actively suppresses your search rankings. Run your site through Google PageSpeed Insights. If you're scoring below 70 on mobile, it's hurting you in search.</p>
+      <h3>What a Good Business Website Actually Does</h3>
+      <p>A high-performing business website builds credibility immediately, communicates your value proposition in under five seconds, guides visitors toward a conversion action, loads in under two seconds on mobile, and ranks for the search terms your customers are using.</p>
+      <p><strong>The fix:</strong> Run your current site through PageSpeed Insights today. Then ask someone who doesn't know your business to visit your homepage and tell you in one sentence what you do. If they can't — your messaging needs work.</p>
+    `
+  }
+];
+
+let selectedTopic = '';
+
+function selectTopic(btn, topic) {
+  document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedTopic = topic;
+  document.getElementById('custom-topic').value = '';
+}
+
+async function generatePost() {
+  const customTopic = document.getElementById('custom-topic').value.trim();
+  const topic = customTopic || selectedTopic;
+  if (!topic) {
+    document.getElementById('custom-topic').focus();
+    return;
+  }
+
+  const btn = document.getElementById('generate-btn');
+  const loading = document.getElementById('gen-loading');
+  const output = document.getElementById('gen-output');
+
+  btn.disabled = true;
+  loading.style.display = 'block';
+  output.style.display = 'none';
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are Scott Nguyen, founder of Simple Consulting — a Canadian e-commerce and operations consultant with 15+ years of experience across Amazon, Walmart, Shopify, Google Ads, ERP systems, and Lean Six Sigma. Write a practical, authoritative blog post for business owners. Use a direct, no-fluff tone. Structure with a brief intro, 3-4 subheadings (using <h4> tags), and a closing action step. Use <p> tags for paragraphs. Keep it under 500 words. Do not include a title in the body — just the content. Make it genuinely useful and specific, not generic.`,
+        messages: [{ role: 'user', content: `Write a blog post about: ${topic}` }]
+      })
+    });
+
+    const data = await response.json();
+    const text = data.content?.[0]?.text || '';
+
+    // Generate a title
+    const titleRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: `Write a compelling blog post title (max 12 words, no quotes) for an article about: ${topic}. Just the title, nothing else.` }]
+      })
+    });
+    const titleData = await titleRes.json();
+    const title = titleData.content?.[0]?.text?.trim() || topic;
+
+    document.getElementById('gen-title').textContent = title;
+    document.getElementById('gen-body').innerHTML = text;
+    loading.style.display = 'none';
+    output.style.display = 'block';
+
+  } catch (err) {
+    loading.style.display = 'none';
+    btn.disabled = false;
+    alert('Something went wrong generating the post. Please try again.');
+  }
+
+  btn.disabled = false;
+}
+
+function resetGenerator() {
+  document.getElementById('gen-output').style.display = 'none';
+  document.getElementById('custom-topic').value = '';
+  selectedTopic = '';
+  document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+}
+
+function copyPost() {
+  const title = document.getElementById('gen-title').textContent;
+  const body = document.getElementById('gen-body').innerText;
+  navigator.clipboard.writeText(`${title}\n\n${body}`).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy Post', 2000);
+  });
+}
+
+// ── STATIC POST MODAL ──
+function openPost(index) {
+  const post = posts[index];
+  document.getElementById('modal-tag').textContent = post.tag;
+  document.getElementById('modal-title').textContent = post.title;
+  document.getElementById('modal-body').innerHTML = post.body;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePost() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closePostIfOverlay(e) {
+  if (e.target === document.getElementById('modal-overlay')) closePost();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePost(); });
+
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
