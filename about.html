@@ -4,185 +4,449 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Simple Consulting</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Poppins,sans-serif;color:#1e1e1e;background:#fff;line-height:1.6}
-section{max-width:1100px;margin:0 auto;padding:70px 20px}
-h1,h2,h3{font-weight:700;margin-bottom:14px}
-p,li{color:#555}
-a{text-decoration:none;color:#1e1e1e;font-weight:600}
-ul{padding-left:18px}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Header */
-header{position:sticky;top:0;background:#fff;padding:15px 0;border-bottom:1px solid #eee;z-index:100}
-nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
-nav a{padding:10px 22px;border:2px solid #1e1e1e;border-radius:30px}
-nav a:hover{background:#1e1e1e;color:#fff}
-
-/* Hero */
-#hero{text-align:center;padding:90px 20px;background:#fafafa}
-#hero h1{font-size:2.5em;margin-bottom:15px}
-#hero p{margin-bottom:12px}
-#hero a{display:inline-block;margin-top:20px;padding:14px 34px;background:#1e1e1e;color:#fff;border-radius:40px}
-#hero a:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
-
-/* Founder Section */
-#founder{background:#f9f9f9}
-.founder-grid{
-  display:grid;
-  grid-template-columns:1fr 1.3fr;
-  gap:40px;
-  align-items:center;
-}
-.founder-grid img{
-  width:100%;
-  max-width:320px;
-  border-radius:50%;
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-.founder-title{font-size:2em}
-.badge{
-  display:inline-block;
-  margin-top:6px;
-  padding:6px 14px;
-  border-radius:20px;
-  background:#1e1e1e;
-  color:#fff;
-  font-size:.85em;
+:root {
+  --black: #0d0d0d;
+  --white: #fff;
+  --off: #f6f6f4;
+  --border: #e8e8e5;
+  --muted: #999;
+  --text: #555;
 }
 
-/* Why */
-#why ul li{margin-bottom:8px}
-
-/* Credentials */
-#credentials{background:#fafafa}
-.cred-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:24px;
-  margin-top:25px;
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
-.cred-card{
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:14px;
-  padding:22px;
-  box-shadow:0 6px 18px rgba(0,0,0,.05);
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
 }
-.cred-card h3{margin-bottom:8px;font-size:1.1em}
+nav {
+  max-width: 1160px; margin: auto;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 32px;
+}
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2em; letter-spacing: -.01em;
+  color: var(--black); text-decoration: none;
+}
+.nav-links { display: flex; gap: 6px; align-items: center; }
+.nav-links a {
+  font-size: .86em; font-weight: 500; color: var(--text);
+  padding: 8px 14px; border-radius: 6px;
+  text-decoration: none; transition: background .15s, color .15s;
+}
+.nav-links a:hover { background: var(--off); color: var(--black); }
+.nav-links a.btn {
+  background: var(--black); color: var(--white);
+  font-weight: 600; margin-left: 6px;
+}
+.nav-links a.btn:hover { background: #2a2a2a; }
 
-/* Contact */
-#contact{text-align:center}
-form{max-width:520px;margin:25px auto 0;display:flex;flex-direction:column}
-form input,form textarea{padding:14px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:1em}
-form button{padding:14px;border:none;border-radius:40px;background:#1e1e1e;color:#fff;font-size:1em;font-weight:600}
-form button:hover{background:#fff;color:#1e1e1e;border:2px solid #1e1e1e}
+/* ── HERO ── */
+#hero {
+  background: var(--off);
+  border-bottom: 1px solid var(--border);
+  padding: 96px 32px 88px;
+  text-align: center;
+}
+#hero .eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: .74em; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 22px;
+}
+#hero .eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--muted); }
+#hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.4em; letter-spacing: -.025em;
+  line-height: 1.1; margin-bottom: 22px;
+  max-width: 640px; margin-left: auto; margin-right: auto;
+}
+#hero p {
+  font-size: 1.05em; color: var(--text);
+  max-width: 500px; margin: 0 auto 36px;
+  line-height: 1.75;
+}
+#hero a {
+  display: inline-block; text-decoration: none;
+  background: var(--black); color: var(--white);
+  font-size: .9em; font-weight: 600;
+  padding: 13px 30px; border-radius: 6px; transition: background .15s;
+}
+#hero a:hover { background: #2a2a2a; }
 
-/* Footer */
-footer{text-align:center;padding:35px 20px;border-top:1px solid #eee;color:#555}
+/* ── FOUNDER ── */
+#founder {
+  max-width: 1160px; margin: auto;
+  padding: 96px 32px;
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center;
+}
+.founder-img-wrap {
+  position: relative;
+}
+.founder-img-wrap img {
+  width: 100%; max-width: 340px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  display: block;
+  object-fit: cover; aspect-ratio: 4/5;
+  background: var(--off);
+}
+.founder-img-placeholder {
+  width: 100%; max-width: 340px;
+  aspect-ratio: 4/5;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--off);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px;
+}
+.founder-img-placeholder .initials {
+  font-family: 'DM Serif Display', serif;
+  font-size: 4em; color: #ccc; line-height: 1;
+}
+.founder-img-placeholder p { font-size: .78em; color: var(--muted); }
 
-/* Mobile */
-@media(max-width:768px){
-  #hero h1{font-size:2.1em}
-  .founder-grid{grid-template-columns:1fr;text-align:center}
-  .founder-grid img{margin:0 auto}
+.founder-eyebrow {
+  font-size: .72em; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+.founder-right h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.6em; letter-spacing: -.025em;
+  line-height: 1.1; margin-bottom: 8px;
+}
+.founder-right .title {
+  font-size: .88em; color: var(--muted); font-weight: 500;
+  margin-bottom: 28px;
+}
+.cred-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
+}
+.cred-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--off); border: 1px solid var(--border);
+  border-radius: 30px; padding: 6px 14px;
+  font-size: .76em; font-weight: 600; color: var(--black);
+  white-space: nowrap;
+}
+.cred-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--black); flex-shrink: 0; }
+.founder-right p {
+  font-size: .96em; color: var(--text);
+  line-height: 1.8; margin-bottom: 18px;
+}
+.founder-right p strong { color: var(--black); font-weight: 600; }
+.founder-right p:last-child { margin-bottom: 0; }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); }
+
+/* ── SECTION ── */
+.section { max-width: 1160px; margin: auto; padding: 88px 32px; }
+.section-label {
+  font-size: .72em; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+.section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.3em; letter-spacing: -.02em;
+  margin-bottom: 12px; line-height: 1.15;
+}
+.section .sub {
+  font-size: .97em; color: var(--text);
+  max-width: 500px; margin-bottom: 52px; line-height: 1.75;
+}
+
+/* ── WHY GRID ── */
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+}
+.why-item {
+  background: var(--white); padding: 34px 28px; transition: background .15s;
+}
+.why-item:hover { background: var(--off); }
+.why-item .icon { font-size: 1.2em; margin-bottom: 14px; display: block; }
+.why-item h4 { font-size: .88em; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+.why-item p { font-size: .82em; color: var(--text); line-height: 1.6; }
+
+/* ── CREDENTIALS ── */
+#credentials-section { background: var(--off); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.cred-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+}
+.cred-card {
+  background: var(--white); padding: 34px 28px; transition: background .15s;
+}
+.cred-card:hover { background: var(--off); }
+.cred-card h3 { font-size: .9em; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+.cred-card p { font-size: .84em; color: var(--text); line-height: 1.65; }
+
+/* ── CONTACT ── */
+#contact { text-align: center; border-top: 1px solid var(--border); }
+#contact .inner { max-width: 540px; margin: auto; }
+#contact p { font-size: .97em; color: var(--text); margin-bottom: 40px; line-height: 1.75; }
+form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+form input, form textarea {
+  padding: 13px 16px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: .9em;
+  color: var(--black); background: var(--white);
+  transition: border-color .15s;
+  outline: none;
+}
+form input:focus, form textarea:focus { border-color: #aaa; }
+form textarea { resize: vertical; min-height: 130px; }
+form button {
+  padding: 13px 28px; border: none; border-radius: 6px;
+  background: var(--black); color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: .9em; font-weight: 600;
+  cursor: pointer; transition: background .15s; align-self: flex-start;
+}
+form button:hover { background: #2a2a2a; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 30px 32px; }
+.footer-inner {
+  max-width: 1160px; margin: auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .8em; color: var(--muted); flex-wrap: wrap; gap: 14px;
+}
+.footer-links { display: flex; gap: 22px; }
+.footer-links a { color: var(--muted); text-decoration: none; transition: color .15s; }
+.footer-links a:hover { color: var(--black); }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+
+/* ── FADE IN ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade { opacity: 0; animation: fadeUp .55s ease forwards; }
+.d1 { animation-delay: .05s; } .d2 { animation-delay: .18s; }
+.d3 { animation-delay: .3s;  } .d4 { animation-delay: .42s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  #founder { grid-template-columns: 1fr; gap: 48px; padding: 64px 24px; text-align: center; }
+  .founder-img-wrap { display: flex; justify-content: center; }
+  .cred-pills { justify-content: center; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .cred-grid { grid-template-columns: 1fr; }
+  .section { padding: 64px 24px; }
+  #hero { padding: 72px 24px 64px; }
+  #hero h1 { font-size: 2.6em; }
+  nav { padding: 15px 24px; }
+  .nav-links a:not(.btn) { display: none; }
+}
+@media (max-width: 600px) {
+  .why-grid { grid-template-columns: 1fr; }
+  #hero h1 { font-size: 2.1em; }
 }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <nav>
-    <strong>Simple Consulting</strong>
-    <a href="index.html">Home</a>
+    <a class="logo" href="index.html">Simple Consulting</a>
+    <div class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cases">Work</a>
+      <a href="about.html">About</a>
+      <a href="booking.html" class="btn">Book a Call</a>
+    </div>
   </nav>
 </header>
 
-<section id="hero">
-  <h1>About Simple Consulting</h1>
-  <p>I bring clarity, systems, and operational excellence to help businesses scale profitably.</p>
-  <a href="booking.html">Book a Consultation</a>
-</section>
+<!-- HERO -->
+<div id="hero">
+  <div class="eyebrow fade d1"><span></span>Simple Consulting</div>
+  <h1 class="fade d2">Operator-led.<br>Results-driven.</h1>
+  <p class="fade d3">15+ years building and running the systems behind e-commerce growth — across retail, marketplaces, operations, and digital.</p>
+  <a href="booking.html" class="fade d4">Book a Free Consultation</a>
+</div>
 
-<section id="founder">
-  <div class="founder-grid">
-    <img src="https://drive.google.com/file/d/1anYlw39SwgdGbHj2Yp7hl7rmk28a_Oj-/view?usp=sharing" alt="Scott Nguyen">
-    <div>
-      <h2 class="founder-title">Hi, I’m Scott Nguyen</h2>
-      <p><strong>Founder, Simple Consulting</strong></p>
-      <span class="badge">Lean 6 Sigma Certified • E-commerce Operations • Google Certified</span>
-
-      <p style="margin-top:14px;font-weight:600;">
-        Over the past 9+ years, I’ve helped businesses scale 2–5x through smarter systems—across e-commerce, retail, manufacturing, and service industries.
-      </p>
-
-      <p style="margin-top:16px;">
-        I built Simple Consulting because too many good businesses get stuck behind bad systems.
-        Business doesn’t have to be complicated—but too often, it is.
-      </p>
-
-      <p>
-        I’ve spent 9+ years working across Shopify, Amazon, Walmart, eBay, ERP systems, and cross-border logistics—
-        onboarding products, fixing broken workflows, untangling inventory issues, and protecting margins.
-      </p>
-
-      <p>
-        My job is simple: build clean systems, clear processes, and real results—so you can grow
-        without fighting your backend every day.
-      </p>
+<!-- FOUNDER -->
+<div id="founder">
+  <div class="founder-img-wrap reveal">
+    <div class="founder-img-placeholder">
+      <span class="initials">SN</span>
+      <p>Add your photo here</p>
     </div>
   </div>
-</section>
-
-<section id="why">
-  <h2>Why Work With Me</h2>
-  <ul>
-    <li>Operator-led — I’ve run businesses, not just advised them.</li>
-    <li>Lean-certified — focused on efficiency, margin, and removing waste.</li>
-    <li>Deep marketplace and systems experience.</li>
-    <li>Expert in inventory, fulfillment, and operational workflows.</li>
-    <li>Hands-on — I build with you, not just talk.</li>
-  </ul>
-</section>
-
-<section id="credentials">
-  <h2>Credentials & Background</h2>
-  <div class="cred-grid">
-    <div class="cred-card">
-      <h3>Lean 6 Sigma</h3>
-      <p>Process improvement, margin protection, and operational efficiency.</p>
+  <div class="founder-right">
+    <p class="founder-eyebrow reveal">Founder</p>
+    <h2 class="reveal reveal-delay-1">Scott Nguyen</h2>
+    <p class="title reveal reveal-delay-1">Founder, Simple Consulting &nbsp;·&nbsp; E-commerce & Operations Leader</p>
+    <div class="cred-pills reveal reveal-delay-2">
+      <span class="cred-pill"><span class="dot"></span>Lean Six Sigma</span>
+      <span class="cred-pill"><span class="dot"></span>Google Certified</span>
+      <span class="cred-pill"><span class="dot"></span>ERP Certified</span>
+      <span class="cred-pill"><span class="dot"></span>CompTIA A+</span>
     </div>
-    <div class="cred-card">
-      <h3>ERP & Systems</h3>
-      <p>A2000, Oracle ERP Cloud, database integrations, and backend operations.</p>
-    </div>
-    <div class="cred-card">
-      <h3>Analytics & Growth</h3>
-      <p>Advanced Google Analytics, Search, Shopping, and growth tracking.</p>
+    <p class="reveal reveal-delay-2">
+      <strong>I built Simple Consulting because too many good businesses get stuck behind bad systems.</strong> Business doesn't have to be complicated — but too often, it is.
+    </p>
+    <p class="reveal reveal-delay-2">
+      Over 15+ years I've worked across Shopify, Amazon, Walmart, eBay, ERP systems, and cross-border logistics — onboarding products, fixing broken workflows, untangling inventory issues, and protecting margins at companies including Westex International, Zenex Enterprises, and Staples Canada.
+    </p>
+    <p class="reveal reveal-delay-2">
+      My job is simple: build clean systems, clear processes, and real results — so you can grow without fighting your backend every day.
+    </p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- WHY -->
+<div>
+  <div class="section">
+    <p class="section-label reveal">Why work with me</p>
+    <h2 class="reveal reveal-delay-1">What sets Simple Consulting apart</h2>
+    <p class="sub reveal reveal-delay-2">Not a generalist agency. Not theory. An operator who has run the exact systems you're trying to fix.</p>
+    <div class="why-grid reveal reveal-delay-2">
+      <div class="why-item">
+        <span class="icon">🛠️</span>
+        <h4>Operator-led</h4>
+        <p>I've run businesses, not just advised them — 15+ years of hands-on execution across retail and e-commerce.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">⚡</span>
+        <h4>Lean Six Sigma certified</h4>
+        <p>Focused on efficiency, margin protection, and removing waste from the systems that cost you the most.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">🛒</span>
+        <h4>Marketplace expert</h4>
+        <p>Deep experience across Amazon, Walmart, Best Buy, Wayfair, Costco, eBay, and more.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">📣</span>
+        <h4>Google certified</h4>
+        <p>Certified across Search, Shopping, Display, Video, Analytics, and Campaign Manager 360.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">🧩</span>
+        <h4>Systems & ERP</h4>
+        <p>Certified in ERP & database integration — from rollout to team adoption and reporting.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">🤝</span>
+        <h4>Hands-on support</h4>
+        <p>I build with you, not just advise you — direct access, fast turnaround, real accountability.</p>
+      </div>
     </div>
   </div>
-  <p style="margin-top:18px;">
-    Backed by formal training in systems and growth — built on real-world execution.
-  </p>
-</section>
+</div>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Let’s talk about what’s slowing your business down — and how to fix it.</p>
+<hr class="divider">
 
-  <form action="https://formspree.io/f/mreegwjn" method="POST">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="_replyto" placeholder="Email" required>
-    <textarea name="message" placeholder="Message" rows="5" required></textarea>
-    <input type="hidden" name="_subject" value="New Website Contact">
-    <button type="submit">Submit</button>
-  </form>
-</section>
+<!-- CREDENTIALS -->
+<div id="credentials-section">
+  <div class="section">
+    <p class="section-label reveal">Background</p>
+    <h2 class="reveal reveal-delay-1">Credentials & Experience</h2>
+    <p class="sub reveal reveal-delay-2">Formal training backed by real-world execution across some of Canada's largest retail channels.</p>
+    <div class="cred-grid reveal reveal-delay-2">
+      <div class="cred-card">
+        <h3>Google Ads & Analytics</h3>
+        <p>Certified across Search, Shopping, Display, Video, Mobile, Campaign Manager 360, and Google Analytics — individual and advanced qualifications.</p>
+      </div>
+      <div class="cred-card">
+        <h3>Lean Six Sigma</h3>
+        <p>Process improvement, margin protection, and operational efficiency grounded in certified Lean Six Sigma methodology.</p>
+      </div>
+      <div class="cred-card">
+        <h3>ERP & Systems</h3>
+        <p>A2000, Oracle ERP Cloud, Power BI, database integrations, and backend operations — rollout through ongoing reporting.</p>
+      </div>
+      <div class="cred-card">
+        <h3>E-commerce Operations</h3>
+        <p>8+ years as E-commerce Manager at Westex International, managing Amazon, Walmart, Best Buy, Wayfair, and more.</p>
+      </div>
+      <div class="cred-card">
+        <h3>Retail & Marketplace</h3>
+        <p>Staples Canada e-commerce team for 9 years — from Sales Associate through E-commerce Supervisor.</p>
+      </div>
+      <div class="cred-card">
+        <h3>CompTIA A+</h3>
+        <p>Foundational IT and technical systems certification — supporting systems integration and technical consulting work.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- CONTACT -->
+<div id="contact">
+  <div class="section">
+    <div class="inner">
+      <p class="section-label reveal">Get in touch</p>
+      <h2 class="reveal reveal-delay-1">Let's talk</h2>
+      <p class="reveal reveal-delay-2">Tell me what's slowing your business down — and I'll tell you exactly how I'd fix it.</p>
+      <form action="https://formspree.io/f/mreegwjn" method="POST" class="reveal reveal-delay-2">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="_replyto" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" rows="5" required></textarea>
+        <input type="hidden" name="_subject" value="New Website Contact">
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <p>© Simple Consulting 2016</p>
+  <div class="footer-inner">
+    <span>© Simple Consulting 2016 — Erin, Ontario</span>
+    <div class="footer-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cases">Work</a>
+      <a href="about.html">About</a>
+      <a href="booking.html">Contact</a>
+    </div>
+  </div>
 </footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
