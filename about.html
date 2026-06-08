@@ -277,6 +277,79 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
   .why-grid { grid-template-columns: 1fr; }
   #hero h1 { font-size: 2.1em; }
 }
+
+/* ── HAMBURGER MENU ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+  z-index: 300;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--black);
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,.98);
+  z-index: 200;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  backdrop-filter: blur(12px);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2em;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -.02em;
+  padding: 10px 20px;
+  transition: opacity .15s;
+}
+.mobile-nav a:hover { opacity: .6; }
+.mobile-nav a.btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95em;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 6px;
+  padding: 13px 32px;
+  margin-top: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.mobile-nav-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: none; border: none;
+  font-size: 1.6em;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 8px;
+}
+
+@media(max-width:960px){
+  .hamburger { display: flex; }
+  .nav-links a:not(.btn) { display: none; }
+  .nav-links a.btn { display: none; }
+}
 </style>
 </head>
 <body>
@@ -292,8 +365,20 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
       <a href="blog.html">Blog</a>
       <a href="booking.html" class="btn">Book a Call</a>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </nav>
 </header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="index.html#services" onclick="closeMobileNav()">Services</a>
+  <a href="index.html#cases" onclick="closeMobileNav()">Work</a>
+  <a href="about.html" onclick="closeMobileNav()">About</a>
+  <a href="blog.html" onclick="closeMobileNav()">Blog</a>
+  <a href="booking.html" class="btn" onclick="closeMobileNav()">Book a Call</a>
+</div>
+
 
 <!-- HERO -->
 <div id="hero">
@@ -452,6 +537,23 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
+</script>
+
+
+<script>
+function toggleMobileNav() {
+  const nav = document.getElementById('mobile-nav');
+  const btn = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
 </script>
 
 </body>
