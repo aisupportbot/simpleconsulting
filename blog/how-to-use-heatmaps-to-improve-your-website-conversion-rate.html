@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Use Heatmaps to Improve Your Website Conversion Rate | Simple Consulting</title>
+<meta name="description" content="Heatmaps show you exactly how visitors interact with your pages. Here's how to use that data to improve conversion.">
+<meta name="author" content="Scott Nguyen — Simple Consulting">
+<link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-use-heatmaps-to-improve-your-website-conversion-rate.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Use Heatmaps to Improve Your Website Conversion Rate">
+<meta property="og:description" content="Heatmaps show you exactly how visitors interact with your pages. Here's how to use that data to improve conversion.">
+<meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-use-heatmaps-to-improve-your-website-conversion-rate.html">
+<meta property="og:site_name" content="Simple Consulting">
+<meta property="article:published_time" content="2026-03-16">
+<meta property="article:section" content="Web">
+<meta name="twitter:card" content="summary">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0d0d0d;--white:#fff;--off:#f6f6f4;--border:#e8e8e5;--muted:#999;--text:#555}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--black);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+nav{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:18px 32px}
+.logo{font-family:'DM Serif Display',serif;font-size:1.2em;letter-spacing:-.01em;color:var(--black);text-decoration:none}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{font-size:.86em;font-weight:500;color:var(--text);padding:8px 14px;border-radius:6px;text-decoration:none;transition:background .15s,color .15s}
+.nav-links a:hover{background:var(--off);color:var(--black)}
+.nav-links a.btn{background:var(--black);color:var(--white);font-weight:600;margin-left:6px}
+.nav-links a.btn:hover{background:#2a2a2a}
+.crumbs{max-width:760px;margin:auto;padding:26px 32px 0;font-size:.8em;color:var(--muted)}
+.crumbs a{color:var(--muted);text-decoration:none}
+.crumbs a:hover{color:var(--black)}
+article{max-width:760px;margin:auto;padding:22px 32px 72px}
+.post-tag{display:inline-block;font-size:.72em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+h1{font-family:'DM Serif Display',serif;font-size:2.5em;letter-spacing:-.025em;line-height:1.15;margin-bottom:18px}
+.byline{font-size:.85em;color:var(--muted);padding-bottom:26px;margin-bottom:32px;border-bottom:1px solid var(--border)}
+.body{font-size:1.02em;color:var(--text);line-height:1.85}
+.body p{margin-bottom:20px}
+.body h2,.body h3{font-family:'DM Sans',sans-serif;font-size:1.15em;font-weight:700;color:var(--black);margin:34px 0 14px;line-height:1.35}
+.body ul,.body ol{padding-left:22px;margin-bottom:20px}
+.body li{margin-bottom:9px}
+.body strong{color:var(--black)}
+.cta-box{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:34px;margin-top:52px;text-align:center}
+.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5em;margin-bottom:12px;letter-spacing:-.02em}
+.cta-box p{font-size:.92em;color:var(--text);margin-bottom:22px}
+.cta-box a{display:inline-block;background:var(--black);color:var(--white);text-decoration:none;font-size:.88em;font-weight:600;padding:13px 28px;border-radius:6px}
+.cta-box a:hover{background:#2a2a2a}
+.related{max-width:760px;margin:auto;padding:0 32px 72px}
+.related h2{font-size:.72em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:8px}
+.related a{display:block;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--black)}
+.related a:hover{color:var(--muted)}
+.related .t{font-weight:600;font-size:.98em;margin-bottom:3px}
+.related .b{font-size:.83em;color:var(--text)}
+.pager{max-width:760px;margin:auto;padding:0 32px 72px;display:flex;justify-content:space-between;gap:18px;font-size:.85em}
+.pager a{color:var(--text);text-decoration:none;max-width:48%}
+.pager a:hover{color:var(--black)}
+.pager span{display:block;font-size:.85em;color:var(--muted);margin-bottom:3px}
+footer{border-top:1px solid var(--border);padding:30px 32px}
+.footer-inner{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;font-size:.8em;color:var(--muted);flex-wrap:wrap;gap:14px}
+.footer-links{display:flex;gap:22px}
+.footer-links a{color:var(--muted);text-decoration:none}
+.footer-links a:hover{color:var(--black)}
+@media(max-width:960px){nav{padding:15px 24px}.nav-links a:not(.btn){display:none}h1{font-size:1.9em}article,.related,.pager,.crumbs{padding-left:22px;padding-right:22px}}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Use Heatmaps to Improve Your Website Conversion Rate","description":"Heatmaps show you exactly how visitors interact with your pages. Here's how to use that data to improve conversion.","datePublished":"2026-03-16","dateModified":"2026-03-16","author":{"@type":"Person","name":"Scott Nguyen"},"publisher":{"@type":"Organization","name":"Simple Consulting","url":"https://www.simpleconsulting.ca/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.simpleconsulting.ca/blog/how-to-use-heatmaps-to-improve-your-website-conversion-rate.html"},"articleSection":"Web","inLanguage":"en-CA"}</script>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="logo" href="/">Simple Consulting</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/about.html">About</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/booking.html" class="btn">Book a Call</a>
+    </div>
+  </nav>
+</header>
+
+<p class="crumbs"><a href="/">Home</a> › <a href="/blog.html">Blog</a> › Web</p>
+
+<article>
+  <span class="post-tag">Web</span>
+  <h1>How to Use Heatmaps to Improve Your Website Conversion Rate</h1>
+  <p class="byline">By Scott Nguyen · Mar 16, 2026 · 1 min read</p>
+  <div class="body"><p>Analytics tools tell you what visitors do. Heatmaps show you how they do it — where they click, how far they scroll, where they spend attention, and where they abandon.</p><h3>What Heatmaps Reveal</h3><p>Click maps show where visitors are clicking — including where they click expecting a link but find none. Scroll maps show how far down the page most visitors actually reach. Session recordings show individual visitor journeys including hesitations, rage clicks, and abandonment patterns.</p><h3>The Most Common Insights</h3><p>Visitors clicking on elements expecting them to be links. Most visitors not scrolling far enough to see your CTA. Form fields causing abandonment because they're confusing or ask for too much. Visitors spending disproportionate time on sections suggesting confusion.</p><h3>Tools That Work</h3><p>Microsoft Clarity is free and provides heatmaps and session recordings with no traffic limits. Hotjar offers a free tier with more advanced features. Both are straightforward to implement via Google Tag Manager.</p><p><strong>The fix:</strong> Install Microsoft Clarity (free) on your website today. Review heatmaps and session recordings for your homepage and highest-traffic pages after two weeks. Identify the single most surprising behaviour pattern and address it.</p></div>
+
+  <div class="cta-box">
+    <h2>Want help putting this into practice?</h2>
+    <p>Book a free consultation and we'll walk through what's holding your business back.</p>
+    <a href="/booking.html">Book a Free Call</a>
+  </div>
+</article>
+
+<div class="related">
+  <h2>More on Web</h2>
+  <a href="/blog/how-to-use-customer-testimonials-to-build-trust-on-your-website.html">
+    <span class="t">How to Use Customer Testimonials to Build Trust on Your Website</span>
+    <span class="b">Testimonials are your most credible marketing asset. Here's how to collect, select, and display them for maximum impact.</span>
+  </a>
+  <a href="/blog/how-to-make-your-website-aoda-compliant-in-ontario.html">
+    <span class="t">How to Make Your Website AODA Compliant in Ontario</span>
+    <span class="b">Ontario's accessibility legislation applies to websites. Here's what you need to know and how to comply.</span>
+  </a>
+  <a href="/blog/how-to-use-pop-ups-on-your-website-without-annoying-visitors.html">
+    <span class="t">How to Use Pop-ups on Your Website Without Annoying Visitors</span>
+    <span class="b">Pop-ups work when they're relevant and well-timed. They hurt conversion when they're not. Here's how to get it right.</span>
+  </a>
+</div>
+
+<div class="pager">
+  <a href="/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html"><span>← Previous</span>How to Use Data to Make Better Buying Decisions in E-commerce</a>
+  <a href="/blog/how-to-negotiate-better-payment-terms-with-suppliers.html" style="text-align:right"><span>Next →</span>How to Negotiate Better Payment Terms With Suppliers</a>
+</div>
+
+
+<footer>
+  <div class="footer-inner">
+    <span>© Simple Consulting — Erin, Ontario</span>
+    <div class="footer-links">
+      <a href="/#services">Services</a>
+      <a href="/about.html">About</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/booking.html">Contact</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
