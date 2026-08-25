@@ -91,6 +91,32 @@ function readingTime(body) {
   return Math.max(1, Math.round(words / 220));
 }
 
+/* ---------------------------------------------------- tag → service page */
+/**
+ * Every post links through to the service page its topic belongs to. This is
+ * the internal linking that was missing entirely: 112 posts that pointed only
+ * at the booking page passed no signal to the pages that need to rank.
+ */
+const SERVICE_BY_TAG = {
+  'Marketplaces': { url: '/amazon-management.html', label: 'Amazon account management',
+    blurb: 'Vendor Central, Seller Central and FBA run end to end — listings, advertising, inventory and account health.' },
+  'E-commerce':   { url: '/amazon-management.html', label: 'Amazon account management',
+    blurb: 'Listings, advertising, FBA operations and Buy Box strategy, managed by an operator who has run these accounts.' },
+  'Operations':   { url: '/reimbursement-recovery.html', label: 'Reimbursement recovery',
+    blurb: 'Short shipments, lost FBA units, fee overcharges and WFS discrepancies. Free audit — you see the number first.' },
+  'Google Ads':   { url: '/amazon-management.html', label: 'Marketplace advertising management',
+    blurb: 'Sponsored Products, Brands and Display structured around margin, with weekly search term review.' },
+  'SEO':          { url: '/amazon-management.html', label: 'Amazon listing optimization',
+    blurb: 'Titles, bullets, backend keywords and A+ Content built to rank inside Amazon search, not just to hold keywords.' },
+  'Growth':       { url: '/walmart-management.html', label: 'Walmart Marketplace & WFS',
+    blurb: 'The channel most Canadian brands underinvest in, and where the least competition sits.' },
+  'Web':          { url: '/booking.html', label: 'Book a free channel review',
+    blurb: 'Thirty minutes on your account. I will name the three things I would fix first and what each is worth.' },
+  'ERP':          { url: '/booking.html', label: 'Systems and reporting',
+    blurb: 'ERP integration with your sales channels, inventory sync and the reporting that makes problems visible early.' }
+};
+const serviceFor = tag => SERVICE_BY_TAG[tag] || SERVICE_BY_TAG['E-commerce'];
+
 /* ------------------------------------------------------------ shared CSS */
 const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -123,6 +149,12 @@ h1{font-family:'DM Serif Display',serif;font-size:2.5em;letter-spacing:-.025em;l
 .cta-box p{font-size:.92em;color:var(--text);margin-bottom:22px}
 .cta-box a{display:inline-block;background:var(--black);color:var(--white);text-decoration:none;font-size:.88em;font-weight:600;padding:13px 28px;border-radius:6px}
 .cta-box a:hover{background:#2a2a2a}
+.svc-box{border:1px solid #d3e2da;background:#eef3f0;border-radius:14px;padding:26px 28px;margin-top:40px}
+.svc-box .k{font-size:.7em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a4d3a;margin-bottom:9px}
+.svc-box h2{font-family:'DM Sans',sans-serif;font-size:1.08em;font-weight:700;margin:0 0 8px;color:#0d0d0d}
+.svc-box p{font-size:.9em;color:#33503f;line-height:1.7;margin-bottom:14px}
+.svc-box a{font-size:.88em;font-weight:600;color:#1a4d3a;text-decoration:none;border-bottom:2px solid #1a4d3a;padding-bottom:2px}
+.svc-box a:hover{color:#0d0d0d;border-color:#0d0d0d}
 .related{max-width:760px;margin:auto;padding:0 32px 72px}
 .related h2{font-size:.72em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:8px}
 .related a{display:block;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--black)}
@@ -146,7 +178,9 @@ const NAV = `
   <nav>
     <a class="logo" href="/">${BRAND}</a>
     <div class="nav-links">
-      <a href="/#services">Services</a>
+      <a href="/amazon-management.html">Amazon</a>
+      <a href="/walmart-management.html">Walmart</a>
+      <a href="/reimbursement-recovery.html">Get Money Back</a>
       <a href="/about.html">About</a>
       <a href="/blog.html">Blog</a>
       <a href="/booking.html" class="btn">Book a Call</a>
@@ -159,7 +193,9 @@ const FOOT = `
   <div class="footer-inner">
     <span>© ${BRAND} — Erin, Ontario</span>
     <div class="footer-links">
-      <a href="/#services">Services</a>
+      <a href="/amazon-management.html">Amazon</a>
+      <a href="/walmart-management.html">Walmart</a>
+      <a href="/reimbursement-recovery.html">Get Money Back</a>
       <a href="/about.html">About</a>
       <a href="/blog.html">Blog</a>
       <a href="/booking.html">Contact</a>
@@ -175,6 +211,7 @@ function postPage(post, all, i) {
     .filter(p => p.tag === post.tag && p.slug !== post.slug)
     .slice(0, 3);
   const prev = all[i - 1], next = all[i + 1];
+  const svc = serviceFor(post.tag);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -221,6 +258,13 @@ ${NAV}
   <h1>${esc(post.title)}</h1>
   <p class="byline">By ${AUTHOR} · ${esc(post.date)} · ${readingTime(post.body)} min read</p>
   <div class="body">${post.body}</div>
+
+  <div class="svc-box">
+    <p class="k">Related service</p>
+    <h2>${esc(svc.label)}</h2>
+    <p>${esc(svc.blurb)}</p>
+    <a href="${svc.url}">Learn more &rarr;</a>
+  </div>
 
   <div class="cta-box">
     <h2>Want help putting this into practice?</h2>
@@ -306,6 +350,9 @@ function writeSitemap(posts) {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     { loc: `${SITE}/`, pri: '1.0' },
+    { loc: `${SITE}/amazon-management.html`, pri: '0.9' },
+    { loc: `${SITE}/walmart-management.html`, pri: '0.9' },
+    { loc: `${SITE}/reimbursement-recovery.html`, pri: '0.9' },
     { loc: `${SITE}/about.html`, pri: '0.8' },
     { loc: `${SITE}/blog.html`, pri: '0.9' },
     { loc: `${SITE}/booking.html`, pri: '0.8' },

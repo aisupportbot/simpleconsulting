@@ -1,227 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Scott Nguyen | Simple Consulting — E-commerce & Operations Consultant Ontario</title>
-<meta name="description" content="Meet Scott Nguyen, founder of Simple Consulting. 15+ years of hands-on e-commerce, marketplace, Google Ads, and operations experience. Lean Six Sigma and Google certified. Based in Ontario, Canada.">
-<meta name="keywords" content="Scott Nguyen consultant, Simple Consulting Ontario, e-commerce consultant Canada, Google Ads expert Ontario, Lean Six Sigma consultant, marketplace consultant Canada">
+<title>About Scott Nguyen — Amazon &amp; Walmart Consultant | Simple Consulting</title>
+<meta name="description" content="Scott Nguyen has spent 15+ years running Amazon Vendor Central, Seller Central, FBA and Walmart WFS accounts for Canadian brands. Lean Six Sigma and Google certified. Based in Erin, Ontario.">
 <meta name="author" content="Scott Nguyen — Simple Consulting">
-<meta property="og:title" content="About Scott Nguyen | Simple Consulting">
-<meta property="og:description" content="Operator-led consulting from someone who has actually run the systems. 15+ years across Amazon, Walmart, Best Buy, Shopify, ERP, and more.">
+<meta property="og:title" content="About Scott Nguyen — Amazon &amp; Walmart Consultant">
+<meta property="og:description" content="An operator, not an agency. 15+ years running marketplace accounts across Amazon, Walmart, Best Buy, Costco and Wayfair.">
 <meta property="og:url" content="https://www.simpleconsulting.ca/about.html">
-<meta property="og:type" content="website">
+<meta property="og:type" content="profile">
 <link rel="canonical" href="https://www.simpleconsulting.ca/about.html">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Scott Nguyen",
+  "jobTitle": "E-commerce and Marketplace Consultant",
+  "url": "https://www.simpleconsulting.ca/about.html",
+  "worksFor": { "@type": "Organization", "name": "Simple Consulting", "url": "https://www.simpleconsulting.ca/" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Erin", "addressRegion": "ON", "addressCountry": "CA" },
+  "knowsAbout": [
+    "Amazon Vendor Central", "Amazon Seller Central", "Fulfillment by Amazon",
+    "Walmart Marketplace", "Walmart Fulfillment Services", "Lean Six Sigma",
+    "ERP systems", "Google Ads"
+  ]
+}
+</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --black: #0d0d0d;
-  --white: #fff;
-  --off: #f6f6f4;
-  --border: #e8e8e5;
-  --muted: #999;
-  --text: #555;
+  --black: #0d0d0d; --white: #fff; --off: #f6f6f4;
+  --border: #e8e8e5; --muted: #999; --text: #555; --accent: #1a4d3a;
 }
-
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--black);
-  background: var(--white);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'DM Sans', sans-serif; color: var(--black); background: var(--white);
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
 }
+a { color: inherit; }
 
-/* ── HEADER ── */
 header {
-  position: sticky; top: 0; z-index: 100;
+  position: sticky; top: 0; z-index: 200;
   background: rgba(255,255,255,.97);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); backdrop-filter: blur(12px);
 }
 nav {
-  max-width: 1160px; margin: auto;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 18px 32px;
+  max-width: 1160px; margin: auto; display: flex;
+  justify-content: space-between; align-items: center; padding: 18px 32px;
 }
-.logo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.2em; letter-spacing: -.01em;
-  color: var(--black); text-decoration: none;
-}
-.nav-links { display: flex; gap: 6px; align-items: center; }
+.logo { font-family: 'DM Serif Display', serif; font-size: 1.2em; letter-spacing: -.01em; color: var(--black); text-decoration: none; }
+.nav-links { display: flex; gap: 4px; align-items: center; }
 .nav-links a {
-  font-size: .86em; font-weight: 500; color: var(--text);
-  padding: 8px 14px; border-radius: 6px;
-  text-decoration: none; transition: background .15s, color .15s;
+  font-size: .85em; font-weight: 500; color: var(--text);
+  padding: 8px 14px; border-radius: 6px; text-decoration: none; transition: background .15s, color .15s;
 }
 .nav-links a:hover { background: var(--off); color: var(--black); }
-.nav-links a.btn {
-  background: var(--black); color: var(--white);
-  font-weight: 600; margin-left: 6px;
-}
+.nav-links a.btn { background: var(--black); color: var(--white); font-weight: 600; margin-left: 8px; }
 .nav-links a.btn:hover { background: #2a2a2a; }
 
-/* ── HERO ── */
-#hero {
-  background: var(--off);
-  border-bottom: 1px solid var(--border);
-  padding: 96px 32px 88px;
-  text-align: center;
-}
+#hero { background: var(--off); border-bottom: 1px solid var(--border); padding: 88px 32px 80px; text-align: center; }
 #hero .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
   font-size: .74em; font-weight: 600; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--muted);
-  margin-bottom: 22px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
 }
-#hero .eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--muted); }
+#hero .eyebrow span { display: inline-block; width: 24px; height: 1px; background: #bbb; }
 #hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 3.4em; letter-spacing: -.025em;
-  line-height: 1.1; margin-bottom: 22px;
-  max-width: 640px; margin-left: auto; margin-right: auto;
+  font-family: 'DM Serif Display', serif; font-size: 3.1em;
+  letter-spacing: -.025em; line-height: 1.12; margin-bottom: 20px;
+  max-width: 700px; margin-left: auto; margin-right: auto;
 }
-#hero p {
-  font-size: 1.05em; color: var(--text);
-  max-width: 500px; margin: 0 auto 36px;
-  line-height: 1.75;
+#hero p { font-size: 1.03em; color: var(--text); max-width: 560px; margin: 0 auto 34px; line-height: 1.75; }
+#hero a.cta {
+  display: inline-block; text-decoration: none; background: var(--black); color: var(--white);
+  font-size: .9em; font-weight: 600; padding: 13px 30px; border-radius: 6px; transition: background .15s;
 }
-#hero a {
-  display: inline-block; text-decoration: none;
-  background: var(--black); color: var(--white);
-  font-size: .9em; font-weight: 600;
-  padding: 13px 30px; border-radius: 6px; transition: background .15s;
-}
-#hero a:hover { background: #2a2a2a; }
+#hero a.cta:hover { background: #2a2a2a; }
 
-/* ── FOUNDER ── */
 #founder {
-  max-width: 1160px; margin: auto;
-  padding: 96px 32px;
-  display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center;
-}
-.founder-img-wrap {
-  position: relative;
+  max-width: 1160px; margin: auto; padding: 88px 32px;
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 72px; align-items: start;
 }
 .founder-img-wrap img {
-  width: 100%; max-width: 340px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  display: block;
-  object-fit: cover; aspect-ratio: 4/5;
-  background: var(--off);
+  width: 100%; max-width: 340px; border-radius: 16px;
+  border: 1px solid var(--border); display: block;
+  object-fit: cover; aspect-ratio: 4/5; background: var(--off);
 }
-.founder-img-placeholder {
-  width: 100%; max-width: 340px;
-  aspect-ratio: 4/5;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: var(--off);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 12px;
-}
-.founder-img-placeholder .initials {
-  font-family: 'DM Serif Display', serif;
-  font-size: 4em; color: #ccc; line-height: 1;
-}
-.founder-img-placeholder p { font-size: .78em; color: var(--muted); }
-
-.founder-eyebrow {
-  font-size: .72em; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
-}
-.founder-right h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.6em; letter-spacing: -.025em;
-  line-height: 1.1; margin-bottom: 8px;
-}
-.founder-right .title {
-  font-size: .88em; color: var(--muted); font-weight: 500;
-  margin-bottom: 28px;
-}
-.cred-pills {
-  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
-}
+.founder-eyebrow { font-size: .72em; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.founder-right h2 { font-family: 'DM Serif Display', serif; font-size: 2.4em; letter-spacing: -.025em; line-height: 1.12; margin-bottom: 8px; }
+.founder-right .title { font-size: .88em; color: var(--muted); font-weight: 500; margin-bottom: 26px; }
+.cred-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
 .cred-pill {
   display: inline-flex; align-items: center; gap: 6px;
-  background: var(--off); border: 1px solid var(--border);
-  border-radius: 30px; padding: 6px 14px;
-  font-size: .76em; font-weight: 600; color: var(--black);
-  white-space: nowrap;
+  background: var(--off); border: 1px solid var(--border); border-radius: 30px;
+  padding: 6px 14px; font-size: .76em; font-weight: 600; color: var(--black); white-space: nowrap;
 }
-.cred-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--black); flex-shrink: 0; }
-.founder-right p {
-  font-size: .96em; color: var(--text);
-  line-height: 1.8; margin-bottom: 18px;
-}
+.cred-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.founder-right p { font-size: .97em; color: var(--text); line-height: 1.8; margin-bottom: 18px; }
 .founder-right p strong { color: var(--black); font-weight: 600; }
 .founder-right p:last-child { margin-bottom: 0; }
 
-/* ── DIVIDER ── */
 .divider { border: none; border-top: 1px solid var(--border); }
+.section { max-width: 1160px; margin: auto; padding: 80px 32px; }
+.section-label { font-size: .72em; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.section h2 { font-family: 'DM Serif Display', serif; font-size: 2.2em; letter-spacing: -.02em; margin-bottom: 12px; line-height: 1.15; }
+.section .sub { font-size: .97em; color: var(--text); max-width: 560px; margin-bottom: 48px; line-height: 1.75; }
 
-/* ── SECTION ── */
-.section { max-width: 1160px; margin: auto; padding: 88px 32px; }
-.section-label {
-  font-size: .72em; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+/* TIMELINE */
+.timeline { border-left: 2px solid var(--border); padding-left: 32px; max-width: 760px; }
+.tl-item { padding-bottom: 34px; position: relative; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: ''; position: absolute; left: -39px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--white); border: 2px solid var(--accent);
 }
-.section h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.3em; letter-spacing: -.02em;
-  margin-bottom: 12px; line-height: 1.15;
-}
-.section .sub {
-  font-size: .97em; color: var(--text);
-  max-width: 500px; margin-bottom: 52px; line-height: 1.75;
-}
+.tl-item .yr { font-size: .74em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.tl-item h4 { font-size: 1.02em; font-weight: 700; margin-bottom: 8px; }
+.tl-item p { font-size: .89em; color: var(--text); line-height: 1.7; }
 
-/* ── WHY GRID ── */
-.why-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
-}
-.why-item {
-  background: var(--white); padding: 34px 28px; transition: background .15s;
-}
-.why-item:hover { background: var(--off); }
-.why-item .icon { font-size: 1.2em; margin-bottom: 14px; display: block; }
-.why-item h4 { font-size: .88em; font-weight: 700; color: var(--black); margin-bottom: 8px; }
-.why-item p { font-size: .82em; color: var(--text); line-height: 1.6; }
-
-/* ── CREDENTIALS ── */
+/* CREDENTIALS */
 #credentials-section { background: var(--off); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .cred-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
 }
-.cred-card {
-  background: var(--white); padding: 34px 28px; transition: background .15s;
-}
-.cred-card:hover { background: var(--off); }
-.cred-card h3 { font-size: .9em; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+.cred-card { background: var(--white); padding: 32px 26px; }
+.cred-card h3 { font-size: .89em; font-weight: 700; color: var(--black); margin-bottom: 10px; }
 .cred-card p { font-size: .84em; color: var(--text); line-height: 1.65; }
 
-/* ── CONTACT ── */
+/* CONTACT */
 #contact { text-align: center; border-top: 1px solid var(--border); }
 #contact .inner { max-width: 540px; margin: auto; }
-#contact p { font-size: .97em; color: var(--text); margin-bottom: 40px; line-height: 1.75; }
+#contact p.intro { font-size: .97em; color: var(--text); margin-bottom: 36px; line-height: 1.75; }
 form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+form label { font-size: .78em; font-weight: 600; color: var(--text); margin-bottom: -6px; }
 form input, form textarea {
-  padding: 13px 16px;
-  border: 1px solid var(--border); border-radius: 8px;
-  font-family: 'DM Sans', sans-serif; font-size: .9em;
-  color: var(--black); background: var(--white);
-  transition: border-color .15s;
-  outline: none;
+  padding: 13px 16px; border: 1px solid var(--border); border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: .9em; color: var(--black);
+  background: var(--white); transition: border-color .15s; outline: none;
 }
-form input:focus, form textarea:focus { border-color: #aaa; }
+form input:focus, form textarea:focus { border-color: var(--accent); }
 form textarea { resize: vertical; min-height: 130px; }
 form button {
   padding: 13px 28px; border: none; border-radius: 6px;
@@ -231,294 +152,210 @@ form button {
 }
 form button:hover { background: #2a2a2a; }
 
-/* ── FOOTER ── */
 footer { border-top: 1px solid var(--border); padding: 30px 32px; }
 .footer-inner {
-  max-width: 1160px; margin: auto;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: .8em; color: var(--muted); flex-wrap: wrap; gap: 14px;
+  max-width: 1160px; margin: auto; display: flex; justify-content: space-between;
+  align-items: center; font-size: .8em; color: var(--muted); flex-wrap: wrap; gap: 14px;
 }
 .footer-links { display: flex; gap: 22px; }
 .footer-links a { color: var(--muted); text-decoration: none; transition: color .15s; }
 .footer-links a:hover { color: var(--black); }
 
-/* ── SCROLL REVEAL ── */
-.reveal {
-  opacity: 0; transform: translateY(22px);
-  transition: opacity .6s ease, transform .6s ease;
-}
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-
-/* ── FADE IN ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .fade { opacity: 0; animation: fadeUp .55s ease forwards; }
-.d1 { animation-delay: .05s; } .d2 { animation-delay: .18s; }
-.d3 { animation-delay: .3s;  } .d4 { animation-delay: .42s; }
+.d1 { animation-delay: .05s; } .d2 { animation-delay: .16s; } .d3 { animation-delay: .28s; } .d4 { animation-delay: .4s; }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  #founder { grid-template-columns: 1fr; gap: 48px; padding: 64px 24px; text-align: center; }
-  .founder-img-wrap { display: flex; justify-content: center; }
-  .cred-pills { justify-content: center; }
-  .why-grid { grid-template-columns: 1fr 1fr; }
-  .cred-grid { grid-template-columns: 1fr; }
-  .section { padding: 64px 24px; }
-  #hero { padding: 72px 24px 64px; }
-  #hero h1 { font-size: 2.6em; }
-  nav { padding: 15px 24px; }
-  .nav-links a:not(.btn) { display: none; }
-}
-@media (max-width: 600px) {
-  .why-grid { grid-template-columns: 1fr; }
-  #hero h1 { font-size: 2.1em; }
-}
-
-/* ── HAMBURGER MENU ── */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 8px;
-  background: none;
-  border: none;
-  z-index: 300;
-}
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--black);
-  border-radius: 2px;
-  transition: transform .3s, opacity .3s;
-}
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; z-index: 300; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--black); border-radius: 2px; transition: transform .3s, opacity .3s; }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-.mobile-nav {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,.98);
-  z-index: 200;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  backdrop-filter: blur(12px);
-}
+.mobile-nav { display: none; position: fixed; inset: 0; background: rgba(255,255,255,.98); z-index: 250; flex-direction: column; align-items: center; justify-content: center; gap: 8px; backdrop-filter: blur(12px); }
 .mobile-nav.open { display: flex; }
-.mobile-nav a {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2em;
-  color: var(--black);
-  text-decoration: none;
-  letter-spacing: -.02em;
-  padding: 10px 20px;
-  transition: opacity .15s;
-}
-.mobile-nav a:hover { opacity: .6; }
-.mobile-nav a.btn {
-  font-family: 'DM Sans', sans-serif;
-  font-size: .95em;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 6px;
-  padding: 13px 32px;
-  margin-top: 12px;
-  font-weight: 600;
-  letter-spacing: 0;
-}
-.mobile-nav-close {
-  position: absolute;
-  top: 20px; right: 20px;
-  background: none; border: none;
-  font-size: 1.6em;
-  cursor: pointer;
-  color: var(--muted);
-  padding: 8px;
-}
+.mobile-nav a { font-family: 'DM Serif Display', serif; font-size: 2em; color: var(--black); text-decoration: none; letter-spacing: -.02em; padding: 10px 20px; }
+.mobile-nav a.btn { font-family: 'DM Sans', sans-serif; font-size: .95em; background: var(--black); color: var(--white); border-radius: 6px; padding: 13px 32px; margin-top: 12px; font-weight: 600; }
+.mobile-nav-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 1.6em; cursor: pointer; color: var(--muted); padding: 8px; }
 
-@media(max-width:960px){
+@media (max-width: 960px) {
+  #founder { grid-template-columns: 1fr; gap: 44px; padding: 60px 24px; }
+  .founder-img-wrap { display: flex; justify-content: center; }
+  .cred-grid { grid-template-columns: 1fr 1fr; }
+  .section { padding: 60px 24px; }
+  #hero { padding: 64px 24px 56px; }
+  #hero h1 { font-size: 2.3em; }
+  nav { padding: 15px 24px; }
+  .nav-links { display: none; }
   .hamburger { display: flex; }
-  .nav-links a:not(.btn) { display: none; }
-  .nav-links a.btn { display: none; }
+}
+@media (max-width: 600px) {
+  .cred-grid { grid-template-columns: 1fr; }
+  #hero h1 { font-size: 1.95em; }
+  .timeline { padding-left: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <nav>
-    <a class="logo" href="index.html">Simple Consulting</a>
+    <a class="logo" href="/">Simple Consulting</a>
     <div class="nav-links">
-      <a href="index.html#services">Services</a>
-      <a href="about.html">About</a>
-      <a href="blog.html">Blog</a>
-      <a href="booking.html" class="btn">Book a Call</a>
+      <a href="/amazon-management.html">Amazon</a>
+      <a href="/walmart-management.html">Walmart</a>
+      <a href="/reimbursement-recovery.html">Get Money Back</a>
+      <a href="/about.html">About</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/booking.html" class="btn">Book a Call</a>
     </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 </header>
 
-<!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobile-nav">
-  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
-  <a href="index.html#services" onclick="closeMobileNav()">Services</a>
-  <a href="about.html" onclick="closeMobileNav()">About</a>
-  <a href="blog.html" onclick="closeMobileNav()">Blog</a>
-  <a href="booking.html" class="btn" onclick="closeMobileNav()">Book a Call</a>
+  <button class="mobile-nav-close" onclick="closeMobileNav()" aria-label="Close">✕</button>
+  <a href="/amazon-management.html" onclick="closeMobileNav()">Amazon</a>
+  <a href="/walmart-management.html" onclick="closeMobileNav()">Walmart</a>
+  <a href="/reimbursement-recovery.html" onclick="closeMobileNav()">Get Money Back</a>
+  <a href="/about.html" onclick="closeMobileNav()">About</a>
+  <a href="/blog.html" onclick="closeMobileNav()">Blog</a>
+  <a href="/booking.html" class="btn" onclick="closeMobileNav()">Book a Call</a>
 </div>
 
-
-<!-- HERO -->
 <div id="hero">
-  <div class="eyebrow fade d1"><span></span>Simple Consulting</div>
-  <h1 class="fade d2">Operator-led.<br>Results-driven.</h1>
-  <p class="fade d3">15+ years building and running the systems behind e-commerce growth — across retail, marketplaces, operations, and digital.</p>
-  <a href="booking.html" class="fade d4">Book a Free Consultation</a>
+  <div class="eyebrow fade d1"><span></span>About</div>
+  <h1 class="fade d2">I've been on your side of the account.</h1>
+  <p class="fade d3">Fifteen years running Amazon and Walmart channels for Canadian brands — as the person responsible for the numbers, not the consultant presenting about them.</p>
+  <a href="/booking.html" class="cta fade d4">Book a free channel review</a>
 </div>
 
-<!-- FOUNDER -->
 <div id="founder">
   <div class="founder-img-wrap reveal">
-    <img src="https://github.com/aisupportbot/simpleconsulting/blob/main/1765937561010.png?raw=true" alt="Scott Nguyen">
+    <img src="https://github.com/aisupportbot/simpleconsulting/blob/main/1765937561010.png?raw=true" alt="Scott Nguyen, founder of Simple Consulting" width="340" height="425">
   </div>
   <div class="founder-right">
     <p class="founder-eyebrow reveal">Founder</p>
     <h2 class="reveal reveal-delay-1">Scott Nguyen</h2>
-    <p class="title reveal reveal-delay-1">Founder, Simple Consulting &nbsp;·&nbsp; E-commerce & Operations Leader</p>
+    <p class="title reveal reveal-delay-1">Founder, Simple Consulting &nbsp;·&nbsp; Amazon &amp; Walmart Marketplace Consultant</p>
     <div class="cred-pills reveal reveal-delay-2">
       <span class="cred-pill"><span class="dot"></span>Lean Six Sigma</span>
-      <span class="cred-pill"><span class="dot"></span>Google Certified</span>
+      <span class="cred-pill"><span class="dot"></span>Google Ads &amp; Analytics</span>
       <span class="cred-pill"><span class="dot"></span>ERP Certified</span>
       <span class="cred-pill"><span class="dot"></span>CompTIA A+</span>
     </div>
     <p class="reveal reveal-delay-2">
-      <strong>I built Simple Consulting because too many good businesses get stuck behind bad systems.</strong> Business doesn't have to be complicated — but too often, it is.
+      <strong>Most marketplace problems aren't strategy problems. They're operational ones.</strong> A suppressed listing nobody noticed. Reimbursements never claimed. Ad spend going to search terms that will never convert. A WFS fee model that quietly turned a profitable SKU unprofitable.
     </p>
     <p class="reveal reveal-delay-2">
-      15+ years across Shopify, Amazon, Walmart, eBay, ERP systems, and cross-border logistics — onboarding products, fixing broken workflows, untangling inventory issues, and protecting margins across some of Canada's largest retail and e-commerce operations.
+      I've spent fifteen years finding and fixing exactly those things — across Amazon Vendor Central and Seller Central, FBA, Walmart Marketplace and WFS, plus Best Buy Canada, Wayfair, Costco and Home Depot. Nine of those years were at Staples Canada, one of the country's largest retailers, in progressive retail and e-commerce leadership roles.
     </p>
     <p class="reveal reveal-delay-2">
-      My job is simple: build clean systems, clear processes, and real results — so you can grow without fighting your backend every day.
+      That means when I look at your account, I'm not learning the platform on your budget. I've filed the chargeback disputes, negotiated the co-op terms, planned the Q4 inbound shipments, and argued with support about a reimbursement claim. I know where the money hides.
+    </p>
+    <p class="reveal reveal-delay-2">
+      I work with a small number of brands at a time, which means you deal with me directly — not an account coordinator two layers removed from the work.
     </p>
   </div>
 </div>
 
 <hr class="divider">
 
-<!-- WHY -->
 <div>
   <div class="section">
-    <p class="section-label reveal">Why work with me</p>
-    <h2 class="reveal reveal-delay-1">What sets Simple Consulting apart</h2>
-    <p class="sub reveal reveal-delay-2">Not a generalist agency. Not theory. An operator who has run the exact systems you're trying to fix.</p>
-    <div class="why-grid reveal reveal-delay-2">
-      <div class="why-item">
-        <span class="icon">🛠️</span>
-        <h4>Operator-led</h4>
-        <p>I've run businesses, not just advised them — 15+ years of hands-on execution across retail and e-commerce.</p>
+    <p class="section-label reveal">Background</p>
+    <h2 class="reveal reveal-delay-1">Where the experience comes from</h2>
+    <p class="sub reveal reveal-delay-2">Fifteen years across both sides of Canadian retail — the store floor and the marketplace dashboard.</p>
+    <div class="timeline reveal reveal-delay-2">
+      <div class="tl-item">
+        <p class="yr">Nine years</p>
+        <h4>Staples Canada</h4>
+        <p>Progressive leadership roles across retail operations and e-commerce at one of Canada's largest retailers. Learning how physical and digital channels actually interact — and where they conflict.</p>
       </div>
-      <div class="why-item">
-        <span class="icon">⚡</span>
-        <h4>Lean Six Sigma certified</h4>
-        <p>Focused on efficiency, margin protection, and removing waste from the systems that cost you the most.</p>
+      <div class="tl-item">
+        <p class="yr">Senior roles</p>
+        <h4>Multi-channel e-commerce leadership</h4>
+        <p>Running marketplace operations end to end for Canadian suppliers and distributors: listings, advertising, inventory, fulfillment and revenue performance across Amazon, Walmart, Best Buy, Wayfair and Costco. Accountable for the numbers, not advising on them.</p>
       </div>
-      <div class="why-item">
-        <span class="icon">🛒</span>
-        <h4>Marketplace expert</h4>
-        <p>Deep experience across Amazon, Walmart, Best Buy, Wayfair, Costco, eBay, and more.</p>
-      </div>
-      <div class="why-item">
-        <span class="icon">📣</span>
-        <h4>Google certified</h4>
-        <p>Certified across Search, Shopping, Display, Video, Analytics, and Campaign Manager 360.</p>
-      </div>
-      <div class="why-item">
-        <span class="icon">🧩</span>
-        <h4>Systems & ERP</h4>
-        <p>Certified in ERP & database integration — from rollout to team adoption and reporting.</p>
-      </div>
-      <div class="why-item">
-        <span class="icon">🤝</span>
-        <h4>Hands-on support</h4>
-        <p>I build with you, not just advise you — direct access, fast turnaround, real accountability.</p>
+      <div class="tl-item">
+        <p class="yr">Today</p>
+        <h4>Simple Consulting</h4>
+        <p>Marketplace channel management for Canadian brands, plus the operations, inventory and systems work that marketplace performance usually depends on.</p>
       </div>
     </div>
   </div>
 </div>
 
-<hr class="divider">
-
-<!-- CREDENTIALS -->
 <div id="credentials-section">
   <div class="section">
-    <p class="section-label reveal">Background</p>
-    <h2 class="reveal reveal-delay-1">Credentials & Experience</h2>
-    <p class="sub reveal reveal-delay-2">Formal training backed by real-world execution across some of Canada's largest retail channels.</p>
+    <p class="section-label reveal">Credentials</p>
+    <h2 class="reveal reveal-delay-1">Formal training behind the practical work</h2>
+    <p class="sub reveal reveal-delay-2">Certifications matter less than results, but they're worth knowing about.</p>
     <div class="cred-grid reveal reveal-delay-2">
       <div class="cred-card">
-        <h3>Google Ads & Analytics</h3>
-        <p>Certified across Search, Shopping, Display, Video, Mobile, Campaign Manager 360, and Google Analytics — individual and advanced qualifications.</p>
+        <h3>Google Ads &amp; Analytics</h3>
+        <p>Certified across Search, Shopping, Display, Video, Campaign Manager 360 and Google Analytics — individual and advanced qualifications.</p>
       </div>
       <div class="cred-card">
         <h3>Lean Six Sigma</h3>
-        <p>Process improvement, margin protection, and operational efficiency grounded in certified Lean Six Sigma methodology.</p>
+        <p>Process improvement and waste reduction, applied to fulfillment, returns and the operational costs that erode marketplace margin.</p>
       </div>
       <div class="cred-card">
-        <h3>ERP & Systems</h3>
-        <p>A2000, Oracle ERP Cloud, Power BI, database integrations, and backend operations — rollout through ongoing reporting.</p>
+        <h3>ERP &amp; systems</h3>
+        <p>A2000, Oracle ERP Cloud, Power BI and database integration — from rollout through channel sync and ongoing reporting.</p>
       </div>
       <div class="cred-card">
-        <h3>E-commerce & Marketplace Operations</h3>
-        <p>15+ years of progressive e-commerce leadership across senior roles at major Canadian companies — building and scaling multi-channel operations across Amazon, Walmart, Best Buy, Wayfair, Costco, and more. Responsible for listings, advertising, inventory, and revenue performance across every major Canadian and US retail platform.</p>
+        <h3>Marketplace operations</h3>
+        <p>Amazon Vendor Central and Seller Central, FBA, Walmart Marketplace and WFS — operated first-hand across Canadian and US storefronts.</p>
       </div>
       <div class="cred-card">
-        <h3>Retail & Marketplace Leadership</h3>
-        <p>Nine years at Staples Canada — one of Canada's largest retailers — holding progressive leadership roles across retail operations and e-commerce. This foundation across both physical and digital channels informs every client engagement today.</p>
+        <h3>Retail channel management</h3>
+        <p>Best Buy Canada, Costco, Wayfair, Home Depot, Lowe's and Giant Tiger — vendor onboarding, EDI compliance, routing guides and chargeback management.</p>
       </div>
       <div class="cred-card">
         <h3>CompTIA A+</h3>
-        <p>Foundational IT and technical systems certification — supporting systems integration and technical consulting work.</p>
+        <p>Foundational IT and technical systems certification, supporting integration and technical consulting work.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT -->
 <div id="contact">
   <div class="section">
     <div class="inner">
       <p class="section-label reveal">Get in touch</p>
       <h2 class="reveal reveal-delay-1">Let's talk</h2>
-      <p class="reveal reveal-delay-2">Tell me what's slowing your business down — and I'll tell you exactly how I'd fix it.</p>
+      <p class="intro reveal reveal-delay-2">Tell me which channel is giving you trouble and what you've already tried. I'll reply with what I'd look at first.</p>
       <form action="https://formspree.io/f/mreegwjn" method="POST" class="reveal reveal-delay-2">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="_replyto" placeholder="Email" required>
-        <textarea name="message" placeholder="Message" rows="5" required></textarea>
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="name" placeholder="Your name" required>
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="_replyto" placeholder="you@company.com" required>
+        <label for="f-msg">What's the problem?</label>
+        <textarea id="f-msg" name="message" placeholder="e.g. Our Walmart listings keep getting suppressed and support won't tell us why." rows="5" required></textarea>
         <input type="hidden" name="_subject" value="New Website Contact">
-        <button type="submit">Send Message</button>
+        <button type="submit">Send message</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span>© Simple Consulting 2016 — Erin, Ontario</span>
+    <span>© Simple Consulting — Erin, Ontario, Canada · Serving clients across Canada and the US</span>
     <div class="footer-links">
-      <a href="index.html#services">Services</a>
-      <a href="about.html">About</a>
-      <a href="booking.html">Contact</a>
+      <a href="/amazon-management.html">Amazon</a>
+      <a href="/walmart-management.html">Walmart</a>
+      <a href="/reimbursement-recovery.html">Get Money Back</a>
+      <a href="/about.html">About</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/booking.html">Contact</a>
     </div>
   </div>
 </footer>
@@ -527,17 +364,11 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
-</script>
 
-
-<script>
 function toggleMobileNav() {
   const nav = document.getElementById('mobile-nav');
   const btn = document.getElementById('hamburger');
