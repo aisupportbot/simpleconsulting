@@ -46,6 +46,12 @@ h1{font-family:'DM Serif Display',serif;font-size:2.5em;letter-spacing:-.025em;l
 .cta-box p{font-size:.92em;color:var(--text);margin-bottom:22px}
 .cta-box a{display:inline-block;background:var(--black);color:var(--white);text-decoration:none;font-size:.88em;font-weight:600;padding:13px 28px;border-radius:6px}
 .cta-box a:hover{background:#2a2a2a}
+.svc-box{border:1px solid #d3e2da;background:#eef3f0;border-radius:14px;padding:26px 28px;margin-top:40px}
+.svc-box .k{font-size:.7em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a4d3a;margin-bottom:9px}
+.svc-box h2{font-family:'DM Sans',sans-serif;font-size:1.08em;font-weight:700;margin:0 0 8px;color:#0d0d0d}
+.svc-box p{font-size:.9em;color:#33503f;line-height:1.7;margin-bottom:14px}
+.svc-box a{font-size:.88em;font-weight:600;color:#1a4d3a;text-decoration:none;border-bottom:2px solid #1a4d3a;padding-bottom:2px}
+.svc-box a:hover{color:#0d0d0d;border-color:#0d0d0d}
 .related{max-width:760px;margin:auto;padding:0 32px 72px}
 .related h2{font-size:.72em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:8px}
 .related a{display:block;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--black)}
@@ -70,7 +76,9 @@ footer{border-top:1px solid var(--border);padding:30px 32px}
   <nav>
     <a class="logo" href="/">Simple Consulting</a>
     <div class="nav-links">
-      <a href="/#services">Services</a>
+      <a href="/amazon-management.html">Amazon</a>
+      <a href="/walmart-management.html">Walmart</a>
+      <a href="/reimbursement-recovery.html">Get Money Back</a>
       <a href="/about.html">About</a>
       <a href="/blog.html">Blog</a>
       <a href="/booking.html" class="btn">Book a Call</a>
@@ -85,6 +93,13 @@ footer{border-top:1px solid var(--border);padding:30px 32px}
   <h1>How to Set Up Google Analytics 4 for E-commerce Tracking</h1>
   <p class="byline">By Scott Nguyen · Jul 31, 2024 · 1 min read</p>
   <div class="body"><p>Google Analytics 4 replaced Universal Analytics in 2023 and it operates on a fundamentally different model. If you're still running GA4 on its default settings, you're missing most of the e-commerce data you need to make good decisions.</p><h3>Enable Enhanced E-commerce Tracking</h3><p>GA4's default installation tracks pageviews and basic events but not e-commerce specifics. Enhanced E-commerce tracking captures product views, add-to-cart events, checkout steps, and purchases with revenue attribution. This requires additional implementation via Google Tag Manager or your e-commerce platform's native GA4 integration.</p><h3>Set Up Conversion Events</h3><p>In GA4, conversions are based on events — specific actions that represent a meaningful step toward your business goal. Mark your purchase event, lead form submission, and phone call events as conversions. These become the foundation of your Google Ads optimization.</p><h3>Configure Your Data Retention</h3><p>GA4 defaults to 2 months of data retention for user and event data. For e-commerce analysis, you want at least 14 months to capture year-over-year comparisons. Change this in your GA4 property settings immediately — you can't recover historical data after the retention period.</p><h3>Connect GA4 to Google Ads</h3><p>Linking GA4 to your Google Ads account imports your GA4 conversion events into Google Ads and enables audience sharing. This allows you to build remarketing audiences from GA4 behavioral data and use them in your ad campaigns.</p><p><strong>The fix:</strong> Check your GA4 property and confirm Enhanced E-commerce is tracking. Then check your data retention settings and increase to 14 months if it's set lower.</p></div>
+
+  <div class="svc-box">
+    <p class="k">Related service</p>
+    <h2>Marketplace advertising management</h2>
+    <p>Sponsored Products, Brands and Display structured around margin, with weekly search term review.</p>
+    <a href="/amazon-management.html">Learn more &rarr;</a>
+  </div>
 
   <div class="cta-box">
     <h2>Want help putting this into practice?</h2>
@@ -119,7 +134,9 @@ footer{border-top:1px solid var(--border);padding:30px 32px}
   <div class="footer-inner">
     <span>© Simple Consulting — Erin, Ontario</span>
     <div class="footer-links">
-      <a href="/#services">Services</a>
+      <a href="/amazon-management.html">Amazon</a>
+      <a href="/walmart-management.html">Walmart</a>
+      <a href="/reimbursement-recovery.html">Get Money Back</a>
       <a href="/about.html">About</a>
       <a href="/blog.html">Blog</a>
       <a href="/booking.html">Contact</a>
