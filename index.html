@@ -25,7 +25,9 @@
   "url": "https://www.simpleconsulting.ca/",
   "description": "End-to-end Amazon and Walmart marketplace account management for Canadian brands — Vendor Central, Seller Central, FBA and Walmart WFS.",
   "founder": { "@type": "Person", "name": "Scott Nguyen" },
-  "address": { "@type": "PostalAddress", "addressLocality": "Erin", "addressRegion": "ON", "addressCountry": "CA" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA" },
+  "priceRange": "$$",
+  "sameAs": ["https://www.linkedin.com/in/scott-nguyen-0b97723a0", "https://www.instagram.com/simpleconsulting.ca/"],
   "areaServed": [
     { "@type": "Country", "name": "Canada" },
     { "@type": "Country", "name": "United States" }
@@ -173,6 +175,33 @@ nav {
   font-size: .92em; color: var(--text); line-height: 1.9;
 }
 .plat-list b { color: var(--black); font-weight: 600; }
+#platforms .inner { display: block; }
+#platforms .plat-label { margin-bottom: 20px; }
+.chan-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+}
+.chan { background: var(--white); padding: 18px 16px; }
+.chan b {
+  display: block; font-family: 'DM Serif Display', serif;
+  font-size: 1.08em; letter-spacing: -.015em; color: var(--black); margin-bottom: 4px;
+}
+.chan span { font-size: .72em; color: var(--muted); line-height: 1.45; display: block; }
+.plat-note { font-size: .78em; color: var(--muted); margin-top: 16px; line-height: 1.6; max-width: 760px; }
+
+/* trust bar */
+#trust { background: var(--white); border-bottom: 1px solid var(--border); padding: 26px 32px; }
+#trust .inner { max-width: 1160px; margin: auto; display: flex; gap: 40px; flex-wrap: wrap; justify-content: space-between; }
+#trust .t-item { display: flex; flex-direction: column; gap: 3px; }
+#trust .t-item b { font-size: .92em; font-weight: 700; }
+#trust .t-item span { font-size: .78em; color: var(--muted); }
+#trust .t-item a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+
+/* phone in hero */
+.hero-contact { margin-top: 22px; font-size: .88em; color: var(--text); }
+.hero-contact a { color: var(--black); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 1px; }
+.hero-contact a:hover { color: var(--accent); }
 
 /* ── SECTIONS ── */
 .section { max-width: 1160px; margin: auto; padding: 88px 32px; }
@@ -394,6 +423,8 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
   .hero-right { display: none; }
   .hero-left h1 { font-size: 2.6em; }
   .channel-grid { grid-template-columns: 1fr; }
+  .chan-grid { grid-template-columns: repeat(3, 1fr); }
+  #trust .inner { gap: 20px 32px; }
   #moneyback .mb-inner { grid-template-columns: 1fr; gap: 34px; padding: 56px 24px; }
   .also-grid { grid-template-columns: 1fr 1fr; }
   .case-grid { grid-template-columns: 1fr; }
@@ -407,6 +438,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
 }
 @media (max-width: 600px) {
   .also-grid { grid-template-columns: 1fr; }
+  .chan-grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: 1fr; }
   .hero-left h1 { font-size: 2.1em; }
   .channel { padding: 30px 24px; }
@@ -463,6 +495,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
         <a href="/booking.html" class="primary">Book a free channel review</a>
         <a href="#channels" class="ghost">See what's included</a>
       </div>
+      <p class="hero-contact fade d4">Not ready to book? <a href="/about.html#contact">Send a message instead</a> &nbsp;·&nbsp; Toronto, Ontario</p>
     </div>
     <div class="hero-right fade d3">
       <div class="stat-grid">
@@ -487,17 +520,36 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
   </div>
 </div>
 
-<!-- PLATFORMS (text, not borrowed logos) -->
+<!-- TRUST BAR -->
+<div id="trust">
+  <div class="inner">
+    <div class="t-item"><b>Incorporated Canadian business</b><span>Not a freelancer marketplace listing</span></div>
+    <div class="t-item"><b>You work with me directly</b><span>No account coordinators, no handoffs</span></div>
+    <div class="t-item"><b>Replies within one business day</b><span>Usually the same day</span></div>
+    <div class="t-item"><b>Free first review</b><span>No obligation, no card</span></div>
+    <div class="t-item"><b>Based in Toronto</b><span>Serving Canada and the US</span></div>
+  </div>
+</div>
+
+<!-- CHANNELS OPERATED -->
 <div id="platforms">
   <div class="inner">
-    <span class="plat-label">Channels I've operated</span>
-    <p class="plat-list">
-      <b>Amazon.ca &amp; Amazon.com</b> — Vendor Central, Seller Central, FBA &nbsp;·&nbsp;
-      <b>Walmart.ca &amp; Walmart.com</b> — Marketplace, WFS &nbsp;·&nbsp;
-      <b>Best Buy Canada</b> &nbsp;·&nbsp; <b>Wayfair</b> &nbsp;·&nbsp; <b>Costco</b> &nbsp;·&nbsp;
-      <b>Home Depot</b> &nbsp;·&nbsp; <b>Lowe's</b> &nbsp;·&nbsp; <b>Giant Tiger</b> &nbsp;·&nbsp;
-      <b>eBay</b> &nbsp;·&nbsp; <b>Shopify</b>
-    </p>
+    <p class="plat-label">Channels I've operated</p>
+    <div class="chan-grid">
+      <div class="chan"><b>Amazon</b><span>Vendor Central · Seller Central · FBA · .ca and .com</span></div>
+      <div class="chan"><b>Walmart</b><span>Seller Center · WFS · Walmart Connect · .ca and .com</span></div>
+      <div class="chan"><b>Costco</b><span>Costco.ca vendor and e-commerce</span></div>
+      <div class="chan"><b>Wayfair</b><span>Canada and US drop-ship</span></div>
+      <div class="chan"><b>Best Buy</b><span>Best Buy Canada marketplace and vendor</span></div>
+      <div class="chan"><b>Home Depot</b><span>Canada and US</span></div>
+      <div class="chan"><b>Lowe's</b><span>Canada and US</span></div>
+      <div class="chan"><b>Loblaws</b><span>Canadian grocery and general merchandise</span></div>
+      <div class="chan"><b>Groupon</b><span>Deal and clearance channel</span></div>
+      <div class="chan"><b>Giant Tiger</b><span>Canadian discount retail</span></div>
+      <div class="chan"><b>eBay</b><span>Marketplace and clearance</span></div>
+      <div class="chan"><b>Shopify</b><span>DTC storefronts and channel sync</span></div>
+    </div>
+    <p class="plat-note">Channels I've listed, launched, advertised on or fulfilled through across fifteen years of retail and e-commerce work. Retailer names are stated as channels of experience, not as endorsements or partnerships.</p>
   </div>
 </div>
 
@@ -702,12 +754,14 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
 
 <footer>
   <div class="footer-inner">
-    <span>© Simple Consulting — Erin, Ontario, Canada · Serving clients across Canada and the US</span>
+    <span>© Simple Consulting — Toronto, Ontario, Canada · Serving brands across Canada and the US</span>
     <div class="footer-links">
       <a href="/#channels">Marketplaces</a>
       <a href="/about.html">About</a>
       <a href="/blog.html">Blog</a>
       <a href="/booking.html">Contact</a>
+      <a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0" rel="me noopener" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/simpleconsulting.ca/" rel="me noopener" target="_blank">Instagram</a>
     </div>
   </div>
 </footer>
