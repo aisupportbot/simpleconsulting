@@ -1,20 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book a Consultation | Simple Consulting</title>
-<meta name="description" content="Book a free 30-minute consultation with Simple Consulting. We'll walk through what's holding your business back and tell you exactly what we'd do about it.">
+<title>Free Amazon &amp; Walmart Channel Review | Simple Consulting</title>
+<meta name="description" content="Send four exported reports or book 30 minutes. I'll tell you what your Amazon or Walmart account is losing and roughly what each fix is worth — before you commit to anything.">
+<meta name="author" content="Scott Nguyen — Simple Consulting">
 <link rel="canonical" href="https://www.simpleconsulting.ca/booking.html">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Simple Consulting">
+<meta property="og:url" content="https://www.simpleconsulting.ca/booking.html">
+<meta property="og:title" content="Free Amazon &amp; Walmart Channel Review | Simple Consulting">
+<meta property="og:description" content="Two ways to start: send four reports for a free reimbursement audit, or book a 30-minute channel review. No account access, no card, no pitch.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Amazon &amp; Walmart Channel Review">
+<meta name="twitter:description" content="Send four reports or book 30 minutes. You see the number before you decide anything.">
+
+<!-- ══════════════════════════════════════════════════════════════════
+     ONE THING LEFT TO SET: FORM_ENDPOINT, at the top of the <script>
+     at the bottom of this file. Formspree, Basin, or your own handler.
+
+     Your Calendly link (scottnguyen416/30min) is already wired in.
+
+     Also check the email address — I've used scott@simpleconsulting.ca
+     in four places because your old page had no email on it at all.
+     Find-and-replace if it's wrong.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://assets.calendly.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Simple Consulting",
+  "url": "https://www.simpleconsulting.ca/",
+  "description": "Amazon and Walmart marketplace account management for Canadian brands — Vendor Central, Seller Central, FBA and Walmart WFS.",
+  "areaServed": ["CA", "US"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA" },
+  "email": "scott@simpleconsulting.ca",
+  "founder": { "@type": "Person", "name": "Scott Nguyen", "jobTitle": "Marketplace Consultant" },
+  "makesOffer": {
+    "@type": "Offer",
+    "name": "Free Amazon and Walmart channel review",
+    "price": "0",
+    "priceCurrency": "CAD",
+    "description": "A no-cost audit of your marketplace account identifying recoverable reimbursements and the highest-value fixes."
+  }
+}
+</script>
+
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --black: #0d0d0d; --white: #fff; --off: #f6f6f4;
   --border: #e8e8e5; --muted: #999; --text: #555;
+  --bad: #a02020; --bad-bg: #fdf6f6;
 }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; color: var(--black); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--black); outline-offset: 3px; border-radius: 3px; }
+.skip { position: absolute; left: -9999px; background: var(--black); color: var(--white); padding: 12px 20px; z-index: 400; text-decoration: none; }
+.skip:focus { left: 0; top: 0; }
 
 /* ── HEADER ── */
 header { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
@@ -26,147 +78,622 @@ nav { max-width: 1160px; margin: auto; display: flex; justify-content: space-bet
 .nav-links a.btn { background: var(--black); color: var(--white); font-weight: 600; margin-left: 6px; }
 .nav-links a.btn:hover { background: #2a2a2a; }
 
-/* ── HAMBURGER ── */
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; z-index: 300; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--black); border-radius: 2px; transition: transform .3s, opacity .3s; }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 8px; backdrop-filter: blur(12px); }
+.mobile-nav { display: none; position: fixed; inset: 0; background: rgba(255,255,255,.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 8px; backdrop-filter: blur(12px); }
 .mobile-nav.open { display: flex; }
-.mobile-nav a { font-family: 'DM Serif Display', serif; font-size: 2em; color: var(--black); text-decoration: none; letter-spacing: -.02em; padding: 10px 20px; transition: opacity .15s; }
+.mobile-nav a { font-family: 'DM Serif Display', serif; font-size: 1.75em; color: var(--black); text-decoration: none; letter-spacing: -.02em; padding: 9px 20px; transition: opacity .15s; }
 .mobile-nav a:hover { opacity: .6; }
 .mobile-nav a.btn { font-family: 'DM Sans', sans-serif; font-size: .95em; background: var(--black); color: var(--white); border-radius: 6px; padding: 13px 32px; margin-top: 12px; font-weight: 600; letter-spacing: 0; }
 .mobile-nav-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 1.6em; cursor: pointer; color: var(--muted); padding: 8px; }
 
-/* ── HERO ── */
-#hero { background: var(--off); border-bottom: 1px solid var(--border); padding: 80px 32px 64px; text-align: center; }
+/* ── SHARED ── */
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: .74em; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-.eyebrow span { display: inline-block; width: 24px; height: 1px; background: var(--muted); }
-#hero h1 { font-family: 'DM Serif Display', serif; font-size: 3em; letter-spacing: -.025em; line-height: 1.1; margin-bottom: 18px; }
-#hero p { font-size: 1em; color: var(--text); max-width: 480px; margin: 0 auto; line-height: 1.75; }
+.eyebrow .dash { display: inline-block; width: 24px; height: 1px; background: var(--muted); flex: 0 0 24px; }
+.serif { font-family: 'DM Serif Display', serif; letter-spacing: -.025em; line-height: 1.12; font-weight: 400; }
 
-/* ── WHAT TO EXPECT ── */
-#expect { max-width: 1160px; margin: auto; padding: 72px 32px 0; }
+.btn-solid { display: inline-block; background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: .95em; font-weight: 600; border: 1px solid var(--black); border-radius: 6px; padding: 14px 30px; text-decoration: none; cursor: pointer; transition: background .15s; text-align: center; }
+.btn-solid:hover { background: #2a2a2a; }
+.btn-solid[disabled] { opacity: .55; cursor: progress; }
+.btn-line { display: inline-block; background: transparent; color: var(--black); font-size: .95em; font-weight: 600; border: 1px solid var(--border); border-radius: 6px; padding: 14px 30px; text-decoration: none; cursor: pointer; transition: border-color .15s, background .15s; text-align: center; }
+.btn-line:hover { border-color: var(--black); background: var(--off); }
+
+/* ── HERO ── */
+#hero { background: var(--off); border-bottom: 1px solid var(--border); padding: 76px 32px 60px; text-align: center; }
+#hero h1 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 3em; letter-spacing: -.025em; line-height: 1.1; margin-bottom: 18px; }
+#hero p { font-size: 1em; color: var(--text); max-width: 520px; margin: 0 auto; line-height: 1.75; }
+.hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+
+/* ── FORM + ASSURANCES ── */
+#start { max-width: 1160px; margin: auto; padding: 72px 32px 0; }
+.start-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: start; }
+
+.form-card { border: 1px solid var(--border); border-radius: 16px; padding: 34px; background: var(--white); }
+.form-card h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.7em; letter-spacing: -.02em; margin-bottom: 8px; }
+.form-card .sub { font-size: .87em; color: var(--text); margin-bottom: 26px; line-height: 1.65; }
+.form-card .sub a { color: var(--black); text-underline-offset: 2px; }
+
+.field { margin-bottom: 18px; }
+.field label { display: block; font-size: .8em; font-weight: 600; margin-bottom: 7px; }
+.field label .opt { font-weight: 400; color: var(--muted); }
+.field input, .field select, .field textarea {
+  width: 100%; font-family: 'DM Sans', sans-serif; font-size: .93em; color: var(--black);
+  padding: 12px 14px; background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+  transition: border-color .15s;
+}
+.field textarea { min-height: 108px; resize: vertical; line-height: 1.6; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--black); outline: none; }
+.field.bad input, .field.bad select, .field.bad textarea { border-color: var(--bad); background: var(--bad-bg); }
+.field .err { display: none; font-size: .78em; color: var(--bad); margin-top: 6px; }
+.field.bad .err { display: block; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.micro { font-size: .78em; color: var(--muted); margin-top: 13px; text-align: center; }
+.micro.warn { color: var(--bad); }
+.micro.warn a { color: var(--bad); }
+
+.sent { display: none; text-align: center; padding: 20px 4px 8px; }
+.sent.show { display: block; }
+.sent h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.7em; letter-spacing: -.02em; margin-bottom: 12px; }
+.sent p { font-size: .9em; color: var(--text); line-height: 1.7; max-width: 40ch; margin: 0 auto 20px; }
+.formwrap.hide { display: none; }
+
+.assure { list-style: none; }
+.assure li { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.assure li:first-child { padding-top: 0; }
+.assure h3 { font-size: .92em; font-weight: 700; margin-bottom: 5px; }
+.assure p { font-size: .85em; color: var(--text); line-height: 1.65; }
+
+/* ── CALENDLY ── */
+#booking { max-width: 1000px; margin: auto; padding: 76px 32px 0; }
+#booking h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 2.2em; letter-spacing: -.02em; margin-bottom: 12px; }
+#booking .intro { font-size: .93em; color: var(--text); max-width: 56ch; margin-bottom: 34px; line-height: 1.7; }
+.calendly-wrap { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; min-height: 700px; }
+.calendly-inline-widget { min-width: 320px; height: 700px; }
+.cal-msg { display: none; padding: 64px 28px; text-align: center; }
+.cal-msg p { font-size: .9em; color: var(--text); margin-bottom: 22px; }
+.calendly-wrap.failed { min-height: 0; }
+.calendly-wrap.failed .calendly-inline-widget { display: none; }
+.calendly-wrap.failed .cal-msg { display: block; }
+.cal-note { font-size: .8em; color: var(--muted); margin-top: 16px; text-align: center; }
+
+/* ── EXPECT ── */
+#expect { max-width: 1160px; margin: auto; padding: 76px 32px 0; }
+#expect h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 2.2em; letter-spacing: -.02em; margin-bottom: 12px; }
+#expect .intro { font-size: .93em; color: var(--text); max-width: 58ch; margin-bottom: 34px; line-height: 1.7; }
 .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
 .expect-item { background: var(--white); padding: 32px 28px; }
 .expect-item .num { font-family: 'DM Serif Display', serif; font-size: 2em; color: #e0e0dd; margin-bottom: 12px; }
 .expect-item h3 { font-size: .9em; font-weight: 700; color: var(--black); margin-bottom: 8px; }
 .expect-item p { font-size: .84em; color: var(--text); line-height: 1.65; }
 
-/* ── CALENDLY ── */
-#booking { max-width: 1000px; margin: auto; padding: 64px 32px 96px; }
-.booking-label { font-size: .72em; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; display: block; }
-#booking h2 { font-family: 'DM Serif Display', serif; font-size: 2.2em; letter-spacing: -.02em; margin-bottom: 40px; }
-.calendly-wrap { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
-.calendly-inline-widget { min-width: 320px; height: 700px; }
+/* ── FAQ ── */
+#faq { max-width: 800px; margin: auto; padding: 76px 32px 0; }
+#faq h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 2.2em; letter-spacing: -.02em; margin-bottom: 30px; }
+#faq details { border-bottom: 1px solid var(--border); }
+#faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 19px 0; font-size: .93em; font-weight: 600; }
+#faq summary::-webkit-details-marker { display: none; }
+#faq summary::after { content: "+"; font-size: 1.4em; font-weight: 300; color: var(--muted); line-height: 1; }
+#faq details[open] summary::after { content: "\2212"; }
+#faq details p { font-size: .88em; color: var(--text); line-height: 1.75; padding: 0 0 20px; max-width: 68ch; }
+
+/* ── EMAIL STRIP ── */
+#direct { max-width: 1160px; margin: 76px auto 96px; padding: 0 32px; }
+.direct-inner { background: var(--off); border: 1px solid var(--border); border-radius: 16px; padding: 34px 38px; display: flex; justify-content: space-between; align-items: center; gap: 26px; flex-wrap: wrap; }
+.direct-inner h3 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.5em; letter-spacing: -.02em; margin-bottom: 6px; }
+.direct-inner p { font-size: .88em; color: var(--text); max-width: 44ch; }
 
 /* ── FOOTER ── */
 footer { border-top: 1px solid var(--border); padding: 30px 32px; }
 .footer-inner { max-width: 1160px; margin: auto; display: flex; justify-content: space-between; align-items: center; font-size: .8em; color: var(--muted); flex-wrap: wrap; gap: 14px; }
-.footer-links { display: flex; gap: 22px; }
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
 .footer-links a { color: var(--muted); text-decoration: none; transition: color .15s; }
 .footer-links a:hover { color: var(--black); }
 
 @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 .fade { opacity:0; animation: fadeUp .55s ease forwards; }
-.f1{animation-delay:.05s} .f2{animation-delay:.18s} .f3{animation-delay:.3s}
+.f1{animation-delay:.05s} .f2{animation-delay:.18s} .f3{animation-delay:.3s} .f4{animation-delay:.4s}
 
 @media(max-width:960px){
   .hamburger { display: flex; }
-  .nav-links a:not(.btn) { display: none; }
-  .nav-links a.btn { display: none; }
-  .expect-grid { grid-template-columns: 1fr; }
-  #hero h1 { font-size: 2.2em; }
+  .nav-links { display: none; }
   nav { padding: 15px 24px; }
-  #expect, #booking { padding-left: 24px; padding-right: 24px; }
+  #hero { padding: 56px 24px 48px; }
+  #hero h1 { font-size: 2.2em; }
+  .start-grid { grid-template-columns: 1fr; gap: 40px; }
+  .expect-grid { grid-template-columns: 1fr; }
+  #booking h2, #expect h2, #faq h2 { font-size: 1.8em; }
+  #start, #booking, #expect, #faq, #direct { padding-left: 24px; padding-right: 24px; }
+  #start, #booking, #expect, #faq { padding-top: 56px; }
+  #direct { margin: 56px auto 72px; }
+}
+@media(max-width:520px){
+  .form-card { padding: 26px 22px; }
+  .direct-inner { padding: 28px 24px; }
+  .hero-cta .btn-solid, .hero-cta .btn-line { width: 100%; }
+}
+@media(prefers-reduced-motion:reduce){
+  html { scroll-behavior: auto; }
+  .fade { opacity:1; animation: none; }
+  * { transition: none !important; }
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#start">Skip to the form</a>
 
 <header>
   <nav>
     <a class="logo" href="index.html">Simple Consulting</a>
     <div class="nav-links">
-      <a href="index.html#services">Services</a>
+      <a href="amazon-management.html">Amazon</a>
+      <a href="walmart-management.html">Walmart</a>
+      <a href="reimbursement-recovery.html">Get Money Back</a>
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
-      <a href="booking.html" class="btn">Book a Call</a>
+      <a href="booking.html" class="btn" aria-current="page">Book a Call</a>
     </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 </header>
 
 <div class="mobile-nav" id="mobile-nav">
-  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
-  <a href="index.html#services" onclick="closeMobileNav()">Services</a>
-  <a href="about.html" onclick="closeMobileNav()">About</a>
-  <a href="blog.html" onclick="closeMobileNav()">Blog</a>
-  <a href="booking.html" class="btn" onclick="closeMobileNav()">Book a Call</a>
+  <button class="mobile-nav-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a href="amazon-management.html">Amazon</a>
+  <a href="walmart-management.html">Walmart</a>
+  <a href="reimbursement-recovery.html">Get Money Back</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="booking.html" class="btn">Book a Call</a>
 </div>
+
+<main>
 
 <div id="hero">
-  <div class="eyebrow fade f1"><span></span>Free Consultation</div>
-  <h1 class="fade f2">Let's talk about your business</h1>
-  <p class="fade f3">Pick a time that works for you. 30 minutes — no commitment, no pitch. Just an honest conversation about what's holding your business back and what we'd do about it.</p>
+  <div class="eyebrow fade f1"><span class="dash"></span><span id="eyebrowText">Free channel review</span></div>
+  <h1 class="fade f2" id="headline">Find out what your channel is losing</h1>
+  <p class="fade f3" id="subhead">Tell me which account is giving you trouble. I'll come back with the three things I'd fix first and roughly what each one is worth — whether or not you end up hiring me.</p>
+  <div class="hero-cta fade f4">
+    <a class="btn-solid" href="#start">Send me the details</a>
+    <a class="btn-line" href="#booking">Pick a time instead</a>
+  </div>
 </div>
 
-<div id="expect">
+<section id="start">
+  <div class="start-grid">
+
+    <div class="form-card">
+      <div class="formwrap" id="formwrap">
+        <h2>Tell me what's not working</h2>
+        <p class="sub">Four fields. You don't need to book a call to get an answer — most people would rather just send it and read the reply. <a href="#booking">Rather talk?</a></p>
+
+        <form id="leadform" method="post" action="" novalidate>
+          <input type="hidden" name="_subject" value="New enquiry — simpleconsulting.ca">
+          <input type="hidden" name="source_page" id="sourcePage" value="">
+          <div class="hp"><label>Leave this blank<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
+
+          <div class="field" id="f-name">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+            <span class="err">Add your name so I know who I'm replying to.</span>
+          </div>
+
+          <div class="field" id="f-email">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+            <span class="err">That doesn't look like a valid email — I'll need one to reply.</span>
+          </div>
+
+          <div class="field" id="f-channel">
+            <label for="channel">Which channel?</label>
+            <select id="channel" name="channel" required>
+              <option value="">Choose one</option>
+              <option>Amazon — Seller Central / FBA</option>
+              <option>Amazon — Vendor Central</option>
+              <option>Walmart Marketplace / WFS</option>
+              <option>Both Amazon and Walmart</option>
+              <option>Another retailer (Best Buy, Costco, Wayfair, Home Depot)</option>
+              <option>Shopify or DTC</option>
+              <option>Not sure yet</option>
+            </select>
+            <span class="err">Pick whichever is closest to your situation.</span>
+          </div>
+
+          <div class="field">
+            <label for="revenue">Rough monthly marketplace revenue <span class="opt">— optional</span></label>
+            <select id="revenue" name="revenue">
+              <option value="">Prefer not to say</option>
+              <option>Under $10k</option>
+              <option>$10k – $50k</option>
+              <option>$50k – $250k</option>
+              <option>$250k – $1M</option>
+              <option>Over $1M</option>
+            </select>
+          </div>
+
+          <div class="field" id="f-msg">
+            <label for="message">What's the problem?</label>
+            <textarea id="message" name="message" required placeholder="e.g. Walmart sales dropped in June and I can't work out why. Half the catalogue shows as unpublished."></textarea>
+            <span class="err">A sentence or two is plenty — it's what makes the reply useful.</span>
+          </div>
+
+          <button class="btn-solid" type="submit" id="submit" style="width:100%">Send it over</button>
+          <p class="micro">Goes straight to my inbox. Never shared, never added to a list.</p>
+        </form>
+      </div>
+
+      <div class="sent" id="sent" role="status" aria-live="polite">
+        <h2>Got it — thanks</h2>
+        <p>I'll read it properly and reply within one business day, usually sooner. If it's urgent, email me at <a href="mailto:scott@simpleconsulting.ca">scott@simpleconsulting.ca</a>.</p>
+        <a class="btn-line" href="#booking">Want to talk it through? Grab a time</a>
+      </div>
+    </div>
+
+    <ul class="assure">
+      <li>
+        <h3>You deal with me, not a coordinator</h3>
+        <p>Fifteen years running these accounts, nine of them at Staples Canada. I work with a small number of brands at a time, so there's nobody in between.</p>
+      </li>
+      <li>
+        <h3>No account access needed to start</h3>
+        <p>The audit runs on four reports you export yourself. Nothing to install, no password, no permissions to grant until you decide you want claims filed.</p>
+      </li>
+      <li>
+        <h3>A reply within one business day</h3>
+        <p>Usually the same day. No card, no obligation, and no drip sequence afterwards — you get an answer from me and that's it unless you write back.</p>
+      </li>
+      <li>
+        <h3>An incorporated Canadian business</h3>
+        <p>Based in Toronto, serving brands across Canada and the US. Not a freelancer marketplace listing and not an agency subcontracting your account.</p>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<section id="booking">
+  <span class="eyebrow"><span class="dash"></span>Schedule a call</span>
+  <h2>Or pick a time and we'll talk it through</h2>
+  <p class="intro">Thirty minutes, no pitch. Bring the account that's bothering you and we'll look at it together. Some people would rather write it out, some would rather talk — either works, and neither costs anything.</p>
+
+  <div class="calendly-wrap" id="calWrap">
+    <div class="calendly-inline-widget" id="calWidget"></div>
+    <div class="cal-msg" id="calMsg">
+      <p>The calendar isn't loading — an ad blocker or privacy extension will sometimes stop it.</p>
+      <a class="btn-solid" href="mailto:scott@simpleconsulting.ca?subject=Booking%20a%20channel%20review">Email me a couple of times that suit you</a>
+    </div>
+  </div>
+  <p class="cal-note">Times show in your own timezone. I'm in Toronto (Eastern) and keep later slots open for western Canada.</p>
+</section>
+
+<section id="expect">
+  <span class="eyebrow"><span class="dash"></span>What happens next</span>
+  <h2>Three steps, and you can stop after the second</h2>
+  <p class="intro">No lengthy discovery phase and no proposal deck. I've run these accounts before, so I already know where the problems usually are.</p>
   <div class="expect-grid">
     <div class="expect-item">
       <div class="num">01</div>
-      <h3>Tell me what's not working</h3>
-      <p>We'll start with where you are — your current challenges, what you've tried, and what's frustrating you most right now.</p>
+      <h3>I read it and reply</h3>
+      <p>Within one business day, with a first read on what's likely going on and what I'd want to see. If it's not something I can help with, I'll say so and point you somewhere better.</p>
     </div>
     <div class="expect-item">
       <div class="num">02</div>
-      <h3>Get a straight answer</h3>
-      <p>I'll tell you exactly what I'd do, why, and in what order. No vague recommendations — specific, actionable steps.</p>
+      <h3>You export four reports</h3>
+      <p>Inventory ledger, reimbursements, shipment reconciliation and settlements. I send click-by-click instructions. No account access, no password, nothing to install.</p>
     </div>
     <div class="expect-item">
       <div class="num">03</div>
-      <h3>Decide with no pressure</h3>
-      <p>If working together makes sense, we'll talk about how. If not, you'll still leave with a clearer picture of your next move.</p>
+      <h3>You see the number</h3>
+      <p>A case-by-case breakdown of what's recoverable, plus the fixes I'd prioritise. If it isn't worth pursuing, you keep the report and we're done — no charge.</p>
     </div>
   </div>
-</div>
+</section>
 
-<div id="booking">
-  <span class="booking-label">Schedule your call</span>
-  <h2>Pick a time that works for you</h2>
-  <div class="calendly-wrap">
-    <div class="calendly-inline-widget" data-url="https://calendly.com/scottnguyen416/30min"></div>
+<section id="faq">
+  <span class="eyebrow"><span class="dash"></span>Before you send it</span>
+  <h2>Questions people ask first</h2>
+
+  <details>
+    <summary>Do you need access to my Seller Central account?</summary>
+    <p>Not to start. The audit runs entirely on reports you export yourself. Access only comes up if you want me to file claims or manage the account, and it's granted through Seller Central user permissions that you control and can revoke at any time. I never need your password.</p>
+  </details>
+  <details>
+    <summary>What does it cost?</summary>
+    <p>The review and the audit are free. If you want me to file claims or run the channel, we agree the fee after you've seen what's actually there — never before, because quoting a number before either of us knows what's recoverable would be guessing. Ongoing work is typically a monthly retainer; project work is quoted flat.</p>
+  </details>
+  <details>
+    <summary>Am I too small for this to be worth it?</summary>
+    <p>Possibly, and I'll tell you straight away rather than take the work. Below roughly $10k a month on marketplaces, recoverable amounts usually don't justify a retainer — but the free audit still costs you nothing and the report is yours to act on either way.</p>
+  </details>
+  <details>
+    <summary>I already have an agency. Is this a waste of time?</summary>
+    <p>Reimbursements and settlement reconciliation are the things agencies most reliably skip, because they're tedious and don't show up well in a monthly performance deck. A second set of eyes on the reports costs nothing and doesn't require changing anything about your current arrangement.</p>
+  </details>
+  <details>
+    <summary>Will I get put on a mailing list?</summary>
+    <p>No. There's no sequence, no newsletter signup hidden in this form, and no nurture track. You get a reply from me, and that's the extent of it unless you write back.</p>
+  </details>
+  <details>
+    <summary>Are you actually available?</summary>
+    <p>I work with a small number of brands at a time, so occasionally I'm full. If I am, I'll tell you in the first reply and give you a realistic date rather than stringing it out.</p>
+  </details>
+</section>
+
+<section id="direct">
+  <div class="direct-inner">
+    <div>
+      <h3>Would rather just email?</h3>
+      <p>Skip the form entirely. Tell me the channel, what's going wrong, and what you've already tried.</p>
+    </div>
+    <a class="btn-solid" href="mailto:scott@simpleconsulting.ca?subject=Channel%20review%20enquiry">scott@simpleconsulting.ca</a>
   </div>
-</div>
+</section>
+
+</main>
 
 <footer>
   <div class="footer-inner">
-    <span>© Simple Consulting 2016 — Erin, Ontario</span>
+    <span>© <span id="yr">2026</span> Simple Consulting — Toronto, Ontario, Canada</span>
     <div class="footer-links">
-      <a href="index.html#services">Services</a>
+      <a href="amazon-management.html">Amazon</a>
+      <a href="walmart-management.html">Walmart</a>
+      <a href="reimbursement-recovery.html">Get Money Back</a>
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
-      <a href="booking.html">Contact</a>
+      <a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/simpleconsulting.ca/" rel="noopener">Instagram</a>
     </div>
   </div>
 </footer>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <script>
-function toggleMobileNav() {
-  const nav = document.getElementById('mobile-nav');
-  const btn = document.getElementById('hamburger');
-  nav.classList.toggle('open');
-  btn.classList.toggle('open');
-  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-}
-function closeMobileNav() {
-  document.getElementById('mobile-nav').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
+(function(){
+  "use strict";
+
+  /* ══════════════════════════════════════════════════════════
+     FILL IN — your form handler. Formspree, Basin, whatever.
+     Until this is set, the form falls back to an email link.
+     ══════════════════════════════════════════════════════════ */
+  var FORM_ENDPOINT = "";                        /* e.g. "https://formspree.io/f/xyzabcde" */
+  var CALENDLY_URL  = "https://calendly.com/scottnguyen416/30min";
+  var EMAIL         = "scott@simpleconsulting.ca";
+  /* ══════════════════════════════════════════════════════════ */
+
+  var form    = document.getElementById('leadform'),
+      btn     = document.getElementById('submit'),
+      wrap    = document.getElementById('calWrap'),
+      widget  = document.getElementById('calWidget'),
+      calLoaded = false;
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  form.action = FORM_ENDPOINT;
+
+  /* ── Mobile nav ── */
+  var mnav = document.getElementById('mobile-nav'),
+      burger = document.getElementById('hamburger');
+
+  function openNav(){
+    mnav.classList.add('open'); burger.classList.add('open');
+    burger.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav(){
+    mnav.classList.remove('open'); burger.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  burger.addEventListener('click', function(){
+    mnav.classList.contains('open') ? closeNav() : openNav();
+  });
+  document.getElementById('mobileClose').addEventListener('click', closeNav);
+  Array.prototype.forEach.call(mnav.querySelectorAll('a'), function(a){
+    a.addEventListener('click', closeNav);
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+
+  /* ── Message match ──────────────────────────────────────────
+     Someone who clicked "Get a free audit" on the reimbursement
+     page shouldn't land on a headline about something else.
+     Reads ?src= if present, otherwise the internal referrer.    */
+  var COPY = {
+    reimbursement: {
+      eyebrow: 'Free reimbursement audit',
+      headline: 'Find out what Amazon and Walmart owe you',
+      subhead: 'Send me four exported reports and I\u2019ll come back with a case-by-case breakdown of what\u2019s recoverable and still inside its claim window. Free, and you see the total before you decide anything.'
+    },
+    amazon: {
+      eyebrow: 'Free Amazon account review',
+      headline: 'Find out what your Amazon account is losing',
+      subhead: 'Vendor Central, Seller Central or FBA. Tell me what\u2019s going wrong and I\u2019ll come back with the three things I\u2019d fix first and roughly what each one is worth.'
+    },
+    walmart: {
+      eyebrow: 'Free Walmart account review',
+      headline: 'Find out what your Walmart channel is losing',
+      subhead: 'Marketplace or WFS. It\u2019s the channel almost nobody audits, which is usually why it holds the largest recoverable losses. Tell me what\u2019s going on.'
+    },
+    blog: {
+      eyebrow: 'Free channel review',
+      headline: 'Reading about it is one thing',
+      subhead: 'If you\u2019d rather someone just looked at your actual account, that\u2019s what this is. Tell me which channel is giving you trouble and I\u2019ll tell you what I\u2019d fix first.'
+    }
+  };
+
+  function pick(){
+    var q = new URLSearchParams(location.search).get('src');
+    if (q && COPY[q]) return q;
+    var r = '';
+    try {
+      r = document.referrer && new URL(document.referrer).hostname === location.hostname
+        ? new URL(document.referrer).pathname : '';
+    } catch(e){}
+    if (/reimbursement/.test(r)) return 'reimbursement';
+    if (/amazon/.test(r))        return 'amazon';
+    if (/walmart/.test(r))       return 'walmart';
+    if (/blog/.test(r))          return 'blog';
+    return null;
+  }
+
+  var key = pick();
+  if (key) {
+    document.getElementById('eyebrowText').textContent = COPY[key].eyebrow;
+    document.getElementById('headline').textContent    = COPY[key].headline;
+    document.getElementById('subhead').textContent     = COPY[key].subhead;
+  }
+  document.getElementById('sourcePage').value =
+    (key || 'direct') + ' | ' + (document.referrer || 'no referrer');
+
+  /* ── Conversion tracking, both paths ── */
+  function convert(method){
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', {
+        method: method,
+        channel: form.channel.value || 'unstated',
+        revenue_band: form.revenue.value || 'undisclosed',
+        entry_point: key || 'direct'
+      });
+    }
+    if (typeof fbq === 'function') fbq('track', 'Lead', { method: method });
+  }
+
+  /* ── Calendly ───────────────────────────────────────────────
+     Loaded only as the section approaches the viewport, so the
+     third-party script never delays the form above it. Anything
+     already typed is carried across so nobody retypes it.       */
+  function calendlySrc(){
+    var u = CALENDLY_URL.split('#')[0];
+    u += (u.indexOf('?') > -1 ? '&' : '?') +
+         'hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=0d0d0d&primary_color=0d0d0d';
+
+    var n = form.name.value.trim(), e = form.email.value.trim();
+    if (n) u += '&name='  + encodeURIComponent(n);
+    if (e) u += '&email=' + encodeURIComponent(e);
+
+    var notes = [];
+    if (form.channel.value)        notes.push('Channel: ' + form.channel.value);
+    if (form.message.value.trim()) notes.push(form.message.value.trim());
+    if (notes.length) u += '&a1=' + encodeURIComponent(notes.join(' \u2014 '));
+
+    return u;
+  }
+
+  function failCal(){ wrap.classList.add('failed'); }
+
+  function loadCal(){
+    if (calLoaded) return;
+    calLoaded = true;
+
+    var url = calendlySrc();
+    widget.setAttribute('data-url', url);
+
+    var s = document.createElement('script');
+    s.src = 'https://assets.calendly.com/assets/external/widget.js';
+    s.async = true;
+    s.onload = function(){
+      if (window.Calendly && window.Calendly.initInlineWidget) {
+        window.Calendly.initInlineWidget({ url: url, parentElement: widget });
+      } else { failCal(); }
+    };
+    s.onerror = failCal;
+    document.head.appendChild(s);
+
+    /* If a blocker eats it silently, surface the email path instead. */
+    setTimeout(function(){ if (!widget.querySelector('iframe')) failCal(); }, 8000);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      if (entries[0].isIntersecting) { loadCal(); io.disconnect(); }
+    }, { rootMargin: '700px' });
+    io.observe(wrap);
+  } else {
+    window.addEventListener('load', loadCal);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('a[href="#booking"]'), function(a){
+    a.addEventListener('click', loadCal);
+  });
+
+  window.addEventListener('message', function(e){
+    if (e.origin !== 'https://calendly.com') return;
+    if (!e.data || typeof e.data.event !== 'string') return;
+    if (e.data.event === 'calendly.event_scheduled') convert('calendar');
+  });
+
+  /* ── Form ── */
+  function bad(id, on){ document.getElementById(id).classList.toggle('bad', on); }
+
+  function validate(){
+    var ok = true;
+    if (!form.name.value.trim()) { bad('f-name', true); ok = false; } else bad('f-name', false);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.value.trim())) { bad('f-email', true); ok = false; } else bad('f-email', false);
+    if (!form.channel.value) { bad('f-channel', true); ok = false; } else bad('f-channel', false);
+    if (form.message.value.trim().length < 5) { bad('f-msg', true); ok = false; } else bad('f-msg', false);
+    return ok;
+  }
+
+  ['name','email','channel','message'].forEach(function(n){
+    form[n].addEventListener('input',  function(){ if (form[n].value) validate(); });
+    form[n].addEventListener('change', function(){ if (form[n].value) validate(); });
+  });
+
+  function warn(html){
+    var w = document.getElementById('sendErr');
+    if (!w) {
+      w = document.createElement('p');
+      w.id = 'sendErr'; w.className = 'micro warn';
+      form.appendChild(w);
+    }
+    w.innerHTML = html;
+  }
+
+  function succeed(){
+    document.getElementById('formwrap').classList.add('hide');
+    document.getElementById('sent').classList.add('show');
+    document.getElementById('start').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    convert('form');
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!validate()) {
+      var first = form.querySelector('.bad input, .bad select, .bad textarea');
+      if (first) first.focus();
+      return;
+    }
+    if (form.company_website.value) return;              /* honeypot tripped */
+
+    /* Safety net: if the endpoint was never set, hand them a mailto
+       rather than silently swallowing the enquiry. */
+    if (!FORM_ENDPOINT) {
+      var body = 'Name: ' + form.name.value + '\n' +
+                 'Email: ' + form.email.value + '\n' +
+                 'Channel: ' + form.channel.value + '\n' +
+                 'Revenue: ' + (form.revenue.value || 'not stated') + '\n\n' +
+                 form.message.value;
+      window.location.href = 'mailto:' + EMAIL +
+        '?subject=' + encodeURIComponent('Channel review enquiry') +
+        '&body=' + encodeURIComponent(body);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending\u2026';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r){ if (r.ok) succeed(); else throw new Error('rejected'); })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Send it over';
+      warn('That didn\u2019t go through. Email it to <a href="mailto:' + EMAIL + '">' + EMAIL + '</a> and I\u2019ll pick it up there.');
+    });
+  });
+})();
 </script>
 </body>
 </html>
