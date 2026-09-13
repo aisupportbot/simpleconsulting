@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Amazon &amp; Walmart Channel Review | Simple Consulting</title>
-<meta name="description" content="Send four exported reports or book 30 minutes. I'll tell you what your Amazon or Walmart account is losing and roughly what each fix is worth — before you commit to anything.">
+<meta name="description" content="Book a free 30-minute call, assess your Amazon and Walmart channel needs, or send Scott a message.">
 <meta name="author" content="Scott Nguyen — Simple Consulting">
 <link rel="canonical" href="https://www.simpleconsulting.ca/booking.html">
 
@@ -12,21 +12,12 @@
 <meta property="og:site_name" content="Simple Consulting">
 <meta property="og:url" content="https://www.simpleconsulting.ca/booking.html">
 <meta property="og:title" content="Free Amazon &amp; Walmart Channel Review | Simple Consulting">
-<meta property="og:description" content="Two ways to start: send four reports for a free reimbursement audit, or book a 30-minute channel review. No account access, no card, no pitch.">
+<meta property="og:description" content="Book a free channel review, use the optional needs assessment, or send a message. No account access needed to start.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Free Amazon &amp; Walmart Channel Review">
-<meta name="twitter:description" content="Send four reports or book 30 minutes. You see the number before you decide anything.">
+<meta name="twitter:description" content="Find a practical next step for your Amazon or Walmart channel.">
 
-<!-- ══════════════════════════════════════════════════════════════════
-     ONE THING LEFT TO SET: FORM_ENDPOINT, at the top of the <script>
-     at the bottom of this file. Formspree, Basin, or your own handler.
 
-     Your Calendly link (scottnguyen416/30min) is already wired in.
-
-     Also check the email address — I've used scott@simpleconsulting.ca
-     in four places because your old page had no email on it at all.
-     Find-and-replace if it's wrong.
-     ══════════════════════════════════════════════════════════════════ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +40,7 @@
     "name": "Free Amazon and Walmart channel review",
     "price": "0",
     "priceCurrency": "CAD",
-    "description": "A no-cost audit of your marketplace account identifying recoverable reimbursements and the highest-value fixes."
+    "description": "A free 30-minute conversation about your marketplace channels, priorities and potential next steps."
   }
 }
 </script>
@@ -220,6 +211,8 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
   * { transition: none !important; }
 }
 </style>
+<link rel="stylesheet" href="/assets/site-improvements.css">
+<script src="/assets/booking-assessment.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#start">Skip to the form</a>
@@ -230,7 +223,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
     <div class="nav-links">
       <a href="amazon-management.html">Amazon</a>
       <a href="walmart-management.html">Walmart</a>
-      <a href="reimbursement-recovery.html">Get Money Back</a>
+      <a href="reimbursement-recovery.html">Reimbursements</a>
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="booking.html" class="btn" aria-current="page">Book a Call</a>
@@ -243,7 +236,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
   <button class="mobile-nav-close" id="mobileClose" aria-label="Close menu">✕</button>
   <a href="amazon-management.html">Amazon</a>
   <a href="walmart-management.html">Walmart</a>
-  <a href="reimbursement-recovery.html">Get Money Back</a>
+  <a href="reimbursement-recovery.html">Reimbursements</a>
   <a href="about.html">About</a>
   <a href="blog.html">Blog</a>
   <a href="booking.html" class="btn">Book a Call</a>
@@ -253,13 +246,35 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
 
 <div id="hero">
   <div class="eyebrow fade f1"><span class="dash"></span><span id="eyebrowText">Free channel review</span></div>
-  <h1 class="fade f2" id="headline">Find out what your channel is losing</h1>
-  <p class="fade f3" id="subhead">Tell me which account is giving you trouble. I'll come back with the three things I'd fix first and roughly what each one is worth — whether or not you end up hiring me.</p>
+  <h1 class="fade f2" id="headline">Let’s find your next step.</h1>
+  <p class="fade f3" id="subhead">Book a free 30-minute call about your Amazon or Walmart channel. If you’re still working out what you need, start with the optional assessment or send me a message.</p>
   <div class="hero-cta fade f4">
-    <a class="btn-solid" href="#start">Send me the details</a>
-    <a class="btn-line" href="#booking">Pick a time instead</a>
+    <a class="btn-solid" href="#booking">Book a free 30-minute call</a>
+    <a class="btn-line" href="#assessment" data-open-assessment>Assess my channels</a>
   </div>
+<p class="review-email-link">Prefer to write? <a href="#start">Send a message</a></p>
 </div>
+
+<section id="assessment" aria-label="Optional channel assessment">
+<details id="assessment-panel"><summary><span><strong>Not sure where to start?</strong><small>Assess your channels in about 2 minutes. No contact details required.</small></span><span aria-hidden="true">＋</span></summary>
+<iframe id="assessment-frame" title="Optional Amazon and Walmart channel assessment" data-src="/assessment/index.html?embed=1" style="width:100%;height:700px;border:0" allow="clipboard-write"></iframe>
+<noscript><p><a href="/assessment/index.html">Open the assessment</a>, or book a call below.</p></noscript>
+</details></section>
+
+<section id="booking">
+  <span class="eyebrow"><span class="dash"></span>Schedule a call</span>
+  <h2>Book a free channel review</h2>
+  <p class="intro">Choose a time for a 30-minute conversation with Scott. Completing the assessment is optional. No account access is needed to book.</p>
+
+  <div class="calendly-wrap" id="calWrap">
+    <div class="calendly-inline-widget" id="calWidget"></div>
+    <div class="cal-msg" id="calMsg" role="status">
+      <p>The calendar could not load here. Open the booking page directly, or email Scott with a couple of times that suit you.</p>
+      <a class="btn-solid" href="https://calendly.com/scottnguyen416/30min" target="_blank" rel="noopener" id="calendar-direct">Open booking calendar ↗</a> <a href="mailto:scott@simpleconsulting.ca?subject=Booking%20a%20channel%20review">Email Scott</a>
+    </div>
+  </div>
+  <p class="cal-note">Times show in your own timezone. I'm in Toronto (Eastern) and keep later slots open for western Canada.</p>
+</section>
 
 <section id="start">
   <div class="start-grid">
@@ -267,9 +282,9 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
     <div class="form-card">
       <div class="formwrap" id="formwrap">
         <h2>Tell me what's not working</h2>
-        <p class="sub">Four fields. You don't need to book a call to get an answer — most people would rather just send it and read the reply. <a href="#booking">Rather talk?</a></p>
+        <p class="sub">Tell Scott about the channel and what you’d like help with. The assessment can fill in a starting summary for you. <a href="#booking">Prefer a call?</a></p>
 
-        <form id="leadform" method="post" action="" novalidate>
+        <form id="leadform" method="post" action="https://formspree.io/f/mreegwjn" novalidate>
           <input type="hidden" name="_subject" value="New enquiry — simpleconsulting.ca">
           <input type="hidden" name="source_page" id="sourcePage" value="">
           <div class="hp"><label>Leave this blank<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
@@ -319,13 +334,14 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
             <span class="err">A sentence or two is plenty — it's what makes the reply useful.</span>
           </div>
 
-          <button class="btn-solid" type="submit" id="submit" style="width:100%">Send it over</button>
-          <p class="micro">Goes straight to my inbox. Never shared, never added to a list.</p>
+          <button class="btn-solid" type="submit" id="submit" style="width:100%">Send message</button>
+          <button type="button" class="btn-line copy-enquiry" id="copy-enquiry">Copy enquiry</button><p id="copy-status" class="micro" role="status"></p><textarea id="copy-fallback" aria-label="Enquiry text to copy" readonly hidden></textarea>
+          <p class="micro">Your enquiry is sent to Scott through Formspree. Sending a message does not subscribe you to marketing emails.</p>
         </form>
       </div>
 
       <div class="sent" id="sent" role="status" aria-live="polite">
-        <h2>Got it — thanks</h2>
+        <h2>Your enquiry was submitted.</h2>
         <p>I'll read it properly and reply within one business day, usually sooner. If it's urgent, email me at <a href="mailto:scott@simpleconsulting.ca">scott@simpleconsulting.ca</a>.</p>
         <a class="btn-line" href="#booking">Want to talk it through? Grab a time</a>
       </div>
@@ -338,7 +354,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
       </li>
       <li>
         <h3>No account access needed to start</h3>
-        <p>The audit runs on four reports you export yourself. Nothing to install, no password, no permissions to grant until you decide you want claims filed.</p>
+        <p>Start with a description of your needs. We can agree on relevant reports or account permissions if a closer review is needed. Never share your password.</p>
       </li>
       <li>
         <h3>A reply within one business day</h3>
@@ -353,25 +369,12 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
   </div>
 </section>
 
-<section id="booking">
-  <span class="eyebrow"><span class="dash"></span>Schedule a call</span>
-  <h2>Or pick a time and we'll talk it through</h2>
-  <p class="intro">Thirty minutes, no pitch. Bring the account that's bothering you and we'll look at it together. Some people would rather write it out, some would rather talk — either works, and neither costs anything.</p>
 
-  <div class="calendly-wrap" id="calWrap">
-    <div class="calendly-inline-widget" id="calWidget"></div>
-    <div class="cal-msg" id="calMsg">
-      <p>The calendar isn't loading — an ad blocker or privacy extension will sometimes stop it.</p>
-      <a class="btn-solid" href="mailto:scott@simpleconsulting.ca?subject=Booking%20a%20channel%20review">Email me a couple of times that suit you</a>
-    </div>
-  </div>
-  <p class="cal-note">Times show in your own timezone. I'm in Toronto (Eastern) and keep later slots open for western Canada.</p>
-</section>
 
 <section id="expect">
   <span class="eyebrow"><span class="dash"></span>What happens next</span>
-  <h2>Three steps, and you can stop after the second</h2>
-  <p class="intro">No lengthy discovery phase and no proposal deck. I've run these accounts before, so I already know where the problems usually are.</p>
+  <h2>A clear scope before work starts</h2>
+  <p class="intro">The first conversation helps establish what you need and whether I can help.</p>
   <div class="expect-grid">
     <div class="expect-item">
       <div class="num">01</div>
@@ -380,13 +383,13 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
     </div>
     <div class="expect-item">
       <div class="num">02</div>
-      <h3>You export four reports</h3>
-      <p>Inventory ledger, reimbursements, shipment reconciliation and settlements. I send click-by-click instructions. No account access, no password, nothing to install.</p>
+      <h3>We identify what to review</h3>
+      <p>Depending on the issue, that may mean listings, advertising data, inventory records or settlement reports. Share only what is needed for the agreed review.</p>
     </div>
     <div class="expect-item">
       <div class="num">03</div>
-      <h3>You see the number</h3>
-      <p>A case-by-case breakdown of what's recoverable, plus the fixes I'd prioritise. If it isn't worth pursuing, you keep the report and we're done — no charge.</p>
+      <h3>You choose the next step</h3>
+      <p>We agree on the scope, fee and responsibilities before any paid work. Reimbursement claims, where relevant, remain subject to eligibility, deadlines and marketplace approval.</p>
     </div>
   </div>
 </section>
@@ -397,23 +400,23 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
 
   <details>
     <summary>Do you need access to my Seller Central account?</summary>
-    <p>Not to start. The audit runs entirely on reports you export yourself. Access only comes up if you want me to file claims or manage the account, and it's granted through Seller Central user permissions that you control and can revoke at any time. I never need your password.</p>
+    <p>No account access is needed for the assessment or first conversation. If later work needs access, use the marketplace’s own user permissions and grant only the access needed. Never share your password.</p>
   </details>
   <details>
     <summary>What does it cost?</summary>
-    <p>The review and the audit are free. If you want me to file claims or run the channel, we agree the fee after you've seen what's actually there — never before, because quoting a number before either of us knows what's recoverable would be guessing. Ongoing work is typically a monthly retainer; project work is quoted flat.</p>
+    <p>The first 30-minute channel review is free. Any further project or ongoing work is scoped and priced with you before it begins.</p>
   </details>
   <details>
     <summary>Am I too small for this to be worth it?</summary>
-    <p>Possibly, and I'll tell you straight away rather than take the work. Below roughly $10k a month on marketplaces, recoverable amounts usually don't justify a retainer — but the free audit still costs you nothing and the report is yours to act on either way.</p>
+    <p>The right scope depends on your stage, channels and needs. A focused project or a first conversation may be more suitable than ongoing management for an early-stage business.</p>
   </details>
   <details>
     <summary>I already have an agency. Is this a waste of time?</summary>
-    <p>Reimbursements and settlement reconciliation are the things agencies most reliably skip, because they're tedious and don't show up well in a monthly performance deck. A second set of eyes on the reports costs nothing and doesn't require changing anything about your current arrangement.</p>
+    <p>You can discuss a specific issue or a second review without changing your existing agency arrangement. We would agree on a clear scope and avoid duplicating work.</p>
   </details>
   <details>
     <summary>Will I get put on a mailing list?</summary>
-    <p>No. There's no sequence, no newsletter signup hidden in this form, and no nurture track. You get a reply from me, and that's the extent of it unless you write back.</p>
+    <p>Submitting an enquiry does not subscribe you to marketing emails. The form uses Formspree to deliver your message to Scott.</p>
   </details>
   <details>
     <summary>Are you actually available?</summary>
@@ -439,7 +442,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
     <div class="footer-links">
       <a href="amazon-management.html">Amazon</a>
       <a href="walmart-management.html">Walmart</a>
-      <a href="reimbursement-recovery.html">Get Money Back</a>
+      <a href="reimbursement-recovery.html">Reimbursements</a>
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0" rel="noopener">LinkedIn</a>
@@ -456,7 +459,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
      FILL IN — your form handler. Formspree, Basin, whatever.
      Until this is set, the form falls back to an email link.
      ══════════════════════════════════════════════════════════ */
-  var FORM_ENDPOINT = "";                        /* e.g. "https://formspree.io/f/xyzabcde" */
+  var FORM_ENDPOINT = "https://formspree.io/f/mreegwjn";                        /* e.g. "https://formspree.io/f/xyzabcde" */
   var CALENDLY_URL  = "https://calendly.com/scottnguyen416/30min";
   var EMAIL         = "scott@simpleconsulting.ca";
   /* ══════════════════════════════════════════════════════════ */
@@ -498,31 +501,31 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
      page shouldn't land on a headline about something else.
      Reads ?src= if present, otherwise the internal referrer.    */
   var COPY = {
-    reimbursement: {
-      eyebrow: 'Free reimbursement audit',
-      headline: 'Find out what Amazon and Walmart owe you',
-      subhead: 'Send me four exported reports and I\u2019ll come back with a case-by-case breakdown of what\u2019s recoverable and still inside its claim window. Free, and you see the total before you decide anything.'
-    },
-    amazon: {
-      eyebrow: 'Free Amazon account review',
-      headline: 'Find out what your Amazon account is losing',
-      subhead: 'Vendor Central, Seller Central or FBA. Tell me what\u2019s going wrong and I\u2019ll come back with the three things I\u2019d fix first and roughly what each one is worth.'
-    },
-    walmart: {
-      eyebrow: 'Free Walmart account review',
-      headline: 'Find out what your Walmart channel is losing',
-      subhead: 'Marketplace or WFS. It\u2019s the channel almost nobody audits, which is usually why it holds the largest recoverable losses. Tell me what\u2019s going on.'
-    },
-    blog: {
-      eyebrow: 'Free channel review',
-      headline: 'Reading about it is one thing',
-      subhead: 'If you\u2019d rather someone just looked at your actual account, that\u2019s what this is. Tell me which channel is giving you trouble and I\u2019ll tell you what I\u2019d fix first.'
-    }
-  };
+  "reimbursement": {
+    "eyebrow": "Reimbursement review",
+    "headline": "Review potential claims with the records in hand.",
+    "subhead": "Discuss shipment, returns or settlement discrepancies and what documentation is needed. Eligibility, deadlines and marketplace approval determine whether a claim can proceed."
+  },
+  "amazon": {
+    "eyebrow": "Free Amazon channel review",
+    "headline": "A practical next step for your Amazon account.",
+    "subhead": "Discuss Seller Central, Vendor Central or FBA, and the listings, advertising or operating issues you want to address."
+  },
+  "walmart": {
+    "eyebrow": "Free Walmart channel review",
+    "headline": "A practical next step for your Walmart channel.",
+    "subhead": "Discuss Marketplace or WFS, from item setup and advertising to inventory, fulfillment and settlement reconciliation."
+  },
+  "blog": {
+    "eyebrow": "Free channel review",
+    "headline": "Put the guidance in context.",
+    "subhead": "Talk through how the topic relates to your Amazon or Walmart channel and what to review next."
+  }
+};
 
   function pick(){
     var q = new URLSearchParams(location.search).get('src');
-    if (q && COPY[q]) return q;
+    if (q && Object.prototype.hasOwnProperty.call(COPY, q)) return q;
     var r = '';
     try {
       r = document.referrer && new URL(document.referrer).hostname === location.hostname
@@ -578,14 +581,15 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
     return u;
   }
 
-  function failCal(){ wrap.classList.add('failed'); }
+  function failCal(){ wrap.classList.add('failed'); document.getElementById('calendar-direct').href=calendlySrc(); }
 
   function loadCal(){
     if (calLoaded) return;
     calLoaded = true;
 
     var url = calendlySrc();
-    widget.setAttribute('data-url', url);
+    // Explicit initialization prevents the Calendly script from creating duplicate iframes.
+    document.getElementById('calendar-direct').href=url;
 
     var s = document.createElement('script');
     s.src = 'https://assets.calendly.com/assets/external/widget.js';
@@ -621,8 +625,13 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
     if (e.data.event === 'calendly.event_scheduled') convert('calendar');
   });
 
+  document.addEventListener('assessment:prefill', function(){
+    document.getElementById('calendar-direct').href=calendlySrc();
+    if(calLoaded && window.Calendly && window.Calendly.initInlineWidget){ widget.innerHTML=''; wrap.classList.remove('failed'); window.Calendly.initInlineWidget({url:calendlySrc(),parentElement:widget}); }
+  });
+
   /* ── Form ── */
-  function bad(id, on){ document.getElementById(id).classList.toggle('bad', on); }
+  function bad(id, on){ var box=document.getElementById(id); box.classList.toggle('bad', on); var input=box.querySelector('input,select,textarea'), err=box.querySelector('.err'); if(input){input.setAttribute('aria-invalid',String(on)); if(err){err.id=id+'-error'; input.setAttribute('aria-describedby',err.id);}} }
 
   function validate(){
     var ok = true;
@@ -642,7 +651,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
     var w = document.getElementById('sendErr');
     if (!w) {
       w = document.createElement('p');
-      w.id = 'sendErr'; w.className = 'micro warn';
+      w.id = 'sendErr'; w.className = 'micro warn'; w.setAttribute('role','alert');
       form.appendChild(w);
     }
     w.innerHTML = html;
@@ -689,7 +698,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 32px; }
     .then(function(r){ if (r.ok) succeed(); else throw new Error('rejected'); })
     .catch(function(){
       btn.disabled = false;
-      btn.textContent = 'Send it over';
+      btn.textContent = 'Send message';
       warn('That didn\u2019t go through. Email it to <a href="mailto:' + EMAIL + '">' + EMAIL + '</a> and I\u2019ll pick it up there.');
     });
   });

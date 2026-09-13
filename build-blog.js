@@ -110,7 +110,7 @@ const SERVICE_BY_TAG = {
     blurb: 'Titles, bullets, backend keywords and A+ Content built to rank inside Amazon search, not just to hold keywords.' },
   'Growth':       { url: '/walmart-management.html', label: 'Walmart Marketplace & WFS',
     blurb: 'The channel most Canadian brands underinvest in, and where the least competition sits.' },
-  'Web':          { url: '/booking.html', label: 'Book a free channel review',
+  'Web':          { url: '/booking.html', label: 'Book a Call',
     blurb: 'Thirty minutes on your account. I will name the three things I would fix first and what each is worth.' },
   'ERP':          { url: '/booking.html', label: 'Systems and reporting',
     blurb: 'ERP integration with your sales channels, inventory sync and the reporting that makes problems visible early.' }
@@ -180,7 +180,7 @@ const NAV = `
     <div class="nav-links">
       <a href="/amazon-management.html">Amazon</a>
       <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
+      <a href="/reimbursement-recovery.html">Reimbursements</a>
       <a href="/about.html">About</a>
       <a href="/blog.html">Blog</a>
       <a href="/booking.html" class="btn">Book a Call</a>
@@ -195,7 +195,7 @@ const FOOT = `
     <div class="footer-links">
       <a href="/amazon-management.html">Amazon</a>
       <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
+      <a href="/reimbursement-recovery.html">Reimbursements</a>
       <a href="/about.html">About</a>
       <a href="/blog.html">Blog</a>
       <a href="/booking.html">Contact</a>
@@ -247,6 +247,7 @@ function postPage(post, all, i) {
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>${CSS}</style>
 <script type="application/ld+json">${JSON.stringify(schema)}</script>
+<link rel="stylesheet" href="/assets/site-improvements.css">
 </head>
 <body>
 ${NAV}
@@ -269,7 +270,7 @@ ${NAV}
   <div class="cta-box">
     <h2>Want help putting this into practice?</h2>
     <p>Book a free consultation and we'll walk through what's holding your business back.</p>
-    <a href="/booking.html">Book a Free Call</a>
+    <a href="/booking.html">Book a Call</a>
   </div>
 </article>
 
