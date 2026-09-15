@@ -1,0 +1,10 @@
+{
+  "name": "simple-consulting-static-site",
+  "private": true,
+  "scripts": {
+    "build": "python3 scripts/build_site.py",
+    "check": "python3 scripts/check_site.py && node --check assets/site.js && node --check assets/contact.js",
+    "test": "node scripts/check_interactions.cjs"
+  },
+  "devDependencies": { "jsdom": "30.0.1" }
+}

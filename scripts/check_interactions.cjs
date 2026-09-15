@@ -1,0 +1,48 @@
+const fs=require('node:fs');
+const path=require('node:path');
+const assert=require('node:assert/strict');
+const {JSDOM}=require('jsdom');
+const root=path.resolve(__dirname,'..');
+function page(file,url='https://www.simpleconsulting.ca/'+file){
+ const dom=new JSDOM(fs.readFileSync(path.join(root,file),'utf8'),{url,runScripts:'outside-only'});
+ const w=dom.window;w.matchMedia=()=>({matches:true});w.HTMLElement.prototype.scrollIntoView=()=>{};
+ w.eval(fs.readFileSync(path.join(root,'assets/site.js'),'utf8'));
+ return dom;
+}
+const tick=()=>new Promise(r=>setImmediate(r));
+(async()=>{
+ const dom=page('booking.html','https://www.simpleconsulting.ca/booking.html?service=google');
+ const w=dom.window,d=w.document,form=d.getElementById('leadform');let calls=0,accepted=false;
+ const events=[];d.addEventListener('simple:analytics',e=>events.push(e.detail));
+ w.fetch=async()=>{calls++;return {ok:accepted}};
+ w.eval(fs.readFileSync(path.join(root,'assets/contact.js'),'utf8'));
+ const submit=()=>form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ assert.equal(form.elements.channel.value,'google');
+ assert.match(d.querySelector('h1').textContent,/Google Ads/);
+ submit();await tick();assert.equal(calls,0);assert.equal(d.getElementById('name-error').hidden,false);
+ form.elements.name.value='QA Example';form.elements.email.value='qa@example.com';form.elements.message.value='Please review inventory and campaigns.';
+ submit();await tick();assert.equal(calls,1);assert.equal(form.hidden,false);assert.match(d.getElementById('send-status').textContent,/could not confirm/);assert.match(form.elements.message.value,/inventory/);assert.equal(events.filter(e=>e.event==='generate_lead').length,0);
+ accepted=true;submit();await tick();assert.equal(form.hidden,true);assert.equal(d.getElementById('form-success').hidden,false);assert.equal(events.filter(e=>e.event==='generate_lead').length,1);
+ submit();await tick();assert.equal(calls,2);
+ assert.equal(JSON.stringify(events).includes('qa@example.com'),false);assert.equal(JSON.stringify(events).includes('Please review'),false);
+ const frame=d.getElementById('assessment-frame');
+ const receive=(data,origin='https://www.simpleconsulting.ca',source=frame.contentWindow)=>w.dispatchEvent(new w.MessageEvent('message',{data,origin,source}));
+ const payload={type:'simple-assessment-result',action:'message',channels:['amazon','walmart'],summary:'QA needs summary'};
+ receive(payload,'https://example.com');assert.equal(form.hidden,true);
+ receive({...payload,channels:['invalid']});assert.equal(form.hidden,true);
+ receive(payload);assert.equal(form.hidden,false);assert.equal(form.elements.channel.value,'both');assert.match(form.elements.message.value,/QA needs summary/);assert.match(form.elements.message.value,/Please review/);
+ receive(payload);assert.equal(form.elements.message.value.split('QA needs summary').length-1,1);
+ receive({type:'simple-assessment-resize',height:1200});assert.equal(frame.style.height,'1202px');receive({type:'simple-assessment-resize',height:90000});assert.equal(frame.style.height,'1202px');
+ d.getElementById('load-calendar').click();const cal=d.querySelector('#calendar-slot iframe');assert.ok(cal);const leads=()=>events.filter(e=>e.event==='generate_lead').length;assert.equal(leads(),1);
+ receive({event:'calendly.event_scheduled'},'https://example.com',cal.contentWindow);assert.equal(leads(),1);
+ receive({event:'calendly.event_scheduled'},'https://calendly.com',cal.contentWindow);assert.equal(leads(),2);receive({event:'calendly.event_scheduled'},'https://calendly.com',cal.contentWindow);assert.equal(leads(),2);
+ dom.window.close();
+ const b=page('blog.html'),bd=b.window.document;
+ assert.equal(bd.getElementById('filter-status').textContent,'112 articles');
+ bd.querySelector('[data-filter="Google Ads"]').click();assert.ok([...bd.querySelectorAll('#post-grid .post-card')].filter(x=>!x.hidden).every(x=>x.dataset.tag==='Google Ads'));
+ bd.querySelector('[data-filter="all"]').click();const search=bd.getElementById('article-search');search.value='negative keywords';search.dispatchEvent(new b.window.Event('input'));assert.equal(bd.getElementById('filter-status').textContent,'1 article');
+ search.value='no-match-qa';search.dispatchEvent(new b.window.Event('input'));assert.equal(bd.getElementById('no-articles').hidden,false);
+ const menu=bd.querySelector('.mobile-menu');menu.open=true;bd.dispatchEvent(new b.window.KeyboardEvent('keydown',{key:'Escape'}));assert.equal(menu.open,false);
+ b.window.close();
+ console.log('PASS: DOM interaction checks — validation, failed/successful submission, duplicate prevention, PII-free event payloads, assessment validation and handoff, calendar events, blog filters and menu Escape. No requests or messages sent.');
+})().catch(e=>{console.error(e);process.exitCode=1});
