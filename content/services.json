@@ -1,0 +1,533 @@
+[
+  {
+    "key": "amazon",
+    "slug": "amazon-management",
+    "label": "Amazon management",
+    "title": "Amazon Account Management Canada | Simple Consulting",
+    "description": "Hands-on Amazon account management for Canadian brands. Seller Central, Vendor Central, FBA, listings, PPC and inventory. Book a free review with Scott.",
+    "heading": "Amazon account management. The follow-through included.",
+    "intro": "Listings to fix. Campaigns to review. Inventory to keep moving. I take on the recurring work in Seller Central, Vendor Central and FBA, so your Amazon account gets consistent attention. Support for Amazon.ca and Amazon.com.",
+    "fit": "Your Amazon account needs a reliable owner, or your team needs help with a problem that keeps coming back.",
+    "deliverable": "A prioritised issue list, ownership of the agreed account work, and a regular update on actions, performance and open decisions.",
+    "sections": [
+      [
+        "Seller Central and FBA management",
+        "Keep catalogue work connected to stock, pricing and fulfilment. I work through listing issues, inbound planning, receiving discrepancies and the recurring account tasks your team needs help managing.",
+        [
+          "Product titles, bullets, attributes and search terms",
+          "A+ Content, Brand Stores and eligible variation structures",
+          "Replenishment planning, aged inventory and FBA versus merchant fulfillment",
+          "Account notices, listing suppression and documentation follow-up"
+        ]
+      ],
+      [
+        "Amazon Vendor Central support",
+        "Selling wholesale to Amazon requires a different operating process from selling directly to shoppers. I help coordinate purchase orders, shipment records, deductions and reporting, including businesses that use both account models.",
+        [
+          "Purchase order confirmations and fulfillment coordination",
+          "Shortage and chargeback reconciliation against supporting records",
+          "Allowance and commercial-term review",
+          "Reporting across vendor and seller activity"
+        ]
+      ],
+      [
+        "Amazon PPC and listing optimisation",
+        "Advertising decisions should reflect product economics and inventory. I review Sponsored Products and other eligible campaign formats, search terms, budgets and attribution alongside listing quality and stock cover.",
+        [
+          "Campaign and search-term review",
+          "ACoS and TACoS in the context of margins",
+          "Product detail page improvements and relevant search language",
+          "A documented review cadence and agreed performance measures"
+        ]
+      ],
+      [
+        "Start with one issue or the whole account",
+        "Start with the issue that keeps getting pushed back: a listing problem, a campaign question or a stock concern. If you need ongoing help, we can build the account responsibilities around your team and workload."
+      ]
+    ],
+    "faq": [
+      [
+        "Do you support Amazon.ca and Amazon.com?",
+        "Yes. I support both storefronts. We review fulfilment, product requirements, catalogue and commercial decisions for each country rather than assuming one setup works everywhere."
+      ],
+      [
+        "Can you work alongside my internal team or agency?",
+        "Yes. We agree on which tasks I own, who approves changes and how reporting is shared. The scope can cover a specific operational gap."
+      ],
+      [
+        "Can you help with a restricted listing or account issue?",
+        "I can review the notice, relevant records and the required response, then help organise the next steps. Amazon makes listing and account decisions; the work focuses on the actual issue and applicable requirements."
+      ],
+      [
+        "What does account management cost?",
+        "The first 30-minute review is free. Project and ongoing fees depend on the catalogue, account model and responsibilities, and are agreed before paid work begins."
+      ]
+    ],
+    "related": [
+      "walmart",
+      "operations",
+      "reimbursement"
+    ]
+  },
+  {
+    "key": "walmart",
+    "slug": "walmart-management",
+    "label": "Walmart management",
+    "title": "Walmart Marketplace & WFS Consultant Canada | Simple Consulting",
+    "description": "Walmart Canada Marketplace and WFS support: item setup, Walmart Connect ads, inventory, inbound planning and settlement reviews. Work directly with Scott.",
+    "heading": "Walmart Marketplace & WFS. Managed from setup to daily operations.",
+    "intro": "Launching on Walmart is one step. Keeping the catalogue, advertising and inventory working together is the ongoing job. I help brands build and manage their Walmart channel, with particular attention to selling in Canada.",
+    "fit": "You are preparing a Walmart launch, taking over an existing account or finding the daily work is getting ahead of your team.",
+    "deliverable": "A clear launch or account plan, coordinated catalogue and fulfilment work, and visibility into outstanding issues.",
+    "sections": [
+      [
+        "Walmart seller setup and catalogue management",
+        "Prepare the product information and operating setup your chosen marketplace requires. I help coordinate the application and onboarding process, item setup and catalogue maintenance. Walmart determines account and product approval.",
+        [
+          "Category and product-attribute requirements",
+          "Item feeds, identifiers and variant setup",
+          "Listing content, images and publishing issues",
+          "Country-specific requirements and French-content coordination where needed"
+        ]
+      ],
+      [
+        "Walmart Fulfillment Services support",
+        "Choose a fulfilment approach using your product dimensions, landed costs, expected volume and return handling. I help plan inbound shipments and replenishment, then review receiving and inventory records.",
+        [
+          "WFS versus self-fulfilment cost comparisons",
+          "Inbound shipping, labelling and receiving coordination",
+          "Stock cover, reorder timing and seasonal planning",
+          "Returns and settlement reconciliation, including prior credits"
+        ]
+      ],
+      [
+        "Walmart Connect advertising",
+        "Review the campaign formats and reports available in your market. I connect campaign decisions with item availability, pricing and margin so advertising is part of the channel operating plan.",
+        [
+          "Campaign structure, product selection and budget review",
+          "Search-term and performance analysis where reports are available",
+          "Listing readiness before increasing spend",
+          "Reporting with clear attribution periods"
+        ]
+      ],
+      [
+        "A practical launch decision",
+        "Before a launch, compare the product margin after marketplace fees, fulfilment, inbound freight, returns and advertising assumptions. If you are already selling, start with the catalogue, stock or reporting issue that needs attention. Canadian and US programme requirements are checked separately."
+      ]
+    ],
+    "faq": [
+      [
+        "Is Walmart a good next channel after Amazon?",
+        "That depends on your category, price positioning, margins and ability to fulfil orders. We review those factors before recommending a launch."
+      ],
+      [
+        "Can you help with unpublished items?",
+        "Yes. I review the item status, feed errors and account notices to identify what is blocking publication. Resolution depends on the issue and Walmart's requirements."
+      ],
+      [
+        "Are Canadian and US WFS rules the same?",
+        "Do not assume they are. Available services, fees, reports and operating requirements should be checked for the country and programme you use."
+      ],
+      [
+        "Do you review WFS reimbursements?",
+        "Yes. I reconcile shipment, return and settlement records and assess potential claim eligibility. Reimbursement is subject to the applicable rules, evidence, deadlines and Walmart's approval."
+      ]
+    ],
+    "related": [
+      "operations",
+      "reimbursement",
+      "amazon"
+    ]
+  },
+  {
+    "key": "reimbursement",
+    "slug": "reimbursement-recovery",
+    "label": "Reimbursement reviews",
+    "title": "Amazon & Walmart Reimbursement Review | Simple Consulting",
+    "description": "Reconcile Amazon and Walmart shipment, return, inventory and fee records. Assess potential claim eligibility with Scott. Reimbursements are not guaranteed.",
+    "heading": "Make sense of Amazon and Walmart reimbursement discrepancies.",
+    "intro": "Shipment, return and settlement reports do not always tell the same story. I match the records, check prior credits and help you understand which differences need an explanation or may support a claim.",
+    "fit": "You have an unresolved shipment, return, inventory or fee discrepancy and need a clear view of the records.",
+    "deliverable": "Reconciled records, a list of unresolved differences and the evidence and eligibility considerations for potential claims.",
+    "sections": [
+      [
+        "Reconcile first. Assess eligibility next.",
+        "A difference between reports may reflect timing, a prior credit, a reporting issue or an operational error. It does not automatically mean a marketplace owes a reimbursement. The review starts by matching the underlying records.",
+        [
+          "Inbound quantities sent, received and reconciled",
+          "Inventory adjustments and credits already issued",
+          "Returns, refunds and inventory movements",
+          "Fees compared with the relevant records and fee basis",
+          "Removal, disposal and WFS settlement records"
+        ]
+      ],
+      [
+        "A clear process from review to resolution",
+        "First, we define the issue and relevant period. Next, I compare the reports and supporting documents. Where the evidence supports a potential claim, we check the applicable rules and deadlines, agree on the scope and fee, and decide whether to proceed.",
+        [
+          "Start with relevant exported reports",
+          "Distinguish documented discrepancies from confirmed credits",
+          "Identify missing documentation before submission",
+          "Prepare and track eligible submissions where authorised"
+        ]
+      ],
+      [
+        "Review the operating process too",
+        "Reconciliation may also identify changes worth making to labelling, shipment records, returns handling or catalogue data. Those tasks can be scoped separately or included in ongoing account support."
+      ],
+      [
+        "Reimbursements are not guaranteed",
+        "Not every discrepancy qualifies, and not every claim is approved. Eligibility depends on the records, applicable marketplace policies and deadlines. The marketplace decides whether a claim is approved."
+      ]
+    ],
+    "faq": [
+      [
+        "What does the first review cost?",
+        "The initial conversation is free. It helps establish the issue, available records and suitable scope. Any detailed reconciliation or claims work is agreed and priced before it starts."
+      ],
+      [
+        "Do you need my password?",
+        "No. Start with relevant exported reports. If later work needs account access, use the marketplace's permission controls. You retain control of access."
+      ],
+      [
+        "How far back can a claim be filed?",
+        "Deadlines vary by marketplace, country and claim type. The relevant rules and dates are checked before a claim is recommended."
+      ],
+      [
+        "Will you check what has already been paid?",
+        "Yes. Checking prior reimbursements and adjustments is part of reconciliation, so potential discrepancies are not confused with amounts already credited."
+      ]
+    ],
+    "related": [
+      "amazon",
+      "walmart",
+      "operations"
+    ]
+  },
+  {
+    "key": "operations",
+    "slug": "ecommerce-operations",
+    "label": "Inventory & fulfilment",
+    "title": "Inventory & E-commerce Operations Consultant Canada",
+    "description": "Inventory forecasting, 3PL evaluation, fulfilment and returns support for Canadian brands. Connect your operations across Amazon, Walmart, Shopify and retail.",
+    "heading": "Get ahead of inventory and fulfilment problems.",
+    "intro": "Stockouts, excess inventory, unclear warehouse charges and returns backlogs compete for your time and cash. I help you understand what is happening and put practical buying, fulfilment and follow-up processes in place.",
+    "fit": "Inventory or fulfilment problems keep interrupting your team across marketplaces, Shopify or retail.",
+    "deliverable": "The relevant buying plan, cost comparison, exception tracker or operating procedure, with clear ownership and a usable handover.",
+    "sections": [
+      [
+        "Inventory forecasting and replenishment",
+        "Turn sales history, supplier lead times and stock positions into an actionable buying plan. We account for seasonality, upcoming promotions, minimum order quantities and cash constraints rather than relying on one rule for every SKU.",
+        [
+          "SKU-level sales and stock-cover review",
+          "Reorder points, safety-stock assumptions and open purchase orders",
+          "Seasonal and launch inventory planning",
+          "Slow-moving stock and replenishment exceptions"
+        ]
+      ],
+      [
+        "3PL evaluation and fulfilment costs",
+        "Compare warehouses using your actual order mix and service requirements. I help organise rate comparisons, receiving and returns requirements, integration questions and operating responsibilities.",
+        [
+          "Receiving, storage, pick-and-pack and returns cost comparisons",
+          "Inbound routing, labelling and delivery coordination",
+          "Inventory discrepancy and shrinkage processes",
+          "Service expectations, reporting and exit planning"
+        ]
+      ],
+      [
+        "Returns and repeatable processes",
+        "Build a clear route from return receipt to inspection, reconciliation and an appropriate disposition. Product safety, condition and channel rules come before any resale decision. Document the recurring tasks so the team can repeat them reliably.",
+        [
+          "Returns status and responsibility tracking",
+          "Receiving and shipment reconciliation",
+          "Standard operating procedures and handover",
+          "A weekly review of exceptions and outstanding actions"
+        ]
+      ],
+      [
+        "Start where the cost is visible",
+        "Bring one recurring problem: a SKU that keeps stocking out, an unclear 3PL invoice or a returns backlog. We can begin with a focused review and decide whether a project or ongoing operating support is the right fit."
+      ]
+    ],
+    "faq": [
+      [
+        "Can you help if I do not sell on Amazon or Walmart?",
+        "Yes. Inventory, fulfilment and process work can support Shopify, wholesale and other retail channels. We confirm the systems and responsibilities before agreeing on a scope."
+      ],
+      [
+        "Do you operate a warehouse?",
+        "No. I help evaluate, coordinate and improve fulfilment operations with your team and providers. Warehouse services and freight are supplied by the relevant providers."
+      ],
+      [
+        "Can you review our existing 3PL?",
+        "Yes. A review can compare invoices, agreed rates, service performance, inventory accuracy and the handling of receiving or returns issues."
+      ],
+      [
+        "What should I bring to the first call?",
+        "Describe the problem and your channels. Relevant sales, inventory or fulfilment records can be agreed afterwards; no account access is needed to start."
+      ]
+    ],
+    "related": [
+      "systems",
+      "fractional",
+      "walmart"
+    ]
+  },
+  {
+    "key": "shopify",
+    "slug": "shopify-consulting",
+    "label": "Shopify & DTC",
+    "title": "Shopify & E-commerce Consultant Canada | Simple Consulting",
+    "description": "Practical Shopify consulting for Canadian product brands: store improvements, product pages, channel coordination and operations. Book a free review.",
+    "heading": "A Shopify store that works with the rest of your business.",
+    "intro": "Help customers find the right product, understand the offer and complete their purchase. I improve store content and customer journeys while keeping inventory, fulfilment and marketplace decisions connected.",
+    "fit": "For product brands launching a store or improving an existing Shopify business.",
+    "deliverable": "A prioritised store review, the agreed improvements and a check of the affected customer and operating journeys.",
+    "sections": [
+      [
+        "Store and product-page improvements",
+        "Help visitors understand what the product is, whether it fits their needs and what happens after they order. I review navigation, product information, purchase paths and the questions customers need answered.",
+        [
+          "Store structure, collections and product information",
+          "Mobile shopping and checkout-path review",
+          "Shipping, returns and support information",
+          "Prioritised changes to reduce avoidable purchase friction"
+        ]
+      ],
+      [
+        "Connect Shopify with your wider business",
+        "A store improvement should work with your inventory and fulfilment setup. I review how product, order and stock information moves between your store, marketplaces, warehouse and business systems.",
+        [
+          "Catalogue and inventory coordination",
+          "Order and fulfilment handoffs",
+          "Channel pricing and promotional planning",
+          "Reporting requirements and recurring operating tasks"
+        ]
+      ],
+      [
+        "Support a launch or a focused project",
+        "The project might be a new storefront, a product-page refresh or a review of a specific customer journey. We agree on what is included, the platform limitations and how the result will be checked before implementation begins."
+      ],
+      [
+        "Measure the business outcome",
+        "Choose a measure that fits the problem: checkout completion, recurring customer questions, returns or manual work. Establish the baseline, make the agreed changes and assess what happened."
+      ]
+    ],
+    "faq": [
+      [
+        "Can you help without rebuilding the whole store?",
+        "Yes. A focused review may identify navigation, product-content or fulfilment changes that can be made within your existing theme and setup."
+      ],
+      [
+        "Can you coordinate Shopify with Amazon and Walmart?",
+        "Yes. That is a useful fit for this service. The scope can connect store improvements with marketplace listings, inventory and fulfilment processes."
+      ],
+      [
+        "How do we decide what to improve first?",
+        "We review the purchase journey, available store data and recurring customer questions, then prioritise changes by likely business impact and the work involved. We agree on the baseline and measures for the project."
+      ],
+      [
+        "How do we get started?",
+        "Send your store URL and the issue you want help with, or book a free 30-minute review. Further work is scoped and priced before it begins."
+      ]
+    ],
+    "related": [
+      "operations",
+      "google",
+      "systems"
+    ]
+  },
+  {
+    "key": "fractional",
+    "slug": "fractional-ecommerce-manager",
+    "label": "Fractional e-commerce support",
+    "title": "Fractional E-commerce Manager Canada | Simple Consulting",
+    "description": "Experienced e-commerce leadership on an agreed scope. Coordinate Amazon, Walmart, Shopify, inventory and reporting with Scott Nguyen in Toronto.",
+    "heading": "An experienced e-commerce lead, for the work you need owned.",
+    "intro": "When you are the person joining up every channel, report and provider, the business needs more of your time than it should. I provide fractional e-commerce management to coordinate priorities and take on agreed operating responsibilities.",
+    "fit": "For founders and teams coordinating several channels without a dedicated senior e-commerce lead.",
+    "deliverable": "A visible channel plan, clear task ownership and regular follow-through with your team and providers.",
+    "sections": [
+      [
+        "Connect the commercial and operating decisions",
+        "Listings, advertising, buying and fulfilment affect each other. I help bring those decisions into one plan so priorities are clear and teams or providers know what they own.",
+        [
+          "Channel priorities and launch planning",
+          "Coordination with marketing, finance and operations",
+          "Inventory and advertising decisions considered together",
+          "A visible record of tasks, owners and next steps"
+        ]
+      ],
+      [
+        "A clear owner for agreed responsibilities",
+        "I work alongside your team and providers to keep priorities moving. The engagement can combine channel oversight, coordination and hands-on tasks, with availability and decision responsibilities agreed at the start.",
+        [
+          "Marketplace account oversight and agreed execution",
+          "Internal-team and service-provider coordination",
+          "Regular performance and exception reviews",
+          "Documentation and handover as your team develops"
+        ]
+      ],
+      [
+        "Start with the work that needs attention",
+        "We identify the immediate issues, what information is missing and who owns the next actions. The first phase gives you a practical working plan and a regular way to review progress."
+      ],
+      [
+        "Project, ongoing management or fractional support?",
+        "A project suits a defined task. Ongoing account management suits recurring channel operations. Fractional support suits broader coordination and decisions across the business. We can discuss which arrangement matches your needs."
+      ]
+    ],
+    "faq": [
+      [
+        "Is this the same as hiring a full-time employee?",
+        "No. It is a scoped consulting engagement with agreed availability and responsibilities. It can provide support while your needs develop or while your internal team owns day-to-day tasks."
+      ],
+      [
+        "Will I work directly with Scott?",
+        "Yes. You work directly with me, including when coordinating tasks with your staff or existing providers."
+      ],
+      [
+        "Can you work alongside an agency?",
+        "Yes. We define ownership and approvals so the engagement addresses a gap and avoids duplicate effort."
+      ],
+      [
+        "Do you publish fixed retainer prices?",
+        "Fees are agreed after clarifying the channels, workload and responsibilities. The initial 30-minute conversation is free."
+      ]
+    ],
+    "related": [
+      "amazon",
+      "operations",
+      "systems"
+    ]
+  },
+  {
+    "key": "systems",
+    "slug": "ecommerce-systems-reporting",
+    "label": "Systems & reporting",
+    "title": "E-commerce Reporting & Power BI Consultant Canada",
+    "description": "ERP and channel integration planning, inventory sync and Power BI reporting for Canadian brands. Turn disconnected records into useful operating information.",
+    "heading": "E-commerce reporting you can make decisions with.",
+    "intro": "If every stock or margin question starts with another spreadsheet, the reporting needs attention. I help connect your records, define the measures and build a clearer view of what your business needs to act on.",
+    "fit": "For brands with manual reporting, disconnected order and inventory data, or an ERP project to scope.",
+    "deliverable": "Agreed measure definitions, a source and process map, and the reports or integration work needed for your project.",
+    "sections": [
+      [
+        "Map the records and the decisions",
+        "Start with what your team needs to decide and which source should be authoritative for each record. Then map how orders, stock, fees and returns move through the business.",
+        [
+          "Data-source and ownership mapping",
+          "SKU and channel identifier alignment",
+          "Manual handoff and reconciliation review",
+          "Reporting definitions and refresh requirements"
+        ]
+      ],
+      [
+        "Power BI and operating reports",
+        "Build reporting around questions such as which SKUs need replenishment, which channels contribute margin and which exceptions need attention. Refresh schedules, access and connector availability are confirmed for your systems.",
+        [
+          "Channel and SKU performance views",
+          "Stock cover, replenishment and exceptions",
+          "Returns, fees and settlement reporting",
+          "Definitions, access controls and handover documentation"
+        ]
+      ],
+      [
+        "ERP and channel integration planning",
+        "Document requirements before choosing or changing software. I help evaluate how the proposed workflow will handle products, orders, returns and inventory, including the exceptions that can disrupt an apparently simple integration."
+      ],
+      [
+        "Validate before relying on automation",
+        "Test the agreed workflow with representative records and exceptions. Reconcile the results to the source, define failure handling and give the team a clear process for unresolved items. Specific development and third-party software costs are scoped separately where applicable."
+      ]
+    ],
+    "faq": [
+      [
+        "Do I need a new ERP?",
+        "Not necessarily. The issue may be reporting definitions, a missing integration or an inconsistent process. A review helps distinguish these before a larger system investment."
+      ],
+      [
+        "Can reports start from Excel or CSV exports?",
+        "Yes. A useful first version can use agreed exports while integration requirements are clarified. The source and refresh timing should remain visible."
+      ],
+      [
+        "Do you support Power BI?",
+        "Yes. Reporting work can include data requirements, models and dashboards, with access and refresh arrangements suited to your environment."
+      ],
+      [
+        "How often will the data update?",
+        "The refresh schedule depends on your source systems, APIs, connectors and licences. We confirm what is practical, make the timing visible and define how exceptions are handled."
+      ]
+    ],
+    "related": [
+      "operations",
+      "fractional",
+      "shopify"
+    ]
+  },
+  {
+    "key": "google",
+    "slug": "google-ads-management",
+    "label": "Google Ads & Shopping",
+    "title": "Google Ads & Shopping Management Canada | Simple Consulting",
+    "description": "Google Ads and Shopping support for Canadian businesses: campaign reviews, search terms, product feeds and conversion measurement. Work directly with Scott.",
+    "heading": "Google Ads support focused on the business behind the clicks.",
+    "intro": "Know what your advertising is bringing in and where the next improvement belongs. I review campaigns, Shopping feeds and conversion measurement alongside your products, landing pages and margins.",
+    "fit": "For Canadian product and service businesses seeking a focused campaign review or scoped ongoing support.",
+    "deliverable": "A review of campaign and measurement issues, a prioritised action plan and the implementation agreed for your account.",
+    "sections": [
+      [
+        "Campaign and search-term review",
+        "Check whether your targeting and campaign structure match what you sell and whom you want to reach. Budget decisions should consider relevance, conversion quality, available evidence and the time it takes a customer to decide.",
+        [
+          "Search campaign structure and ad relevance",
+          "Search-term review and appropriate exclusions",
+          "Budget and bidding settings against business goals",
+          "Landing-page relevance and enquiry paths"
+        ]
+      ],
+      [
+        "Shopping feeds and product campaigns",
+        "Review product data and campaign decisions together. Incomplete feeds, unavailable inventory or unclear product pages can limit what advertising can achieve.",
+        [
+          "Merchant Center product data and reported issues",
+          "Product selection and feed attributes",
+          "Shopping and Performance Max review where relevant",
+          "Margin and stock considerations before scaling spend"
+        ]
+      ],
+      [
+        "Measure enquiries and sales correctly",
+        "A button click is different from a submitted enquiry or a completed booking. We review what the account counts as a conversion and how those records compare with actual sales or qualified leads."
+      ],
+      [
+        "Agree on the work before changing spend",
+        "A project can focus on a campaign, measurement problem or feed issue. Ongoing support includes a defined review cadence and reporting. Your advertising spend remains separate from consulting fees, and changes follow the agreed approval process."
+      ]
+    ],
+    "faq": [
+      [
+        "How do you judge campaign performance?",
+        "We use measures suited to the business: qualified enquiries, sales, contribution and the cost of acquiring them. Reporting compares the agreed baseline with the results while accounting for demand and measurement limits."
+      ],
+      [
+        "Can you review my current agency's work?",
+        "Yes. A second review can focus on a specific question. We define access and scope and share practical findings for your team to consider."
+      ],
+      [
+        "Is Google Ads the same service as Amazon PPC?",
+        "No. They use different accounts, targeting and reporting. Google Ads work has its own scope; Amazon advertising is covered on the Amazon management page."
+      ],
+      [
+        "What is the first step?",
+        "Describe the campaign or measurement issue, or book a free review. We can identify which reports are useful before any account permissions are needed."
+      ]
+    ],
+    "related": [
+      "shopify",
+      "systems",
+      "amazon"
+    ]
+  }
+]
