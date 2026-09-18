@@ -170,3 +170,20 @@ small,.small{font-size:.86rem}
 .hero-audience{font-size:.9rem;color:var(--text);max-width:48ch}.hero-person{display:flex;gap:17px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:25px}.hero-person img{width:64px;height:80px;object-fit:cover;border-radius:6px}.hero-person strong{display:block;font-size:1rem}.hero-person span{display:block;font-size:.83rem;line-height:1.6;color:var(--text)}
 .work-grid{gap:38px}.work-grid p{color:var(--text)}.step-number{display:block;font-size:.8rem;font-weight:600;color:var(--green);padding-bottom:17px;margin-bottom:23px;border-bottom:1px solid #c8d6c9}.supporting-note{border-top:1px solid var(--line);margin-top:35px;padding-top:27px;max-width:870px}.supporting-note h3{font-size:1rem}.supporting-note p{color:var(--text);font-size:.94rem;margin-bottom:0}
 @media(max-width:540px){.hero h1{font-size:2.9rem}.hero .lead{font-size:1.06rem}.hero-person{padding-bottom:20px;margin-bottom:22px}.work-grid{gap:24px}.step-number{margin-bottom:15px;padding-bottom:12px}.hero-audience{font-size:.85rem}}
+
+/* Focused reading paths and a manageable article archive. */
+.assessment-link{display:inline-block;margin-top:19px;font-size:.88rem;font-weight:600}
+.topic-card{display:flex;flex-direction:column;padding:30px;border:1px solid var(--line);border-radius:12px;background:var(--paper);text-decoration:none;color:var(--ink);border-top:3px solid var(--green)}
+.topic-card:hover{background:var(--soft)}
+.topic-card h3{font:400 1.8rem/1.15 "DM Serif Display",Georgia,serif;letter-spacing:-.02em;margin-bottom:18px}
+.topic-card p{color:var(--text);font-size:.94rem}
+.topic-card .card-link{margin-top:auto;font-size:.88rem;font-weight:600;padding-top:10px}
+.post-card{background:#fff}.post-card:focus-visible,.topic-card:focus-visible{outline-offset:5px}
+.article-pagination{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:32px}
+.article-pagination .btn:disabled{cursor:default;opacity:.45}
+.library-status{display:flex;gap:20px;align-items:baseline;justify-content:space-between}
+.text-button{border:0;background:none;color:var(--green);padding:8px 0;text-decoration:underline;text-underline-offset:4px;cursor:pointer;min-height:44px}
+.article-shell{overflow-wrap:break-word}
+.article-body table{display:block;max-width:100%;overflow-x:auto}
+.mobile-links{max-height:calc(100dvh - 100px);overflow-y:auto;overscroll-behavior:contain}
+@media(max-width:540px){.topic-card{padding:24px}.article-pagination{gap:12px}.article-pagination .btn{padding-inline:14px}.article-pagination span{font-size:.82rem}.library-status{align-items:center}.library-status p{margin-bottom:0}}

@@ -16,6 +16,7 @@
   let source = location.pathname;
   if (Object.hasOwn(services, key)) source += ' | service: ' + key;
   try { const ref = new URL(document.referrer); if (ref.origin === location.origin) source += ' | from: ' + ref.pathname; } catch {}
+  for (const [name, value] of Object.entries(window.scCampaign || {})) source += ' | ' + name + ': ' + value;
   field('source_page').value = source;
   let attempted = false, sending = false, completed = false;
   function validateOne(name) {

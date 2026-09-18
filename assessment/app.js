@@ -34,13 +34,13 @@ function needsView() {
 }
 function summaryView() {
   const r=assess(state);
-  const book=`<a id="book" class="${r.route==='review'?'primary':'secondary'}" href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer">Book a free channel review <span aria-hidden="true">↗</span><span class="sr-only"> (opens a new tab)</span></a>`;
+  const book=`<a id="book" class="${r.route==='review'?'primary':'secondary'}" href="${BOOKING_URL}" target="_blank" rel="noopener noreferrer">Book a free call <span aria-hidden="true">↗</span><span class="sr-only"> (opens a new tab)</span></a>`;
   const message=`<button id="message" class="${r.route==='message'?'primary':'secondary'}">Send a message <span aria-hidden="true">↗</span></button>`;
   return `${top(2)}<h2 id="step-title" tabindex="-1">Here’s your starting point.</h2><p class="section-sub">Based on your answers. A closer review will help confirm the priorities.</p>
     <div class="brief"><p class="brief-eyebrow">YOUR NEEDS, AT A GLANCE</p><p class="summary-text">${esc(r.summary)}</p><div class="summary-meta"><span>${STAGES[state.stage]}</span><span>${TIMING[state.timing]}</span></div></div>
     <h3 class="focus-heading">${r.priorities.length>1?'Suggested starting points':'Suggested starting point'}</h3><ol class="focus-list">${r.priorities.map((k,i)=>`<li><span class="focus-num" aria-hidden="true">0${i+1}</span><div><strong>${ISSUES[k].focus}</strong><p>${ISSUES[k].action}</p></div></li>`).join('')}</ol>
     ${r.recovery?`<p class="caveat">${RECOVERY_NOTE}</p>`:''}
-    <div class="next-step"><span class="recommend-label">A RECOMMENDED NEXT STEP</span><h3>${r.route==='message'?'Start with a message.':'Let’s talk through your channels.'}</h3><p>${r.reason}</p><div class="cta-row">${r.route==='review'?book+message:message+book}</div><p class="booking-hint">Free 30-minute review with Scott. Copy your summary to include with your booking.</p></div>
+    <div class="next-step"><span class="recommend-label">A RECOMMENDED NEXT STEP</span><h3>${r.route==='message'?'Start with a message.':'Let’s talk through your channels.'}</h3><p>${r.reason}</p><div class="cta-row">${r.route==='review'?book+message:message+book}</div><p class="booking-hint">Free 30-minute conversation with Scott. Detailed audits are scoped separately. Copy your summary to include with your booking.</p></div>
     <div class="utility-row"><button class="text-link" id="copy-summary">Copy needs summary <span aria-hidden="true">↗</span></button><button class="text-link" id="back">← Edit my answers</button></div><p class="status" id="summary-status" role="status"></p><div class="summary-export" id="summary-export" hidden><label class="field-label" for="summary-text">Select and copy your summary</label><textarea id="summary-text" readonly>${esc(r.text)}</textarea></div>`;
 }
 function render(focus=false) {
