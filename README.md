@@ -8,11 +8,11 @@ Static website for www.simpleconsulting.ca. Generated HTML is committed so the e
 - `posts.json`: articles, category, optional featured flag and stable URL slug.
 - `scripts/build_site.py`: homepage, contact, about, services hub and shared templates.
 - `assets/site.css`: shared responsive styling.
-- `assets/site.js`: navigation, article filters and optional analytics hook.
+- `assets/site.js`: navigation, shareable article filters/pagination, campaign labels and optional analytics hook.
 - `assets/contact.js`: enquiry form, calendar and assessment handoff.
 - `assessment/`: existing standalone and embedded assessment.
 
-Run `python3 scripts/build_site.py` after editing. Do not change an existing article's `slug` when revising its title. Update its `updated` date only for a substantive editorial change. Set the generator's `TODAY` date when core pages materially change. The generator preserves the original publication date and creates canonical `/blog/` pages plus redirects for the 90 legacy root article URLs already present in this repository.
+Run `python3 scripts/build_site.py` after editing. Do not change an existing article's `slug` when revising its title. Update its `updated` date only for a substantive editorial change. Set the generator's `TODAY` date when core pages materially change. The generator preserves the original publication date and creates canonical `/blog/` pages, focused `/insights/` collections and redirects for the 112 legacy root article URLs already present in this repository.
 
 ## Verification
 
@@ -26,7 +26,11 @@ For local visual review, run `python3 -m http.server 8000` in the repository, th
 
 This change is prepared for review; merging into the branch used by the existing host may publish it. Do not merge or publish without Scott's approval.
 
-The automated static and DOM checks pass. A fresh browser visual review of the proposed desktop/mobile layouts remains outstanding because the work-session browser blocked local preview URLs. Hosted form delivery, Calendly rendering and a real booking were not tested. After approval and publication, verify the live pages and contact routes before considering the rollout complete.
+The static, DOM and Chromium checks pass. Browser coverage includes 1440, 390 and 320 px layouts, archive pagination/search, the assessment handoff, campaign labels, and mocked form failure/success. Screenshots were inspected. No real enquiry or appointment was submitted. Verify actual delivery and scheduling through an authorised live check after publication.
+
+Run `npm ci`, `npm run build`, `npm run check` and `npm test`. For browser QA run `npx playwright install chromium` and `npm run test:browser`; alternatively set `CHROMIUM_PATH` to an existing compatible Chromium executable. Local QA intercepts third-party requests. Test reports/screenshots are saved in ignored `test-results/`.
+
+Before committing, run the generator and confirm generated files are included. After committing, rerun `npm run build` and `git diff --exit-code` to detect stale outputs. See `GROWTH-REVIEW.md` for the audit, exact changes, traffic plan and remaining account-dependent work.
 
 The existing Formspree endpoint and Calendly event are retained. Analytics hooks are present, but no analytics property or tracker is configured. A click on a booking link is not counted as a completed lead; form success and an embedded Calendly scheduling event are separate signals. Direct bookings in another tab must be reconciled through Calendly or an appropriately configured integration. Validate actual attribution before using it to evaluate acquisition.
 

@@ -4,7 +4,11 @@
   "scripts": {
     "build": "python3 scripts/build_site.py",
     "check": "python3 scripts/check_site.py && node --check assets/site.js && node --check assets/contact.js",
-    "test": "node scripts/check_interactions.cjs"
+    "test": "node scripts/check_interactions.cjs",
+    "test:browser": "node scripts/check_browser.cjs"
   },
-  "devDependencies": { "jsdom": "30.0.1" }
+  "devDependencies": {
+    "jsdom": "30.0.1",
+    "playwright": "1.62.1"
+  }
 }

@@ -28,7 +28,7 @@ class Page(HTMLParser):
  def handle_endtag(self,tag):
   if tag=='title':self.intitle=False
   if tag=='script' and self.schema is not None:self.schemas.append(json.loads(self.schema));self.schema=None
-pages={p.relative_to(ROOT).as_posix():Page(p) for p in ROOT.rglob('*.html') if '.git' not in p.parts and not p.read_text().startswith('google-site-verification:')}
+pages={p.relative_to(ROOT).as_posix():Page(p) for p in ROOT.rglob('*.html') if not {'.git','node_modules','test-results'}.intersection(p.parts) and not p.read_text().startswith('google-site-verification:')}
 errors=[];titles={};canonical=[]
 for name,p in pages.items():
  def check(test,msg):
