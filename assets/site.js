@@ -31,6 +31,12 @@
     if (typeof window.gtag === 'function') window.gtag('event', name, {...campaign, ...props});
   };
   document.querySelectorAll('[data-event]').forEach(a => a.addEventListener('click', () => window.scTrack(a.dataset.event, {page_path: location.pathname})));
+  document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+    if (!a.dataset.event) a.addEventListener('click', () => window.scTrack('email_click', {page_path: location.pathname}));
+  });
+  document.querySelectorAll('a[href*="calendly.com"]').forEach(a => {
+    if (!a.dataset.event) a.addEventListener('click', () => window.scTrack('booking_open', {method:'direct',page_path:location.pathname}));
+  });
   const search = document.getElementById('article-search');
   if (search) {
     const buttons = [...document.querySelectorAll('[data-filter]')];
