@@ -143,8 +143,8 @@
     "key": "reimbursement",
     "slug": "reimbursement-recovery",
     "label": "Reimbursement reviews",
-    "title": "Amazon & Walmart Reimbursement Review | Simple Consulting",
-    "description": "Reconcile Amazon and Walmart shipment, return, inventory and fee records. Assess potential claim eligibility with Scott. Reimbursements are not guaranteed.",
+    "title": "Amazon & Walmart Reimbursement Services Canada | Simple Consulting",
+    "description": "Amazon and Walmart reimbursement review services for Canadian brands. Reconcile WFS/FBA shipments, returns, inventory, settlements and prior credits.",
     "heading": "Make sense of Amazon and Walmart reimbursement discrepancies.",
     "intro": "Shipment, return and settlement reports do not always tell the same story. I match the records, check prior credits and help you understand which differences need an explanation or may support a claim.",
     "fit": "You have an unresolved shipment, return, inventory or fee discrepancy and need a clear view of the records.",
@@ -169,6 +169,16 @@
           "Distinguish documented discrepancies from confirmed credits",
           "Identify missing documentation before submission",
           "Prepare and track eligible submissions where authorised"
+        ]
+      ],
+      [
+        "Walmart Marketplace and WFS reimbursement reviews",
+        "For Walmart Marketplace and WFS, I connect return, settlement, receiving and inventory records before treating a difference as a potential reimbursement. The review includes prior credits and later adjustments so the same event is not counted twice.",
+        [
+          "WFS inbound and receiving discrepancies",
+          "Marketplace returns and related inventory movements",
+          "Settlement entries, adjustments and prior credits",
+          "Potential claim records organised against current programme requirements"
         ]
       ],
       [
@@ -470,10 +480,10 @@
     "key": "google",
     "slug": "google-ads-management",
     "label": "Google Ads & Shopping",
-    "title": "Google Ads & Shopping Management Canada | Simple Consulting",
-    "description": "Google Ads and Shopping support for Canadian businesses: campaign reviews, search terms, product feeds and conversion measurement. Work directly with Scott.",
-    "heading": "Google Ads support focused on the business behind the clicks.",
-    "intro": "Know what your advertising is bringing in and where the next improvement belongs. I review campaigns, Shopping feeds and conversion measurement alongside your products, landing pages and margins.",
+    "title": "Google Ads Management Service Canada | Simple Consulting",
+    "description": "Google Ads management service for Canadian businesses. Campaign reviews, search terms, Shopping feeds, landing pages and conversion measurement with Scott Nguyen.",
+    "heading": "Google Ads management focused on qualified enquiries and profitable sales.",
+    "intro": "I provide hands-on Google Ads management and focused account reviews for Canadian businesses. Campaign structure, search terms, Shopping feeds, landing pages and conversion measurement are reviewed together so spend decisions connect back to the business result.",
     "fit": "For Canadian product and service businesses seeking a focused campaign review or scoped ongoing support.",
     "deliverable": "A review of campaign and measurement issues, a prioritised action plan and the implementation agreed for your account.",
     "sections": [
