@@ -6,7 +6,8 @@
   const value = id => Math.max(0, Number(document.getElementById(id).value) || 0);
   const side = key => {
     const price=value('sell-price'), product=value('product-cost');
-    const total=product+['referral','fulfilment','storage','inbound','returns','ads','other'].reduce((sum,k)=>sum+value(key+'-'+k),0);
+    const referral=price*(value(key+'-referral')/100);
+    const total=product+referral+['fulfilment','storage','inbound','returns','ads','other'].reduce((sum,k)=>sum+value(key+'-'+k),0);
     const contribution=price-total;
     return {price,total,contribution,margin:price>0?contribution/price:0};
   };
