@@ -6,7 +6,7 @@ import json, re, datetime
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = 'https://www.simpleconsulting.ca'
-TODAY = '2026-09-18'
+TODAY = '2026-09-27'
 SERVICES = json.loads((ROOT/'content/services.json').read_text())
 BY_KEY = {s['key']:s for s in SERVICES}
 GENERAL = {'key':'general','slug':'services','label':'E-commerce consulting services','fit':'Explore practical support for your channels, operations, website and advertising. We can discuss which service fits your situation.'}
@@ -80,7 +80,7 @@ def topic_breadcrumb(p):
 def service_guides(s):
     posts=sorted([p for p in POSTS if service_for(p)['key']==s['key']],key=lambda p:(bool(p.get('featured')),p.get('updated',postdate(p))),reverse=True)[:3]
     if not posts: return ''
-    return '<section class="section soft"><div class="container"><div class="section-heading"><p class="eyebrow">Before we talk</p><h2>Useful reading for this work.</h2></div><div class="post-list">'+''.join(post_card(p) for p in posts)+'</div></div></section>'
+    return '<section class="section soft"><div class="container"><div class="section-heading"><p class="eyebrow">Before we talk</p><h2>Useful reading for this work.</h2><p>Use these guides to understand the records, decisions and operating work behind the service before deciding whether you need outside support.</p></div><div class="post-list">'+''.join(post_card(p) for p in posts)+'</div></div></section>'
 def topic_pages():
     for key,t in TOPICS.items():
         posts=[p for p in POSTS if service_for(p)['key'] in t['services']]
@@ -112,7 +112,7 @@ def service_pages():
             body+=f'<section id="section-{i+1}"><h2>{E(title)}</h2><p>{E(p)}</p>'
             if lists: body+='<ul>'+''.join('<li>'+E(x)+'</li>' for x in lists[0])+'</ul>'
             body+='</section>'
-        body+=f'''</div><aside class="service-sidebar"><h2>A good fit</h2><p>{E(s['fit'])}</p><hr><h2>What you can expect</h2><p>{E(s['deliverable'])}</p><hr><h2>Work directly with Scott</h2><p>No handoff to a junior account manager. I stay involved in the agreed work from review through follow-up.</p><hr><h2>Talk it through first</h2><p>The first 30-minute call is free. We will talk through the issue and agree on the work and fees before starting.</p><a class="btn" href="/booking.html?service={s['key']}#booking">Book a free call</a><a href="/booking.html?service={s['key']}#start">Prefer to send a message?</a></aside></div></section><section class="section soft"><div class="container"><h2>Questions before we start</h2>{faq(s['faq'])}</div></section><section class="section"><div class="container"><h2>Related support</h2><div class="grid">{''.join(service_card(BY_KEY[k]) for k in s['related'])}</div></div></section>{service_guides(s)}{cta(s['key'])}'''
+        body+=f'''</div><aside class="service-sidebar"><h2>A good fit</h2><p>{E(s['fit'])}</p><hr><h2>What you can expect</h2><p>{E(s['deliverable'])}</p><hr><h2>Work directly with Scott</h2><p>No handoff to a junior account manager. I stay involved in the agreed work from review through follow-up.</p><p class="small muted">15+ years across retail, e-commerce and operations, including nine years at Staples Canada.</p><hr><h2>Talk it through first</h2><p>The first 30-minute call is free. We will talk through the issue and agree on the work and fees before starting.</p><a class="btn" href="/booking.html?service={s['key']}#booking">Book a free call</a><a href="/booking.html?service={s['key']}#start">Prefer to send a message?</a></aside></div></section><section class="section soft"><div class="container"><h2>Questions before we start</h2>{faq(s['faq'])}</div></section><section class="section"><div class="container"><div class="section-heading"><p class="eyebrow">Connected work</p><h2>Related support</h2><p>Marketplace issues rarely stay in one part of the business. These services cover the adjacent account, inventory and reporting work that may be involved.</p></div><div class="grid">{''.join(service_card(BY_KEY[k]) for k in s['related'])}</div></div></section>{service_guides(s)}{cta(s['key'])}'''
         canonical=url(s['slug']+'.html')
         schemas=[{'@type':'Service','@id':canonical+'#service','name':s['label'],'serviceType':s['heading'].rstrip('.'),'description':s['intro'],'url':canonical,'provider':{'@id':SITE+'/#organization'},'areaServed':[{'@type':'Country','name':'Canada'},{'@type':'Country','name':'United States'}]},{'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':SITE+'/'},{'@type':'ListItem','position':2,'name':'Services','item':SITE+'/services.html'},{'@type':'ListItem','position':3,'name':s['label'],'item':canonical}]}]
         base(s['slug']+'.html',s['title'],s['description'],body,schemas)
