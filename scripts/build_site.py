@@ -201,7 +201,7 @@ def blog():
         seen.add(slug);p['slug']=slug
     sorted_posts=sorted(POSTS,key=lambda p: (p.get('updated',postdate(p)),postdate(p)),reverse=True)
     priority_keys={'amazon','walmart','operations','reimbursement'}
-    display_posts=sorted(sorted_posts,key=lambda p: (service_for(p)['key'] not in priority_keys, -(datetime.datetime.strptime(p.get('updated',p['date']),'%b %d, %Y').timestamp())))
+    display_posts=[p for p in sorted_posts if service_for(p)['key'] in priority_keys]+[p for p in sorted_posts if service_for(p)['key'] not in priority_keys]
     cards=''.join(post_card(p, filterable=True) for p in display_posts)
     tags=['Marketplaces','E-commerce','Operations','Google Ads','ERP','SEO','Web','Growth']
     buttons='<button type="button" data-filter="all" aria-pressed="true">All</button>'+''.join(f'<button type="button" data-filter="{E(t)}" aria-pressed="false">{E("Systems & reporting" if t=="ERP" else t)}</button>' for t in tags)
