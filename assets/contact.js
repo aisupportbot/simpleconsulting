@@ -18,6 +18,15 @@
   try { const ref = new URL(document.referrer); if (ref.origin === location.origin) source += ' | from: ' + ref.pathname; } catch {}
   for (const [name, value] of Object.entries(window.scCampaign || {})) source += ' | ' + name + ': ' + value;
   field('source_page').value = source;
+  try {
+    const transfer = JSON.parse(sessionStorage.getItem('sc-assessment-transfer') || 'null');
+    if (transfer && typeof transfer.summary === 'string' && transfer.summary.length <= 10000 && Array.isArray(transfer.channels)) {
+      field('message').value = transfer.summary;
+      field('channel').value = transfer.channels.length === 1 && ['amazon','walmart'].includes(transfer.channels[0]) ? transfer.channels[0] : transfer.channels.length > 1 ? 'both' : '';
+      sessionStorage.removeItem('sc-assessment-transfer');
+      document.getElementById('copy-status').textContent = 'Your assessment summary is ready below. Add your contact details or copy it into your booking notes.';
+    }
+  } catch {}
   let attempted = false, sending = false, completed = false;
   function validateOne(name) {
     const el = field(name);
