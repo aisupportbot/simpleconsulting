@@ -11,7 +11,8 @@ SERVICES = json.loads((ROOT/'content/services.json').read_text())
 BY_KEY = {s['key']:s for s in SERVICES}
 GENERAL = {'key':'general','slug':'services','label':'E-commerce consulting services','fit':'Explore practical support for your channels, operations, website and advertising. We can discuss which service fits your situation.'}
 POSTS = json.loads((ROOT/'posts.json').read_text())
-CORE = ['index.html','services.html','about.html','booking.html','privacy.html','blog.html']+[s['slug']+'.html' for s in SERVICES]
+COMMERCIAL = ['amazon-seller-central-consultant-canada.html','amazon-vendor-central-consultant-canada.html']
+CORE = ['index.html','services.html','about.html','booking.html','privacy.html','blog.html']+[s['slug']+'.html' for s in SERVICES]+COMMERCIAL
 E = lambda s: escape(str(s), quote=True)
 def plain(s): return unescape(re.sub('<[^>]+>',' ',s)).strip()
 def url(file): return SITE + ('/' if file=='index.html' else '/'+file)
@@ -116,6 +117,60 @@ def service_pages():
         canonical=url(s['slug']+'.html')
         schemas=[{'@type':'Service','@id':canonical+'#service','name':s['label'],'serviceType':s['heading'].rstrip('.'),'description':s['intro'],'url':canonical,'provider':{'@id':SITE+'/#organization'},'areaServed':[{'@type':'Country','name':'Canada'},{'@type':'Country','name':'United States'}]},{'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':SITE+'/'},{'@type':'ListItem','position':2,'name':'Services','item':SITE+'/services.html'},{'@type':'ListItem','position':3,'name':s['label'],'item':canonical}]}]
         base(s['slug']+'.html',s['title'],s['description'],body,schemas)
+def commercial_pages():
+    pages=[
+      {
+        'file':'amazon-seller-central-consultant-canada.html',
+        'title':'Amazon Seller Central Consultant Canada | Simple Consulting',
+        'description':'Hands-on Amazon Seller Central consulting for Canadian brands. Listings, FBA, account issues, inventory and advertising support with Scott Nguyen.',
+        'eyebrow':'Amazon Seller Central consultant · Canada',
+        'h1':'Seller Central support for the account work that needs an owner.',
+        'intro':'If Seller Central keeps pulling your team into listing issues, FBA questions, advertising decisions and unresolved cases, I can take on a defined part of the work or help manage the account on an ongoing basis.',
+        'sections':[
+          ('Seller Central account management','Support can cover catalogue maintenance, listing issues, account notices, FBA inventory, shipment follow-up and the recurring work that otherwise stays on an internal to-do list.'),
+          ('FBA and inventory coordination','Seller Central decisions should connect to stock. I review sellable inventory, inbound shipments, replenishment needs and discrepancies so account actions are not made in isolation.'),
+          ('Advertising and listing follow-through','Campaign changes work better when the offer, listing and inventory are ready. I review the relevant reports and coordinate the agreed listing or PPC actions with the wider account priorities.'),
+          ('One problem or ongoing support','You do not need to outsource the whole account. Start with a recurring issue, a backlog of tasks or a defined Seller Central responsibility and build the scope from there.')
+        ],
+        'faq':[
+          ('Do you work directly in Seller Central?','Where account access is appropriate, use Amazon permission controls rather than sharing a password. We agree on the scope and access needed before work begins.'),
+          ('Can you help with FBA issues?','Yes. The work can include inbound planning, receiving discrepancies, inventory questions and the records needed to understand an issue. Amazon determines account and reimbursement decisions.'),
+          ('Can you work with an existing agency or employee?','Yes. I can own a defined set of Seller Central tasks and coordinate with your existing team, agency or operations provider.'),
+          ('What is the first step?','Book a free 30-minute call or send a message describing the account issue. Detailed review or implementation is scoped separately.')
+        ],
+        'service':'amazon'
+      },
+      {
+        'file':'amazon-vendor-central-consultant-canada.html',
+        'title':'Amazon Vendor Central Consultant Canada | Simple Consulting',
+        'description':'Amazon Vendor Central consulting for Canadian brands: purchase orders, shortages, chargebacks, catalogue, reporting and operating follow-through.',
+        'eyebrow':'Amazon Vendor Central consultant · Canada',
+        'h1':'Vendor Central support for the work behind the wholesale account.',
+        'intro':'Vendor Central has a different operating rhythm from Seller Central. I help brands organise purchase orders, shipment records, catalogue work, deductions and reporting so the wholesale account has clear ownership.',
+        'sections':[
+          ('Purchase orders and shipment coordination','Review purchase-order confirmations, shipment requirements, fulfilment records and the handoffs between the account, warehouse and internal team.'),
+          ('Shortages, deductions and chargebacks','Compare Amazon records with shipment and receiving evidence before deciding what needs explanation or follow-up. A deduction is not automatically recoverable; the supporting records and programme rules matter.'),
+          ('Catalogue and reporting','Keep item information, operational reports and open account issues in a usable work queue. When a business uses both Vendor Central and Seller Central, responsibilities and reporting should stay clearly separated.'),
+          ('Practical account ownership','Support can be a focused Vendor Central project or an ongoing operating role. The goal is to keep purchase orders, exceptions and follow-up visible rather than letting issues sit across several teams.')
+        ],
+        'faq':[
+          ('Do you support Amazon Vendor Central in Canada?','Yes. I work with Canadian businesses using Vendor Central and can also help coordinate work that spans Seller Central. Country-specific requirements are checked for the account in question.'),
+          ('Can you help review shortages or chargebacks?','Yes. I can reconcile the relevant records and organise the follow-up. Amazon determines whether any dispute or adjustment is accepted.'),
+          ('Do you negotiate Amazon commercial terms?','The scope can include reviewing the operational and reporting impact of terms. Formal commercial negotiations depend on the engagement and the information available.'),
+          ('How do we start?','Begin with a free 30-minute conversation about the Vendor Central issue, account model and records available. Paid work is agreed before a detailed review begins.')
+        ],
+        'service':'amazon'
+      }
+    ]
+    for p in pages:
+        body=f'''<div class="container crumbs"><a href="/">Home</a> / <a href="/amazon-management.html">Amazon management</a> / {E(p['eyebrow'].split(' · ')[0])}</div><section class="page-hero"><div class="container"><p class="eyebrow">{E(p['eyebrow'])}</p><h1>{E(p['h1'])}</h1><p class="lead">{E(p['intro'])}</p>{btns('amazon')}</div></section><section class="section"><div class="container service-layout"><div class="service-content">'''
+        for i,(title,text) in enumerate(p['sections']):
+            body+=f'<section id="section-{i+1}"><h2>{E(title)}</h2><p>{E(text)}</p></section>'
+        body+=f'''</div><aside class="service-sidebar"><h2>Work directly with Scott</h2><p>No handoff to a junior account manager. I stay involved in the agreed work from review through follow-up.</p><hr><h2>Related Amazon support</h2><p>Need broader account ownership? See <a href="/amazon-management.html">Amazon account management</a>.</p><hr><h2>Start with the issue</h2><a class="btn" href="/booking.html?service=amazon#booking">Book a free call</a><a href="/booking.html?service=amazon#start">Prefer to send a message?</a></aside></div></section><section class="section soft"><div class="container"><h2>Questions before we start</h2>{faq(p['faq'])}</div></section>{cta('amazon')}'''
+        canonical=url(p['file'])
+        schemas=[{'@type':'Service','@id':canonical+'#service','name':p['eyebrow'].split(' · ')[0],'serviceType':p['h1'].rstrip('.'),'description':p['intro'],'url':canonical,'provider':{'@id':SITE+'/#organization'},'areaServed':[{'@type':'Country','name':'Canada'}]}]
+        base(p['file'],p['title'],p['description'],body,schemas)
+
 def services_hub():
     body=f'''<section class="page-hero"><div class="container"><p class="eyebrow">Marketplace &amp; e-commerce services</p><h1>The channel work.<br>The operations behind it.</h1><p class="lead">Start with Amazon, Walmart or a recurring inventory and fulfilment problem. I can take on a focused project, manage the ongoing work or coordinate priorities across your channels.</p>{btns()}</div></section><section class="section"><div class="container"><div class="section-heading"><p class="eyebrow">Core services</p><h2>Where I can take work off your plate.</h2></div><div class="grid">{''.join(service_card(BY_KEY[k],i+1) for i,k in enumerate(['amazon','walmart','operations']))}</div></div></section><section class="section soft"><div class="container"><div class="section-heading"><p class="eyebrow">Supporting your wider business</p><h2>Connect the work around your channels.</h2><p>Choose these services when the issue extends into your store, records, reporting, advertising or the coordination between teams.</p></div><div class="grid two">{''.join(service_card(BY_KEY[k]) for k in ['reimbursement','fractional','shopify','systems','google'])}</div></div></section><section class="section"><div class="container split"><div><p class="eyebrow">Other retail channels</p><h2>Working with another retailer?</h2></div><div><p class="lead">My background also includes Best Buy Canada, Costco, Wayfair, Home Depot and other retail channels.</p><p>Tell me which retailer you work with and where you need help: product setup, onboarding, fulfilment or the recurring account work.</p><a href="/booking.html#start">Tell me about your channel →</a></div></div></section>{cta()}'''
     base('services.html','Marketplace & E-commerce Consulting Canada | Simple Consulting','Amazon and Walmart management, inventory and fulfilment consulting, with supporting Shopify, reporting and fractional e-commerce services. Work with Scott.',body)
@@ -176,5 +231,5 @@ def sitemap():
 def not_found():
     base('404.html','Page Not Found | Simple Consulting','Find the Simple Consulting service or guide you need.','<section class="section"><div class="container"><p class="eyebrow">404 · Page not found</p><h1>Let’s get you to the right place.</h1><p>The page may have moved. Browse the services or search the article library.</p><div class="actions"><a class="btn" href="/services.html">Explore services</a><a class="btn secondary" href="/blog.html">Find an article</a></div><a href="/">Return to the homepage</a></div></section>',robots='noindex,follow')
 if __name__=='__main__':
-    home();service_pages();services_hub();about();booking();privacy();blog();topic_pages();sitemap();not_found()
+    home();service_pages();commercial_pages();services_hub();about();booking();privacy();blog();topic_pages();sitemap();not_found()
     print('Generated',len(CORE),'core pages and',len(POSTS),'articles; existing legacy URLs redirect to their canonical articles.')
