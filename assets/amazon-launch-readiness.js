@@ -13,5 +13,6 @@
     const text='Amazon Canada launch readiness\n\n'+boxes.map(b=>(b.checked?'[x] ':'[ ] ')+b.dataset.label).join('\n');
     try{await navigator.clipboard.writeText(text);window.scTrack?.('amazon_readiness_copy',{page_path:location.pathname});summary.textContent='Readiness summary copied. Review it before sharing or using it in your launch plan.';}catch{summary.textContent='Automatic copy is unavailable in this browser.';}
   });
+  document.getElementById('discuss-amazon-readiness')?.addEventListener('click',()=>{const text='Amazon Canada launch readiness\n\n'+boxes.map(b=>(b.checked?'[x] ':'[ ] ')+b.dataset.label).join('\n');try{sessionStorage.setItem('sc-tool-transfer',JSON.stringify({summary:text,service:'amazon'}));}catch{} window.scTrack?.('tool_result_to_contact',{tool:'amazon_readiness',page_path:location.pathname});});
   update();
 })();
