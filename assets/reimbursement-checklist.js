@@ -20,5 +20,6 @@
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='marketplace-reimbursement-checklist.csv';a.click();URL.revokeObjectURL(a.href);
     window.scTrack?.('reimbursement_checklist_download',{page_path:location.pathname});
   });
+  document.getElementById('discuss-reimbursement')?.addEventListener('click',()=>{try{sessionStorage.setItem('sc-tool-transfer',JSON.stringify({summary:'Marketplace reimbursement reconciliation checklist\n\n'+lines().join('\n'),service:'reimbursement'}));}catch{} window.scTrack?.('tool_result_to_contact',{tool:'reimbursement_checklist',page_path:location.pathname});});
   update();
 })();
