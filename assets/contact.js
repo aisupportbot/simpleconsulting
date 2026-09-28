@@ -27,6 +27,15 @@
       document.getElementById('copy-status').textContent = 'Your assessment summary is ready below. Add your contact details or copy it into your booking notes.';
     }
   } catch {}
+  try {
+    const tool = JSON.parse(sessionStorage.getItem('sc-tool-transfer') || 'null');
+    if (tool && typeof tool.summary === 'string' && tool.summary.length <= 10000) {
+      field('message').value = field('message').value.trim() ? field('message').value.trim()+'\n\n'+tool.summary : tool.summary;
+      if (typeof tool.service === 'string' && ['amazon','walmart','reimbursement','operations','shopify','fractional','systems','google'].includes(tool.service)) field('channel').value = tool.service;
+      sessionStorage.removeItem('sc-tool-transfer');
+      document.getElementById('copy-status').textContent = 'Your tool results are ready below. Add your contact details, review the message and press Send when ready.';
+    }
+  } catch {}
   let attempted = false, sending = false, completed = false;
   function validateOne(name) {
     const el = field(name);
