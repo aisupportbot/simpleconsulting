@@ -229,3 +229,10 @@ small,.small{font-size:.86rem}
 .missing-list li{margin-bottom:8px;color:var(--text)}
 @media(max-width:900px){.tool-grid{grid-template-columns:1fr}.tool-result{position:static}}
 @media(max-width:540px){.tool-panel,.tool-result{padding:22px}.metric-stack>div{display:grid;grid-template-columns:1fr auto}}
+
+/* Contextual conversion path inside high-value articles. */
+.article-inline-cta{margin:0 0 30px;padding:24px 26px;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;background:var(--soft)}
+.article-inline-cta .eyebrow{margin-bottom:8px}
+.article-inline-cta h2{font:600 1.14rem/1.4 "DM Sans",sans-serif;margin-bottom:8px}
+.article-inline-cta p{font-size:.92rem;color:var(--text);margin-bottom:8px}
+.article-inline-cta a{font-size:.9rem;font-weight:600}
