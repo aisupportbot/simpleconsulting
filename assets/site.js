@@ -24,11 +24,22 @@
     try { sessionStorage.setItem('sc-campaign', JSON.stringify({values:campaign,expires:Date.now()+30*60*1000})); } catch {}
   }
   window.scCampaign = Object.freeze(campaign);
-  // Optional analytics hook only: no tracker or identifier is installed here.
-  // No names, emails, message text, or URL query strings enter analytics.
+  // The shared page template installs the Google Ads tag.
+  // These event payloads contain no names, emails or message text.
   window.scTrack = (name, props = {}) => {
     document.dispatchEvent(new CustomEvent('simple:analytics', {detail: {event: name, ...campaign, ...props}}));
-    if (typeof window.gtag === 'function') window.gtag('event', name, {...campaign, ...props});
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, {...campaign, ...props});
+      // This conversion action is specifically for accepted contact-form enquiries.
+      // contact.js emits it only after Formspree succeeds and prevents duplicates.
+      if (name === 'generate_lead' && props.method === 'form') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-11153604634/XCHSCJva7oodEJqAusYp',
+          value: 1.0,
+          currency: 'CAD'
+        });
+      }
+    }
   };
   document.querySelectorAll('[data-event]').forEach(a => a.addEventListener('click', () => window.scTrack(a.dataset.event, {page_path: location.pathname})));
   document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
