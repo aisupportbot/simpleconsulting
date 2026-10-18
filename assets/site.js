@@ -29,7 +29,19 @@
   window.scTrack = (name, props = {}) => {
     document.dispatchEvent(new CustomEvent('simple:analytics', {detail: {event: name, ...campaign, ...props}}));
     if (typeof window.gtag === 'function') {
-      window.gtag('event', name, {...campaign, ...props});
+      const analyticsEvent = name === 'generate_lead' && props.method === 'calendar' ? 'appointment_booked' : name;
+      // Route engagement events to GA4 only; the dedicated Ads action stays separate.
+      const safeProps = {page_path: location.pathname};
+      const allowed = {
+        method: ['form', 'calendar', 'direct', 'embed'],
+        service: ['amazon', 'walmart', 'reimbursement', 'operations', 'shopify', 'fractional', 'systems', 'google', 'other'],
+        next_step: ['book', 'message'],
+        tool: ['amazon_readiness', 'launch_margin', 'reimbursement_checklist', 'fba_wfs']
+      };
+      for (const [key, values] of Object.entries(allowed)) {
+        if (values.includes(props[key])) safeProps[key] = props[key];
+      }
+      window.gtag('event', analyticsEvent, {...campaign, ...safeProps, send_to: 'G-0DL10SRED9'});
       // This conversion action is specifically for accepted contact-form enquiries.
       // contact.js emits it only after Formspree succeeds and prevents duplicates.
       if (name === 'generate_lead' && props.method === 'form') {
