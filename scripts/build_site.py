@@ -8,12 +8,12 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = 'https://www.simpleconsulting.ca'
 TODAY = '2026-09-27'
 GOOGLE_TAG = """<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11153604634"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18519722703"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'AW-11153604634');
+  gtag('config', 'AW-18519722703');
   // Keep free-text queries and fragments out of Analytics page URLs.
   const analyticsUrl = new URL(location.origin + location.pathname);
   const analyticsParams = new URLSearchParams(location.search);
