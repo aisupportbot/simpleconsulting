@@ -26,6 +26,9 @@ const tick=()=>new Promise(r=>setImmediate(r));
  assert.equal(conversions().length,0);
  const events=[];d.addEventListener('simple:analytics',e=>events.push(e.detail));
  w.fetch=async()=>{calls++;return {ok:accepted}};
+ w.Calendly={initInlineWidget:({url,parentElement})=>{
+   const frame=d.createElement('iframe');frame.src=url;parentElement.appendChild(frame);
+ }};
  w.eval(fs.readFileSync(path.join(root,'assets/contact.js'),'utf8'));
  const submit=()=>form.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
  assert.equal(form.elements.channel.value,'google');
@@ -53,7 +56,8 @@ const tick=()=>new Promise(r=>setImmediate(r));
  receive(payload);assert.equal(form.hidden,false);assert.equal(form.elements.channel.value,'both');assert.match(form.elements.message.value,/QA needs summary/);assert.match(form.elements.message.value,/Please review/);
  receive(payload);assert.equal(form.elements.message.value.split('QA needs summary').length-1,1);
  receive({type:'simple-assessment-resize',height:1200});assert.equal(frame.style.height,'1202px');receive({type:'simple-assessment-resize',height:90000});assert.equal(frame.style.height,'1202px');
- d.getElementById('load-calendar').click();const cal=d.querySelector('#calendar-slot iframe');assert.ok(cal);const leads=()=>events.filter(e=>e.event==='generate_lead').length;assert.equal(leads(),1);
+ d.getElementById('load-calendar').click();await tick();const cal=d.querySelector('#calendar-slot iframe');assert.ok(cal);assert.match(cal.src,/calendly.com\/simpleconsulting\/30min/);const leads=()=>events.filter(e=>e.event==='generate_lead').length;assert.equal(leads(),1);
+ receive({event:'calendly.event_scheduled'},'https://calendly.com',frame.contentWindow);assert.equal(leads(),1,'Unrelated frames cannot report bookings');
  receive({event:'calendly.event_scheduled'},'https://example.com',cal.contentWindow);assert.equal(leads(),1);
  receive({event:'calendly.event_scheduled'},'https://calendly.com',cal.contentWindow);assert.equal(leads(),2);receive({event:'calendly.event_scheduled'},'https://calendly.com',cal.contentWindow);assert.equal(leads(),2);
  assert.equal(conversions().length,1, "Calendar bookings do not count as form submissions");
@@ -65,6 +69,18 @@ const tick=()=>new Promise(r=>setImmediate(r));
  assert.equal(JSON.stringify(safeEvent).includes('qa@example.com'),false);
  assert.equal(gaEvents('generate_lead').length,1);
  dom.window.close();
+ for(const service of ['amazon','walmart']) {
+  const landing=page(service+'-management.html'),lw=landing.window,ld=lw.document;
+  let submitted=0;lw.fetch=async()=>{submitted++;return {ok:true}};
+  lw.eval(fs.readFileSync(path.join(root,'assets/contact.js'),'utf8'));
+  const lf=ld.getElementById('leadform');assert.equal(lf.elements.channel.value,service);
+  lf.elements.name.value='QA';lf.elements.email.value='qa@example.com';lf.elements.message.value='Account help';
+  lf.dispatchEvent(new lw.Event('submit',{cancelable:true}));await tick();
+  assert.equal(submitted,1);assert.equal(lf.hidden,true);
+  const lead=lw.dataLayer.find(a=>a[0]==='event' && a[1]==='generate_lead');assert.equal(lead[2].service,service);
+  assert.ok(ld.querySelector('.mobile-contact a[href="#start"]'));
+  landing.window.close();
+ }
  const b=page('blog.html'),bd=b.window.document;
  assert.equal(bd.getElementById('filter-status').textContent,'1–12 of '+JSON.parse(fs.readFileSync(path.join(root,'posts.json'),'utf8')).length+' articles');
  bd.querySelector('[data-filter="Google Ads"]').click();assert.ok([...bd.querySelectorAll('#post-grid .post-card')].filter(x=>!x.hidden).every(x=>x.dataset.tag==='Google Ads'));
