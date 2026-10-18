@@ -6,7 +6,7 @@ const root=path.resolve(__dirname,'..');
 function page(file,url='https://www.simpleconsulting.ca/'+file){
  const dom=new JSDOM(fs.readFileSync(path.join(root,file),'utf8'),{url,runScripts:'outside-only'});
  const w=dom.window;
- const tag=[...w.document.querySelectorAll('script:not([src])')].find(s=>s.textContent.includes("gtag('config', 'AW-11153604634')"));
+ const tag=[...w.document.querySelectorAll('script:not([src])')].find(s=>s.textContent.includes("gtag('config', 'AW-18519722703')"));
  assert.ok(tag, 'Google Ads initialization is present');
  w.eval(tag.textContent);
  const gaConfig=w.dataLayer.find(args=>args[0]==='config' && args[1]==='G-0DL10SRED9');
@@ -36,7 +36,7 @@ const tick=()=>new Promise(r=>setImmediate(r));
  assert.equal(conversions().length,0);
  accepted=true;submit();await tick();assert.equal(form.hidden,true);assert.equal(d.getElementById('form-success').hidden,false);assert.equal(events.filter(e=>e.event==='generate_lead').length,1);
  assert.equal(conversions().length,1);
- assert.equal(conversions()[0][2].send_to,'AW-11153604634/XCHSCJva7oodEJqAusYp');
+ assert.equal(conversions()[0][2].send_to,'AW-18519722703/E1iQCLaD4aAdEM-V8v5E');
  assert.equal(conversions()[0][2].value,1);assert.equal(conversions()[0][2].currency,'CAD');
  const gaEvents=name=>w.dataLayer.filter(args=>args[0]==='event' && args[1]===name && args[2].send_to==='G-0DL10SRED9');
  assert.equal(gaEvents('generate_lead').length,1);

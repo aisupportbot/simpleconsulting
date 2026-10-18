@@ -46,7 +46,7 @@
       // contact.js emits it only after Formspree succeeds and prevents duplicates.
       if (name === 'generate_lead' && props.method === 'form') {
         window.gtag('event', 'conversion', {
-          send_to: 'AW-11153604634/XCHSCJva7oodEJqAusYp',
+          send_to: 'AW-18519722703/E1iQCLaD4aAdEM-V8v5E',
           value: 1.0,
           currency: 'CAD'
         });
