@@ -11,6 +11,7 @@ const server=http.createServer((req,res)=>{const p=path.join(root,decodeURICompo
  for(const width of [1440,390,320]) {
   const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.route('https://**',route=>route.fulfill({status:200,contentType:'text/html',body:'<p>External booking service stub for local QA.</p>'}));
+  await page.route('https://assets.calendly.com/assets/external/widget.js',route=>route.fulfill({status:200,contentType:'application/javascript',body:'window.Calendly={initInlineWidget:({url,parentElement})=>{const f=document.createElement("iframe");f.src=url;parentElement.appendChild(f)}};'}));
   const pages=['/','/services.html','/amazon-management.html','/walmart-management.html','/booking.html','/blog.html','/insights/amazon.html','/insights/walmart.html','/insights/inventory.html','/blog/amazon-ppc-audit-checklist-canada.html'];
   for(const file of pages){
    await page.goto(origin+file);await page.evaluate(()=>document.fonts.ready);
@@ -25,7 +26,7 @@ const server=http.createServer((req,res)=>{const p=path.join(root,decodeURICompo
   await page.locator('#article-search').fill('not-a-matching-topic-qa');assert(await page.locator('#no-articles').isVisible());await page.locator('#clear-filters').click();assert.equal(await page.locator('#post-grid .post-card:visible').count(),12);
   await page.locator('[data-filter="Marketplaces"]').click();assert(await page.locator('#post-grid .post-card:visible').count()>0);
   await page.goto(origin+'/amazon-management.html?utm_source=google&utm_medium=cpc&utm_campaign=amazon-management&utm_term=private-example');
-  await page.locator('main a[href="/booking.html?service=amazon#start"]').first().click();assert.equal(await page.locator('#channel').inputValue(),'amazon');
+  await page.locator('main a[href="#start"]').first().click();assert.equal(await page.locator('#channel').inputValue(),'amazon');
   const source=await page.locator('#source-page').inputValue();assert(source.includes('utm_campaign: amazon-management'));assert(!source.includes('private-example'));
   let posts=0;await page.route('https://formspree.io/**',async route=>{posts++;await route.fulfill({status:posts===1?422:200,contentType:'application/json',body:'{}'});});
   await page.locator('#send-button').click();assert.equal(posts,0);assert(await page.locator('#name-error').isVisible());

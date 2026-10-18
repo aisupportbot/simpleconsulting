@@ -7,11 +7,11 @@
   const button = document.getElementById('send-button');
   const services = {amazon:'Amazon account',walmart:'Walmart channel',reimbursement:'reimbursement records',operations:'inventory and fulfilment',shopify:'Shopify store',fractional:'e-commerce priorities',systems:'systems and reporting',google:'Google Ads'};
   const params = new URLSearchParams(location.search);
-  const key = params.get('service') || params.get('src');
+  const key = params.get('service') || params.get('src') || form.dataset.service;
   if (Object.hasOwn(services, key)) {
     field('channel').value = key;
-    document.getElementById('contact-heading').textContent = 'Let’s talk about your ' + services[key] + '.';
-    document.getElementById('contact-intro').textContent = 'Describe what you would like help with, or book a free 30-minute call with Scott. Tell me what is happening and we will work out a useful next step.';
+    if (document.getElementById('contact-heading')) document.getElementById('contact-heading').textContent = 'Let’s talk about your ' + services[key] + '.';
+    if (document.getElementById('contact-intro')) document.getElementById('contact-intro').textContent = 'Describe what you would like help with, or book a free 30-minute call with Scott. Tell me what is happening and we will work out a useful next step.';
   }
   let source = location.pathname;
   if (Object.hasOwn(services, key)) source += ' | service: ' + key;
@@ -77,29 +77,57 @@
     catch {const fallback=document.getElementById('copy-fallback');fallback.hidden=false;fallback.value=text;fallback.focus();fallback.select();copyStatus.textContent='Select and copy the enquiry below.';}
   });
   const calendarButton=document.getElementById('load-calendar'),slot=document.getElementById('calendar-slot');
-  let calendarFrame,calendarCounted=false;
-  calendarButton.addEventListener('click',()=>{
-    if(calendarFrame) {slot.hidden=!slot.hidden;calendarButton.textContent=slot.hidden?'Show the calendar here':'Hide the calendar';return;}
-    slot.hidden=false;calendarButton.textContent='Hide the calendar';
-    calendarFrame=document.createElement('iframe');
-    calendarFrame.title='Book a 30-minute call with Scott on Calendly';
-    calendarFrame.src=document.getElementById('calendar-direct').href;
-    calendarFrame.referrerPolicy='strict-origin-when-cross-origin';
-    slot.appendChild(calendarFrame);
-    document.getElementById('calendar-status').textContent='If the calendar does not display, use “Choose a time” above to open it directly.';
-    window.scTrack?.('booking_open',{method:'embed',page_path:location.pathname});
-  });
+  let calendarCounted=false, calendarLoading=false, calendarLoaded=false;
+  async function openCalendar() {
+    if (!slot || calendarLoading) return;
+    if (calendarLoaded) {
+      slot.hidden=!slot.hidden;
+      calendarButton.textContent=slot.hidden?'Choose a time':'Hide the calendar';
+      calendarButton.setAttribute('aria-expanded',String(!slot.hidden));
+      return;
+    }
+    calendarLoading=true; slot.hidden=false;
+    calendarButton.disabled=true;
+    const calendarStatus=document.getElementById('calendar-status');
+    calendarStatus.textContent='Loading available times…';
+    try {
+      if (!window.Calendly?.initInlineWidget) await new Promise((resolve,reject)=>{
+        const script=document.createElement('script');
+        script.src='https://assets.calendly.com/assets/external/widget.js';
+        const timeout=setTimeout(()=>reject(new Error('Calendar timeout')),15000);
+        script.onload=()=>{clearTimeout(timeout);resolve();};
+        script.onerror=()=>{clearTimeout(timeout);reject(new Error('Calendar failed'));};
+        document.head.appendChild(script);
+      });
+      if (!window.Calendly?.initInlineWidget) throw new Error('Calendar unavailable');
+      // The official widget enables confirmed scheduling events. No typed form data is forwarded.
+      const calendarUrl=new URL(document.getElementById('calendar-direct').href);
+      for (const [name,value] of Object.entries(window.scCampaign || {})) calendarUrl.searchParams.set(name,value);
+      window.Calendly.initInlineWidget({url:calendarUrl.href,parentElement:slot,resize:true});
+      calendarLoaded=true;
+      calendarButton.textContent='Hide the calendar';
+      calendarButton.setAttribute('aria-expanded','true');
+      calendarStatus.textContent='Choose a time below. If the calendar does not display, use the link to open Calendly in a new tab.';
+      window.scTrack?.('booking_open',{method:'embed',page_path:location.pathname});
+    } catch {
+      slot.hidden=true;
+      calendarStatus.textContent='The calendar could not load. Open Calendly in a new tab using the link above, or send a message.';
+    } finally {calendarLoading=false;calendarButton.disabled=false;}
+  }
+  calendarButton?.addEventListener('click',openCalendar);
+  if (calendarButton && location.hash==='#booking') openCalendar();
+  addEventListener('hashchange',()=>{if(calendarButton && location.hash==='#booking' && !calendarLoaded) openCalendar();});
   const panel=document.getElementById('assessment-panel'),frame=document.getElementById('assessment-frame');
   function openAssessment(){panel.open=true;frame.hidden=false;if(!frame.getAttribute('src')) {frame.src=frame.dataset.src;window.scTrack?.('assessment_start',{page_path:location.pathname});}}
-  panel.addEventListener('toggle',()=>{if(panel.open)openAssessment();});
-  const fromHash=()=>{if(location.hash==='#assessment')openAssessment();};
+  panel?.addEventListener('toggle',()=>{if(panel.open)openAssessment();});
+  const fromHash=()=>{if(panel && location.hash==='#assessment')openAssessment();};
   addEventListener('hashchange',fromHash);fromHash();
   let previousSummary='';
   addEventListener('message',e=>{
-    if (calendarFrame && e.origin==='https://calendly.com' && e.source===calendarFrame.contentWindow && e.data?.event==='calendly.event_scheduled' && !calendarCounted) {
-      calendarCounted=true;window.scTrack?.('generate_lead',{method:'calendar',page_path:location.pathname});return;
+    if (calendarLoaded && e.origin==='https://calendly.com' && e.source===slot.querySelector('iframe')?.contentWindow && e.data?.event==='calendly.event_scheduled' && !calendarCounted) {
+      calendarCounted=true;window.scTrack?.('generate_lead',{method:'calendar',service:Object.hasOwn(services,key)?key:'other',page_path:location.pathname});return;
     }
-    if(e.origin!==location.origin || e.source!==frame.contentWindow) return;
+    if(!frame || e.origin!==location.origin || e.source!==frame.contentWindow) return;
     const data=e.data;
     if(!data || typeof data!=='object')return;
     if(data.type==='simple-assessment-resize'){
