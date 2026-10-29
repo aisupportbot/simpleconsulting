@@ -1,147 +1,44 @@
-<!DOCTYPE html>
-<html lang="en-CA">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Use Google Ads Audience Targeting to Reach Better Prospects | Simple Consulting</title>
-<meta name="description" content="Keyword targeting gets you in front of searchers. Audience targeting gets you in front of the right searchers.">
-<meta name="author" content="Scott Nguyen — Simple Consulting">
-<link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="How to Use Google Ads Audience Targeting to Reach Better Prospects">
-<meta property="og:description" content="Keyword targeting gets you in front of searchers. Audience targeting gets you in front of the right searchers.">
-<meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html">
-<meta property="og:site_name" content="Simple Consulting">
-<meta property="article:published_time" content="2025-06-30">
-<meta property="article:section" content="Google Ads">
-<meta name="twitter:card" content="summary">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0d0d0d;--white:#fff;--off:#f6f6f4;--border:#e8e8e5;--muted:#999;--text:#555}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--black);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
-nav{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:18px 32px}
-.logo{font-family:'DM Serif Display',serif;font-size:1.2em;letter-spacing:-.01em;color:var(--black);text-decoration:none}
-.nav-links{display:flex;gap:6px;align-items:center}
-.nav-links a{font-size:.86em;font-weight:500;color:var(--text);padding:8px 14px;border-radius:6px;text-decoration:none;transition:background .15s,color .15s}
-.nav-links a:hover{background:var(--off);color:var(--black)}
-.nav-links a.btn{background:var(--black);color:var(--white);font-weight:600;margin-left:6px}
-.nav-links a.btn:hover{background:#2a2a2a}
-.crumbs{max-width:760px;margin:auto;padding:26px 32px 0;font-size:.8em;color:var(--muted)}
-.crumbs a{color:var(--muted);text-decoration:none}
-.crumbs a:hover{color:var(--black)}
-article{max-width:760px;margin:auto;padding:22px 32px 72px}
-.post-tag{display:inline-block;font-size:.72em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-h1{font-family:'DM Serif Display',serif;font-size:2.5em;letter-spacing:-.025em;line-height:1.15;margin-bottom:18px}
-.byline{font-size:.85em;color:var(--muted);padding-bottom:26px;margin-bottom:32px;border-bottom:1px solid var(--border)}
-.body{font-size:1.02em;color:var(--text);line-height:1.85}
-.body p{margin-bottom:20px}
-.body h2,.body h3{font-family:'DM Sans',sans-serif;font-size:1.15em;font-weight:700;color:var(--black);margin:34px 0 14px;line-height:1.35}
-.body ul,.body ol{padding-left:22px;margin-bottom:20px}
-.body li{margin-bottom:9px}
-.body strong{color:var(--black)}
-.cta-box{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:34px;margin-top:52px;text-align:center}
-.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5em;margin-bottom:12px;letter-spacing:-.02em}
-.cta-box p{font-size:.92em;color:var(--text);margin-bottom:22px}
-.cta-box a{display:inline-block;background:var(--black);color:var(--white);text-decoration:none;font-size:.88em;font-weight:600;padding:13px 28px;border-radius:6px}
-.cta-box a:hover{background:#2a2a2a}
-.svc-box{border:1px solid #d3e2da;background:#eef3f0;border-radius:14px;padding:26px 28px;margin-top:40px}
-.svc-box .k{font-size:.7em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a4d3a;margin-bottom:9px}
-.svc-box h2{font-family:'DM Sans',sans-serif;font-size:1.08em;font-weight:700;margin:0 0 8px;color:#0d0d0d}
-.svc-box p{font-size:.9em;color:#33503f;line-height:1.7;margin-bottom:14px}
-.svc-box a{font-size:.88em;font-weight:600;color:#1a4d3a;text-decoration:none;border-bottom:2px solid #1a4d3a;padding-bottom:2px}
-.svc-box a:hover{color:#0d0d0d;border-color:#0d0d0d}
-.related{max-width:760px;margin:auto;padding:0 32px 72px}
-.related h2{font-size:.72em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:8px}
-.related a{display:block;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--black)}
-.related a:hover{color:var(--muted)}
-.related .t{font-weight:600;font-size:.98em;margin-bottom:3px}
-.related .b{font-size:.83em;color:var(--text)}
-.pager{max-width:760px;margin:auto;padding:0 32px 72px;display:flex;justify-content:space-between;gap:18px;font-size:.85em}
-.pager a{color:var(--text);text-decoration:none;max-width:48%}
-.pager a:hover{color:var(--black)}
-.pager span{display:block;font-size:.85em;color:var(--muted);margin-bottom:3px}
-footer{border-top:1px solid var(--border);padding:30px 32px}
-.footer-inner{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;font-size:.8em;color:var(--muted);flex-wrap:wrap;gap:14px}
-.footer-links{display:flex;gap:22px}
-.footer-links a{color:var(--muted);text-decoration:none}
-.footer-links a:hover{color:var(--black)}
-@media(max-width:960px){nav{padding:15px 24px}.nav-links a:not(.btn){display:none}h1{font-size:1.9em}article,.related,.pager,.crumbs{padding-left:22px;padding-right:22px}}</style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Use Google Ads Audience Targeting to Reach Better Prospects","description":"Keyword targeting gets you in front of searchers. Audience targeting gets you in front of the right searchers.","datePublished":"2025-06-30","dateModified":"2025-06-30","author":{"@type":"Person","name":"Scott Nguyen"},"publisher":{"@type":"Organization","name":"Simple Consulting","url":"https://www.simpleconsulting.ca/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html"},"articleSection":"Google Ads","inLanguage":"en-CA"}</script>
-</head>
-<body>
-
-<header>
-  <nav>
-    <a class="logo" href="/">Simple Consulting</a>
-    <div class="nav-links">
-      <a href="/amazon-management.html">Amazon</a>
-      <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/booking.html" class="btn">Book a Call</a>
-    </div>
-  </nav>
-</header>
-
-<p class="crumbs"><a href="/">Home</a> › <a href="/blog.html">Blog</a> › Google Ads</p>
-
-<article>
-  <span class="post-tag">Google Ads</span>
-  <h1>How to Use Google Ads Audience Targeting to Reach Better Prospects</h1>
-  <p class="byline">By Scott Nguyen · Jun 30, 2025 · 1 min read</p>
-  <div class="body"><p>Most Google Ads campaigns are optimized around keywords. The best advertisers layer audience targeting on top — showing the right ads to the right people searching the right terms.</p><h3>In-Market Audiences</h3><p>Google builds In-Market audiences based on recent search and browsing behaviour. Layering these onto your campaigns lets you bid higher for searchers who are in active buying mode.</p><h3>Customer Match</h3><p>Upload your existing customer email list to Google Ads. Target past customers with upsell campaigns, exclude them from acquisition campaigns, or create Similar Audiences to reach new prospects who look like your best customers.</p><h3>Observation vs Targeting Mode</h3><p>Add audiences in Observation mode first to gather data without restricting reach. Once you see which audiences convert better, switch to Targeting mode and apply bid adjustments.</p><p><strong>The fix:</strong> Add your customer email list to Google Ads as a Customer Match audience in Observation mode. After 30 days, review performance and apply bid adjustments based on what you find.</p></div>
-
-  <div class="svc-box">
-    <p class="k">Related service</p>
-    <h2>Marketplace advertising management</h2>
-    <p>Sponsored Products, Brands and Display structured around margin, with weekly search term review.</p>
-    <a href="/amazon-management.html">Learn more &rarr;</a>
-  </div>
-
-  <div class="cta-box">
-    <h2>Want help putting this into practice?</h2>
-    <p>Book a free consultation and we'll walk through what's holding your business back.</p>
-    <a href="/booking.html">Book a Free Call</a>
-  </div>
-</article>
-
-<div class="related">
-  <h2>More on Google Ads</h2>
-  <a href="/blog/how-to-reduce-your-google-ads-cost-per-lead-by-30.html">
-    <span class="t">How to Reduce Your Google Ads Cost Per Lead by 30%</span>
-    <span class="b">A 30% reduction in cost per lead from Google Ads is achievable for most accounts. Here's exactly how to get there.</span>
-  </a>
-  <a href="/blog/how-to-set-up-google-ads-for-lead-generation-step-by-step.html">
-    <span class="t">How to Set Up Google Ads for Lead Generation: Step-by-Step</span>
-    <span class="b">Lead generation campaigns on Google Ads require a specific setup to produce qualified leads efficiently.</span>
-  </a>
-  <a href="/blog/how-to-set-up-conversion-tracking-correctly-in-google-ads.html">
-    <span class="t">How to Set Up Conversion Tracking Correctly in Google Ads</span>
-    <span class="b">Incorrect conversion tracking is the root cause of most Google Ads underperformance. Here's how to set it up right.</span>
-  </a>
-</div>
-
-<div class="pager">
-  <a href="/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html"><span>← Previous</span>How to Use Amazon Brand Analytics to Make Smarter Business Decisions</a>
-  <a href="/blog/how-to-build-backlinks-for-a-service-business-without-a-pr-budget.html" style="text-align:right"><span>Next →</span>How to Build Backlinks for a Service Business Without a PR Budget</a>
-</div>
-
-
-<footer>
-  <div class="footer-inner">
-    <span>© Simple Consulting — Erin, Ontario</span>
-    <div class="footer-links">
-      <a href="/amazon-management.html">Amazon</a>
-      <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/booking.html">Contact</a>
-    </div>
-  </div>
-</footer>
-</body>
-</html>
+<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>How to Use Google Ads Audience Targeting to Reach Better Prospects | Simple Consulting</title><meta name="description" content="Review audience settings, Customer Match permissions and campaign-specific behaviour before changing Google Ads targeting."><link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html"><meta name="theme-color" content="#1a4d3a"><meta name="author" content="Scott Nguyen"><meta property="og:type" content="article"><meta property="og:title" content="How to Use Google Ads Audience Targeting to Reach Better Prospects | Simple Consulting"><meta property="og:description" content="Review audience settings, Customer Match permissions and campaign-specific behaviour before changing Google Ads targeting."><meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html"><meta property="og:site_name" content="Simple Consulting"><meta property="og:locale" content="en_CA"><meta property="og:image" content="https://www.simpleconsulting.ca/assets/scott-nguyen.webp"><meta property="og:image:alt" content="Scott Nguyen, founder of Simple Consulting"><meta property="og:image:width" content="720"><meta property="og:image:height" content="691"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="How to Use Google Ads Audience Targeting to Reach Better Prospects | Simple Consulting"><meta name="twitter:description" content="Review audience settings, Customer Match permissions and campaign-specific behaviour before changing Google Ads targeting."><meta name="twitter:image" content="https://www.simpleconsulting.ca/assets/scott-nguyen.webp"><link rel="icon" type="image/svg+xml" href="/assessment/favicon.svg"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.simpleconsulting.ca/#organization", "name": "Simple Consulting", "url": "https://www.simpleconsulting.ca/", "email": "scott@simpleconsulting.ca", "founder": {"@id": "https://www.simpleconsulting.ca/about.html#scott"}, "areaServed": [{"@type": "Country", "name": "Canada"}, {"@type": "Country", "name": "United States"}], "location": {"@type": "Place", "name": "Toronto, Ontario, Canada"}, "logo": {"@type": "ImageObject", "url": "https://www.simpleconsulting.ca/assets/simple-consulting-logo.svg", "contentUrl": "https://www.simpleconsulting.ca/assets/simple-consulting-logo.svg", "caption": "Simple Consulting."}, "sameAs": ["https://www.linkedin.com/in/scott-nguyen-0b97723a0", "https://www.instagram.com/simpleconsulting.ca/"]}, {"@type": "Person", "@id": "https://www.simpleconsulting.ca/about.html#scott", "name": "Scott Nguyen", "url": "https://www.simpleconsulting.ca/about.html", "jobTitle": "E-commerce and marketplace consultant", "worksFor": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "WebSite", "@id": "https://www.simpleconsulting.ca/#website", "url": "https://www.simpleconsulting.ca/", "name": "Simple Consulting", "publisher": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "WebPage", "@id": "https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html#page", "url": "https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html", "name": "How to Use Google Ads Audience Targeting to Reach Better Prospects | Simple Consulting", "description": "Review audience settings, Customer Match permissions and campaign-specific behaviour before changing Google Ads targeting.", "inLanguage": "en-CA", "isPartOf": {"@id": "https://www.simpleconsulting.ca/#website"}, "about": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "BlogPosting", "@id": "https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html#article", "headline": "How to Use Google Ads Audience Targeting to Reach Better Prospects", "description": "Review audience settings, Customer Match permissions and campaign-specific behaviour before changing Google Ads targeting.", "datePublished": "2025-06-30", "dateModified": "2026-09-28", "author": {"@id": "https://www.simpleconsulting.ca/about.html#scott"}, "publisher": {"@id": "https://www.simpleconsulting.ca/#organization"}, "mainEntityOfPage": {"@id": "https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html#page"}, "inLanguage": "en-CA", "articleSection": "Google Ads"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.simpleconsulting.ca/"}, {"@type": "ListItem", "position": 2, "name": "Insights", "item": "https://www.simpleconsulting.ca/blog.html"}, {"@type": "ListItem", "position": 3, "name": "How to Use Google Ads Audience Targeting to Reach Better Prospects", "item": "https://www.simpleconsulting.ca/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html"}]}]}</script><script src="/assets/site.js" defer></script><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18519722703"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18519722703');
+  // Keep free-text queries and fragments out of Analytics page URLs.
+  const analyticsUrl = new URL(location.origin + location.pathname);
+  const analyticsParams = new URLSearchParams(location.search);
+  const analyticsCampaigns = {
+    utm_source: ['google', 'bing', 'linkedin', 'instagram', 'newsletter'],
+    utm_medium: ['cpc', 'organic', 'referral', 'email', 'social'],
+    utm_campaign: ['amazon-management', 'walmart-management', 'inventory-fulfilment', 'marketplace-guides']
+  };
+  for (const [key, values] of Object.entries(analyticsCampaigns)) {
+    if (values.includes(analyticsParams.get(key))) analyticsUrl.searchParams.set(key, analyticsParams.get(key));
+  }
+  for (const key of ['gclid', 'gbraid', 'wbraid']) {
+    const value = analyticsParams.get(key);
+    if (value && /^[A-Za-z0-9_-]{1,256}$/.test(value)) analyticsUrl.searchParams.set(key, value);
+  }
+  let analyticsReferrer = '';
+  try {
+    const ref = new URL(document.referrer);
+    analyticsReferrer = ref.origin === location.origin ? ref.origin + ref.pathname : ref.origin;
+  } catch {}
+  gtag('config', 'G-0DL10SRED9', {
+    page_location: analyticsUrl.href,
+    page_referrer: analyticsReferrer,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script></head><body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="container site-nav" aria-label="Main navigation"><a class="logo" href="/">Simple Consulting<span>.</span></a><div class="desktop-links"><a href="/services.html">Services</a><a href="/amazon-management.html">Amazon</a><a href="/walmart-management.html">Walmart</a><a href="/about.html">About</a><a href="/blog.html" aria-current="page">Insights</a><a class="btn" data-event="review_click" href="/booking.html#booking">Book a free call</a></div><details class="mobile-menu"><summary>Menu</summary><div class="mobile-links"><a href="/services.html">Services</a><a href="/amazon-management.html">Amazon</a><a href="/walmart-management.html">Walmart</a><a href="/about.html">About</a><a href="/blog.html" aria-current="page">Insights</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/booking.html#start">Send a message</a><a href="/marketplace-assessment.html">Free assessment</a><a href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a class="btn" data-event="review_click" href="/booking.html#booking">Book a free call</a></div></details></nav></header><main id="main"><div class="container"><div class="article-shell"><p class="crumbs"><a href="/">Home</a> / <a href="/blog.html">Insights</a> / Google Ads</p><article><span class="post-tag">Google Ads</span><h1>How to Use Google Ads Audience Targeting to Reach Better Prospects</h1><p class="byline">By <a href="/about.html">Scott Nguyen</a> · Published Jun 30, 2025 · Updated 2026-09-28 · 3 min read</p><details class="article-toc"><summary>In this article</summary><ol><li><a href="#part-1">Understand observation versus targeting</a></li><li><a href="#part-2">Use customer data appropriately</a></li><li><a href="#part-3">Check current features</a></li><li><a href="#part-4">Evaluate qualified outcomes</a></li><li><a href="#part-5">Choose audience signals that match the campaign objective</a></li><li><a href="#part-6">Separate prospecting from existing-customer activity</a></li><li><a href="#part-7">Use observation and exclusions deliberately</a></li><li><a href="#part-8">Respect consent and platform rules</a></li><li><a href="#part-9">Use audience reporting to test assumptions</a></li><li><a href="#part-10">Document exclusions carefully</a></li><li><a href="#part-11">Build an audience-testing plan</a></li><li><a href="#part-12">Avoid over-segmentation</a></li><li><a href="#part-13">Review audience data with privacy in mind</a></li><li><a href="#part-14">Refresh assumptions periodically</a></li></ol></details><div class="article-body"><p>Audience settings can help refine Google Ads campaigns, but the available options and their effects vary by campaign type, bidding approach and account eligibility.</p><h2 id="part-1">Understand observation versus targeting</h2><p>Observation can provide reporting without restricting reach in supported contexts. Targeting can narrow who is eligible to see an ad. Confirm the setting’s actual effect in the campaign you are changing.</p><h2 id="part-2">Use customer data appropriately</h2><p>Before using Customer Match, confirm the account requirements, permissions and Google’s policies. Do not upload a list simply because it exists in your CRM.</p><h2 id="part-3">Check current features</h2><p>Avoid following old instructions to create Similar Audiences without checking current availability. Google has changed these audience features. Use the current settings and documentation for your campaign type.</p><h2 id="part-4">Evaluate qualified outcomes</h2><p>Judge the change using appropriate leads or sales and sufficient data. A narrower audience does not automatically produce better economics. See <a href="https://support.google.com/google-ads/answer/13775811">Google’s current Performance Max guidance</a> for relevant audience considerations.</p>
+<h2 id="part-5">Choose audience signals that match the campaign objective</h2><p>Google Ads supports audience segments based on interests, active research, demographics and prior interactions with your business. Start with the customer definition and campaign goal, then select segments that can help you observe or reach that audience.</p>
+<h2 id="part-6">Separate prospecting from existing-customer activity</h2><p>People who already know the brand may convert differently from new prospects. Where the campaign design allows, review those groups separately so strong existing-customer performance does not hide weak acquisition.</p>
+<h2 id="part-7">Use observation and exclusions deliberately</h2><p>When appropriate, observe audience performance before narrowing reach. Exclude groups only when the business reason and evidence are clear, especially in campaigns where automated bidding already uses multiple signals.</p>
+<h2 id="part-8">Respect consent and platform rules</h2><p>Customer lists and website-visitor data require appropriate consent, privacy handling and platform eligibility. Google now refers to remarketing audiences as “your data” segments in much of its interface and documentation.</p><p>For campaign structure and audience review, see <a href="/google-ads-management.html">Google Ads management</a>.</p>
+<h2 id="part-9">Use audience reporting to test assumptions</h2><p>Before making large budget shifts, compare how defined audience groups behave on conversion rate, value and lead quality. Treat the data as evidence about the current campaign, not as a universal description of the customer.</p>
+<h2 id="part-10">Document exclusions carefully</h2><p>Record why an audience is excluded and the date the decision was made. This helps future reviews distinguish a deliberate business rule from an old optimization that no longer makes sense.</p>
+<h2 id="part-11">Build an audience-testing plan</h2><p>Choose a small number of meaningful audience hypotheses, define the campaign or ad group where each will be observed, and decide what evidence would change targeting or budget.</p>
+<h2 id="part-12">Avoid over-segmentation</h2><p>Very narrow audiences can reduce reach and produce unstable performance. Use enough segmentation to answer a business question without creating dozens of tiny groups.</p>
+<h2 id="part-13">Review audience data with privacy in mind</h2><p>Do not infer sensitive personal characteristics beyond what the platform lawfully provides and your business can appropriately use. Keep customer-list handling governed by consent and internal data controls.</p>
+<h2 id="part-14">Refresh assumptions periodically</h2><p>Audience behaviour can change as the product, market or campaign mix changes. Revisit old exclusions and bid assumptions rather than treating them as permanent truths.</p></div><aside class="related-service"><p class="eyebrow">Help with this part of the business</p><h2>Google Ads &amp; Shopping</h2><p>For Canadian product and service businesses seeking a focused campaign review or scoped ongoing support.</p><a href="/google-ads-management.html">Explore google ads &amp; shopping →</a><div class="actions"><a class="btn" href="/booking.html?service=google#start">Discuss this with Scott</a><a href="/booking.html?service=google#booking">Book a free call</a></div></aside></article><div class="article-related"><h2>Related reading</h2><ul><li><a href="/blog/how-to-set-up-conversion-tracking-correctly-in-google-ads.html">How to Set Up Conversion Tracking Correctly in Google Ads</a></li><li><a href="/blog/how-to-reduce-your-google-ads-cost-per-lead-by-30.html">How to Review and Reduce Google Ads Cost per Qualified Lead</a></li><li><a href="/blog/how-to-set-up-google-ads-for-lead-generation-step-by-step.html">How to Set Up Google Ads for Lead Generation: Step-by-Step</a></li></ul><a href="/blog.html">Browse all insights →</a></div></div></div></main><footer class="site-footer"><div class="container"><div class="footer-top"><div><a class="logo" href="/">Simple Consulting<span>.</span></a><p>E-commerce and marketplace operations.<br>Toronto, Ontario · Serving Canada and the US.</p><a href="mailto:scott@simpleconsulting.ca" data-event="email_click">scott@simpleconsulting.ca</a></div><div><h2>Services</h2><div class="footer-links"><a href="/amazon-management.html">Amazon management</a><a href="/walmart-management.html">Walmart management</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/shopify-consulting.html">Shopify &amp; DTC</a><a href="/fractional-ecommerce-manager.html">Fractional e-commerce support</a><a href="/ecommerce-systems-reporting.html">Systems &amp; reporting</a><a href="/google-ads-management.html">Google Ads &amp; Shopping</a></div></div><div><h2>Start a conversation</h2><div class="footer-links"><a href="/booking.html#booking">Book a free 30-minute call</a><a href="/booking.html#start">Send a message</a><a href="/marketplace-assessment.html">Free marketplace assessment</a><a href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a href="/marketplace-launch-margin-calculator.html">Marketplace margin calculator</a><a href="/marketplace-reimbursement-checklist.html">Reimbursement checklist</a><a href="/amazon-canada-launch-readiness.html">Amazon.ca launch readiness</a><a href="/selected-work.html">Selected work</a><a href="/about.html">About Scott</a><a href="/blog.html">Insights</a><a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0" rel="me">LinkedIn</a><a href="https://www.instagram.com/simpleconsulting.ca/" rel="me">Instagram</a><a href="/privacy.html">Privacy &amp; enquiries</a></div></div></div><div class="footer-bottom">© 2026 Simple Consulting. Independent consulting. Retailer and platform names describe services and experience; they do not imply affiliation, endorsement or partnership.</div></div></footer></body></html>

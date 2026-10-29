@@ -7,7 +7,7 @@
   }
   // Only these non-personal campaign labels are retained, in this tab for 30 minutes.
   const campaignValues = {
-    utm_source: ['google', 'bing', 'linkedin', 'newsletter'],
+    utm_source: ['google', 'bing', 'linkedin', 'instagram', 'newsletter'],
     utm_medium: ['cpc', 'organic', 'referral', 'email', 'social'],
     utm_campaign: ['amazon-management', 'walmart-management', 'inventory-fulfilment', 'marketplace-guides']
   };
@@ -42,8 +42,7 @@
         if (values.includes(props[key])) safeProps[key] = props[key];
       }
       window.gtag('event', analyticsEvent, {...campaign, ...safeProps, send_to: 'G-0DL10SRED9'});
-      // This conversion action is specifically for accepted contact-form enquiries.
-      // contact.js emits it only after Formspree succeeds and prevents duplicates.
+      // Lead label already used in this repo. Fired only after Formspree accepts the form.
       if (name === 'generate_lead' && props.method === 'form') {
         window.gtag('event', 'conversion', {
           send_to: 'AW-18519722703/E1iQCLaD4aAdEM-V8v5E',
@@ -51,8 +50,37 @@
           currency: 'CAD'
         });
       }
+      // PLACEHOLDER: replace BOOKING_CONVERSION_LABEL with the Google Ads conversion
+      // label for a booked consultation. That label is not in this repository.
+      // Payload is only send_to, value and currency — no names, emails or messages.
+      if (analyticsEvent === 'appointment_booked') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-18519722703/BOOKING_CONVERSION_LABEL',
+          value: 1.0,
+          currency: 'CAD'
+        });
+      }
     }
   };
+  // New-tab Calendly bookings can be counted when the event type redirects back here
+  // with ?appointment_booked=1. The value must be exactly "1"; nothing else is read.
+  try {
+    const bookingParams = new URLSearchParams(location.search);
+    if (bookingParams.get('appointment_booked') === '1') {
+      let already = false;
+      try { already = sessionStorage.getItem('sc-appointment-tracked') === '1'; } catch {}
+      if (!already) {
+        try { sessionStorage.setItem('sc-appointment-tracked', '1'); } catch {}
+        const bookedService = bookingParams.get('service') || '';
+        const bookedProps = {method:'calendar', page_path: location.pathname};
+        if (['amazon','walmart','reimbursement','operations','shopify','fractional','systems','google','other'].includes(bookedService)) bookedProps.service = bookedService;
+        window.scTrack('generate_lead', bookedProps);
+      }
+      bookingParams.delete('appointment_booked');
+      const rest = bookingParams.toString();
+      history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+    }
+  } catch {}
   document.querySelectorAll('[data-event]').forEach(a => a.addEventListener('click', () => window.scTrack(a.dataset.event, {page_path: location.pathname})));
   document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
     if (!a.dataset.event) a.addEventListener('click', () => window.scTrack('email_click', {page_path: location.pathname}));

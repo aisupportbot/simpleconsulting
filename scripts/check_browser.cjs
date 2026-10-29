@@ -48,7 +48,18 @@ const server=http.createServer((req,res)=>{const p=path.join(root,decodeURICompo
   await page.screenshot({path:path.join(output,width+'-assessment-complete.png'),fullPage:true});
   assert.equal(errors.length,0,errors.join('\n'));report.push({width,pages:pages.length,overflow:false,errors,forms:'mocked failure and success',filters:'pagination, reload, search, empty, reset',attribution:'retained, arbitrary term excluded',assessment:'both channels, summary, message/book handoff, notes preserved, frame sizing'});await page.close();
  }
- const nojs=await browser.newPage({javaScriptEnabled:false,viewport:{width:390,height:844}});await nojs.goto(origin+'/blog.html');assert.equal(await nojs.locator('#post-grid .post-card:visible').count(),115);await nojs.close();
+ const postCount=JSON.parse(fs.readFileSync(path.join(root,'posts.json'),'utf8')).length;
+ const preserved=await browser.newPage({viewport:{width:1280,height:900}});
+ await preserved.goto(origin+'/how-to-write-amazon-product-titles-that-rank-and-convert.html?utm_source=instagram&utm_medium=social&utm_campaign=marketplace-guides&utm_term=keep-me#notes');
+ await preserved.waitForURL(/\/blog\/how-to-write-amazon-product-titles-that-rank-and-convert\.html/);
+ const landed=new URL(preserved.url());
+ assert.equal(landed.searchParams.get('utm_source'),'instagram');
+ assert.equal(landed.searchParams.get('utm_medium'),'social');
+ assert.equal(landed.searchParams.get('utm_campaign'),'marketplace-guides');
+ assert.equal(landed.searchParams.get('utm_term'),'keep-me');
+ assert.equal(landed.hash,'#notes');
+ await preserved.close();
+ const nojs=await browser.newPage({javaScriptEnabled:false,viewport:{width:390,height:844}});await nojs.goto(origin+'/blog.html');assert.equal(await nojs.locator('#post-grid .post-card:visible').count(),postCount);await nojs.close();
  fs.writeFileSync(path.join(output,'browser-report.json'),JSON.stringify(report,null,2));console.log('PASS browser checks',JSON.stringify(report));
  }finally{await browser.close();server.close();}
 })().catch(e=>{console.error(e);server.close();process.exitCode=1;});

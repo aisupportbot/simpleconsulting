@@ -124,8 +124,24 @@
   addEventListener('hashchange',fromHash);fromHash();
   let previousSummary='';
   addEventListener('message',e=>{
-    if (calendarLoaded && e.origin==='https://calendly.com' && e.source===slot.querySelector('iframe')?.contentWindow && e.data?.event==='calendly.event_scheduled' && !calendarCounted) {
-      calendarCounted=true;window.scTrack?.('generate_lead',{method:'calendar',service:Object.hasOwn(services,key)?key:'other',page_path:location.pathname});return;
+    let calData=e.data;
+    if (typeof calData==='string') { try { calData=JSON.parse(calData); } catch { calData=null; } }
+    const calFrame=slot?.querySelector('iframe');
+    let fromWidget=false;
+    if (calFrame && e.source) {
+      if (e.source===calFrame.contentWindow) fromWidget=true;
+      else { try { fromWidget=e.source.parent===calFrame.contentWindow; } catch { fromWidget=false; } }
+    }
+    if (calendarLoaded && e.origin==='https://calendly.com' && fromWidget && calData?.event==='calendly.event_scheduled' && !calendarCounted) {
+      calendarCounted=true;
+      let already=false;
+      try { already=sessionStorage.getItem('sc-appointment-tracked')==='1'; } catch {}
+      if (!already) {
+        try { sessionStorage.setItem('sc-appointment-tracked','1'); } catch {}
+        // Do not forward Calendly's payload. It can identify the invitee.
+        window.scTrack?.('generate_lead',{method:'calendar',service:Object.hasOwn(services,key)?key:'other',page_path:location.pathname});
+      }
+      return;
     }
     if(!frame || e.origin!==location.origin || e.source!==frame.contentWindow) return;
     const data=e.data;

@@ -1,147 +1,42 @@
-<!DOCTYPE html>
-<html lang="en-CA">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Use Amazon Brand Analytics to Make Smarter Business Decisions | Simple Consulting</title>
-<meta name="description" content="Brand Analytics is one of Amazon's most powerful free tools. Most brand-registered sellers barely use it.">
-<meta name="author" content="Scott Nguyen — Simple Consulting">
-<link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="How to Use Amazon Brand Analytics to Make Smarter Business Decisions">
-<meta property="og:description" content="Brand Analytics is one of Amazon's most powerful free tools. Most brand-registered sellers barely use it.">
-<meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html">
-<meta property="og:site_name" content="Simple Consulting">
-<meta property="article:published_time" content="2025-07-07">
-<meta property="article:section" content="Marketplaces">
-<meta name="twitter:card" content="summary">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0d0d0d;--white:#fff;--off:#f6f6f4;--border:#e8e8e5;--muted:#999;--text:#555}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--black);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
-nav{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:18px 32px}
-.logo{font-family:'DM Serif Display',serif;font-size:1.2em;letter-spacing:-.01em;color:var(--black);text-decoration:none}
-.nav-links{display:flex;gap:6px;align-items:center}
-.nav-links a{font-size:.86em;font-weight:500;color:var(--text);padding:8px 14px;border-radius:6px;text-decoration:none;transition:background .15s,color .15s}
-.nav-links a:hover{background:var(--off);color:var(--black)}
-.nav-links a.btn{background:var(--black);color:var(--white);font-weight:600;margin-left:6px}
-.nav-links a.btn:hover{background:#2a2a2a}
-.crumbs{max-width:760px;margin:auto;padding:26px 32px 0;font-size:.8em;color:var(--muted)}
-.crumbs a{color:var(--muted);text-decoration:none}
-.crumbs a:hover{color:var(--black)}
-article{max-width:760px;margin:auto;padding:22px 32px 72px}
-.post-tag{display:inline-block;font-size:.72em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-h1{font-family:'DM Serif Display',serif;font-size:2.5em;letter-spacing:-.025em;line-height:1.15;margin-bottom:18px}
-.byline{font-size:.85em;color:var(--muted);padding-bottom:26px;margin-bottom:32px;border-bottom:1px solid var(--border)}
-.body{font-size:1.02em;color:var(--text);line-height:1.85}
-.body p{margin-bottom:20px}
-.body h2,.body h3{font-family:'DM Sans',sans-serif;font-size:1.15em;font-weight:700;color:var(--black);margin:34px 0 14px;line-height:1.35}
-.body ul,.body ol{padding-left:22px;margin-bottom:20px}
-.body li{margin-bottom:9px}
-.body strong{color:var(--black)}
-.cta-box{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:34px;margin-top:52px;text-align:center}
-.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5em;margin-bottom:12px;letter-spacing:-.02em}
-.cta-box p{font-size:.92em;color:var(--text);margin-bottom:22px}
-.cta-box a{display:inline-block;background:var(--black);color:var(--white);text-decoration:none;font-size:.88em;font-weight:600;padding:13px 28px;border-radius:6px}
-.cta-box a:hover{background:#2a2a2a}
-.svc-box{border:1px solid #d3e2da;background:#eef3f0;border-radius:14px;padding:26px 28px;margin-top:40px}
-.svc-box .k{font-size:.7em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a4d3a;margin-bottom:9px}
-.svc-box h2{font-family:'DM Sans',sans-serif;font-size:1.08em;font-weight:700;margin:0 0 8px;color:#0d0d0d}
-.svc-box p{font-size:.9em;color:#33503f;line-height:1.7;margin-bottom:14px}
-.svc-box a{font-size:.88em;font-weight:600;color:#1a4d3a;text-decoration:none;border-bottom:2px solid #1a4d3a;padding-bottom:2px}
-.svc-box a:hover{color:#0d0d0d;border-color:#0d0d0d}
-.related{max-width:760px;margin:auto;padding:0 32px 72px}
-.related h2{font-size:.72em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:8px}
-.related a{display:block;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--black)}
-.related a:hover{color:var(--muted)}
-.related .t{font-weight:600;font-size:.98em;margin-bottom:3px}
-.related .b{font-size:.83em;color:var(--text)}
-.pager{max-width:760px;margin:auto;padding:0 32px 72px;display:flex;justify-content:space-between;gap:18px;font-size:.85em}
-.pager a{color:var(--text);text-decoration:none;max-width:48%}
-.pager a:hover{color:var(--black)}
-.pager span{display:block;font-size:.85em;color:var(--muted);margin-bottom:3px}
-footer{border-top:1px solid var(--border);padding:30px 32px}
-.footer-inner{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;font-size:.8em;color:var(--muted);flex-wrap:wrap;gap:14px}
-.footer-links{display:flex;gap:22px}
-.footer-links a{color:var(--muted);text-decoration:none}
-.footer-links a:hover{color:var(--black)}
-@media(max-width:960px){nav{padding:15px 24px}.nav-links a:not(.btn){display:none}h1{font-size:1.9em}article,.related,.pager,.crumbs{padding-left:22px;padding-right:22px}}</style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Use Amazon Brand Analytics to Make Smarter Business Decisions","description":"Brand Analytics is one of Amazon's most powerful free tools. Most brand-registered sellers barely use it.","datePublished":"2025-07-07","dateModified":"2025-07-07","author":{"@type":"Person","name":"Scott Nguyen"},"publisher":{"@type":"Organization","name":"Simple Consulting","url":"https://www.simpleconsulting.ca/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html"},"articleSection":"Marketplaces","inLanguage":"en-CA"}</script>
-</head>
-<body>
-
-<header>
-  <nav>
-    <a class="logo" href="/">Simple Consulting</a>
-    <div class="nav-links">
-      <a href="/amazon-management.html">Amazon</a>
-      <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/booking.html" class="btn">Book a Call</a>
-    </div>
-  </nav>
-</header>
-
-<p class="crumbs"><a href="/">Home</a> › <a href="/blog.html">Blog</a> › Marketplaces</p>
-
-<article>
-  <span class="post-tag">Marketplaces</span>
-  <h1>How to Use Amazon Brand Analytics to Make Smarter Business Decisions</h1>
-  <p class="byline">By Scott Nguyen · Jul 7, 2025 · 1 min read</p>
-  <div class="body"><p>Amazon Brand Analytics contains some of the most valuable market intelligence available to product businesses. Most sellers log in once and never go back. Here's how to extract real value.</p><h3>Search Terms Report</h3><p>Shows the most searched terms in your category, ranked by frequency. More importantly, shows the top three clicked ASINs for each search term — telling you which competitors are winning each keyword and how much conversion they're capturing.</p><h3>Market Basket Analysis</h3><p>Shows which products are most frequently purchased together with yours. Gold for bundle creation, cross-sell strategy, and identifying complementary products to add to your catalogue.</p><h3>Item Comparison and Alternate Purchase</h3><p>Shows which products shoppers view alongside yours before purchasing. These are your real competitors — the ones Amazon's data shows buyers actually comparing you against.</p><p><strong>The fix:</strong> Log into Brand Analytics and pull the Search Terms report for your top product's primary keyword. Identify the top three converting ASINs and analyze what they're doing differently in their listings.</p></div>
-
-  <div class="svc-box">
-    <p class="k">Related service</p>
-    <h2>Amazon account management</h2>
-    <p>Vendor Central, Seller Central and FBA run end to end — listings, advertising, inventory and account health.</p>
-    <a href="/amazon-management.html">Learn more &rarr;</a>
-  </div>
-
-  <div class="cta-box">
-    <h2>Want help putting this into practice?</h2>
-    <p>Book a free consultation and we'll walk through what's holding your business back.</p>
-    <a href="/booking.html">Book a Free Call</a>
-  </div>
-</article>
-
-<div class="related">
-  <h2>More on Marketplaces</h2>
-  <a href="/blog/how-to-sell-on-ebay-canada-is-it-still-worth-it.html">
-    <span class="t">How to Sell on eBay Canada: Is It Still Worth It?</span>
-    <span class="b">eBay Canada remains a viable channel for certain product categories. Here's how to evaluate whether it's right for your business.</span>
-  </a>
-  <a href="/blog/how-to-manage-your-amazon-account-health-dashboard.html">
-    <span class="t">How to Manage Your Amazon Account Health Dashboard</span>
-    <span class="b">Account Health is the gating factor for your Amazon selling privileges. Here's how to keep it clean.</span>
-  </a>
-  <a href="/blog/how-to-get-your-product-listed-on-amazon-canada.html">
-    <span class="t">How to Get Your Product Listed on Amazon Canada</span>
-    <span class="b">Expanding to Amazon Canada is one of the most accessible cross-border moves for Canadian and US brands.</span>
-  </a>
-</div>
-
-<div class="pager">
-  <a href="/blog/how-to-build-a-business-development-system-that-generates-consistent-l.html"><span>← Previous</span>How to Build a Business Development System That Generates Consistent Leads</a>
-  <a href="/blog/how-to-use-google-ads-audience-targeting-to-reach-better-prospects.html" style="text-align:right"><span>Next →</span>How to Use Google Ads Audience Targeting to Reach Better Prospects</a>
-</div>
-
-
-<footer>
-  <div class="footer-inner">
-    <span>© Simple Consulting — Erin, Ontario</span>
-    <div class="footer-links">
-      <a href="/amazon-management.html">Amazon</a>
-      <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/booking.html">Contact</a>
-    </div>
-  </div>
-</footer>
-</body>
-</html>
+<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>How to Use Amazon Brand Analytics to Make Smarter Business Decisions | Simple Consulting</title><meta name="description" content="Use Amazon Brand Analytics to answer specific search, product and assortment questions, with careful attention to report definitions."><link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html"><meta name="theme-color" content="#1a4d3a"><meta name="author" content="Scott Nguyen"><meta property="og:type" content="article"><meta property="og:title" content="How to Use Amazon Brand Analytics to Make Smarter Business Decisions | Simple Consulting"><meta property="og:description" content="Use Amazon Brand Analytics to answer specific search, product and assortment questions, with careful attention to report definitions."><meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html"><meta property="og:site_name" content="Simple Consulting"><meta property="og:locale" content="en_CA"><meta property="og:image" content="https://www.simpleconsulting.ca/assets/scott-nguyen.webp"><meta property="og:image:alt" content="Scott Nguyen, founder of Simple Consulting"><meta property="og:image:width" content="720"><meta property="og:image:height" content="691"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="How to Use Amazon Brand Analytics to Make Smarter Business Decisions | Simple Consulting"><meta name="twitter:description" content="Use Amazon Brand Analytics to answer specific search, product and assortment questions, with careful attention to report definitions."><meta name="twitter:image" content="https://www.simpleconsulting.ca/assets/scott-nguyen.webp"><link rel="icon" type="image/svg+xml" href="/assessment/favicon.svg"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.simpleconsulting.ca/#organization", "name": "Simple Consulting", "url": "https://www.simpleconsulting.ca/", "email": "scott@simpleconsulting.ca", "founder": {"@id": "https://www.simpleconsulting.ca/about.html#scott"}, "areaServed": [{"@type": "Country", "name": "Canada"}, {"@type": "Country", "name": "United States"}], "location": {"@type": "Place", "name": "Toronto, Ontario, Canada"}, "logo": {"@type": "ImageObject", "url": "https://www.simpleconsulting.ca/assets/simple-consulting-logo.svg", "contentUrl": "https://www.simpleconsulting.ca/assets/simple-consulting-logo.svg", "caption": "Simple Consulting."}, "sameAs": ["https://www.linkedin.com/in/scott-nguyen-0b97723a0", "https://www.instagram.com/simpleconsulting.ca/"]}, {"@type": "Person", "@id": "https://www.simpleconsulting.ca/about.html#scott", "name": "Scott Nguyen", "url": "https://www.simpleconsulting.ca/about.html", "jobTitle": "E-commerce and marketplace consultant", "worksFor": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "WebSite", "@id": "https://www.simpleconsulting.ca/#website", "url": "https://www.simpleconsulting.ca/", "name": "Simple Consulting", "publisher": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "WebPage", "@id": "https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html#page", "url": "https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html", "name": "How to Use Amazon Brand Analytics to Make Smarter Business Decisions | Simple Consulting", "description": "Use Amazon Brand Analytics to answer specific search, product and assortment questions, with careful attention to report definitions.", "inLanguage": "en-CA", "isPartOf": {"@id": "https://www.simpleconsulting.ca/#website"}, "about": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "BlogPosting", "@id": "https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html#article", "headline": "How to Use Amazon Brand Analytics to Make Smarter Business Decisions", "description": "Use Amazon Brand Analytics to answer specific search, product and assortment questions, with careful attention to report definitions.", "datePublished": "2025-07-07", "dateModified": "2026-09-28", "author": {"@id": "https://www.simpleconsulting.ca/about.html#scott"}, "publisher": {"@id": "https://www.simpleconsulting.ca/#organization"}, "mainEntityOfPage": {"@id": "https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html#page"}, "inLanguage": "en-CA", "articleSection": "Marketplaces"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.simpleconsulting.ca/"}, {"@type": "ListItem", "position": 2, "name": "Insights", "item": "https://www.simpleconsulting.ca/blog.html"}, {"@type": "ListItem", "position": 3, "name": "How to Use Amazon Brand Analytics to Make Smarter Business Decisions", "item": "https://www.simpleconsulting.ca/blog/how-to-use-amazon-brand-analytics-to-make-smarter-business-decisions.html"}]}]}</script><script src="/assets/site.js" defer></script><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18519722703"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18519722703');
+  // Keep free-text queries and fragments out of Analytics page URLs.
+  const analyticsUrl = new URL(location.origin + location.pathname);
+  const analyticsParams = new URLSearchParams(location.search);
+  const analyticsCampaigns = {
+    utm_source: ['google', 'bing', 'linkedin', 'instagram', 'newsletter'],
+    utm_medium: ['cpc', 'organic', 'referral', 'email', 'social'],
+    utm_campaign: ['amazon-management', 'walmart-management', 'inventory-fulfilment', 'marketplace-guides']
+  };
+  for (const [key, values] of Object.entries(analyticsCampaigns)) {
+    if (values.includes(analyticsParams.get(key))) analyticsUrl.searchParams.set(key, analyticsParams.get(key));
+  }
+  for (const key of ['gclid', 'gbraid', 'wbraid']) {
+    const value = analyticsParams.get(key);
+    if (value && /^[A-Za-z0-9_-]{1,256}$/.test(value)) analyticsUrl.searchParams.set(key, value);
+  }
+  let analyticsReferrer = '';
+  try {
+    const ref = new URL(document.referrer);
+    analyticsReferrer = ref.origin === location.origin ? ref.origin + ref.pathname : ref.origin;
+  } catch {}
+  gtag('config', 'G-0DL10SRED9', {
+    page_location: analyticsUrl.href,
+    page_referrer: analyticsReferrer,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script></head><body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="container site-nav" aria-label="Main navigation"><a class="logo" href="/">Simple Consulting<span>.</span></a><div class="desktop-links"><a href="/services.html">Services</a><a href="/amazon-management.html">Amazon</a><a href="/walmart-management.html">Walmart</a><a href="/about.html">About</a><a href="/blog.html" aria-current="page">Insights</a><a class="btn" data-event="review_click" href="/booking.html#booking">Book a free call</a></div><details class="mobile-menu"><summary>Menu</summary><div class="mobile-links"><a href="/services.html">Services</a><a href="/amazon-management.html">Amazon</a><a href="/walmart-management.html">Walmart</a><a href="/about.html">About</a><a href="/blog.html" aria-current="page">Insights</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/booking.html#start">Send a message</a><a href="/marketplace-assessment.html">Free assessment</a><a href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a class="btn" data-event="review_click" href="/booking.html#booking">Book a free call</a></div></details></nav></header><main id="main"><div class="container"><div class="article-shell"><p class="crumbs"><a href="/">Home</a> / <a href="/blog.html">Insights</a> / <a href="/insights/amazon.html">Amazon</a></p><article><span class="post-tag">Marketplaces</span><h1>How to Use Amazon Brand Analytics to Make Smarter Business Decisions</h1><p class="byline">By <a href="/about.html">Scott Nguyen</a> · Published Jul 7, 2025 · Updated 2026-09-28 · 3 min read</p><details class="article-toc"><summary>In this article</summary><ol><li><a href="#part-1">Find the point of friction</a></li><li><a href="#part-2">Use search and basket information carefully</a></li><li><a href="#part-3">Turn a finding into a test</a></li><li><a href="#part-4">Verify the available dashboards</a></li><li><a href="#part-5">Start with a business question</a></li><li><a href="#part-6">Use trends rather than one report snapshot</a></li><li><a href="#part-7">Connect search insight to catalogue and advertising work</a></li><li><a href="#part-8">Protect against over-interpretation</a></li><li><a href="#part-9">Build a repeatable monthly review</a></li><li><a href="#part-10">Use the data to prioritize—not to chase every signal</a></li><li><a href="#part-11">Create a hypothesis before changing the listing</a></li><li><a href="#part-12">Combine Brand Analytics with inventory reality</a></li><li><a href="#part-13">Share findings with the right owners</a></li></ol></details><div class="article-body"><p>Amazon Brand Analytics provides aggregated search and purchase information for eligible brands. Start with a business question, then use the dashboards available in your account and marketplace.</p><h2 id="part-1">Find the point of friction</h2><p>Search Catalog Performance and Search Query Performance can help assess how products participate in the shopping journey. Compare impressions, clicks and purchase measures without treating them as interchangeable.</p><h2 id="part-2">Use search and basket information carefully</h2><p>Top Search Terms and Market Basket Analysis can support query and assortment research. Check what each report actually measures; clicked ASINs are not automatically the highest-converting ASINs.</p><h2 id="part-3">Turn a finding into a test</h2><p>Record the report, period, affected products and proposed change. Decide whether the next step is product information, availability, advertising or a broader assortment review.</p><h2 id="part-4">Verify the available dashboards</h2><p>Names, access and coverage can change. Refer to <a href="https://sell.amazon.com/blog/brand-analytics">Amazon’s Brand Analytics overview</a> and the reports visible in your own account.</p>
+<h2 id="part-5">Start with a business question</h2><p>Brand Analytics can provide useful customer and search information for eligible brands, but the report should answer a defined question: which products need listing work, which search themes deserve testing, or where customers are comparing alternatives.</p>
+<h2 id="part-6">Use trends rather than one report snapshot</h2><p>Compare consistent time periods and note promotions, stockouts, price changes and seasonality. A one-week movement may reflect temporary conditions rather than a durable change in shopper behaviour.</p>
+<h2 id="part-7">Connect search insight to catalogue and advertising work</h2><p>When a relevant shopper phrase appears repeatedly, check whether the product page answers that need and whether advertising is already testing it. Keep listing and campaign changes documented separately.</p>
+<h2 id="part-8">Protect against over-interpretation</h2><p>Marketplace reports are not a complete view of customer demand. Use them alongside sales, advertising, inventory, returns and customer feedback before making a major assortment or investment decision.</p><p>For broader Amazon analysis and execution, see <a href="/amazon-management.html">Amazon management</a>.</p>
+<h2 id="part-9">Build a repeatable monthly review</h2><p>Choose a fixed reporting window and review the same products and search themes each month. Record what changed in price, stock, advertising and promotions so movement in the report is interpreted in context. Keep a short decision log showing which findings led to a listing edit, campaign test, assortment question or no action.</p>
+<h2 id="part-10">Use the data to prioritize—not to chase every signal</h2><p>Focus on products with enough traffic or commercial importance to justify analysis. A low-volume term moving sharply can look dramatic without changing the business. Rank opportunities by potential customer relevance, available stock, margin and the team’s ability to execute a change.</p>
+<h2 id="part-11">Create a hypothesis before changing the listing</h2><p>If the data suggests customers use a particular term or compare a certain product, state what you expect a listing or advertising change to improve. This makes the later review more objective.</p><h2 id="part-12">Combine Brand Analytics with inventory reality</h2><p>Do not chase an attractive search opportunity if the product cannot stay in stock or does not have enough margin to support the required advertising and promotion.</p>
+<h2 id="part-13">Share findings with the right owners</h2><p>Search or customer insights may require action from advertising, catalogue, product or inventory teams. Put the finding into the operating queue instead of leaving it inside a monthly report.</p></div><aside class="related-service"><p class="eyebrow">Help with this part of the business</p><h2>Amazon management</h2><p>You need a hands-on Amazon consultant to manage ongoing account tasks, coordinate an internal team or diagnose a specific Seller Central or Vendor Central issue.</p><a href="/amazon-management.html">Explore amazon management →</a><div class="actions"><a class="btn" href="/booking.html?service=amazon#start">Discuss this with Scott</a><a href="/booking.html?service=amazon#booking">Book a free call</a></div></aside></article><div class="article-related"><h2>Related reading</h2><ul><li><a href="/blog/amazon-account-management-cost-canada-consultant-vs-agency.html">Amazon Account Management Cost in Canada: Consultant vs Agency</a></li><li><a href="/blog/amazon-seller-account-deactivated-appeal-canada.html">Amazon Seller Account Deactivated? How to Appeal in Canada</a></li><li><a href="/blog/amazon-sales-dropped-after-out-of-stock.html">Amazon Sales Dropped After Being Out of Stock? What to Check After Restocking</a></li></ul><a href="/blog.html">Browse all insights →</a></div></div></div></main><footer class="site-footer"><div class="container"><div class="footer-top"><div><a class="logo" href="/">Simple Consulting<span>.</span></a><p>E-commerce and marketplace operations.<br>Toronto, Ontario · Serving Canada and the US.</p><a href="mailto:scott@simpleconsulting.ca" data-event="email_click">scott@simpleconsulting.ca</a></div><div><h2>Services</h2><div class="footer-links"><a href="/amazon-management.html">Amazon management</a><a href="/walmart-management.html">Walmart management</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/shopify-consulting.html">Shopify &amp; DTC</a><a href="/fractional-ecommerce-manager.html">Fractional e-commerce support</a><a href="/ecommerce-systems-reporting.html">Systems &amp; reporting</a><a href="/google-ads-management.html">Google Ads &amp; Shopping</a></div></div><div><h2>Start a conversation</h2><div class="footer-links"><a href="/booking.html#booking">Book a free 30-minute call</a><a href="/booking.html#start">Send a message</a><a href="/marketplace-assessment.html">Free marketplace assessment</a><a href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a href="/marketplace-launch-margin-calculator.html">Marketplace margin calculator</a><a href="/marketplace-reimbursement-checklist.html">Reimbursement checklist</a><a href="/amazon-canada-launch-readiness.html">Amazon.ca launch readiness</a><a href="/selected-work.html">Selected work</a><a href="/about.html">About Scott</a><a href="/blog.html">Insights</a><a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0" rel="me">LinkedIn</a><a href="https://www.instagram.com/simpleconsulting.ca/" rel="me">Instagram</a><a href="/privacy.html">Privacy &amp; enquiries</a></div></div></div><div class="footer-bottom">© 2026 Simple Consulting. Independent consulting. Retailer and platform names describe services and experience; they do not imply affiliation, endorsement or partnership.</div></div></footer></body></html>
