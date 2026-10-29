@@ -1,147 +1,42 @@
-<!DOCTYPE html>
-<html lang="en-CA">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Use Data to Make Better Buying Decisions in E-commerce | Simple Consulting</title>
-<meta name="description" content="Most buying decisions in e-commerce are made on intuition. Here's how to use data to make them better.">
-<meta name="author" content="Scott Nguyen — Simple Consulting">
-<link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="How to Use Data to Make Better Buying Decisions in E-commerce">
-<meta property="og:description" content="Most buying decisions in e-commerce are made on intuition. Here's how to use data to make them better.">
-<meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html">
-<meta property="og:site_name" content="Simple Consulting">
-<meta property="article:published_time" content="2026-03-23">
-<meta property="article:section" content="ERP">
-<meta name="twitter:card" content="summary">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0d0d0d;--white:#fff;--off:#f6f6f4;--border:#e8e8e5;--muted:#999;--text:#555}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--black);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
-nav{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:18px 32px}
-.logo{font-family:'DM Serif Display',serif;font-size:1.2em;letter-spacing:-.01em;color:var(--black);text-decoration:none}
-.nav-links{display:flex;gap:6px;align-items:center}
-.nav-links a{font-size:.86em;font-weight:500;color:var(--text);padding:8px 14px;border-radius:6px;text-decoration:none;transition:background .15s,color .15s}
-.nav-links a:hover{background:var(--off);color:var(--black)}
-.nav-links a.btn{background:var(--black);color:var(--white);font-weight:600;margin-left:6px}
-.nav-links a.btn:hover{background:#2a2a2a}
-.crumbs{max-width:760px;margin:auto;padding:26px 32px 0;font-size:.8em;color:var(--muted)}
-.crumbs a{color:var(--muted);text-decoration:none}
-.crumbs a:hover{color:var(--black)}
-article{max-width:760px;margin:auto;padding:22px 32px 72px}
-.post-tag{display:inline-block;font-size:.72em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-h1{font-family:'DM Serif Display',serif;font-size:2.5em;letter-spacing:-.025em;line-height:1.15;margin-bottom:18px}
-.byline{font-size:.85em;color:var(--muted);padding-bottom:26px;margin-bottom:32px;border-bottom:1px solid var(--border)}
-.body{font-size:1.02em;color:var(--text);line-height:1.85}
-.body p{margin-bottom:20px}
-.body h2,.body h3{font-family:'DM Sans',sans-serif;font-size:1.15em;font-weight:700;color:var(--black);margin:34px 0 14px;line-height:1.35}
-.body ul,.body ol{padding-left:22px;margin-bottom:20px}
-.body li{margin-bottom:9px}
-.body strong{color:var(--black)}
-.cta-box{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:34px;margin-top:52px;text-align:center}
-.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5em;margin-bottom:12px;letter-spacing:-.02em}
-.cta-box p{font-size:.92em;color:var(--text);margin-bottom:22px}
-.cta-box a{display:inline-block;background:var(--black);color:var(--white);text-decoration:none;font-size:.88em;font-weight:600;padding:13px 28px;border-radius:6px}
-.cta-box a:hover{background:#2a2a2a}
-.svc-box{border:1px solid #d3e2da;background:#eef3f0;border-radius:14px;padding:26px 28px;margin-top:40px}
-.svc-box .k{font-size:.7em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a4d3a;margin-bottom:9px}
-.svc-box h2{font-family:'DM Sans',sans-serif;font-size:1.08em;font-weight:700;margin:0 0 8px;color:#0d0d0d}
-.svc-box p{font-size:.9em;color:#33503f;line-height:1.7;margin-bottom:14px}
-.svc-box a{font-size:.88em;font-weight:600;color:#1a4d3a;text-decoration:none;border-bottom:2px solid #1a4d3a;padding-bottom:2px}
-.svc-box a:hover{color:#0d0d0d;border-color:#0d0d0d}
-.related{max-width:760px;margin:auto;padding:0 32px 72px}
-.related h2{font-size:.72em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:8px}
-.related a{display:block;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--black)}
-.related a:hover{color:var(--muted)}
-.related .t{font-weight:600;font-size:.98em;margin-bottom:3px}
-.related .b{font-size:.83em;color:var(--text)}
-.pager{max-width:760px;margin:auto;padding:0 32px 72px;display:flex;justify-content:space-between;gap:18px;font-size:.85em}
-.pager a{color:var(--text);text-decoration:none;max-width:48%}
-.pager a:hover{color:var(--black)}
-.pager span{display:block;font-size:.85em;color:var(--muted);margin-bottom:3px}
-footer{border-top:1px solid var(--border);padding:30px 32px}
-.footer-inner{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;font-size:.8em;color:var(--muted);flex-wrap:wrap;gap:14px}
-.footer-links{display:flex;gap:22px}
-.footer-links a{color:var(--muted);text-decoration:none}
-.footer-links a:hover{color:var(--black)}
-@media(max-width:960px){nav{padding:15px 24px}.nav-links a:not(.btn){display:none}h1{font-size:1.9em}article,.related,.pager,.crumbs{padding-left:22px;padding-right:22px}}</style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Use Data to Make Better Buying Decisions in E-commerce","description":"Most buying decisions in e-commerce are made on intuition. Here's how to use data to make them better.","datePublished":"2026-03-23","dateModified":"2026-03-23","author":{"@type":"Person","name":"Scott Nguyen"},"publisher":{"@type":"Organization","name":"Simple Consulting","url":"https://www.simpleconsulting.ca/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html"},"articleSection":"ERP","inLanguage":"en-CA"}</script>
-</head>
-<body>
-
-<header>
-  <nav>
-    <a class="logo" href="/">Simple Consulting</a>
-    <div class="nav-links">
-      <a href="/amazon-management.html">Amazon</a>
-      <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/booking.html" class="btn">Book a Call</a>
-    </div>
-  </nav>
-</header>
-
-<p class="crumbs"><a href="/">Home</a> › <a href="/blog.html">Blog</a> › ERP</p>
-
-<article>
-  <span class="post-tag">ERP</span>
-  <h1>How to Use Data to Make Better Buying Decisions in E-commerce</h1>
-  <p class="byline">By Scott Nguyen · Mar 23, 2026 · 1 min read</p>
-  <div class="body"><p>The quality of your buying decisions — what to order, how much, and when — directly determines your inventory efficiency and cash flow. Integrating data into the process improves accuracy significantly.</p><h3>Sell-Through Rate as a Buying Signal</h3><p>Sell-through rate — the percentage of inventory sold within a period — is the most direct indicator of demand relative to your buying. A 90% sell-through rate in 60 days means you're chronically undersupplied. A 30% rate means too much inventory relative to demand.</p><h3>Days on Hand as a Risk Indicator</h3><p>Days on Hand (DOH) — how many days of current sales velocity your inventory covers — gives a forward-looking view of inventory risk. A SKU with 7 days on hand is an imminent stockout risk. One with 180 days has a capital efficiency problem.</p><h3>Margin by SKU Guides Assortment Decisions</h3><p>Revenue without margin context is incomplete. Sort your assortment by gross margin dollars and gross margin percentage — these two lenses guide which products deserve investment and which deserve rationalization.</p><p><strong>The fix:</strong> Calculate sell-through rate and days on hand for your top 20 SKUs this week. Identify your highest risk positions — both stockout and overstock risk. Address those in your next buying cycle.</p></div>
-
-  <div class="svc-box">
-    <p class="k">Related service</p>
-    <h2>Systems and reporting</h2>
-    <p>ERP integration with your sales channels, inventory sync and the reporting that makes problems visible early.</p>
-    <a href="/booking.html">Learn more &rarr;</a>
-  </div>
-
-  <div class="cta-box">
-    <h2>Want help putting this into practice?</h2>
-    <p>Book a free consultation and we'll walk through what's holding your business back.</p>
-    <a href="/booking.html">Book a Free Call</a>
-  </div>
-</article>
-
-<div class="related">
-  <h2>More on ERP</h2>
-  <a href="/blog/how-to-migrate-your-business-from-quickbooks-to-a-full-erp.html">
-    <span class="t">How to Migrate Your Business From QuickBooks to a Full ERP</span>
-    <span class="b">QuickBooks works until it doesn't. Here's how to know when you've outgrown it and how to make the transition.</span>
-  </a>
-  <a href="/blog/how-to-manage-multi-currency-accounting-in-e-commerce.html">
-    <span class="t">How to Manage Multi-Currency Accounting in E-commerce</span>
-    <span class="b">Selling across borders introduces accounting complexity that can overwhelm basic systems. Here's how to manage it.</span>
-  </a>
-  <a href="/blog/what-is-an-erp-system-and-does-your-business-need-one.html">
-    <span class="t">What Is an ERP System and Does Your Business Need One?</span>
-    <span class="b">ERP systems are powerful but often misunderstood. Here's how to know if your business is ready for one.</span>
-  </a>
-</div>
-
-<div class="pager">
-  <a href="/blog/how-to-build-strategic-partnerships-that-drive-business-growth.html"><span>← Previous</span>How to Build Strategic Partnerships That Drive Business Growth</a>
-  <a href="/blog/how-to-use-heatmaps-to-improve-your-website-conversion-rate.html" style="text-align:right"><span>Next →</span>How to Use Heatmaps to Improve Your Website Conversion Rate</a>
-</div>
-
-
-<footer>
-  <div class="footer-inner">
-    <span>© Simple Consulting — Erin, Ontario</span>
-    <div class="footer-links">
-      <a href="/amazon-management.html">Amazon</a>
-      <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/booking.html">Contact</a>
-    </div>
-  </div>
-</footer>
-</body>
-</html>
+<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>How to Use Data to Make Better Buying Decisions in E-commerce | Simple Consulting</title><meta name="description" content="Most buying decisions in e-commerce are made on intuition. Here&#x27;s how to use data to make them better."><link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html"><meta name="theme-color" content="#1a4d3a"><meta name="author" content="Scott Nguyen"><meta property="og:type" content="article"><meta property="og:title" content="How to Use Data to Make Better Buying Decisions in E-commerce | Simple Consulting"><meta property="og:description" content="Most buying decisions in e-commerce are made on intuition. Here&#x27;s how to use data to make them better."><meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html"><meta property="og:site_name" content="Simple Consulting"><meta property="og:locale" content="en_CA"><meta property="og:image" content="https://www.simpleconsulting.ca/assets/scott-nguyen.webp"><meta property="og:image:alt" content="Scott Nguyen, founder of Simple Consulting"><meta property="og:image:width" content="720"><meta property="og:image:height" content="691"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="How to Use Data to Make Better Buying Decisions in E-commerce | Simple Consulting"><meta name="twitter:description" content="Most buying decisions in e-commerce are made on intuition. Here&#x27;s how to use data to make them better."><meta name="twitter:image" content="https://www.simpleconsulting.ca/assets/scott-nguyen.webp"><link rel="icon" type="image/svg+xml" href="/assessment/favicon.svg"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.simpleconsulting.ca/#organization", "name": "Simple Consulting", "url": "https://www.simpleconsulting.ca/", "email": "scott@simpleconsulting.ca", "founder": {"@id": "https://www.simpleconsulting.ca/about.html#scott"}, "areaServed": [{"@type": "Country", "name": "Canada"}, {"@type": "Country", "name": "United States"}], "location": {"@type": "Place", "name": "Toronto, Ontario, Canada"}, "logo": {"@type": "ImageObject", "url": "https://www.simpleconsulting.ca/assets/simple-consulting-logo.svg", "contentUrl": "https://www.simpleconsulting.ca/assets/simple-consulting-logo.svg", "caption": "Simple Consulting."}, "sameAs": ["https://www.linkedin.com/in/scott-nguyen-0b97723a0", "https://www.instagram.com/simpleconsulting.ca/"]}, {"@type": "Person", "@id": "https://www.simpleconsulting.ca/about.html#scott", "name": "Scott Nguyen", "url": "https://www.simpleconsulting.ca/about.html", "jobTitle": "E-commerce and marketplace consultant", "worksFor": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "WebSite", "@id": "https://www.simpleconsulting.ca/#website", "url": "https://www.simpleconsulting.ca/", "name": "Simple Consulting", "publisher": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "WebPage", "@id": "https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html#page", "url": "https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html", "name": "How to Use Data to Make Better Buying Decisions in E-commerce | Simple Consulting", "description": "Most buying decisions in e-commerce are made on intuition. Here's how to use data to make them better.", "inLanguage": "en-CA", "isPartOf": {"@id": "https://www.simpleconsulting.ca/#website"}, "about": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "BlogPosting", "@id": "https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html#article", "headline": "How to Use Data to Make Better Buying Decisions in E-commerce", "description": "Most buying decisions in e-commerce are made on intuition. Here's how to use data to make them better.", "datePublished": "2026-03-23", "dateModified": "2026-09-28", "author": {"@id": "https://www.simpleconsulting.ca/about.html#scott"}, "publisher": {"@id": "https://www.simpleconsulting.ca/#organization"}, "mainEntityOfPage": {"@id": "https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html#page"}, "inLanguage": "en-CA", "articleSection": "ERP"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.simpleconsulting.ca/"}, {"@type": "ListItem", "position": 2, "name": "Insights", "item": "https://www.simpleconsulting.ca/blog.html"}, {"@type": "ListItem", "position": 3, "name": "How to Use Data to Make Better Buying Decisions in E-commerce", "item": "https://www.simpleconsulting.ca/blog/how-to-use-data-to-make-better-buying-decisions-in-e-commerce.html"}]}]}</script><script src="/assets/site.js" defer></script><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18519722703"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18519722703');
+  // Keep free-text queries and fragments out of Analytics page URLs.
+  const analyticsUrl = new URL(location.origin + location.pathname);
+  const analyticsParams = new URLSearchParams(location.search);
+  const analyticsCampaigns = {
+    utm_source: ['google', 'bing', 'linkedin', 'instagram', 'newsletter'],
+    utm_medium: ['cpc', 'organic', 'referral', 'email', 'social'],
+    utm_campaign: ['amazon-management', 'walmart-management', 'inventory-fulfilment', 'marketplace-guides']
+  };
+  for (const [key, values] of Object.entries(analyticsCampaigns)) {
+    if (values.includes(analyticsParams.get(key))) analyticsUrl.searchParams.set(key, analyticsParams.get(key));
+  }
+  for (const key of ['gclid', 'gbraid', 'wbraid']) {
+    const value = analyticsParams.get(key);
+    if (value && /^[A-Za-z0-9_-]{1,256}$/.test(value)) analyticsUrl.searchParams.set(key, value);
+  }
+  let analyticsReferrer = '';
+  try {
+    const ref = new URL(document.referrer);
+    analyticsReferrer = ref.origin === location.origin ? ref.origin + ref.pathname : ref.origin;
+  } catch {}
+  gtag('config', 'G-0DL10SRED9', {
+    page_location: analyticsUrl.href,
+    page_referrer: analyticsReferrer,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script></head><body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="container site-nav" aria-label="Main navigation"><a class="logo" href="/">Simple Consulting<span>.</span></a><div class="desktop-links"><a href="/services.html">Services</a><a href="/amazon-management.html">Amazon</a><a href="/walmart-management.html">Walmart</a><a href="/about.html">About</a><a href="/blog.html" aria-current="page">Insights</a><a class="btn" data-event="review_click" href="/booking.html#booking">Book a free call</a></div><details class="mobile-menu"><summary>Menu</summary><div class="mobile-links"><a href="/services.html">Services</a><a href="/amazon-management.html">Amazon</a><a href="/walmart-management.html">Walmart</a><a href="/about.html">About</a><a href="/blog.html" aria-current="page">Insights</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/booking.html#start">Send a message</a><a href="/marketplace-assessment.html">Free assessment</a><a href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a class="btn" data-event="review_click" href="/booking.html#booking">Book a free call</a></div></details></nav></header><main id="main"><div class="container"><div class="article-shell"><p class="crumbs"><a href="/">Home</a> / <a href="/blog.html">Insights</a> / ERP</p><article><span class="post-tag">ERP</span><h1>How to Use Data to Make Better Buying Decisions in E-commerce</h1><p class="byline">By <a href="/about.html">Scott Nguyen</a> · Published Mar 23, 2026 · Updated 2026-09-28 · 3 min read</p><details class="article-toc"><summary>In this article</summary><ol><li><a href="#part-1">Sell-Through Rate as a Buying Signal</a></li><li><a href="#part-2">Days on Hand as a Risk Indicator</a></li><li><a href="#part-3">Margin by SKU Guides Assortment Decisions</a></li><li><a href="#part-4">Start with the decision the buyer needs to make</a></li><li><a href="#part-5">Combine demand, inventory and open supply</a></li><li><a href="#part-6">Flag exceptions rather than reviewing every SKU equally</a></li><li><a href="#part-7">Keep assumptions visible</a></li><li><a href="#part-8">Add cash and capacity to the buying view</a></li><li><a href="#part-9">Review buyer overrides</a></li><li><a href="#part-10">Create an exception-based buying meeting</a></li><li><a href="#part-11">Audit outcomes against the original assumption</a></li><li><a href="#part-12">Use aging views for open supply</a></li></ol></details><div class="article-body"><p>The quality of your buying decisions — what to order, how much, and when — directly determines your inventory efficiency and cash flow. Integrating data into the process improves accuracy significantly.</p><h2 id="part-1">Sell-Through Rate as a Buying Signal</h2><p>Sell-through can help evaluate demand relative to available inventory. Interpret it with seasonality, stockouts, lead times and the planned assortment rather than assigning a universal cut-off.</p><h2 id="part-2">Days on Hand as a Risk Indicator</h2><p>Compare days on hand with demand variability, lead times and replenishment plans. A figure that indicates risk for one SKU may be appropriate for another.</p><h2 id="part-3">Margin by SKU Guides Assortment Decisions</h2><p>Revenue without margin context is incomplete. Sort your assortment by gross margin dollars and gross margin percentage — these two lenses guide which products deserve investment and which deserve rationalization.</p><p><strong>The fix:</strong> Calculate sell-through rate and days on hand for your top 20 SKUs this week. Identify your highest risk positions — both stockout and overstock risk. Address those in your next buying cycle.</p>
+<h2 id="part-4">Start with the decision the buyer needs to make</h2><p>Buying reports should answer practical questions: how much to reorder, which SKUs to stop, when stock will run out and which supplier delay needs escalation. Avoid dashboards full of metrics with no action attached.</p>
+<h2 id="part-5">Combine demand, inventory and open supply</h2><p>Use sellable stock, committed demand, open purchase orders, supplier lead time and recent sales together. Looking at sales velocity alone can create duplicate orders when inventory is already on the way.</p>
+<h2 id="part-6">Flag exceptions rather than reviewing every SKU equally</h2><p>Highlight stockout risk, excess weeks of supply, delayed POs, high forecast error and material cost changes. Buyers can spend more time on decisions that change cash or service levels.</p>
+<h2 id="part-7">Keep assumptions visible</h2><p>Document safety stock, lead time, promotions and manual forecast adjustments. When the outcome differs from the plan, the team can see whether the assumption or execution was wrong.</p><p>For purchasing dashboards and reporting, see <a href="/ecommerce-systems-reporting.html">e-commerce systems &amp; reporting</a>.</p>
+<h2 id="part-8">Add cash and capacity to the buying view</h2><p>A mathematically correct reorder can still be a poor decision if cash is constrained or warehouse capacity is full. Include open commitments, payment timing and storage limits in high-value purchase decisions.</p>
+<h2 id="part-9">Review buyer overrides</h2><p>When a buyer changes the suggested order quantity, record the reason. Over time, compare those overrides with actual outcomes to see whether the planning logic is missing known events or whether manual adjustments are adding noise.</p>
+<h2 id="part-10">Create an exception-based buying meeting</h2><p>Review only SKUs with stockout risk, excess supply, delayed POs, unusual demand or cost changes. This keeps buyers focused on decisions rather than reading every line of an inventory report.</p><h2 id="part-11">Audit outcomes against the original assumption</h2><p>When a large order is placed, save the demand, lead-time and safety-stock assumptions used. Compare them later with what happened so the planning model improves over time.</p>
+<h2 id="part-12">Use aging views for open supply</h2><p>Flag purchase orders that remain unconfirmed, delayed or partially received. Old open supply can make inventory projections look healthier than reality if the dates are not maintained.</p></div><aside class="related-service"><p class="eyebrow">Help with this part of the business</p><h2>Systems &amp; reporting</h2><p>For brands with manual reporting, disconnected order and inventory data, or an ERP project to scope.</p><a href="/ecommerce-systems-reporting.html">Explore systems &amp; reporting →</a><div class="actions"><a class="btn" href="/booking.html?service=systems#start">Discuss this with Scott</a><a href="/booking.html?service=systems#booking">Book a free call</a></div></aside></article><div class="article-related"><h2>Related reading</h2><ul><li><a href="/blog/how-to-use-linkedin-to-generate-b2b-consulting-leads.html">How to Use LinkedIn to Generate B2B Consulting Leads</a></li><li><a href="/blog/how-to-migrate-your-business-from-quickbooks-to-a-full-erp.html">How to Migrate Your Business From QuickBooks to a Full ERP</a></li><li><a href="/blog/how-to-set-up-a-purchase-order-system-that-scales.html">How to Set Up a Purchase Order System That Scales</a></li></ul><a href="/blog.html">Browse all insights →</a></div></div></div></main><footer class="site-footer"><div class="container"><div class="footer-top"><div><a class="logo" href="/">Simple Consulting<span>.</span></a><p>E-commerce and marketplace operations.<br>Toronto, Ontario · Serving Canada and the US.</p><a href="mailto:scott@simpleconsulting.ca" data-event="email_click">scott@simpleconsulting.ca</a></div><div><h2>Services</h2><div class="footer-links"><a href="/amazon-management.html">Amazon management</a><a href="/walmart-management.html">Walmart management</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/shopify-consulting.html">Shopify &amp; DTC</a><a href="/fractional-ecommerce-manager.html">Fractional e-commerce support</a><a href="/ecommerce-systems-reporting.html">Systems &amp; reporting</a><a href="/google-ads-management.html">Google Ads &amp; Shopping</a></div></div><div><h2>Start a conversation</h2><div class="footer-links"><a href="/booking.html#booking">Book a free 30-minute call</a><a href="/booking.html#start">Send a message</a><a href="/marketplace-assessment.html">Free marketplace assessment</a><a href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a href="/marketplace-launch-margin-calculator.html">Marketplace margin calculator</a><a href="/marketplace-reimbursement-checklist.html">Reimbursement checklist</a><a href="/amazon-canada-launch-readiness.html">Amazon.ca launch readiness</a><a href="/selected-work.html">Selected work</a><a href="/about.html">About Scott</a><a href="/blog.html">Insights</a><a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0" rel="me">LinkedIn</a><a href="https://www.instagram.com/simpleconsulting.ca/" rel="me">Instagram</a><a href="/privacy.html">Privacy &amp; enquiries</a></div></div></div><div class="footer-bottom">© 2026 Simple Consulting. Independent consulting. Retailer and platform names describe services and experience; they do not imply affiliation, endorsement or partnership.</div></div></footer></body></html>

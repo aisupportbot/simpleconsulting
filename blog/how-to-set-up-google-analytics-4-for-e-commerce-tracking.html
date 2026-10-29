@@ -1,147 +1,44 @@
-<!DOCTYPE html>
-<html lang="en-CA">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Set Up Google Analytics 4 for E-commerce Tracking | Simple Consulting</title>
-<meta name="description" content="GA4 is fundamentally different from Universal Analytics. Here's how to set it up to track what actually matters.">
-<meta name="author" content="Scott Nguyen — Simple Consulting">
-<link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="How to Set Up Google Analytics 4 for E-commerce Tracking">
-<meta property="og:description" content="GA4 is fundamentally different from Universal Analytics. Here's how to set it up to track what actually matters.">
-<meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html">
-<meta property="og:site_name" content="Simple Consulting">
-<meta property="article:published_time" content="2024-07-31">
-<meta property="article:section" content="Google Ads">
-<meta name="twitter:card" content="summary">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0d0d0d;--white:#fff;--off:#f6f6f4;--border:#e8e8e5;--muted:#999;--text:#555}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--black);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
-nav{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:18px 32px}
-.logo{font-family:'DM Serif Display',serif;font-size:1.2em;letter-spacing:-.01em;color:var(--black);text-decoration:none}
-.nav-links{display:flex;gap:6px;align-items:center}
-.nav-links a{font-size:.86em;font-weight:500;color:var(--text);padding:8px 14px;border-radius:6px;text-decoration:none;transition:background .15s,color .15s}
-.nav-links a:hover{background:var(--off);color:var(--black)}
-.nav-links a.btn{background:var(--black);color:var(--white);font-weight:600;margin-left:6px}
-.nav-links a.btn:hover{background:#2a2a2a}
-.crumbs{max-width:760px;margin:auto;padding:26px 32px 0;font-size:.8em;color:var(--muted)}
-.crumbs a{color:var(--muted);text-decoration:none}
-.crumbs a:hover{color:var(--black)}
-article{max-width:760px;margin:auto;padding:22px 32px 72px}
-.post-tag{display:inline-block;font-size:.72em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-h1{font-family:'DM Serif Display',serif;font-size:2.5em;letter-spacing:-.025em;line-height:1.15;margin-bottom:18px}
-.byline{font-size:.85em;color:var(--muted);padding-bottom:26px;margin-bottom:32px;border-bottom:1px solid var(--border)}
-.body{font-size:1.02em;color:var(--text);line-height:1.85}
-.body p{margin-bottom:20px}
-.body h2,.body h3{font-family:'DM Sans',sans-serif;font-size:1.15em;font-weight:700;color:var(--black);margin:34px 0 14px;line-height:1.35}
-.body ul,.body ol{padding-left:22px;margin-bottom:20px}
-.body li{margin-bottom:9px}
-.body strong{color:var(--black)}
-.cta-box{background:var(--off);border:1px solid var(--border);border-radius:14px;padding:34px;margin-top:52px;text-align:center}
-.cta-box h2{font-family:'DM Serif Display',serif;font-size:1.5em;margin-bottom:12px;letter-spacing:-.02em}
-.cta-box p{font-size:.92em;color:var(--text);margin-bottom:22px}
-.cta-box a{display:inline-block;background:var(--black);color:var(--white);text-decoration:none;font-size:.88em;font-weight:600;padding:13px 28px;border-radius:6px}
-.cta-box a:hover{background:#2a2a2a}
-.svc-box{border:1px solid #d3e2da;background:#eef3f0;border-radius:14px;padding:26px 28px;margin-top:40px}
-.svc-box .k{font-size:.7em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a4d3a;margin-bottom:9px}
-.svc-box h2{font-family:'DM Sans',sans-serif;font-size:1.08em;font-weight:700;margin:0 0 8px;color:#0d0d0d}
-.svc-box p{font-size:.9em;color:#33503f;line-height:1.7;margin-bottom:14px}
-.svc-box a{font-size:.88em;font-weight:600;color:#1a4d3a;text-decoration:none;border-bottom:2px solid #1a4d3a;padding-bottom:2px}
-.svc-box a:hover{color:#0d0d0d;border-color:#0d0d0d}
-.related{max-width:760px;margin:auto;padding:0 32px 72px}
-.related h2{font-size:.72em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:8px}
-.related a{display:block;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--black)}
-.related a:hover{color:var(--muted)}
-.related .t{font-weight:600;font-size:.98em;margin-bottom:3px}
-.related .b{font-size:.83em;color:var(--text)}
-.pager{max-width:760px;margin:auto;padding:0 32px 72px;display:flex;justify-content:space-between;gap:18px;font-size:.85em}
-.pager a{color:var(--text);text-decoration:none;max-width:48%}
-.pager a:hover{color:var(--black)}
-.pager span{display:block;font-size:.85em;color:var(--muted);margin-bottom:3px}
-footer{border-top:1px solid var(--border);padding:30px 32px}
-.footer-inner{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;font-size:.8em;color:var(--muted);flex-wrap:wrap;gap:14px}
-.footer-links{display:flex;gap:22px}
-.footer-links a{color:var(--muted);text-decoration:none}
-.footer-links a:hover{color:var(--black)}
-@media(max-width:960px){nav{padding:15px 24px}.nav-links a:not(.btn){display:none}h1{font-size:1.9em}article,.related,.pager,.crumbs{padding-left:22px;padding-right:22px}}</style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Set Up Google Analytics 4 for E-commerce Tracking","description":"GA4 is fundamentally different from Universal Analytics. Here's how to set it up to track what actually matters.","datePublished":"2024-07-31","dateModified":"2024-07-31","author":{"@type":"Person","name":"Scott Nguyen"},"publisher":{"@type":"Organization","name":"Simple Consulting","url":"https://www.simpleconsulting.ca/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html"},"articleSection":"Google Ads","inLanguage":"en-CA"}</script>
-</head>
-<body>
-
-<header>
-  <nav>
-    <a class="logo" href="/">Simple Consulting</a>
-    <div class="nav-links">
-      <a href="/amazon-management.html">Amazon</a>
-      <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/booking.html" class="btn">Book a Call</a>
-    </div>
-  </nav>
-</header>
-
-<p class="crumbs"><a href="/">Home</a> › <a href="/blog.html">Blog</a> › Google Ads</p>
-
-<article>
-  <span class="post-tag">Google Ads</span>
-  <h1>How to Set Up Google Analytics 4 for E-commerce Tracking</h1>
-  <p class="byline">By Scott Nguyen · Jul 31, 2024 · 1 min read</p>
-  <div class="body"><p>Google Analytics 4 replaced Universal Analytics in 2023 and it operates on a fundamentally different model. If you're still running GA4 on its default settings, you're missing most of the e-commerce data you need to make good decisions.</p><h3>Enable Enhanced E-commerce Tracking</h3><p>GA4's default installation tracks pageviews and basic events but not e-commerce specifics. Enhanced E-commerce tracking captures product views, add-to-cart events, checkout steps, and purchases with revenue attribution. This requires additional implementation via Google Tag Manager or your e-commerce platform's native GA4 integration.</p><h3>Set Up Conversion Events</h3><p>In GA4, conversions are based on events — specific actions that represent a meaningful step toward your business goal. Mark your purchase event, lead form submission, and phone call events as conversions. These become the foundation of your Google Ads optimization.</p><h3>Configure Your Data Retention</h3><p>GA4 defaults to 2 months of data retention for user and event data. For e-commerce analysis, you want at least 14 months to capture year-over-year comparisons. Change this in your GA4 property settings immediately — you can't recover historical data after the retention period.</p><h3>Connect GA4 to Google Ads</h3><p>Linking GA4 to your Google Ads account imports your GA4 conversion events into Google Ads and enables audience sharing. This allows you to build remarketing audiences from GA4 behavioral data and use them in your ad campaigns.</p><p><strong>The fix:</strong> Check your GA4 property and confirm Enhanced E-commerce is tracking. Then check your data retention settings and increase to 14 months if it's set lower.</p></div>
-
-  <div class="svc-box">
-    <p class="k">Related service</p>
-    <h2>Marketplace advertising management</h2>
-    <p>Sponsored Products, Brands and Display structured around margin, with weekly search term review.</p>
-    <a href="/amazon-management.html">Learn more &rarr;</a>
-  </div>
-
-  <div class="cta-box">
-    <h2>Want help putting this into practice?</h2>
-    <p>Book a free consultation and we'll walk through what's holding your business back.</p>
-    <a href="/booking.html">Book a Free Call</a>
-  </div>
-</article>
-
-<div class="related">
-  <h2>More on Google Ads</h2>
-  <a href="/blog/how-to-reduce-your-google-ads-cost-per-lead-by-30.html">
-    <span class="t">How to Reduce Your Google Ads Cost Per Lead by 30%</span>
-    <span class="b">A 30% reduction in cost per lead from Google Ads is achievable for most accounts. Here's exactly how to get there.</span>
-  </a>
-  <a href="/blog/how-to-set-up-google-ads-for-lead-generation-step-by-step.html">
-    <span class="t">How to Set Up Google Ads for Lead Generation: Step-by-Step</span>
-    <span class="b">Lead generation campaigns on Google Ads require a specific setup to produce qualified leads efficiently.</span>
-  </a>
-  <a href="/blog/how-to-set-up-conversion-tracking-correctly-in-google-ads.html">
-    <span class="t">How to Set Up Conversion Tracking Correctly in Google Ads</span>
-    <span class="b">Incorrect conversion tracking is the root cause of most Google Ads underperformance. Here's how to set it up right.</span>
-  </a>
-</div>
-
-<div class="pager">
-  <a href="/blog/how-to-build-a-brand-on-amazon-not-just-a-listing.html"><span>← Previous</span>How to Build a Brand on Amazon, Not Just a Listing</a>
-  <a href="/blog/how-to-manage-cross-border-e-commerce-into-canada.html" style="text-align:right"><span>Next →</span>How to Manage Cross-Border E-commerce Into Canada</a>
-</div>
-
-
-<footer>
-  <div class="footer-inner">
-    <span>© Simple Consulting — Erin, Ontario</span>
-    <div class="footer-links">
-      <a href="/amazon-management.html">Amazon</a>
-      <a href="/walmart-management.html">Walmart</a>
-      <a href="/reimbursement-recovery.html">Get Money Back</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/booking.html">Contact</a>
-    </div>
-  </div>
-</footer>
-</body>
-</html>
+<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>How to Set Up Google Analytics 4 for E-commerce Tracking | Simple Consulting</title><meta name="description" content="Plan GA4 e-commerce events, prevent duplicate purchases and reconcile tracking with actual orders before using the data to optimise ads."><link rel="canonical" href="https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html"><meta name="theme-color" content="#1a4d3a"><meta name="author" content="Scott Nguyen"><meta property="og:type" content="article"><meta property="og:title" content="How to Set Up Google Analytics 4 for E-commerce Tracking | Simple Consulting"><meta property="og:description" content="Plan GA4 e-commerce events, prevent duplicate purchases and reconcile tracking with actual orders before using the data to optimise ads."><meta property="og:url" content="https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html"><meta property="og:site_name" content="Simple Consulting"><meta property="og:locale" content="en_CA"><meta property="og:image" content="https://www.simpleconsulting.ca/assets/scott-nguyen.webp"><meta property="og:image:alt" content="Scott Nguyen, founder of Simple Consulting"><meta property="og:image:width" content="720"><meta property="og:image:height" content="691"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="How to Set Up Google Analytics 4 for E-commerce Tracking | Simple Consulting"><meta name="twitter:description" content="Plan GA4 e-commerce events, prevent duplicate purchases and reconcile tracking with actual orders before using the data to optimise ads."><meta name="twitter:image" content="https://www.simpleconsulting.ca/assets/scott-nguyen.webp"><link rel="icon" type="image/svg+xml" href="/assessment/favicon.svg"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.simpleconsulting.ca/#organization", "name": "Simple Consulting", "url": "https://www.simpleconsulting.ca/", "email": "scott@simpleconsulting.ca", "founder": {"@id": "https://www.simpleconsulting.ca/about.html#scott"}, "areaServed": [{"@type": "Country", "name": "Canada"}, {"@type": "Country", "name": "United States"}], "location": {"@type": "Place", "name": "Toronto, Ontario, Canada"}, "logo": {"@type": "ImageObject", "url": "https://www.simpleconsulting.ca/assets/simple-consulting-logo.svg", "contentUrl": "https://www.simpleconsulting.ca/assets/simple-consulting-logo.svg", "caption": "Simple Consulting."}, "sameAs": ["https://www.linkedin.com/in/scott-nguyen-0b97723a0", "https://www.instagram.com/simpleconsulting.ca/"]}, {"@type": "Person", "@id": "https://www.simpleconsulting.ca/about.html#scott", "name": "Scott Nguyen", "url": "https://www.simpleconsulting.ca/about.html", "jobTitle": "E-commerce and marketplace consultant", "worksFor": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "WebSite", "@id": "https://www.simpleconsulting.ca/#website", "url": "https://www.simpleconsulting.ca/", "name": "Simple Consulting", "publisher": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "WebPage", "@id": "https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html#page", "url": "https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html", "name": "How to Set Up Google Analytics 4 for E-commerce Tracking | Simple Consulting", "description": "Plan GA4 e-commerce events, prevent duplicate purchases and reconcile tracking with actual orders before using the data to optimise ads.", "inLanguage": "en-CA", "isPartOf": {"@id": "https://www.simpleconsulting.ca/#website"}, "about": {"@id": "https://www.simpleconsulting.ca/#organization"}}, {"@type": "BlogPosting", "@id": "https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html#article", "headline": "How to Set Up Google Analytics 4 for E-commerce Tracking", "description": "Plan GA4 e-commerce events, prevent duplicate purchases and reconcile tracking with actual orders before using the data to optimise ads.", "datePublished": "2024-07-31", "dateModified": "2026-09-28", "author": {"@id": "https://www.simpleconsulting.ca/about.html#scott"}, "publisher": {"@id": "https://www.simpleconsulting.ca/#organization"}, "mainEntityOfPage": {"@id": "https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html#page"}, "inLanguage": "en-CA", "articleSection": "Google Ads"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.simpleconsulting.ca/"}, {"@type": "ListItem", "position": 2, "name": "Insights", "item": "https://www.simpleconsulting.ca/blog.html"}, {"@type": "ListItem", "position": 3, "name": "How to Set Up Google Analytics 4 for E-commerce Tracking", "item": "https://www.simpleconsulting.ca/blog/how-to-set-up-google-analytics-4-for-e-commerce-tracking.html"}]}]}</script><script src="/assets/site.js" defer></script><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18519722703"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18519722703');
+  // Keep free-text queries and fragments out of Analytics page URLs.
+  const analyticsUrl = new URL(location.origin + location.pathname);
+  const analyticsParams = new URLSearchParams(location.search);
+  const analyticsCampaigns = {
+    utm_source: ['google', 'bing', 'linkedin', 'instagram', 'newsletter'],
+    utm_medium: ['cpc', 'organic', 'referral', 'email', 'social'],
+    utm_campaign: ['amazon-management', 'walmart-management', 'inventory-fulfilment', 'marketplace-guides']
+  };
+  for (const [key, values] of Object.entries(analyticsCampaigns)) {
+    if (values.includes(analyticsParams.get(key))) analyticsUrl.searchParams.set(key, analyticsParams.get(key));
+  }
+  for (const key of ['gclid', 'gbraid', 'wbraid']) {
+    const value = analyticsParams.get(key);
+    if (value && /^[A-Za-z0-9_-]{1,256}$/.test(value)) analyticsUrl.searchParams.set(key, value);
+  }
+  let analyticsReferrer = '';
+  try {
+    const ref = new URL(document.referrer);
+    analyticsReferrer = ref.origin === location.origin ? ref.origin + ref.pathname : ref.origin;
+  } catch {}
+  gtag('config', 'G-0DL10SRED9', {
+    page_location: analyticsUrl.href,
+    page_referrer: analyticsReferrer,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script></head><body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="container site-nav" aria-label="Main navigation"><a class="logo" href="/">Simple Consulting<span>.</span></a><div class="desktop-links"><a href="/services.html">Services</a><a href="/amazon-management.html">Amazon</a><a href="/walmart-management.html">Walmart</a><a href="/about.html">About</a><a href="/blog.html" aria-current="page">Insights</a><a class="btn" data-event="review_click" href="/booking.html#booking">Book a free call</a></div><details class="mobile-menu"><summary>Menu</summary><div class="mobile-links"><a href="/services.html">Services</a><a href="/amazon-management.html">Amazon</a><a href="/walmart-management.html">Walmart</a><a href="/about.html">About</a><a href="/blog.html" aria-current="page">Insights</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/booking.html#start">Send a message</a><a href="/marketplace-assessment.html">Free assessment</a><a href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a class="btn" data-event="review_click" href="/booking.html#booking">Book a free call</a></div></details></nav></header><main id="main"><div class="container"><div class="article-shell"><p class="crumbs"><a href="/">Home</a> / <a href="/blog.html">Insights</a> / Google Ads</p><article><span class="post-tag">Google Ads</span><h1>How to Set Up Google Analytics 4 for E-commerce Tracking</h1><p class="byline">By <a href="/about.html">Scott Nguyen</a> · Published Jul 31, 2024 · Updated 2026-09-28 · 3 min read</p><details class="article-toc"><summary>In this article</summary><ol><li><a href="#part-1">Define the events and values</a></li><li><a href="#part-2">Implement and validate</a></li><li><a href="#part-3">Separate key events and advertising conversions</a></li><li><a href="#part-4">Choose retention and access deliberately</a></li><li><a href="#part-5">Start with the business events you need</a></li><li><a href="#part-6">Keep item data consistent</a></li><li><a href="#part-7">Validate with debug and real transactions</a></li><li><a href="#part-8">Design reporting around decisions</a></li><li><a href="#part-9">Create a tracking specification before implementation</a></li><li><a href="#part-10">Build a reconciliation routine</a></li><li><a href="#part-11">Document ownership of the data layer</a></li><li><a href="#part-12">Use test orders that reflect real complexity</a></li><li><a href="#part-13">Monitor implementation drift</a></li><li><a href="#part-14">Keep privacy decisions explicit</a></li></ol></details><div class="article-body"><p>GA4 uses events to describe the customer journey. An e-commerce measurement plan should distinguish browsing, checkout and purchases, and reconcile reported purchases with the order system.</p><h2 id="part-1">Define the events and values</h2><p>Agree on events such as product views, add-to-cart, checkout and purchase. Purchase reporting needs appropriate transaction identifiers, value and currency. Avoid firing the same purchase again when a confirmation page is refreshed.</p><h2 id="part-2">Implement and validate</h2><p>Use your platform integration, tag setup or an agreed implementation. Test representative orders, refunds where applicable and consent behaviour. Inspect the data before using it for advertising decisions.</p><h2 id="part-3">Separate key events and advertising conversions</h2><p>GA4 key events and Google Ads conversion actions have related but distinct configurations. Confirm which actions are imported or created in Ads and whether campaigns actually use them.</p><h2 id="part-4">Choose retention and access deliberately</h2><p>Data-retention settings affect particular user and event data, not every aggregate report in the same way. Select settings suited to the reporting need and privacy requirements. Document refresh timing, access and limitations.</p>
+<h2 id="part-5">Start with the business events you need</h2><p>Define the ecommerce journey—product view, cart, checkout, purchase, refund and other relevant events—before implementing tags. Follow the current GA4 ecommerce event and parameter documentation for the platform you use.</p>
+<h2 id="part-6">Keep item data consistent</h2><p>Use stable product identifiers, currency and value logic so reports can be reconciled with the store and advertising platforms. Document how discounts, tax and shipping are represented.</p>
+<h2 id="part-7">Validate with debug and real transactions</h2><p>Test event order, parameters and duplicate firing in a controlled environment, then compare real purchases with your ecommerce platform after data is processed.</p>
+<h2 id="part-8">Design reporting around decisions</h2><p>Choose a small set of acquisition, conversion and product measures that answer operating questions. GA4 becomes more useful when the team understands what action each report supports.</p><p>For analytics and reporting work, see <a href="/ecommerce-systems-reporting.html">e-commerce systems &amp; reporting</a>.</p>
+<h2 id="part-9">Create a tracking specification before implementation</h2><p>List each ecommerce event, required parameters, source system and expected trigger. Include examples for purchase, refund and item-level data so developers and marketers are working from the same definition.</p>
+<h2 id="part-10">Build a reconciliation routine</h2><p>Compare GA4 purchase counts and value with the ecommerce platform on a recurring basis. Differences can come from consent, ad blockers, refunds, timezone or implementation issues, so define what level of variance warrants investigation.</p>
+<h2 id="part-11">Document ownership of the data layer</h2><p>Clarify which team or vendor owns ecommerce event generation, tag configuration, consent logic and reporting. When tracking breaks, this prevents issues from bouncing between developers, marketers and platform support.</p>
+<h2 id="part-12">Use test orders that reflect real complexity</h2><p>Validate discounts, multiple items, shipping, tax, refunds and different payment paths rather than testing only one simple order. Edge cases are where value and item parameters often become inconsistent.</p>
+<h2 id="part-13">Monitor implementation drift</h2><p>Theme changes, checkout updates, app installations and consent tools can alter event behaviour. Add analytics QA to website-release checklists so measurement is not assumed to remain correct forever.</p>
+<h2 id="part-14">Keep privacy decisions explicit</h2><p>Work with appropriate privacy guidance for consent, retention and advertising features. The technical ability to collect an event is not by itself a reason to collect it.</p></div><aside class="related-service"><p class="eyebrow">Help with this part of the business</p><h2>Google Ads &amp; Shopping</h2><p>For Canadian product and service businesses seeking a focused campaign review or scoped ongoing support.</p><a href="/google-ads-management.html">Explore google ads &amp; shopping →</a><div class="actions"><a class="btn" href="/booking.html?service=google#start">Discuss this with Scott</a><a href="/booking.html?service=google#booking">Book a free call</a></div></aside></article><div class="article-related"><h2>Related reading</h2><ul><li><a href="/blog/how-to-set-up-conversion-tracking-correctly-in-google-ads.html">How to Set Up Conversion Tracking Correctly in Google Ads</a></li><li><a href="/blog/how-to-reduce-your-google-ads-cost-per-lead-by-30.html">How to Review and Reduce Google Ads Cost per Qualified Lead</a></li><li><a href="/blog/how-to-set-up-google-ads-for-lead-generation-step-by-step.html">How to Set Up Google Ads for Lead Generation: Step-by-Step</a></li></ul><a href="/blog.html">Browse all insights →</a></div></div></div></main><footer class="site-footer"><div class="container"><div class="footer-top"><div><a class="logo" href="/">Simple Consulting<span>.</span></a><p>E-commerce and marketplace operations.<br>Toronto, Ontario · Serving Canada and the US.</p><a href="mailto:scott@simpleconsulting.ca" data-event="email_click">scott@simpleconsulting.ca</a></div><div><h2>Services</h2><div class="footer-links"><a href="/amazon-management.html">Amazon management</a><a href="/walmart-management.html">Walmart management</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/shopify-consulting.html">Shopify &amp; DTC</a><a href="/fractional-ecommerce-manager.html">Fractional e-commerce support</a><a href="/ecommerce-systems-reporting.html">Systems &amp; reporting</a><a href="/google-ads-management.html">Google Ads &amp; Shopping</a></div></div><div><h2>Start a conversation</h2><div class="footer-links"><a href="/booking.html#booking">Book a free 30-minute call</a><a href="/booking.html#start">Send a message</a><a href="/marketplace-assessment.html">Free marketplace assessment</a><a href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a href="/marketplace-launch-margin-calculator.html">Marketplace margin calculator</a><a href="/marketplace-reimbursement-checklist.html">Reimbursement checklist</a><a href="/amazon-canada-launch-readiness.html">Amazon.ca launch readiness</a><a href="/selected-work.html">Selected work</a><a href="/about.html">About Scott</a><a href="/blog.html">Insights</a><a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0" rel="me">LinkedIn</a><a href="https://www.instagram.com/simpleconsulting.ca/" rel="me">Instagram</a><a href="/privacy.html">Privacy &amp; enquiries</a></div></div></div><div class="footer-bottom">© 2026 Simple Consulting. Independent consulting. Retailer and platform names describe services and experience; they do not imply affiliation, endorsement or partnership.</div></div></footer></body></html>

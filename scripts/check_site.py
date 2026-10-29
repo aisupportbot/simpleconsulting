@@ -28,7 +28,7 @@ class Page(HTMLParser):
  def handle_endtag(self,tag):
   if tag=='title':self.intitle=False
   if tag=='script' and self.schema is not None:self.schemas.append(json.loads(self.schema));self.schema=None
-pages={p.relative_to(ROOT).as_posix():Page(p) for p in ROOT.rglob('*.html') if not {'.git','node_modules','test-results'}.intersection(p.parts) and not p.read_text().startswith('google-site-verification:')}
+pages={p.relative_to(ROOT).as_posix():Page(p) for p in ROOT.rglob('*.html') if not {'.git','node_modules','test-results','_site'}.intersection(p.parts) and not p.read_text().startswith('google-site-verification:')}
 errors=[];titles={};canonical=[]
 for name,p in pages.items():
  def check(test,msg):
@@ -53,5 +53,19 @@ for name,p in pages.items():
 sitemap=ET.parse(ROOT/'sitemap.xml').getroot();urls=[x.find('{*}loc').text for x in sitemap]
 if set(urls)!=set(canonical):errors.append('Sitemap must match indexable canonical pages')
 if len(urls)!=len(set(urls)):errors.append('Duplicate sitemap URLs')
+stage=ROOT/'_site'
+if not stage.is_dir():
+ errors.append('Staged _site directory is missing')
+else:
+ for loc in urls:
+  path=urlsplit(loc).path
+  rel='index.html' if path in ('','/') else path.lstrip('/')
+  if not (stage/rel).is_file(): errors.append('Staged site missing sitemap URL '+loc)
+ for name,p in pages.items():
+  if p.redirect and not (stage/name).is_file(): errors.append('Staged site missing legacy redirect '+name)
+ for rel in ('CNAME','robots.txt','sitemap.xml','404.html','google2b0d5b898fd9605f.html','assets/site.css','assets/site.js','assets/contact.js','assessment/index.html','insights/amazon.html','insights/walmart.html','insights/inventory.html'):
+  if not (stage/rel).exists(): errors.append('Staged site missing '+rel)
+ for rel in ('README.md','GROWTH-REVIEW.md','WEBSITE-CHANGES.md','BLOG-REPAIR.md','SEO-BASELINE-2026-10-13.md','blog.html.backup','style.css','1765937561010.png','posts.json','package.json','scripts','tests','content','.github'):
+  if (stage/rel).exists(): errors.append('Staged site publishes internal file '+rel)
 if errors:print('\n'.join(errors));raise SystemExit(1)
 print(f'PASS: {len(pages)} HTML files, {len(canonical)} indexable canonical pages, {sum(p.redirect for p in pages.values())} legacy redirects; metadata, JSON-LD, internal links and fragments valid.')
