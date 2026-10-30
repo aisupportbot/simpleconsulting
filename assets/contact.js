@@ -76,8 +76,56 @@
     try {await navigator.clipboard.writeText(text);copyStatus.textContent='Enquiry copied. You can paste it into an email or your booking notes.';}
     catch {const fallback=document.getElementById('copy-fallback');fallback.hidden=false;fallback.value=text;fallback.focus();fallback.select();copyStatus.textContent='Select and copy the enquiry below.';}
   });
-  const calendarButton=document.getElementById('load-calendar'),slot=document.getElementById('calendar-slot');
-  let calendarCounted=false, calendarLoading=false, calendarLoaded=false;
+  const calendarButton=document.getElementById('load-calendar'),slot=document.getElementById('calendar-slot'),directLink=document.getElementById('calendar-direct');
+  let calendarCounted=false, calendarLoading=false, calendarLoaded=false, calendarListening=false;
+  function calendarUrl() {
+    const calendarUrl=new URL(directLink.href);
+    for (const [name,value] of Object.entries(window.scCampaign || {})) calendarUrl.searchParams.set(name,value);
+    return calendarUrl;
+  }
+  function ensureCalendly() {
+    if (!document.querySelector('link[data-calendly-css]')) {
+      const link=document.createElement('link');
+      link.rel='stylesheet';
+      link.href='https://assets.calendly.com/assets/external/widget.css';
+      link.dataset.calendlyCss='1';
+      document.head.appendChild(link);
+    }
+    if (window.Calendly?.initInlineWidget) return Promise.resolve();
+    return new Promise((resolve,reject)=>{
+      const script=document.createElement('script');
+      script.src='https://assets.calendly.com/assets/external/widget.js';
+      const timeout=setTimeout(()=>reject(new Error('Calendar timeout')),15000);
+      script.onload=()=>{clearTimeout(timeout);resolve();};
+      script.onerror=()=>{clearTimeout(timeout);reject(new Error('Calendar failed'));};
+      document.head.appendChild(script);
+    });
+  }
+  function trackAppointment() {
+    if (calendarCounted) return;
+    let already=false;
+    try { already=sessionStorage.getItem('sc-appointment-tracked')==='1'; } catch {}
+    if (already) { calendarCounted=true; return; }
+    calendarCounted=true;
+    try { sessionStorage.setItem('sc-appointment-tracked','1'); } catch {}
+    // Do not forward Calendly's payload. It can identify the invitee.
+    window.scTrack?.('generate_lead',{method:'calendar',service:Object.hasOwn(services,key)?key:'other',page_path:location.pathname});
+  }
+  function fromCalendlyWidget(source) {
+    if (!source) return false;
+    const frames=[...document.querySelectorAll('iframe')].filter(frame => String(frame.getAttribute('src')||'').includes('calendly.com'));
+    for (const frame of frames) {
+      let current=source;
+      for (let depth=0; depth<5 && current; depth++) {
+        if (current===frame.contentWindow) return true;
+        let parent;
+        try { parent=current.parent; } catch { break; }
+        if (!parent || parent===current) break;
+        current=parent;
+      }
+    }
+    return false;
+  }
   async function openCalendar() {
     if (!slot || calendarLoading) return;
     if (calendarLoaded) {
@@ -91,20 +139,12 @@
     const calendarStatus=document.getElementById('calendar-status');
     calendarStatus.textContent='Loading available times…';
     try {
-      if (!window.Calendly?.initInlineWidget) await new Promise((resolve,reject)=>{
-        const script=document.createElement('script');
-        script.src='https://assets.calendly.com/assets/external/widget.js';
-        const timeout=setTimeout(()=>reject(new Error('Calendar timeout')),15000);
-        script.onload=()=>{clearTimeout(timeout);resolve();};
-        script.onerror=()=>{clearTimeout(timeout);reject(new Error('Calendar failed'));};
-        document.head.appendChild(script);
-      });
+      await ensureCalendly();
       if (!window.Calendly?.initInlineWidget) throw new Error('Calendar unavailable');
       // The official widget enables confirmed scheduling events. No typed form data is forwarded.
-      const calendarUrl=new URL(document.getElementById('calendar-direct').href);
-      for (const [name,value] of Object.entries(window.scCampaign || {})) calendarUrl.searchParams.set(name,value);
-      window.Calendly.initInlineWidget({url:calendarUrl.href,parentElement:slot,resize:true});
+      window.Calendly.initInlineWidget({url:calendarUrl().href,parentElement:slot,resize:true});
       calendarLoaded=true;
+      calendarListening=true;
       calendarButton.textContent='Hide the calendar';
       calendarButton.setAttribute('aria-expanded','true');
       calendarStatus.textContent='Choose a time below. If the calendar does not display, use the link to open Calendly in a new tab.';
@@ -115,6 +155,18 @@
     } finally {calendarLoading=false;calendarButton.disabled=false;}
   }
   calendarButton?.addEventListener('click',openCalendar);
+  directLink?.addEventListener('click', async e => {
+    if (e.button!==0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    try {
+      await ensureCalendly();
+      if (!window.Calendly?.initPopupWidget) throw new Error('Popup unavailable');
+      window.Calendly.initPopupWidget({url:calendarUrl().href});
+      calendarListening=true;
+    } catch {
+      window.open(calendarUrl().href,'_blank','noopener');
+    }
+  });
   if (calendarButton && location.hash==='#booking') openCalendar();
   addEventListener('hashchange',()=>{if(calendarButton && location.hash==='#booking' && !calendarLoaded) openCalendar();});
   const panel=document.getElementById('assessment-panel'),frame=document.getElementById('assessment-frame');
@@ -124,8 +176,11 @@
   addEventListener('hashchange',fromHash);fromHash();
   let previousSummary='';
   addEventListener('message',e=>{
-    if (calendarLoaded && e.origin==='https://calendly.com' && e.source===slot.querySelector('iframe')?.contentWindow && e.data?.event==='calendly.event_scheduled' && !calendarCounted) {
-      calendarCounted=true;window.scTrack?.('generate_lead',{method:'calendar',service:Object.hasOwn(services,key)?key:'other',page_path:location.pathname});return;
+    let calData=e.data;
+    if (typeof calData==='string') { try { calData=JSON.parse(calData); } catch { calData=null; } }
+    if (calendarListening && e.origin==='https://calendly.com' && fromCalendlyWidget(e.source) && calData?.event==='calendly.event_scheduled') {
+      trackAppointment();
+      return;
     }
     if(!frame || e.origin!==location.origin || e.source!==frame.contentWindow) return;
     const data=e.data;
