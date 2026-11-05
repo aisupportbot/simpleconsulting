@@ -37,6 +37,9 @@ jobs:
       - name: Validate generated site
         run: npm run check
 
+      - name: Confirm generated files match the committed source
+        run: git diff --exit-code
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

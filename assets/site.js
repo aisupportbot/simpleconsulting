@@ -7,11 +7,12 @@
   }
   // Only these non-personal campaign labels are retained, in this tab for 30 minutes.
   const campaignValues = {
-    utm_source: ['google', 'bing', 'linkedin', 'newsletter'],
-    utm_medium: ['cpc', 'organic', 'referral', 'email', 'social'],
-    utm_campaign: ['amazon-management', 'walmart-management', 'inventory-fulfilment', 'marketplace-guides']
+    utm_source: ['google', 'bing', 'linkedin', 'instagram', 'ig', 'newsletter'],
+    utm_medium: ['cpc', 'organic', 'referral', 'email', 'social', 'bio', 'story', 'reel'],
+    utm_campaign: /^[a-z0-9]+(?:[-_][a-z0-9]+){0,8}$/
   };
-  const cleanCampaign = data => Object.fromEntries(Object.entries(campaignValues).filter(([k, values]) => values.includes(data?.[k])).map(([k]) => [k, data[k]]));
+  const campaignAllowed = (rule, value) => !!value && value.length <= 64 && (rule instanceof RegExp ? rule.test(value) : rule.includes(value));
+  const cleanCampaign = data => Object.fromEntries(Object.entries(campaignValues).filter(([k, rule]) => campaignAllowed(rule, data?.[k])).map(([k]) => [k, data[k]]));
   let campaign = {};
   try {
     const saved = JSON.parse(sessionStorage.getItem('sc-campaign') || 'null');
@@ -44,6 +45,8 @@
       window.gtag('event', analyticsEvent, {...campaign, ...safeProps, send_to: 'G-0DL10SRED9'});
       // This conversion action is specifically for accepted contact-form enquiries.
       // contact.js emits it only after Formspree succeeds and prevents duplicates.
+      // There is no separate booking label in this repo. A confirmed appointment is
+      // appointment_booked on GA4 property G-0DL10SRED9, which Ads can import.
       if (name === 'generate_lead' && props.method === 'form') {
         window.gtag('event', 'conversion', {
           send_to: 'AW-18519722703/E1iQCLaD4aAdEM-V8v5E',
@@ -53,6 +56,26 @@
       }
     }
   };
+  // A new-tab Calendly booking can be counted when the event type redirects here
+  // with ?appointment_booked=1. The value must be exactly "1". Nothing else in the
+  // query string is copied into the event.
+  try {
+    const bookingParams = new URLSearchParams(location.search);
+    if (bookingParams.get('appointment_booked') === '1') {
+      let already = false;
+      try { already = sessionStorage.getItem('sc-appointment-tracked') === '1'; } catch {}
+      if (!already) {
+        try { sessionStorage.setItem('sc-appointment-tracked', '1'); } catch {}
+        const bookedService = bookingParams.get('service') || '';
+        const bookedProps = {method: 'calendar', page_path: location.pathname};
+        if (['amazon','walmart','reimbursement','operations','shopify','fractional','systems','google','other'].includes(bookedService)) bookedProps.service = bookedService;
+        window.scTrack('generate_lead', bookedProps);
+      }
+      bookingParams.delete('appointment_booked');
+      const rest = bookingParams.toString();
+      history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+    }
+  } catch {}
   document.querySelectorAll('[data-event]').forEach(a => a.addEventListener('click', () => window.scTrack(a.dataset.event, {page_path: location.pathname})));
   document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
     if (!a.dataset.event) a.addEventListener('click', () => window.scTrack('email_click', {page_path: location.pathname}));
