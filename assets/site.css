@@ -253,3 +253,4 @@ small,.small{font-size:.86rem}
  .contact-aside:has(.calendar-slot:not([hidden])){margin-inline:-20px;border-radius:0}
  .contact-aside .calendar-slot:not([hidden]){margin-inline:-22px}
 }
+.page-hero .hero-grid{align-items:center}.hero-pricing{list-style:none;padding:0;margin:0 0 14px}.hero-pricing li{padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem}.hero-pricing li:last-child{border-bottom:0}.hero-pricing strong{display:block;font-size:1rem;color:var(--ink,inherit)}

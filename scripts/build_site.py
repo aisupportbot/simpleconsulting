@@ -179,8 +179,10 @@ def engagement_options(key):
 
 def service_pages():
     for s in SERVICES:
+        hero_grid = ' hero-grid' if s['key'] in ('amazon','walmart') else ''
+        hero_card = f'''<aside class="start-card" aria-label="Who you will work with and how pricing works"><div class="hero-person"><img src="/assets/scott-nguyen.webp" width="64" height="80" alt="Scott Nguyen, founder of Simple Consulting"><div><strong>Scott Nguyen</strong><span>Your point of contact.<br>The person doing the work.</span></div></div><h2>How it starts</h2><ul class="hero-pricing"><li><strong>Free</strong> 30-minute call to talk through the issue</li><li><strong>CAD $200</strong> focused diagnostic on one agreed issue</li><li><strong>From CAD $100/hr</strong> for hands-on or ongoing work</li></ul><p class="small muted">Scope, time and fees agreed before paid work begins.</p></aside>''' if hero_grid else ''
         proof = '<p class="service-proof">Work directly with Scott Nguyen · 15+ years in retail, e-commerce and operations · Nine years at Staples Canada</p>' if s['key'] in ('amazon','walmart') else ''
-        body=f'''<div class="container crumbs"><a href="/">Home</a> / <a href="/services.html">Services</a> / {E(s['label'])}</div><section class="page-hero"><div class="container"><p class="eyebrow">{E(s['label'])}</p><h1>{E(s['heading'])}</h1><p class="lead">{E(s['intro'])}</p>{proof}{btns(s['key'])}</div></section><section class="section"><div class="container service-layout"><div class="service-content">'''
+        body=f'''<div class="container crumbs"><a href="/">Home</a> / <a href="/services.html">Services</a> / {E(s['label'])}</div><section class="page-hero"><div class="container{hero_grid}"><div><p class="eyebrow">{E(s['label'])}</p><h1>{E(s['heading'])}</h1><p class="lead">{E(s['intro'])}</p>{proof}{btns(s['key'])}</div>{hero_card}</div></section><section class="section"><div class="container service-layout"><div class="service-content">'''
         if s['key'] in ('amazon', 'walmart'):
             body+=engagement_options(s['key'])
             body+='<section aria-label="Relevant work example">'+marketplace_work_example(s['key'], on_service=True)+'</section>'
@@ -584,13 +586,18 @@ def blog():
     # Persist explicit slugs so future title edits do not change existing URLs.
     (ROOT/'posts.json').write_text(json.dumps(POSTS,ensure_ascii=False,indent=2)+'\n')
 def sitemap():
-    entries=[(url(f),'2026-10-28' if f in ('amazon-management.html','walmart-management.html','selected-work.html') else TODAY) for f in CORE]+[(url('insights/'+k+'.html'),TODAY) for k in TOPICS]
+    entries=[(url(f),'2026-11-04' if f in ('amazon-management.html','walmart-management.html') else '2026-10-28' if f=='selected-work.html' else TODAY) for f in CORE]+[(url('insights/'+k+'.html'),TODAY) for k in TOPICS]
     entries +=[(url('blog/'+p['slug']+'.html'),p.get('updated',postdate(p))) for p in POSTS]
     xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{loc}</loc><lastmod>{date}</lastmod></url>\n' for loc,date in entries)+'</urlset>\n'
     (ROOT/'sitemap.xml').write_text(xml)
     (ROOT/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: '+SITE+'/sitemap.xml\n')
+def locale_redirects():
+    # Retired locale URLs still requested by Google (reported as 404 in Search Console).
+    for loc in ('en-us','en-gb','en-au'):
+        d=ROOT/loc; d.mkdir(exist_ok=True)
+        (d/'index.html').write_text(f'<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><title>Simple Consulting</title><meta name="robots" content="noindex"><link rel="canonical" href="{SITE}/"><meta http-equiv="refresh" content="0;url={SITE}/"></head><body><p>This page has moved to <a href="{SITE}/">simpleconsulting.ca</a>.</p></body></html>')
 def not_found():
     base('404.html','Page Not Found | Simple Consulting','Find the Simple Consulting service or guide you need.','<section class="section"><div class="container"><p class="eyebrow">404 · Page not found</p><h1>Let’s get you to the right place.</h1><p>The page may have moved. Browse the services or search the article library.</p><div class="actions"><a class="btn" href="/services.html">Explore services</a><a class="btn secondary" href="/blog.html">Find an article</a></div><a href="/">Return to the homepage</a></div></section>',robots='noindex,follow')
 if __name__=='__main__':
-    home();service_pages();commercial_pages();specialty_service_pages();wfs_consultant_page();retail_service_pages();selected_work();assessment_landing();calculator_page();growth_tools();services_hub();about();booking();privacy();blog();topic_pages();sitemap();not_found()
+    home();service_pages();locale_redirects();commercial_pages();specialty_service_pages();wfs_consultant_page();retail_service_pages();selected_work();assessment_landing();calculator_page();growth_tools();services_hub();about();booking();privacy();blog();topic_pages();sitemap();not_found()
     print('Generated',len(CORE),'core pages and',len(POSTS),'articles; existing legacy URLs redirect to their canonical articles.')
