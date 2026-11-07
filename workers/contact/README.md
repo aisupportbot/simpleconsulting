@@ -1,7 +1,7 @@
 # Contact form email service
 
 Cloudflare Workers Free + Resend Free. No production secrets belong in this repository.
-The static site still uses Formspree until the account setup and delivery test succeed.
+Production uses the Cloudflare Worker at https://simple-consulting-contact.scott-877.workers.dev/contact. Resend verified notify.simpleconsulting.ca. The controlled live delivery check on November 6, 2026 confirmed both notification and acknowledgement emails reached Scott’s mailbox; the acknowledgement Reply-To points to scott@simpleconsulting.ca. Secrets are encrypted in the Worker runtime.
 
 ## Setup and cutover
 
