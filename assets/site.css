@@ -595,3 +595,6 @@ h3{letter-spacing:-.01em}
 /* Wide tables scroll inside their box on small screens instead of widening the page */
 .table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .table-wrap table{min-width:520px}
+
+/* Keep the menu's booking button white-on-black in every state */
+.mobile-links>a.btn,.mobile-links>a.btn:visited,.mobile-links>a.btn:hover,.mobile-links>a.btn:focus,.mobile-links>a.btn:active{color:#fff;background:var(--ink);border-color:var(--ink);justify-content:center;text-align:center;margin-top:8px}
