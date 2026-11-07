@@ -14,7 +14,7 @@
     document.getElementById('margin-rate').textContent=(rate*100).toFixed(1)+'%';
     document.getElementById('margin-monthly').textContent=money.format(monthly);
     document.querySelector('#margin-results .metric-stack').hidden=false;
-    const parts=[['Product cost',cogs,'#c8ccd3'],['Marketplace fee',fee,'#9da3ae'],['Fulfilment & storage',n('margin-fulfilment')+n('margin-inbound')+n('margin-storage'),'#7b8390'],['Advertising',ads,'#565d69'],['Returns & other',n('margin-returns')+n('margin-other'),'#d9b38c'],['Left per order',Math.max(0,contribution),'#111214']];
+    const parts=[['Product cost',cogs,'#c8ccd3'],['Marketplace fee',fee,'#9da3ae'],['Fulfilment & storage',n('margin-fulfilment')+n('margin-inbound')+n('margin-storage'),'#7b8390'],['Advertising',ads,'#565d69'],['Returns & other',n('margin-returns')+n('margin-other'),'#d9b38c'],['Left per order',Math.max(0,contribution),'#2563eb']];
     let bar=document.getElementById('margin-costbar');
     if(!bar){bar=document.createElement('div');bar.id='margin-costbar';bar.className='costbar-wrap';bar.innerHTML='<p class="eyebrow">Where each sale goes</p><div class="costbar">'+parts.map((p,i)=>'<i data-k="'+i+'" style="background:'+p[2]+'"></i>').join('')+'</div><ul class="costbar-legend">'+parts.map((p,i)=>'<li><i style="background:'+p[2]+'"></i>'+p[0]+'<b data-k="'+i+'"></b></li>').join('')+'</ul>';document.querySelector('#margin-results .metric-stack').after(bar);}
     const tot=parts.reduce((a,p)=>a+p[1],0)||1;
