@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "simple-consulting-contact",
+  "main": "index.mjs",
+  "compatibility_date": "2026-11-06",
+  "workers_dev": true,
+  "vars": {
+    "FROM_EMAIL": "Simple Consulting <hello@notify.simpleconsulting.ca>",
+    "TO_EMAIL": "scott@simpleconsulting.ca"
+  },
+  "observability": {"enabled": false}
+}

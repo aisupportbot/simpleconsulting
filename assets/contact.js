@@ -37,6 +37,29 @@
     }
   } catch {}
   let attempted = false, sending = false, completed = false;
+  const worker = form.dataset.provider === 'worker';
+  let turnstileToken = '', widgetId, submissionId;
+  if (worker) {
+    const widget = document.createElement('div');
+    widget.id = 'contact-verification';
+    button.before(widget);
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    script.async = true;
+    script.onload = () => {
+      widgetId = window.turnstile.render(widget, {
+        sitekey: form.dataset.turnstileSitekey, action: 'contact', theme: 'light',
+        callback: token => { turnstileToken = token; },
+        'expired-callback': () => { turnstileToken = ''; window.turnstile.reset(widgetId); },
+        'error-callback': () => { turnstileToken = ''; status.textContent = 'Verification could not load. Please retry, or email scott@simpleconsulting.ca.'; }
+      });
+    };
+    script.onerror = () => { status.textContent = 'Verification could not load. Please reload, or email scott@simpleconsulting.ca.'; };
+    document.head.appendChild(script);
+    // A changed enquiry is a new request. Unchanged network retries reuse the ID.
+    form.addEventListener('input', () => { if (!sending) submissionId = undefined; });
+    form.addEventListener('change', () => { if (!sending) submissionId = undefined; });
+  }
   function validateOne(name) {
     const el = field(name);
     const valid = name === 'email' ? Boolean(el.value.trim()) && el.validity.valid : name === 'message' ? el.value.trim().length >= 5 : Boolean(el.value.trim());
@@ -53,12 +76,23 @@
     const valid = ['name','email','message'].map(validateOne);
     if (valid.includes(false)) { field(['name','email','message'][valid.indexOf(false)]).focus(); return; }
     if (field('_gotcha').value) return;
+    if (worker && !turnstileToken) { status.textContent = 'Please complete the verification, then send your message.'; return; }
     sending=true;button.disabled=true;button.textContent='Sending…';status.textContent='';status.classList.remove('error');
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 20000);
     try {
-      const response = await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'},signal:controller.signal});
+      let body = new FormData(form);
+      const headers = {Accept:'application/json'};
+      if (worker) {
+        submissionId ||= crypto.randomUUID();
+        body = JSON.stringify({...Object.fromEntries(body),turnstileToken,submissionId});
+        headers['Content-Type'] = 'application/json';
+      }
+      const response = await fetch(form.action,{method:'POST',body,headers,signal:controller.signal});
+      const result = worker ? await response.json() : null;
+      if (worker && result?.error === 'verification_failed') { turnstileToken = ''; window.turnstile?.reset(widgetId); }
       if(!response.ok) throw new Error('Submission not accepted');
+      if(worker && result?.ok !== true) throw new Error('Submission not confirmed');
       completed=true;
       form.hidden=true;
       const success=document.getElementById('form-success');success.hidden=false;success.focus();
