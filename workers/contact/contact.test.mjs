@@ -31,7 +31,11 @@ test('form handler validates, blocks abuse, sends two emails and fails honestly'
     assert.match(emails[1].html,/Alex &lt;Test&gt;/);assert.doesNotMatch(emails[1].html,/<Test>/);
     assert.match(emails[1].text,/one business day/);assert.doesNotMatch(emails[1].html,/Please help with my Amazon account/);
     const key=sent.options.headers['Idempotency-Key'];
+    const verifyId=JSON.parse(calls.at(-2).options.body).idempotency_key;
     await worker.fetch(request(),env);assert.equal(calls.at(-1).options.headers['Idempotency-Key'],key);
+    assert.equal(JSON.parse(calls.at(-2).options.body).idempotency_key,verifyId);
+    await worker.fetch(request({email:'changed@example.com'}),env);
+    assert.notEqual(JSON.parse(calls.at(-2).options.body).idempotency_key,verifyId,'A changed recipient cannot reuse cached challenge verification');
     emailStatus=429;assert.equal((await worker.fetch(request(),env)).status,503);
     globalThis.fetch=async()=>{throw new Error('network unavailable');};
     assert.equal((await worker.fetch(request(),env)).status,503);

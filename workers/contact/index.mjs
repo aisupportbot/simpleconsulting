@@ -31,7 +31,13 @@ export default {
     if (typeof body._gotcha === 'string' && body._gotcha) return reply(422,{error:'invalid_request'});
     if (!name || /[\r\n\x00-\x1f\x7f]/.test(name) || !email || !/^[^\s<>(),;:"\\]+@[^\s<>(),;:"\\]+\.[^\s<>(),;:"\\]+$/.test(email) || !message || message.length<5 || !channels.has(channel) || source===null || !token || !uuid.test(id||'')) return reply(422,{error:'invalid_fields'});
     try {
-      const verify=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secret:env.TURNSTILE_SECRET_KEY,response:token,idempotency_key:id}),signal:AbortSignal.timeout(7000)});
+      // Bind verification retries to the same enquiry. Changing the recipient or
+      // message must not reuse a cached successful challenge verification.
+      const binding=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify({id,name,email,message,channel,source})));
+      const h=Array.from(new Uint8Array(binding),v=>v.toString(16).padStart(2,'0')).join('').slice(0,32).split('');
+      h[12]='4';h[16]=((parseInt(h[16],16)&3)|8).toString(16);
+      const hex=h.join(''),validationId=`${hex.slice(0,8)}-${hex.slice(8,12)}-${hex.slice(12,16)}-${hex.slice(16,20)}-${hex.slice(20)}`;
+      const verify=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secret:env.TURNSTILE_SECRET_KEY,response:token,idempotency_key:validationId}),signal:AbortSignal.timeout(7000)});
       if(!verify.ok)return reply(503,{error:'verification_unavailable'});
       const check=await verify.json();
       if(!check.success || check.hostname!==new URL(origin).hostname || check.action!=='contact')return reply(422,{error:'verification_failed'});
