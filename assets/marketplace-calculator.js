@@ -45,5 +45,6 @@
     lastSummary='FBA vs WFS scenario\nSelling price: '+money.format(value('sell-price'))+'\nProduct cost: '+money.format(value('product-cost'))+'\n\nAmazon FBA\nVariable cost / order: '+money.format(fba.total)+'\nContribution / order: '+money.format(fba.contribution)+'\nContribution margin: '+pct(fba.margin)+'\n\nWalmart WFS\nVariable cost / order: '+money.format(wfs.total)+'\nContribution / order: '+money.format(wfs.contribution)+'\nContribution margin: '+pct(wfs.margin)+'\n\n'+summary.textContent;
     if(!tracked){window.scTrack?.('calculator_complete',{page_path:location.pathname});tracked=true;}
   });
+  (window.scToolSummary ||= {}).fba_wfs = () => lastSummary;
   document.getElementById('discuss-fba-wfs')?.addEventListener('click',()=>{if(lastSummary){try{sessionStorage.setItem('sc-tool-transfer',JSON.stringify({summary:lastSummary,service:'operations'}));}catch{} window.scTrack?.('tool_result_to_contact',{tool:'fba_wfs',page_path:location.pathname});}});
 })();

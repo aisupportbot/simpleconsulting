@@ -47,3 +47,21 @@ test('confirmation has readable HTML and plain text with no subscription or untr
   assert.match(email.html,/&lt;img/);assert.doesNotMatch(email.html,/<img/);
   assert.match(email.html,/role="presentation"/);assert.match(email.text,/haven’t been subscribed/);
 });
+
+test('results handler emails the visitor their results and notifies Scott, opt-in only when ticked',async()=>{
+  const original=globalThis.fetch;const calls=[];
+  globalThis.fetch=async(url,options)=>{calls.push({url,options});return url.includes('siteverify')?Response.json({success:true,hostname:'www.simpleconsulting.ca',action:'results'}):url.endsWith('/contacts')?Response.json({id:'c1'}):Response.json({data:[{id:'a'},{id:'b'}]});};
+  const results=(o={},e=env)=>worker.fetch(new Request('https://contact.example.com/results',{method:'POST',headers:{Origin:'https://www.simpleconsulting.ca','Content-Type':'application/json'},body:JSON.stringify({email:'alex@example.com',tool:'launch_margin',summary:'Contribution / order: $4.20 <b>',source_page:'/marketplace-launch-margin-calculator.html',turnstileToken:'t',submissionId:'bd7608e8-2b96-425c-9d87-e126c7c6aff1',...o})}),e);
+  try{
+    assert.equal((await results({tool:'unknown'})).status,422);
+    assert.equal((await results({summary:''})).status,422);
+    assert.equal(calls.length,0);
+    const ok=await results();assert.equal(ok.status,200);
+    const emails=JSON.parse(calls.at(-1).options.body);
+    assert.deepEqual(emails[0].to,['alex@example.com']);assert.match(emails[0].html,/\$4\.20 &lt;b&gt;/);assert.doesNotMatch(emails[0].html,/<b>/);
+    assert.deepEqual(emails[1].to,[env.TO_EMAIL]);assert.match(emails[1].text,/opt-in: No/);
+    const withTips={...env,RESEND_CONTACTS_KEY:'k',RESEND_SEGMENT_ID:'seg'};
+    await results({},withTips);assert.ok(!calls.at(-1).url.endsWith('/contacts'),'No contact without opt-in');
+    await results({tips:true},withTips);assert.ok(calls.at(-1).url.endsWith('/contacts'));
+  }finally{globalThis.fetch=original;}
+});

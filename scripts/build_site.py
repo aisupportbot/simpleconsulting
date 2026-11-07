@@ -60,7 +60,7 @@ if CONTACT_WORKER:
 GENERAL = {'key':'general','slug':'services','label':'E-commerce consulting services','fit':'Explore practical support for your channels, operations, website and advertising. We can discuss which service fits your situation.'}
 POSTS = json.loads((ROOT/'posts.json').read_text())
 COMMERCIAL = ['amazon-seller-central-consultant-canada.html','amazon-vendor-central-consultant-canada.html','amazon-ppc-management-canada.html','amazon-listing-optimization-canada.html','walmart-wfs-consultant-canada.html','walmart-listing-optimization-canada.html','walmart-connect-management-canada.html','best-buy-marketplace-consultant-canada.html','3pl-fulfilment-consultant-canada.html','retail-marketplace-vendor-onboarding-canada.html']
-RESOURCES = ['tools.html','selected-work.html','marketplace-assessment.html','amazon-fba-vs-walmart-wfs-calculator.html','marketplace-reimbursement-checklist.html','marketplace-launch-margin-calculator.html','amazon-canada-launch-readiness.html']
+RESOURCES = ['channel-diagnostic.html','tools.html','selected-work.html','marketplace-assessment.html','amazon-fba-vs-walmart-wfs-calculator.html','marketplace-reimbursement-checklist.html','marketplace-launch-margin-calculator.html','amazon-canada-launch-readiness.html']
 CORE = ['index.html','services.html','about.html','booking.html','privacy.html','blog.html']+[s['slug']+'.html' for s in SERVICES]+COMMERCIAL+RESOURCES
 E = lambda s: escape(str(s), quote=True)
 def plain(s): return unescape(re.sub('<[^>]+>',' ',s)).strip()
@@ -95,7 +95,7 @@ def nav(file):
 def footer():
     return ('<footer class="site-footer"><div class="container"><div class="foot-row">'+LOGO+
      '<nav class="foot-links" aria-label="Footer"><a href="/services.html">Services</a><a href="/tools.html">Free tools</a><a href="/about.html">About</a><a href="/blog.html">Insights</a><a href="/booking.html#start">Contact</a><a href="/privacy.html">Privacy</a><a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0" rel="me">LinkedIn ↗</a><a href="https://www.instagram.com/simpleconsulting.ca/" rel="me">Instagram ↗</a></nav></div>'
-     '<nav class="foot-services" aria-label="Services"><a href="/amazon-management.html">Amazon management</a><a href="/walmart-management.html">Walmart management</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/shopify-consulting.html">Shopify &amp; DTC</a><a href="/ecommerce-systems-reporting.html">Systems &amp; reporting</a><a href="/google-ads-management.html">Google Ads &amp; Shopping</a><a href="/fractional-ecommerce-manager.html">Fractional e-commerce support</a><a href="/selected-work.html">Selected work</a><a href="mailto:scott@simpleconsulting.ca" data-event="email_click">scott@simpleconsulting.ca</a></nav>'
+     '<nav class="foot-services" aria-label="Services"><a href="/amazon-management.html">Amazon management</a><a href="/walmart-management.html">Walmart management</a><a href="/ecommerce-operations.html">Inventory &amp; fulfilment</a><a href="/reimbursement-recovery.html">Reimbursement reviews</a><a href="/shopify-consulting.html">Shopify &amp; DTC</a><a href="/ecommerce-systems-reporting.html">Systems &amp; reporting</a><a href="/google-ads-management.html">Google Ads &amp; Shopping</a><a href="/fractional-ecommerce-manager.html">Fractional e-commerce support</a><a href="/selected-work.html">Selected work</a><a href="/channel-diagnostic.html">Channel diagnostic</a><a href="mailto:scott@simpleconsulting.ca" data-event="email_click">scott@simpleconsulting.ca</a></nav>'
      '<nav class="foot-services foot-tools" aria-label="Free tools"><a data-event="review_click" href="/booking.html#booking">Book a free 30-minute call</a><a data-event="assessment_landing_click" href="/marketplace-assessment.html">Free marketplace assessment</a><a data-event="calculator_click" href="/amazon-fba-vs-walmart-wfs-calculator.html">FBA vs WFS calculator</a><a data-event="margin_calculator_click" href="/marketplace-launch-margin-calculator.html">Marketplace margin calculator</a><a data-event="reimbursement_tool_click" href="/marketplace-reimbursement-checklist.html">Reimbursement checklist</a><a data-event="amazon_readiness_click" href="/amazon-canada-launch-readiness.html">Amazon.ca launch readiness</a></nav>'
      '<div class="footer-bottom"><span>© 2026 Simple Consulting. Consulting made simple.<br>Toronto, Ontario · Serving Canada and the US.</span><span class="foot-note">Independent consulting. Retailer and platform names describe services and experience; they do not imply affiliation, endorsement or partnership.</span></div></div></footer>')
 def btns(key='',assessment=False):
@@ -119,6 +119,7 @@ def base(file,title,description,body,extra_schema=None,scripts='',robots=None):
     is_post=file.startswith('blog/')
     text=f'''<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{E(title)}</title><meta name="description" content="{E(description)}"><link rel="canonical" href="{canonical}"><meta name="theme-color" content="#ffffff"><meta name="author" content="Scott Nguyen"><meta property="og:type" content="{'article' if is_post else 'website'}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(description)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Simple Consulting"><meta property="og:locale" content="en_CA"><meta property="og:image" content="{SITE}/assets/scott-nguyen.webp"><meta property="og:image:alt" content="Scott Nguyen, founder of Simple Consulting"><meta property="og:image:width" content="720"><meta property="og:image:height" content="691"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="{E(title)}"><meta name="twitter:description" content="{E(description)}"><meta name="twitter:image" content="{SITE}/assets/scott-nguyen.webp"><link rel="icon" type="image/svg+xml" href="/assessment/favicon.svg"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{schema}</script>{'<meta name="robots" content="'+robots+'">' if robots else ''}<script src="/assets/site.js" defer></script>{scripts}{GOOGLE_TAG}</head><body>{nav(file)}<main id="main">{body}</main>{footer()}</body></html>'''
     text=redesign_overlay(file,text)
+    text=growth_overlay(file,text)
     target=ROOT/file;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(text)
 TOPICS = {
  'amazon': {'label':'Amazon', 'heading':'A clearer view of your Amazon account.', 'description':'Amazon account guides for Canadian brands: review listings, advertising, account health and the stock behind the offer.', 'intro':'Start with the part of the account that needs attention. Review the offer before changing traffic, connect campaigns to product economics, and keep account issues in a clear work queue.', 'services':['amazon'], 'featured':['amazon-ppc-audit-checklist-canada','5-reasons-your-amazon-listings-arent-converting-and-how-to-fix-them','how-to-manage-your-amazon-account-health-dashboard'], 'steps':[('The listing is not converting','Check the offer, images and product information before adding more traffic.'),('Advertising needs a review','Compare search intent, contribution and available stock before changing spend.'),('Account work is piling up','Keep a clear record of notices, cases, owners and next actions.')]},
@@ -549,6 +550,14 @@ def privacy():
         body = body.replace('Formspree processes the form and delivers it to Scott.', 'Cloudflare Workers processes the form, Cloudflare Turnstile checks for automated submissions, and Resend delivers your enquiry to Scott and sends an acknowledgement to the email address you provide.')
         body = body.replace('Formspree, Calendly,', 'Cloudflare, Resend, Calendly,')
         body = body.replace('<a href="https://formspree.io/legal/privacy-policy/">Formspree privacy policy</a>', '<a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy policy</a> · <a href="https://resend.com/legal/privacy-policy">Resend privacy policy</a>')
+    body = body.replace('You can optionally choose a service.', 'You can optionally choose a service and tell me where you sell, your approximate monthly online sales and when you would like to start.', 1)
+    extra = ''
+    if RESULTS_EMAIL:
+        extra += '<h2>Emailing tool results</h2><p>On some free tools you can choose “Email me” to receive a copy of your results. Your email address and the results are sent through Cloudflare and Resend so the email can be delivered, and Scott is notified of the request. Requesting results does not subscribe you to marketing emails. If you also tick the optional box, you will receive up to four short, practical marketplace emails. Each includes a way to unsubscribe.</p>'
+    if PAY_URL:
+        extra += '<h2>Paying for a diagnostic</h2><p>Diagnostic payments are processed by Stripe on Stripe’s checkout page. Card details are not handled or stored by this website. Stripe sends your receipt and shares the details needed to confirm your purchase.</p>'
+    if extra:
+        body = body.replace('<h2>Third-party services</h2>', extra + '<h2>Third-party services</h2>', 1)
     base('privacy.html','Privacy & Enquiries | Simple Consulting','How enquiries, booking details and optional channel-assessment answers are handled on the Simple Consulting website.',body)
 def blog():
     seen=set()
@@ -703,6 +712,112 @@ def redesign_overlay(file,text):
         text=_once(text,'<section class="section"><div class="container"><p class="eyebrow">404 · Page not found</p>',
                    '<section class="section lost-section"><div class="container">'+LOST_GRAPHIC+'<p class="eyebrow">404 · Page not found</p>',file)
     return text
+# ---------------------------------------------------------------------------
+# Growth: paid diagnostic, fixed-scope packages, proof, qualifying questions and
+# tool email capture. Switches live in content/contact.json and
+# content/testimonials.json so features can go live without code changes.
+# ---------------------------------------------------------------------------
+TESTIMONIALS = json.loads((ROOT/'content/testimonials.json').read_text())
+PAY_URL = CONTACT.get('diagnostic_payment_url','').strip()
+KICKOFF_URL = CONTACT.get('diagnostic_kickoff_url','').strip() or 'https://calendly.com/simpleconsulting/30min'
+RESULTS_EMAIL = bool(CONTACT.get('results_email')) and CONTACT_WORKER
+
+def diagnostic_buttons(secondary=True):
+    if PAY_URL:
+        main=f'<a class="btn" data-event="diagnostic_checkout_click" href="{E(PAY_URL)}">Buy the diagnostic · CAD $750</a>'
+    else:
+        main='<a class="btn" data-event="diagnostic_request_click" href="/booking.html?topic=diagnostic#start">Request the diagnostic</a>'
+    second='<a class="btn secondary" data-event="review_click" href="/booking.html#booking">Book a free call first</a>' if secondary else ''
+    return f'<div class="actions">{main}{second}</div>'
+
+PROOF_ITEMS = ['15+ years in retail &amp; e-commerce','9 years at Staples Canada','Lean Six Sigma training','Amazon, Walmart, Best Buy, Costco &amp; Wayfair experience']
+def proof_row():
+    quotes=''.join(f'<figure class="proof-quote"><blockquote>“{E(t["quote"])}”</blockquote><figcaption><strong>{E(t["name"])}</strong>{(" · "+E(t["role"])) if t.get("role") else ""}</figcaption></figure>' for t in TESTIMONIALS[:2] if t.get('quote') and t.get('name'))
+    items=''.join(f'<li>{x}</li>' for x in PROOF_ITEMS)
+    return (f'<div class="proof-quotes">{quotes}</div>' if quotes else '')+f'<ul class="proof-row" aria-label="Experience">{items}</ul>'
+
+DIAG_FACTS=[('Listings &amp; catalogue','Suppressed or incomplete items, content gaps, pricing and Buy Box or offer issues.'),('Advertising','Search terms, wasted spend, campaign structure and how ads connect to margin and stock.'),('Inventory &amp; fulfilment','Stock cover, inbound shipments, fulfilment costs, returns and discrepancies.'),('Account health','Open cases, notices, performance metrics and the issues nobody owns yet.')]
+def diagnostic_page():
+    file='channel-diagnostic.html'
+    facts=''.join(f'<div class="card"><h3>{a}</h3><p>{b}</p></div>' for a,b in DIAG_FACTS)
+    steps=('<ol class="price-steps diag-steps" aria-label="How the diagnostic works">'
+      f'<li><span class="ps-dot">1</span><strong>{"Pay and book" if PAY_URL else "Request it"}</strong><span>{"Choose your kickoff time" if PAY_URL else "Confirm scope by email"}</span></li>'
+      '<li><span class="ps-dot">2</span><strong>Share the records</strong><span>Reports or permission-based access</span></li>'
+      '<li class="feat"><span class="ps-dot">3</span><strong>Review</strong><span>Scott works through the channel</span></li>'
+      '<li><span class="ps-dot">4</span><strong>Plan and walkthrough</strong><span>Written plan plus a call</span></li></ol>')
+    channels=''.join(f'<li>{x}</li>' for x in ['Amazon.ca (Seller or Vendor Central)','Walmart.ca and WFS','Best Buy Marketplace','Costco.ca and retail vendor portals','Wayfair','Shopify'])
+    body=f'''<div class="container crumbs"><a href="/">Home</a> / Channel diagnostic</div><section class="page-hero diag-hero"><div class="container"><p class="eyebrow">Channel diagnostic · CAD $750</p><h1>A clear priority plan for one marketplace channel.</h1><p class="lead">Scott reviews your listings, advertising, inventory and account health on one channel. You get a written plan showing what to fix first, the evidence behind it and who should own each action.</p>{diagnostic_buttons()}<p class="hero-note">CAD $750 plus applicable tax · Credited to your first month if you start ongoing support within 30 days</p></div></section>
+    <section class="section diag-how"><div class="container"><div class="section-heading"><p class="eyebrow">How it works</p><h2>Four steps from paying to a plan you can use.</h2></div>{steps}</div></section>
+    <section class="section soft"><div class="container"><div class="section-heading"><p class="eyebrow">What’s reviewed</p><h2>The four areas that decide how a channel performs.</h2><p>One marketplace, reviewed as a whole, because a listing, ad or stock problem rarely sits on its own.</p></div><div class="grid diag-grid">{facts}</div></div></section>
+    <section class="section"><div class="container diag-split"><div><p class="eyebrow">What you receive</p><h2>A plan your team can work from on Monday.</h2><ul class="check-list"><li>A written priority plan: each issue, the evidence, the commercial impact, the next action and its owner</li><li>Quick fixes separated from structural work</li><li>A walkthrough call to go through the findings and answer questions</li><li>A clear recommendation on whether ongoing support makes sense, with no obligation</li></ul></div><div class="diag-card"><p class="eyebrow">Channels</p><ul class="plain-list">{channels}</ul><p class="small muted">Need more than one channel reviewed? Ask and the scope will be quoted before you pay.</p></div></div></section>
+    <section class="section"><div class="container diag-split"><div><p class="eyebrow">After the diagnostic</p><h2>Most of the value comes from follow-through.</h2><p>A plan only helps if someone works through it. Ongoing support means Scott owns an agreed set of recurring channel tasks: listings, advertising, inventory follow-up and open cases. You get a weekly action log and a monthly review against the measures that matter for your products.</p><p>Start ongoing support within 30 days of the diagnostic and the $750 is credited toward your first month. The diagnostic effectively becomes part of the work.</p><a class="link" href="/services.html">Explore ongoing support <span class="arrow" aria-hidden="true">→</span></a></div><div><h3>Questions</h3>{faq([("Do I need to share my password?","No. Use the marketplace’s permission controls to add a user with the access needed, or export the reports. Access is agreed before the review starts."),("Can my own team carry out the plan?","Yes. The plan is written so your team, an agency or Scott can carry it out. Implementation is separate unless you choose ongoing support."),("Not sure the diagnostic is the right first step?","Book the free 30-minute call first. If a focused project or a different starting point fits better, Scott will say so."),("Are taxes included?","No. The price is CAD $750 plus applicable tax. Marketplace fees, advertising spend and third-party costs are not included.")])}</div></div></section>
+    <section class="bottom-cta"><div class="container"><div><h2>Know what to fix first.</h2><p>One channel, reviewed properly, with a written plan and a walkthrough call.</p></div>{diagnostic_buttons(False).replace('<div class="actions">','').replace('</div>','')}</div>{proof_row()}</section>'''
+    schema=[{'@type':'Service','name':'Marketplace channel diagnostic','serviceType':'E-commerce marketplace review','provider':{'@id':SITE+'/#organization'},'areaServed':['CA','US'],'url':url(file),'description':'A review of one marketplace channel covering listings, advertising, inventory and account health, delivered as a written priority plan with a walkthrough call.','offers':{'@type':'Offer','price':'750','priceCurrency':'CAD','url':url(file)}}]
+    base(file,'Marketplace Channel Diagnostic, CAD $750 | Simple Consulting','A CAD $750 review of one Amazon, Walmart, Best Buy or Costco channel: listings, advertising, inventory and account health, with a written priority plan.',body,schema)
+
+def diagnostic_confirmed():
+    file='diagnostic-confirmed.html'
+    body=f'''<section class="page-hero confirmed-hero"><div class="container"><p class="eyebrow">Payment received</p><h1>Thank you. Let’s book your kickoff.</h1><p class="lead">Your channel diagnostic is confirmed. Pick a time for a short kickoff call. We will agree on the channel, the records to share and the timing of your written plan.</p><div class="actions"><a class="btn" data-event="diagnostic_kickoff_click" href="{E(KICKOFF_URL)}" target="_blank" rel="noopener noreferrer">Choose a kickoff time ↗</a><a class="btn secondary" href="mailto:scott@simpleconsulting.ca">Email Scott</a></div><p class="hero-note">A receipt is on its way from Stripe. Questions? Reply to it or email scott@simpleconsulting.ca.</p></div></section>
+    <section class="section"><div class="container"><h2>Before the kickoff</h2><ul class="check-list"><li>Decide which channel you want reviewed first</li><li>Note the two or three issues that worry you most</li><li>Check who on your team can add a user through the marketplace’s permission settings. No passwords needed.</li></ul></div></section>'''
+    base(file,'Diagnostic Confirmed | Simple Consulting','Your Simple Consulting channel diagnostic is confirmed. Book your kickoff call.',body,robots='noindex,nofollow')
+
+PACKAGES=[
+  {'id':'walmart-launch','page':'walmart-management.html','service':'walmart','name':'Walmart.ca Marketplace launch','for':'Brands approved for, or applying to, Walmart Marketplace in Canada.',
+   'includes':['Seller and catalogue readiness review','Item setup and data corrections for the agreed SKUs','WFS or seller-fulfilled decision, and first inbound coordination','Launch tracker with owners and open issues','Post-launch review of the first weeks of sales, ads and stock']},
+  {'id':'bestbuy-onboarding','page':'best-buy-marketplace-consultant-canada.html','service':'other','name':'Best Buy Marketplace onboarding','for':'Brands and sellers launching on Best Buy Canada Marketplace.',
+   'includes':['Account and onboarding requirements checklist','Catalogue preparation: identifiers, attributes, images and pricing','Inventory feed, order, shipping and returns responsibilities defined','Integration or 3PL handoffs documented','Launch tracker and post-launch issue review']},
+  {'id':'retail-vendor','page':'retail-marketplace-vendor-onboarding-canada.html','service':'other','name':'Costco.ca and retail vendor onboarding','for':'Vendors setting up with Costco.ca, Wayfair, Home Depot or similar retail portals.',
+   'includes':['Vendor requirements and document checklist','Item data and portal setup for the agreed assortment','Routing, labelling and compliance requirements mapped','Chargeback and exception risks flagged before first orders','Handover checklist for your team']},
+  {'id':'amazon-launch','page':'amazon-management.html','service':'amazon','name':'Amazon.ca launch','for':'Brands launching new products, or launching for the first time, on Amazon.ca.',
+   'includes':['Account model and launch-readiness review','Listing build or clean-up for the agreed ASINs','FBA inbound plan and first shipment coordination','Launch advertising structure and budget guardrails','Post-launch review of sales, search terms and stock']}]
+def package_card(p,link_page=False):
+    inc=''.join(f'<li>{E(x)}</li>' for x in p['includes'])
+    more=f'<a class="link" href="/{p["page"]}">About this service <span class="arrow" aria-hidden="true">→</span></a>' if link_page else ''
+    return f'''<article class="package-card" id="{p['id']}"><p class="eyebrow">Fixed-scope project</p><h3>{E(p['name'])}</h3><p class="muted">{E(p['for'])}</p><ul class="check-list">{inc}</ul><p class="package-price">Fixed project fee, agreed before work starts</p><div class="package-actions"><a class="btn" data-event="package_click" href="/booking.html?service={p['service']}&amp;package={p['id']}#start">Discuss this package</a>{more}</div></article>'''
+def packages_section(page=None):
+    items=[p for p in PACKAGES if page is None or p['page']==page]
+    if not items: return ''
+    head=('<div class="section-heading"><p class="eyebrow">Fixed-scope packages</p><h2>Launching on a new channel? Start with a defined project.</h2><p>Clear deliverables and one agreed fee, so you know what you are getting before work begins. Not sure which fits? <a href="/channel-diagnostic.html">Start with the diagnostic</a>.</p></div>' if page is None
+          else '<div class="section-heading"><p class="eyebrow">Fixed-scope package</p><h2>Prefer a defined project?</h2></div>')
+    cls='package-grid' if page is None else 'package-grid single'
+    return f'<section class="section packages" id="packages"><div class="container">{head}<div class="{cls}">'+''.join(package_card(p,page is None) for p in items)+'</div></div></section>'
+
+QUALIFY = ('<fieldset class="qualify"><legend>About your business <span class="muted">(optional, helps me prepare)</span></legend>'
+  '<p class="qualify-label" id="sells-label">Where do you sell today?</p><div class="chips" role="group" aria-labelledby="sells-label">'
+  + ''.join(f'<label class="chip"><input type="checkbox" name="sells" value="{v}"><span>{v}</span></label>' for v in ['Amazon','Walmart','Best Buy','Costco','Wayfair','Shopify / own site','Not selling online yet'])
+  + '</div><div class="form-row"><div class="field"><label for="sales_band">Monthly online sales</label><select id="sales_band" name="sales_band"><option value="">Prefer not to say</option><option value="pre">Not selling yet</option><option value="lt10k">Under $10k</option><option value="10-50k">$10k–$50k</option><option value="50-250k">$50k–$250k</option><option value="250k+">Over $250k</option></select></div>'
+  '<div class="field"><label for="timeline">When would you like to start?</label><select id="timeline" name="timeline"><option value="">Not sure yet</option><option value="asap">As soon as possible</option><option value="1m">Within a month</option><option value="1-3m">In 1–3 months</option><option value="exploring">Just exploring</option></select></div></div></fieldset>')
+
+RESULTS_TOOLS={'marketplace-launch-margin-calculator.html':('launch_margin','discuss-margin','this scenario'),'amazon-fba-vs-walmart-wfs-calculator.html':('fba_wfs','discuss-fba-wfs','these results'),'marketplace-reimbursement-checklist.html':('reimbursement_checklist','discuss-reimbursement','this checklist'),'amazon-canada-launch-readiness.html':('amazon_readiness','discuss-amazon-readiness','this summary')}
+def results_panel(tool,what):
+    endpoint=CONTACT['worker_endpoint'].rsplit('/',1)[0]+'/results'
+    return f'''<form class="results-email" data-tool="{tool}" data-endpoint="{E(endpoint)}" data-sitekey="{E(CONTACT['turnstile_sitekey'])}" novalidate><p class="re-title">Email me {what}</p><p class="re-sub">A copy for your files, with suggested next steps.</p><div class="re-row"><label class="visually-hidden" for="re-email-{tool}">Email address</label><input type="email" id="re-email-{tool}" name="email" autocomplete="email" placeholder="you@company.com" required maxlength="254"><button class="btn" type="submit">Send</button></div><div class="hp" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div><label class="re-tips"><input type="checkbox" name="tips"> Also send me up to four short, practical marketplace emails. Unsubscribe anytime.</label><div class="re-verify"></div><p class="status" role="status" aria-live="polite"></p><p class="small muted">Only your email and these results are sent. <a href="/privacy.html">Privacy</a></p></form>'''
+
+def growth_overlay(file,text):
+    # Diagnostic links from existing pricing steps.
+    text=text.replace('<a class="btn" href="/booking.html?service=general#start">Ask about a diagnostic</a>','<a class="btn" data-event="diagnostic_page_click" href="/channel-diagnostic.html">See what’s included</a>')
+    text=text.replace('<li class="feat"><span class="ps-dot">2</span><strong>CAD $750 diagnostic</strong><span>Credited to month one if you continue</span></li>','<li class="feat"><span class="ps-dot">2</span><strong><a href="/channel-diagnostic.html">CAD $750 diagnostic</a></strong><span>Credited to month one if you continue</span></li>')
+    text=text.replace('<h3>Ongoing management</h3><p class="start-price">Quoted</p><p>Recurring account work with agreed responsibilities, a review cadence and clear reporting. Scoped and priced after the diagnostic.</p>','<h3>Ongoing management</h3><p class="start-price">Monthly, quoted</p><p>Scott owns an agreed set of recurring channel tasks, with a weekly action log and a monthly review. Scoped and priced after the diagnostic.</p>')
+    # Proof under every closing call to action.
+    if '<section class="bottom-cta">' in text and 'proof-row' not in text:
+        i=text.rfind('<section class="bottom-cta">');j=text.index('</section>',i)
+        text=text[:j]+proof_row()+text[j:]
+    # Packages on matching service pages and the services hub.
+    if file=='services.html':
+        text=_once(text,'<section class="bottom-cta">',packages_section()+'<section class="bottom-cta">',file)
+    elif any(p['page']==file for p in PACKAGES):
+        k=text.rfind('<section class="bottom-cta">')
+        text=text[:k]+packages_section(file)+text[k:]
+    # Qualifying questions on every enquiry form.
+    text=text.replace('<div class="field"><label for="message">Your message</label>',QUALIFY+'<div class="field"><label for="message">Your message</label>')
+    # Email-me-results on the free tools.
+    if RESULTS_EMAIL and file in RESULTS_TOOLS:
+        tool,btn,what=RESULTS_TOOLS[file]
+        m=re.search(r'<a class="btn secondary" id="'+btn+r'"[^>]*>[^<]*</a>',text)
+        text=text[:m.end()]+results_panel(tool,what)+text[m.end():]
+        text=text.replace('</head>','<script src="/assets/results-email.js" defer></script></head>',1)
+    return text
+
 if __name__=='__main__':
-    home();service_pages();locale_redirects();commercial_pages();specialty_service_pages();wfs_consultant_page();retail_service_pages();selected_work();assessment_landing();calculator_page();growth_tools();tools_page();services_hub();about();booking();privacy();blog();topic_pages();sitemap();not_found()
+    home();service_pages();locale_redirects();commercial_pages();specialty_service_pages();wfs_consultant_page();retail_service_pages();selected_work();assessment_landing();calculator_page();growth_tools();tools_page();services_hub();about();booking();diagnostic_page();diagnostic_confirmed();privacy();blog();topic_pages();sitemap();not_found()
     print('Generated',len(CORE),'core pages and',len(POSTS),'articles; existing legacy URLs redirect to their canonical articles.')

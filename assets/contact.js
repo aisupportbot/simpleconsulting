@@ -13,6 +13,14 @@
     if (document.getElementById('contact-heading')) document.getElementById('contact-heading').textContent = 'Let’s talk about your ' + services[key] + '.';
     if (document.getElementById('contact-intro')) document.getElementById('contact-intro').textContent = 'Describe what you would like help with, or book a free 30-minute call with Scott. Tell me what is happening and we will work out a useful next step.';
   }
+  // Arriving from the diagnostic page or a package card: start the message for them.
+  const packages = {'walmart-launch':'Walmart.ca Marketplace launch','bestbuy-onboarding':'Best Buy Marketplace onboarding','retail-vendor':'Costco.ca and retail vendor onboarding','amazon-launch':'Amazon.ca launch'};
+  const topic = params.get('topic'), pkg = params.get('package');
+  if (!field('message').value.trim()) {
+    if (topic === 'diagnostic') field('message').value = 'I would like to start with the CAD $750 channel diagnostic.\n\nChannel to review: \nMain concerns: ';
+    else if (Object.hasOwn(packages, pkg)) field('message').value = 'I am interested in the ' + packages[pkg] + ' package.\n\nProducts / SKUs involved: \nTarget launch timing: ';
+  }
+  if (topic === 'diagnostic' && document.getElementById('contact-heading')) document.getElementById('contact-heading').textContent = 'Let’s set up your channel diagnostic.';
   let source = location.pathname;
   if (Object.hasOwn(services, key)) source += ' | service: ' + key;
   try { const ref = new URL(document.referrer); if (ref.origin === location.origin) source += ' | from: ' + ref.pathname; } catch {}
@@ -82,6 +90,12 @@
     const timer = setTimeout(() => controller.abort(), 20000);
     try {
       let body = new FormData(form);
+      // Fold the optional business questions into the message Scott receives,
+      // so the existing email service needs no new fields.
+      const sells = body.getAll('sells'), band = field('sales_band')?.selectedOptions[0], when = field('timeline')?.selectedOptions[0];
+      const about = [sells.length ? 'Sells on: ' + sells.join(', ') : '', band?.value ? 'Monthly online sales: ' + band.textContent : '', when?.value ? 'Timing: ' + when.textContent : ''].filter(Boolean);
+      ['sells','sales_band','timeline'].forEach(n => body.delete(n));
+      if (about.length) body.set('message', field('message').value + '\n\n— About the business —\n' + about.join('\n'));
       const headers = {Accept:'application/json'};
       if (worker) {
         submissionId ||= crypto.randomUUID();
@@ -96,7 +110,7 @@
       completed=true;
       form.hidden=true;
       const success=document.getElementById('form-success');success.hidden=false;success.focus();
-      window.scTrack?.('generate_lead',{method:'form',service: Object.hasOwn(services,field('channel').value)?field('channel').value:'other',page_path:location.pathname});
+      window.scTrack?.('generate_lead',{method:'form',service: Object.hasOwn(services,field('channel').value)?field('channel').value:'other',sales_band:field('sales_band')?.value||'',timeline:field('timeline')?.value||'',page_path:location.pathname});
     } catch {
       status.classList.add('error');
       status.textContent='We could not confirm submission. Your message is still here. Copy it below and email scott@simpleconsulting.ca, or try again.';

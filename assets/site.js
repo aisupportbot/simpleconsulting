@@ -34,7 +34,9 @@
       // Route engagement events to GA4 only; the dedicated Ads action stays separate.
       const safeProps = {page_path: location.pathname};
       const allowed = {
-        method: ['form', 'calendar', 'direct', 'embed'],
+        method: ['form', 'calendar', 'direct', 'embed', 'tool'],
+        sales_band: ['pre', 'lt10k', '10-50k', '50-250k', '250k+'],
+        timeline: ['asap', '1m', '1-3m', 'exploring'],
         service: ['amazon', 'walmart', 'reimbursement', 'operations', 'shopify', 'fractional', 'systems', 'google', 'other'],
         next_step: ['book', 'message'],
         tool: ['amazon_readiness', 'launch_margin', 'reimbursement_checklist', 'fba_wfs']
@@ -48,9 +50,12 @@
       // There is no separate booking label in this repo. A confirmed appointment is
       // appointment_booked on GA4 property G-0DL10SRED9, which Ads can import.
       if (name === 'generate_lead' && props.method === 'form') {
+        // Weight the enquiry by stated business size so Ads bidding favours
+        // enquiries that are more likely to become ongoing clients.
+        const leadValue = {pre: 0.5, lt10k: 1, '10-50k': 2, '50-250k': 4, '250k+': 6}[props.sales_band] || 1;
         window.gtag('event', 'conversion', {
           send_to: 'AW-18519722703/E1iQCLaD4aAdEM-V8v5E',
-          value: 1.0,
+          value: leadValue,
           currency: 'CAD'
         });
       }
@@ -74,6 +79,22 @@
       bookingParams.delete('appointment_booked');
       const rest = bookingParams.toString();
       history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+    }
+  } catch {}
+  // Paid diagnostic: Stripe redirects to /diagnostic-confirmed.html?session_id=…
+  // Record one GA4 purchase per checkout session (import it into Google Ads).
+  try {
+    if (location.pathname === '/diagnostic-confirmed.html') {
+      const sid = new URLSearchParams(location.search).get('session_id') || '';
+      // Only a real Stripe checkout session counts; visiting the page directly does not.
+      const valid = /^cs_[A-Za-z0-9_]{8,200}$/.test(sid);
+      const key = 'sc-purchase-' + sid;
+      let seen = false; try { seen = localStorage.getItem(key) === '1'; } catch {}
+      if (valid && !seen && typeof window.gtag === 'function') {
+        try { localStorage.setItem(key, '1'); } catch {}
+        window.gtag('event', 'purchase', {...campaign, transaction_id: sid, value: 750, currency: 'CAD', items: [{item_id: 'channel-diagnostic', item_name: 'Channel diagnostic', price: 750, quantity: 1}], send_to: 'G-0DL10SRED9'});
+      }
+      if (sid) history.replaceState(null, '', location.pathname);
     }
   } catch {}
   document.querySelectorAll('[data-event]').forEach(a => a.addEventListener('click', () => window.scTrack(a.dataset.event, {page_path: location.pathname})));

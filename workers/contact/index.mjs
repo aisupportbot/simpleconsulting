@@ -1,4 +1,5 @@
 import {confirmationEmail, escapeHtml} from './email.mjs';
+import {handleResults} from './results.mjs';
 
 const origins = new Set(['https://www.simpleconsulting.ca','https://simpleconsulting.ca']);
 const channels = new Set(['','amazon','walmart','reimbursement','operations','shopify','fractional','systems','google','both','other']);
@@ -11,7 +12,8 @@ export default {
     if (origins.has(origin)) headers['Access-Control-Allow-Origin'] = origin;
     const reply = (status, body) => new Response(JSON.stringify(body), {status, headers});
     if (!origins.has(origin)) return reply(403,{error:'origin_not_allowed'});
-    if (new URL(request.url).pathname !== '/contact') return reply(404,{error:'not_found'});
+    const path=new URL(request.url).pathname;
+    if (path !== '/contact' && path !== '/results') return reply(404,{error:'not_found'});
     if (request.method === 'OPTIONS') return new Response(null, {status:204,headers:{...headers,'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Access-Control-Max-Age':'600'}});
     if (request.method !== 'POST') return reply(405,{error:'method_not_allowed'});
     if (!env.RESEND_API_KEY || !env.TURNSTILE_SECRET_KEY || !env.FROM_EMAIL || !env.TO_EMAIL) return reply(503,{error:'service_unavailable'});
@@ -25,6 +27,7 @@ export default {
       body=JSON.parse(new TextDecoder().decode(bytes));
     } catch {return reply(400,{error:'invalid_request'});}
     if (!body || typeof body !== 'object' || Array.isArray(body)) return reply(400,{error:'invalid_request'});
+    if (path === '/results') return handleResults(body, env, origin, reply);
     const string = (key,max) => typeof body[key]==='string' && body[key].length<=max ? body[key].trim() : null;
     const name=string('name',150),email=string('email',254),message=string('message',12000),channel=string('channel',50),source=string('source_page',1500);
     const token=string('turnstileToken',2048),id=string('submissionId',36);

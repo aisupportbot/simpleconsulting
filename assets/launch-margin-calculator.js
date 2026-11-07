@@ -25,5 +25,6 @@
     lastSummary='Marketplace launch margin scenario\nSelling price: '+money.format(price)+'\nVariable cost / order: '+money.format(variable)+'\nContribution / order: '+money.format(contribution)+'\nContribution margin: '+(rate*100).toFixed(1)+'%\nScenario orders / month: '+units+'\nMonthly contribution scenario: '+money.format(monthly)+'\n\n'+s.textContent;
     if(!form.dataset.tracked){form.dataset.tracked='1';window.scTrack?.('launch_margin_calculator_complete',{page_path:location.pathname});}
   });
+  (window.scToolSummary ||= {}).launch_margin = () => lastSummary;
   document.getElementById('discuss-margin')?.addEventListener('click',()=>{if(lastSummary){try{sessionStorage.setItem('sc-tool-transfer',JSON.stringify({summary:lastSummary,service:'operations'}));}catch{} window.scTrack?.('tool_result_to_contact',{tool:'launch_margin',page_path:location.pathname});}});
 })();

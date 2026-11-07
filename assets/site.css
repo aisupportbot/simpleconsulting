@@ -643,3 +643,74 @@ p,li{text-wrap:pretty}
 .bottom-cta p{max-width:560px}
 .bottom-cta .btn{flex:none;min-width:200px}
 @media(max-width:900px){.bottom-cta .container{display:block;padding:32px 24px;border-radius:22px}.bottom-cta .btn{width:100%;margin-top:22px}}
+
+/* ---- Growth: diagnostic, packages, proof, qualifying questions, results email ---- */
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.check-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:11px}
+.check-list li{position:relative;padding-left:28px;line-height:1.55}
+.check-list li::before{content:"";position:absolute;left:0;top:.3em;width:16px;height:16px;border-radius:50%;background:var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%232563eb' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.plain-list{list-style:none;padding:0;margin:12px 0 16px;display:grid;gap:9px}
+.plain-list li{padding-bottom:9px;border-bottom:1px solid var(--line)}
+.plain-list li:last-child{border-bottom:0}
+
+/* Proof under closing calls to action */
+.proof-row{list-style:none;margin:22px auto 0;padding:0 24px;max-width:1160px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;font-size:.84rem;color:var(--text)}
+.proof-row li{display:flex;align-items:center;gap:8px}
+.proof-row li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.proof-quotes{max-width:1160px;margin:22px auto 0;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.proof-quote{margin:0;padding:24px 26px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.proof-quote blockquote{margin:0 0 12px;font-size:1.02rem;line-height:1.6;color:var(--ink)}
+.proof-quote figcaption{font-size:.84rem;color:var(--text)}
+
+/* Diagnostic page */
+.diag-how .price-steps{margin:8px 0 0;max-width:none;gap:16px}
+.diag-how .price-steps li{padding:22px 22px 20px}
+.diag-how .price-steps strong{font-size:16px}
+.diag-how .price-steps span:not(.ps-dot){font-size:14px}
+.calculator-layout>*{min-width:0}
+.diag-steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+.diag-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.diag-split{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:start}
+.diag-card{border:1px solid var(--line);border-radius:22px;padding:28px 30px;background:#fff}
+.confirmed-hero .actions{margin-top:26px}
+@media(max-width:900px){.diag-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.diag-split{grid-template-columns:1fr;gap:36px}.diag-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.diag-grid{grid-template-columns:1fr}}
+
+/* Fixed-scope packages */
+.package-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.package-grid.single{grid-template-columns:minmax(0,760px)}
+.package-card{border:1px solid var(--line);border-radius:22px;padding:30px 32px;background:#fff;display:flex;flex-direction:column;transition:border-color .2s,box-shadow .2s}
+.package-card:hover{border-color:#cfd5e3;box-shadow:0 18px 40px -28px #11121440}
+.package-card h3{font-size:1.35rem;letter-spacing:-.02em;margin:4px 0 6px}
+.package-card .check-list{margin:16px 0 22px}
+.package-price{margin:auto 0 16px;padding-top:16px;border-top:1px solid var(--line);font-size:.9rem;font-weight:600;color:var(--ink)}
+.package-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+@media(max-width:800px){.package-grid{grid-template-columns:1fr}.package-card{padding:26px 22px}.package-actions .btn{width:100%}}
+
+/* Qualifying questions on the enquiry form */
+.qualify{border:1px solid var(--line);border-radius:16px;padding:18px 20px 4px;margin:0 0 20px;background:#fafbfc}
+.qualify{padding-top:16px}
+.qualify legend{float:left;width:100%;font-size:.91rem;font-weight:600;padding:0;margin:0 0 6px}
+.qualify legend+*{clear:both}
+.qualify-label{font-size:.88rem;font-weight:600;margin:4px 0 10px}
+.qualify .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.qualify .chip{padding:0;font-weight:500;font-size:.86rem;border-radius:999px;white-space:nowrap;cursor:pointer}
+.qualify .chip input{position:absolute;opacity:0;width:1px;height:1px}
+.qualify .chip span{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;transition:background .15s,border-color .15s,color .15s}
+.qualify .chip input:checked+span{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.qualify .chip input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.qualify .field label{font-size:.88rem}
+
+/* Email me these results */
+.results-email{margin-top:22px;padding:22px 22px 16px;border:1px solid var(--line);border-radius:18px;background:#fafbfc}
+.results-email .re-title{margin:0;font-weight:600;color:var(--ink)}
+.results-email .re-sub{margin:4px 0 14px;font-size:.88rem;color:var(--text)}
+.results-email .re-row{display:flex;gap:8px}
+.results-email input[type=email]{flex:1;min-width:0;min-height:46px;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink)}
+.results-email input[type=email]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.results-email .btn{min-height:46px;padding:0 22px}
+.results-email .re-tips{display:flex;gap:9px;align-items:flex-start;margin:12px 0 0;font-size:.84rem;color:var(--text);line-height:1.5}
+.results-email .re-tips input{margin-top:3px;accent-color:var(--accent)}
+.results-email .status{margin:8px 0 0;font-size:.86rem}
+.results-email.sent .status{color:#1f6b45}
+.results-email .small{margin:6px 0 0}
