@@ -104,7 +104,9 @@
       const pages = Math.max(1, Math.ceil(matches.length / pageSize));
       page = Math.min(page, pages);
       const visible = new Set(matches.slice((page - 1) * pageSize, page * pageSize));
+      const before = new Set(cards.filter(c => !c.hidden));
       cards.forEach(card => { card.hidden = !visible.has(card); });
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) [...visible].forEach((card, k) => { if ((!before.has(card) || before.size !== visible.size) && card.animate) card.animate([{opacity: 0, transform: 'translateY(10px) scale(.985)'}, {opacity: 1, transform: 'none'}], {duration: 380, delay: Math.min(k, 8) * 35, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards'}); });
       buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === tag)));
       const count = matches.length;
       document.getElementById('filter-status').textContent = count > pageSize ? ((page - 1) * pageSize + 1) + '–' + Math.min(page * pageSize, count) + ' of ' + count + ' articles' : count + ' article' + (count === 1 ? '' : 's');
@@ -133,5 +135,94 @@
     next.addEventListener('click', () => changePage(1));
     addEventListener('popstate', () => { readState(); apply(); });
     readState(); apply();
+  }
+})();
+
+// 2026 refresh: flowing line in page heroes and a gentle reveal on scroll.
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ns = 'http://www.w3.org/2000/svg';
+  document.querySelectorAll('.page-hero, .hero').forEach(hero => {
+    if (hero.querySelector('.hero-flow, .motion-stage')) return;
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'hero-flow'); svg.setAttribute('viewBox', '0 0 1440 90');
+    svg.setAttribute('preserveAspectRatio', 'none'); svg.setAttribute('aria-hidden', 'true');
+    const d1 = 'M0 70 C240 70 300 30 520 30 S860 62 1040 50 1300 18 1440 26';
+    const d2 = 'M0 84 C300 84 420 56 700 60 S1120 84 1440 64';
+    [['fl', d1], ['fl', d2], ['fp', d1], ['fp d2', d2]].forEach(([c, d]) => {
+      const p = document.createElementNS(ns, 'path'); p.setAttribute('class', c); p.setAttribute('d', d);
+      p.setAttribute('vector-effect', 'non-scaling-stroke'); p.setAttribute('pathLength', '1000'); svg.append(p);
+    });
+    hero.prepend(svg);
+  });
+  if (reduce || !('IntersectionObserver' in window)) return;
+  const els = document.querySelectorAll('main .card, main .post-card, main .topic-card, main .case-card, main .start-step, main .section-heading, main .service-content > section, main .callout, main .related-service');
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('sc-in'); io.unobserve(e.target); } }), {threshold: .08, rootMargin: '0px 0px -40px 0px'});
+  els.forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('sc-reveal'); io.observe(el); } });
+})();
+
+// Features from the design update: process graphic, service search, reading progress.
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const copy = ['Understand the issue, your current setup and the records available.',
+    'Agree on the priorities, responsibilities and next steps before work begins.',
+    'Carry out the agreed work, share progress and review what needs attention next.'];
+  document.querySelectorAll('.workflow').forEach(w => {
+    const steps = [...w.querySelectorAll('.workflow-step')], text = w.querySelector('.workflow-copy');
+    let i = 0, timer;
+    const go = n => { i = n; steps.forEach((b, k) => b.setAttribute('aria-pressed', String(k === n))); w.dataset.stage = n; text.textContent = copy[n]; };
+    const auto = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => go((i + 1) % 3), 4500); };
+    steps.forEach((b, k) => b.addEventListener('click', () => { go(k); auto(); }));
+    if (reduce) w.classList.add('paused'); else auto();
+  });
+  const services = [...document.querySelectorAll('details.service')];
+  services.forEach(d => d.addEventListener('toggle', () => { if (d.open) services.forEach(x => { if (x !== d) x.open = false; }); }));
+  const search = document.getElementById('service-search');
+  if (search) {
+    const status = document.getElementById('service-search-status'), empty = document.getElementById('service-search-empty');
+    search.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase(); let n = 0;
+      services.forEach(s => { const hit = !q || s.textContent.toLowerCase().includes(q); s.hidden = !hit; if (hit) n++; });
+      status.textContent = n + ' service' + (n === 1 ? '' : 's'); empty.hidden = n > 0;
+    });
+  }
+  if (document.querySelector('.article-shell')) {
+    const bar = document.createElement('div'); bar.className = 'read-progress'; bar.setAttribute('aria-hidden', 'true'); bar.innerHTML = '<i></i>';
+    document.body.append(bar);
+    const update = () => { const total = document.documentElement.scrollHeight - innerHeight; bar.firstChild.style.width = (total > 0 ? Math.min(100, scrollY / total * 100) : 0) + '%'; };
+    addEventListener('scroll', update, {passive: true}); update();
+  }
+})();
+
+
+// Motion for remaining features: checklist progress rings and count-up numbers.
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  [['reimbursement-progress', 'reviewed'], ['amazon-readiness-score', 'ready']].forEach(([id, word]) => {
+    const text = document.getElementById(id); if (!text) return;
+    const ring = document.createElement('div'); ring.className = 'progress-ring'; ring.setAttribute('aria-hidden', 'true');
+    ring.innerHTML = '<svg viewBox="0 0 64 64"><circle class="pr-bg" cx="32" cy="32" r="27"/><circle class="pr-fg" cx="32" cy="32" r="27" pathLength="100"/></svg><span class="pr-pct">0%</span><span class="pr-check"></span>';
+    const wrap = document.createElement('div'); wrap.className = 'progress-wrap';
+    text.parentNode.insertBefore(wrap, text); wrap.append(ring, text);
+    const fg = ring.querySelector('.pr-fg'), pct = ring.querySelector('.pr-pct');
+    let last = -1;
+    const sync = () => {
+      const m = text.textContent.match(/(\d+)\s+of\s+(\d+)/); if (!m) return;
+      const v = Math.round(+m[1] / +m[2] * 100);
+      fg.style.strokeDasharray = v + ' 100'; pct.textContent = v + '%';
+      ring.classList.toggle('complete', v === 100);
+      if (last >= 0 && v !== last && !reduce && ring.animate) ring.animate([{transform: 'scale(1)'}, {transform: 'scale(1.06)'}, {transform: 'scale(1)'}], {duration: 320, easing: 'ease-out'});
+      last = v;
+    };
+    new MutationObserver(sync).observe(text, {childList: true, characterData: true, subtree: true}); sync();
+    const form = text.closest('.tool-grid')?.querySelector('form');
+    form?.addEventListener('change', e => { const row = e.target.closest('label'); if (row && !reduce && row.animate) row.animate([{background: '#f3f4f6'}, {background: 'transparent'}], {duration: 600, easing: 'ease-out'}); });
+  });
+  const counters = document.querySelectorAll('main [data-count]');
+  if (counters.length) {
+    const run = el => { const end = +el.dataset.count; if (reduce) { el.textContent = end; return; } const t0 = performance.now(); const tick = t => { const p = Math.min((t - t0) / 1200, 1); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); }; el.textContent = '0'; requestAnimationFrame(tick); };
+    if (!('IntersectionObserver' in window)) { counters.forEach(el => { el.textContent = el.dataset.count; }); }
+    else { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } }), {threshold: .6});
+    counters.forEach(el => io.observe(el)); }
   }
 })();

@@ -31,6 +31,17 @@
     }
     document.querySelector('.result-table').hidden=false;
     summary.hidden=false;
+    const chart=document.querySelector('.comparison-chart');
+    if(chart){
+      const max=Math.max(fba.contribution,wfs.contribution,1);
+      chart.hidden=false;
+      [['fba',fba],['wfs',wfs]].forEach(([k,r])=>{
+        const bar=document.getElementById(k+'-bar');
+        bar.style.width='0%';
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.width=(Math.max(0,r.contribution)/max*100)+'%';}));
+        document.getElementById(k+'-chart-value').textContent=money.format(r.contribution);
+      });
+    }
     lastSummary='FBA vs WFS scenario\nSelling price: '+money.format(value('sell-price'))+'\nProduct cost: '+money.format(value('product-cost'))+'\n\nAmazon FBA\nVariable cost / order: '+money.format(fba.total)+'\nContribution / order: '+money.format(fba.contribution)+'\nContribution margin: '+pct(fba.margin)+'\n\nWalmart WFS\nVariable cost / order: '+money.format(wfs.total)+'\nContribution / order: '+money.format(wfs.contribution)+'\nContribution margin: '+pct(wfs.margin)+'\n\n'+summary.textContent;
     if(!tracked){window.scTrack?.('calculator_complete',{page_path:location.pathname});tracked=true;}
   });
