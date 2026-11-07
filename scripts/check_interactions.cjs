@@ -6,6 +6,9 @@ const root=path.resolve(__dirname,'..');
 function page(file,url='https://www.simpleconsulting.ca/'+file){
  const dom=new JSDOM(fs.readFileSync(path.join(root,file),'utf8'),{url,runScripts:'outside-only'});
  const w=dom.window;
+ // Keep the legacy-provider scenarios independent of the selected live provider.
+ // The worker-specific scenarios below exercise verification and JSON acceptance.
+ w.document.getElementById('leadform')?.removeAttribute('data-provider');
  const tag=[...w.document.querySelectorAll('script:not([src])')].find(s=>s.textContent.includes("gtag('config', 'AW-18519722703')"));
  assert.ok(tag, 'Google Ads initialization is present');
  w.eval(tag.textContent);
