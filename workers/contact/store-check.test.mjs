@@ -63,7 +63,7 @@ test('handler: validates, verifies, checks the site, emails visitor and Scott', 
     if (String(url).includes('siteverify')) return Response.json({success: true, hostname: 'www.simpleconsulting.ca', action: 'store_check'});
     if (String(url).includes('pagespeedonline')) return Response.json({lighthouseResult: {categories: {performance: {score: 0.42}}, audits: {'largest-contentful-paint': {numericValue: 6100}}}});
     if (String(url).includes('api.resend.com')) return Response.json({data: [{id: 'a'}, {id: 'b'}]});
-    if (String(url).includes('api.anthropic.com')) return Response.json({content: [{type: 'text', text: '{"summary":"Your shoppers cannot see shipping.","issues":[{"sev":"high","area":"First impression","finding":"Headline says Welcome.","fix":"Say what you sell."}],"rewrite":{"label":"New homepage headline","before":"Welcome","after":"Organic baby sheets, made in Canada","note":"Names the product."}}'}]});
+    if (String(url).includes('api.anthropic.com')) { const b = JSON.parse(o.body); assert.equal(b.tool_choice.name, 'store_check_report'); return Response.json({stop_reason: 'tool_use', content: [{type: 'tool_use', name: 'store_check_report', input: {summary: 'Your shoppers cannot see shipping.', issues: [{sev: 'high', area: 'First impression', finding: 'Headline says Welcome.', fix: 'Say what you sell.'}], rewrite: {label: 'New homepage headline', before: 'Welcome', after: 'Organic baby sheets, made in Canada', note: 'Names the "product".'}}}]}); }
     return new Response(WEAK, {headers: {'Content-Type': 'text/html; charset=utf-8'}});
   };
   try {

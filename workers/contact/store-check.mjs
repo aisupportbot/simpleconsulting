@@ -184,23 +184,24 @@ export function listingRules(L) {
 
 // ---------- Claude (optional) ----------
 export const aiStatus = {last: ''};
-async function askClaude(env, system, user) {
+async function askClaude(env, system, user, schema) {
   if (!env.ANTHROPIC_API_KEY) { aiStatus.last = 'no key set'; return null; }
   const models = [...new Set([env.ANTHROPIC_MODEL, 'claude-haiku-5-5', 'claude-haiku-4-5'].filter(Boolean))];
   for (const model of models) {
     try {
       const r = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST', headers: {'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'},
-        body: JSON.stringify({model, max_tokens: 4000, system, messages: [{role: 'user', content: user}]}), signal: AbortSignal.timeout(40000)});
+        body: JSON.stringify({model, max_tokens: 4000, system, messages: [{role: 'user', content: user}], ...(schema ? {tools: [{name: 'store_check_report', description: 'Return the store check findings.', input_schema: schema}], tool_choice: {type: 'tool', name: 'store_check_report'}} : {})}), signal: AbortSignal.timeout(40000)});
       if (!r.ok) {
         const e = await r.json().catch(() => ({}));
         aiStatus.last = `${model}: HTTP ${r.status} ${String(e?.error?.type || '')} ${String(e?.error?.message || '').slice(0, 200)}`.trim();
         if (r.status === 404 || (r.status === 400 && /model/i.test(aiStatus.last))) continue; // try the next model name
         return null;
       }
-      const d = await r.json(), text = (d.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
-      const a = text.indexOf('{'), b = text.lastIndexOf('}');
-      let out = null;
-      try { out = a >= 0 && b > a ? JSON.parse(text.slice(a, b + 1)) : null; } catch {}
+      const d = await r.json();
+      const tool = (d.content || []).find(c => c.type === 'tool_use' && c.input && typeof c.input === 'object');
+      let out = tool ? tool.input : null;
+      const text = (d.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
+      if (!out) { const a = text.indexOf('{'), b = text.lastIndexOf('}'); try { out = a >= 0 && b > a ? JSON.parse(text.slice(a, b + 1)) : null; } catch {} }
       if (!out) { aiStatus.last = `${model}: unreadable reply (stop: ${d.stop_reason || '?'}, ${text.length} chars)`; return null; }
       aiStatus.last = `ok (${model})`;
       return out;
@@ -208,17 +209,20 @@ async function askClaude(env, system, user) {
   }
   return null;
 }
-const AI_SYSTEM = 'You are a senior e-commerce conversion consultant with 17 years of experience on Shopify, Amazon, Walmart and Best Buy. Be specific, plain-spoken and practical. Never invent facts that are not in the data. Reply with JSON only.';
+const ISSUE_SCHEMA = areas => ({type: 'object', properties: {sev: {type: 'string', enum: ['high', 'med', 'low']}, area: {type: 'string', enum: areas}, finding: {type: 'string'}, fix: {type: 'string'}}, required: ['sev', 'area', 'finding', 'fix']});
+const SITE_SCHEMA = {type: 'object', properties: {summary: {type: 'string'}, issues: {type: 'array', maxItems: 3, items: ISSUE_SCHEMA(['First impression', 'Product pages', 'Trust'])}, rewrite: {type: 'object', properties: {label: {type: 'string'}, before: {type: 'string'}, after: {type: 'string'}, note: {type: 'string'}}, required: ['after']}}, required: ['summary', 'issues']};
+const LISTING_SCHEMA = {type: 'object', properties: {summary: {type: 'string'}, issues: {type: 'array', maxItems: 3, items: ISSUE_SCHEMA(['Title', 'Bullets', 'Description'])}, rewrite: {type: 'object', properties: {title: {type: 'string'}, bullets: {type: 'array', maxItems: 6, items: {type: 'string'}}}, required: ['title', 'bullets']}}, required: ['summary', 'issues', 'rewrite']};
+const AI_SYSTEM = 'You are a senior e-commerce conversion consultant with 17 years of experience on Shopify, Amazon, Walmart and Best Buy. Be specific, plain-spoken and practical. Never invent facts that are not in the data. Return your findings with the store_check_report tool.';
 const cleanIssues = (arr, areas) => (Array.isArray(arr) ? arr : []).filter(i => i && ['high', 'med', 'low'].includes(i.sev) && typeof i.finding === 'string' && typeof i.fix === 'string').slice(0, 4).map(i => issue(i.sev, areas.includes(i.area) ? i.area : areas[1] || areas[0], i.finding.slice(0, 300), i.fix.slice(0, 300)));
 
 async function aiSite(env, a, rules) {
-  const user = `Store page: ${a.finalUrl}\nPlatform: ${a.platform || 'unknown'}\nTitle: ${a.title}\nMain headline: ${a.h1s[0] || '(none)'}\nButtons: ${a.ctas.join(' | ')}\nAutomated findings already reported: ${JSON.stringify(rules.issues.map(i => i.finding))}\n\nVisible page text (truncated):\n${a.text.slice(0, 7000)}\n\nReturn JSON: {"summary":"2-3 sentences on the biggest opportunity, addressed to the store owner","issues":[up to 3 NEW issues a shopper would notice that the automated findings missed, each {"sev":"high|med|low","area":"First impression|Product pages|Trust","finding":"specific, quote the page where useful","fix":"specific"}],"rewrite":{"label":"New homepage headline","before":"current headline","after":"your improved headline, max 10 words","note":"one short line on why"}}`;
-  return askClaude(env, AI_SYSTEM, user);
+  const user = `Store page: ${a.finalUrl}\nPlatform: ${a.platform || 'unknown'}\nTitle: ${a.title}\nMain headline: ${a.h1s[0] || '(none)'}\nButtons: ${a.ctas.join(' | ')}\nAutomated findings already reported: ${JSON.stringify(rules.issues.map(i => i.finding))}\n\nVisible page text (truncated):\n${a.text.slice(0, 7000)}\n\nFill the store_check_report tool with this shape: {"summary":"2-3 sentences on the biggest opportunity, addressed to the store owner","issues":[up to 3 NEW issues a shopper would notice that the automated findings missed, each {"sev":"high|med|low","area":"First impression|Product pages|Trust","finding":"specific, quote the page where useful","fix":"specific"}],"rewrite":{"label":"New homepage headline","before":"current headline","after":"your improved headline, max 10 words","note":"one short line on why"}}`;
+  return askClaude(env, AI_SYSTEM, user, SITE_SCHEMA);
 }
 async function aiListing(env, L, rules) {
   const mp = MARKETPLACES[L.marketplace];
-  const user = `Marketplace: ${mp.name}\nTitle: ${L.title}\nBullets:\n${L.bullets.map(b => '- ' + b).join('\n')}\nDescription: ${L.description.slice(0, 4000)}\nImages: ${L.images ?? 'unknown'}\nRating: ${L.rating ?? 'unknown'} from ${L.reviews ?? 'unknown'} reviews\nAutomated findings already reported: ${JSON.stringify(rules.issues.map(i => i.finding))}\n\nReturn JSON: {"summary":"2-3 sentences on the biggest opportunity","issues":[up to 3 NEW issues the automated findings missed, each {"sev":"high|med|low","area":"Title|Bullets|Description","finding":"specific","fix":"specific"}],"rewrite":{"title":"rewritten title within ${mp.name} rules, ${mp.titleIdeal[0]}-${mp.titleIdeal[1]} characters, no promotional words","bullets":["5 benefit-led bullets, benefit first then proof, under 220 characters each"]}}. Only use facts present in the listing.`;
-  return askClaude(env, AI_SYSTEM, user);
+  const user = `Marketplace: ${mp.name}\nTitle: ${L.title}\nBullets:\n${L.bullets.map(b => '- ' + b).join('\n')}\nDescription: ${L.description.slice(0, 4000)}\nImages: ${L.images ?? 'unknown'}\nRating: ${L.rating ?? 'unknown'} from ${L.reviews ?? 'unknown'} reviews\nAutomated findings already reported: ${JSON.stringify(rules.issues.map(i => i.finding))}\n\nFill the store_check_report tool with this shape: {"summary":"2-3 sentences on the biggest opportunity","issues":[up to 3 NEW issues the automated findings missed, each {"sev":"high|med|low","area":"Title|Bullets|Description","finding":"specific","fix":"specific"}],"rewrite":{"title":"rewritten title within ${mp.name} rules, ${mp.titleIdeal[0]}-${mp.titleIdeal[1]} characters, no promotional words","bullets":["5 benefit-led bullets, benefit first then proof, under 220 characters each"]}}. Only use facts present in the listing.`;
+  return askClaude(env, AI_SYSTEM, user, LISTING_SCHEMA);
 }
 
 // ---------- report assembly ----------
