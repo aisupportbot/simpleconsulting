@@ -798,15 +798,15 @@ def results_panel(tool,what):
     endpoint=CONTACT['worker_endpoint'].rsplit('/',1)[0]+'/results'
     return f'''<form class="results-email" data-tool="{tool}" data-endpoint="{E(endpoint)}" data-sitekey="{E(CONTACT['turnstile_sitekey'])}" novalidate><p class="re-title">Email me {what}</p><p class="re-sub">A copy for your files, with suggested next steps.</p><div class="re-row"><label class="visually-hidden" for="re-email-{tool}">Email address</label><input type="email" id="re-email-{tool}" name="email" autocomplete="email" placeholder="you@company.com" required maxlength="254"><button class="btn" type="submit">Send</button></div><div class="hp" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div><label class="re-tips"><input type="checkbox" name="tips"> Also send me up to four short, practical marketplace emails. Unsubscribe anytime.</label><div class="re-verify"></div><p class="status" role="status" aria-live="polite"></p><p class="small muted">Only your email and these results are sent. <a href="/privacy.html">Privacy</a></p></form>'''
 
-RESULTS=[('$700K → $3M+','Grew an established brand’s sales more than fourfold in one year.'),
-         ('$0 → $9M','Built a brand to $9M in sales within its first year.'),
-         ('$0 → $2M','Took a newly started company to $2M in sales in 18 months.')]
+RESULTS=[('$700K → $3M+','Grew an established brand’s sales more than fourfold in one year.','Amazon Seller Central (US & CA) · Amazon Vendor Central (US & CA) · Costco.ca · Wayfair Canada & US · Walmart.ca'),
+         ('$0 → $9M','Built a brand to $9M in sales within its first year.','Walmart.ca · BestBuy.ca · Shopify · Amazon FBA Canada · Groupon · Loblaws'),
+         ('$0 → $2M','Took a newly started company to $2M in sales in 18 months.','Amazon Seller Central Canada · BestBuy.ca · Shopify · Groupon')]
 RESULTS_SCOPE='For the three brands above, I handled the full scope myself: listing creation and optimization, SEO and GEO, and advertising campaigns.'
 RESULTS_NOTE='Client names are withheld under confidentiality agreements. These results reflect those businesses; yours will depend on your products, market and starting point.'
 RESULTS_EXTRA=('eBay recovery channel for a retail chain','Launched an eBay auction store to sell discontinued and aging inventory and customer returns, and built the inventory, electronics data-wipe and sales-processing workflows behind it.')
 RESULTS_EBAY=[('200K+','items sold in 3 years'),('99.7%','positive feedback'),('24K','followers')]
 def results_block(heading_tag='h2',compact=False):
-    cards=''.join(f'<div class="result-card"><p class="result-num">{E(a)}</p><p class="result-txt">{E(b)}</p></div>' for a,b in RESULTS)
+    cards=''.join(f'<div class="result-card"><p class="result-num">{E(a)}</p><p class="result-txt">{E(b)}</p><p class="result-channels">{E(c)}</p></div>' for a,b,c in RESULTS)
     stats=''.join(f'<li><strong>{E(a)}</strong>{E(b)}</li>' for a,b in RESULTS_EBAY)
     extra=f'<div class="result-card result-wide"><div><p class="result-num result-num-sm">{E(RESULTS_EXTRA[0])}</p><p class="result-txt">{E(RESULTS_EXTRA[1])}</p></div><ul class="result-stats">{stats}</ul></div>'
     return f'<div class="results-grid">{cards}{extra}</div><p class="results-scope">{E(RESULTS_SCOPE)}</p><p class="results-note">{E(RESULTS_NOTE)}</p>'
