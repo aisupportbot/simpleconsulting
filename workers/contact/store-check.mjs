@@ -176,16 +176,27 @@ export function listingRules(L) {
 }
 
 // ---------- Claude (optional) ----------
+export const aiStatus = {last: ''};
 async function askClaude(env, system, user) {
-  if (!env.ANTHROPIC_API_KEY) return null;
-  try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST', headers: {'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'},
-      body: JSON.stringify({model: env.ANTHROPIC_MODEL || 'claude-haiku-5-5', max_tokens: 1400, system, messages: [{role: 'user', content: user}]}), signal: AbortSignal.timeout(40000)});
-    if (!r.ok) return null;
-    const d = await r.json(), text = (d.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
-    const j = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
-    return JSON.parse(j);
-  } catch { return null; }
+  if (!env.ANTHROPIC_API_KEY) { aiStatus.last = 'no key set'; return null; }
+  const models = [...new Set([env.ANTHROPIC_MODEL, 'claude-haiku-5-5', 'claude-haiku-4-5'].filter(Boolean))];
+  for (const model of models) {
+    try {
+      const r = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST', headers: {'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'},
+        body: JSON.stringify({model, max_tokens: 1400, system, messages: [{role: 'user', content: user}]}), signal: AbortSignal.timeout(40000)});
+      if (!r.ok) {
+        const e = await r.json().catch(() => ({}));
+        aiStatus.last = `${model}: HTTP ${r.status} ${String(e?.error?.type || '')} ${String(e?.error?.message || '').slice(0, 200)}`.trim();
+        if (r.status === 404 || (r.status === 400 && /model/i.test(aiStatus.last))) continue; // try the next model name
+        return null;
+      }
+      const d = await r.json(), text = (d.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
+      const out = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+      aiStatus.last = `ok (${model})`;
+      return out;
+    } catch (err) { aiStatus.last = `${model}: ${String(err?.message || err).slice(0, 200)}`; return null; }
+  }
+  return null;
 }
 const AI_SYSTEM = 'You are a senior e-commerce conversion consultant with 17 years of experience on Shopify, Amazon, Walmart and Best Buy. Be specific, plain-spoken and practical. Never invent facts that are not in the data. Reply with JSON only.';
 const cleanIssues = (arr, areas) => (Array.isArray(arr) ? arr : []).filter(i => i && ['high', 'med', 'low'].includes(i.sev) && typeof i.finding === 'string' && typeof i.fix === 'string').slice(0, 4).map(i => issue(i.sev, areas.includes(i.area) ? i.area : areas[1] || areas[0], i.finding.slice(0, 300), i.fix.slice(0, 300)));
@@ -254,6 +265,7 @@ ${rw}
 // ---------- handler ----------
 export async function handleStoreCheck(body, env, origin, reply) {
   const string = (key, max) => typeof body[key] === 'string' && body[key].length <= max ? body[key].trim() : null;
+  aiStatus.last = '';
   const mode = body.mode === 'listing' ? 'listing' : 'site';
   const email = string('email', 254), token = string('turnstileToken', 2048), id = string('submissionId', 36), source = string('source_page', 1500);
   if (typeof body._gotcha === 'string' && body._gotcha) return reply(422, {error: 'invalid_request'});
@@ -288,7 +300,7 @@ export async function handleStoreCheck(body, env, origin, reply) {
       const ai = await aiListing(env, listing, rules);
       report = buildReport('listing', `${MARKETPLACES[listing.marketplace].name} listing: ${listing.title.slice(0, 70)}${listing.title.length > 70 ? '…' : ''}`, rules, ai, {marketplace: listing.marketplace});
     }
-    const lead = `New store check lead\n\nEmail: ${email}\nMode: ${mode}${target ? `\nURL: ${report.url}\nPlatform: ${report.platform || 'unknown'}\nMarketplaces linked: ${report.marketplaces.join(', ') || 'none'}` : ''}\nFollow-up consent: yes (ticked on the form)\nAI-written: ${report.ai ? 'yes' : 'no'}\n\n${reportText(report)}${listing ? `\n\n--- Listing as submitted ---\nTitle: ${listing.title}\n${listing.bullets.map(b => '- ' + b).join('\n')}\n\n${listing.description}` : ''}`;
+    const lead = `New store check lead\n\nEmail: ${email}\nMode: ${mode}${target ? `\nURL: ${report.url}\nPlatform: ${report.platform || 'unknown'}\nMarketplaces linked: ${report.marketplaces.join(', ') || 'none'}` : ''}\nFollow-up consent: yes (ticked on the form)\nAI-written: ${report.ai ? 'yes' : 'no'} (${aiStatus.last || 'not attempted'})\n\n${reportText(report)}${listing ? `\n\n--- Listing as submitted ---\nTitle: ${listing.title}\n${listing.bullets.map(b => '- ' + b).join('\n')}\n\n${listing.description}` : ''}`;
     const emails = [
       {from: env.FROM_EMAIL, to: [email], reply_to: env.TO_EMAIL, ...reportEmail(report, env)},
       {from: env.FROM_EMAIL, to: [env.TO_EMAIL], reply_to: email, subject: `Store check lead: ${report.label.slice(0, 80)} (${report.score}/100)`, text: lead, html: `<h1 style="font:600 20px Arial,sans-serif">New store check lead</h1><pre style="white-space:pre-wrap;font:14px/1.6 Arial,sans-serif;">${escapeHtml(lead)}</pre>`}
