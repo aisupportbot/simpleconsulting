@@ -4,5 +4,5 @@
   "turnstile_sitekey": "0x4AAAAAAF3Ad72O1mkUlbbE",
   "diagnostic_payment_url": "",
   "diagnostic_kickoff_url": "https://calendly.com/simpleconsulting/30min",
-  "results_email": false
+  "results_email": true
 }
