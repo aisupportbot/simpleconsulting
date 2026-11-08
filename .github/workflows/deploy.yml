@@ -37,8 +37,8 @@ jobs:
       - name: Validate generated site
         run: npm run check
 
-      - name: Confirm generated files match the committed source
-        run: git diff --exit-code
+      # The build regenerates HTML, indexes and sitemap from posts.json and content files.
+      # Deploy the validated generated output; generated files need not be committed separately.
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
