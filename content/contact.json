@@ -2,7 +2,7 @@
   "provider": "worker",
   "worker_endpoint": "https://simple-consulting-contact.scott-877.workers.dev/contact",
   "turnstile_sitekey": "0x4AAAAAAF3Ad72O1mkUlbbE",
-  "diagnostic_payment_url": "",
+  "diagnostic_payment_url": "https://buy.stripe.com/cNi4gz1km38Na3AdhdeQM00",
   "diagnostic_kickoff_url": "https://calendly.com/simpleconsulting/30min",
   "results_email": true
 }
