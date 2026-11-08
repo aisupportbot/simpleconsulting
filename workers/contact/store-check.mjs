@@ -190,7 +190,7 @@ async function askClaude(env, system, user) {
   for (const model of models) {
     try {
       const r = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST', headers: {'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'},
-        body: JSON.stringify({model, max_tokens: 1400, system, messages: [{role: 'user', content: user}]}), signal: AbortSignal.timeout(40000)});
+        body: JSON.stringify({model, max_tokens: 4000, system, messages: [{role: 'user', content: user}]}), signal: AbortSignal.timeout(40000)});
       if (!r.ok) {
         const e = await r.json().catch(() => ({}));
         aiStatus.last = `${model}: HTTP ${r.status} ${String(e?.error?.type || '')} ${String(e?.error?.message || '').slice(0, 200)}`.trim();
@@ -198,7 +198,10 @@ async function askClaude(env, system, user) {
         return null;
       }
       const d = await r.json(), text = (d.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
-      const out = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+      const a = text.indexOf('{'), b = text.lastIndexOf('}');
+      let out = null;
+      try { out = a >= 0 && b > a ? JSON.parse(text.slice(a, b + 1)) : null; } catch {}
+      if (!out) { aiStatus.last = `${model}: unreadable reply (stop: ${d.stop_reason || '?'}, ${text.length} chars)`; return null; }
       aiStatus.last = `ok (${model})`;
       return out;
     } catch (err) { aiStatus.last = `${model}: ${String(err?.message || err).slice(0, 200)}`; return null; }
