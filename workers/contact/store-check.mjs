@@ -22,6 +22,13 @@ const SEV_ORDER = {high: 0, med: 1, low: 2};
 const issue = (sev, area, finding, fix) => ({sev, area, finding, fix});
 
 // ---------- site mode: fetching ----------
+export function marketplaceOf(host) {
+  const h = String(host).toLowerCase().replace(/^www\./, '');
+  if (/(^|\.)amazon\.(ca|com|co\.uk|de|fr|it|es|com\.mx|com\.au|co\.jp|in)$/.test(h) || /^a\.co$|^amzn\.(to|eu)$/.test(h)) return 'amazon';
+  if (/(^|\.)walmart\.(ca|com)$/.test(h)) return 'walmart';
+  if (/(^|\.)bestbuy\.(ca|com)$/.test(h)) return 'bestbuy';
+  return null;
+}
 export function safeUrl(raw) {
   let u;
   try { u = new URL(/^https?:\/\//i.test(raw) ? raw : 'https://' + raw); } catch { return null; }
@@ -239,7 +246,8 @@ export function reportText(r) {
 }
 export function reportEmail(r, env) {
   const address = env.MAILING_ADDRESS || 'Toronto, Ontario';
-  const bars = Object.entries(r.areas).filter(([, v]) => v !== null).map(([k, v]) => `<tr><td style="padding:3px 0;font-size:12px;color:#64676d;width:140px;">${escapeHtml(k)}</td><td style="padding:3px 10px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="background:#111214;height:6px;width:${v}%;border-radius:3px;font-size:0;line-height:0;">&nbsp;</td><td style="background:#eceef1;height:6px;font-size:0;line-height:0;">&nbsp;</td></tr></table></td><td style="font-size:12px;font-weight:600;width:28px;text-align:right;">${v}</td></tr>`).join('');
+  const tone = v => v >= 75 ? '#1d7a4a' : v >= 50 ? '#d08a12' : '#b4282e';
+  const bars = Object.entries(r.areas).filter(([, v]) => v !== null).map(([k, v]) => `<tr><td width="140" style="padding:4px 0;font-size:12px;color:#64676d;width:140px;">${escapeHtml(k)}</td><td style="padding:4px 10px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;"><tr>${v > 0 ? `<td width="${v}%" height="8" bgcolor="${tone(v)}" style="width:${v}%;height:8px;background-color:${tone(v)};font-size:1px;line-height:1px;mso-line-height-rule:exactly;">&nbsp;</td>` : ''}${v < 100 ? `<td width="${100 - v}%" height="8" bgcolor="#eceef1" style="width:${100 - v}%;height:8px;background-color:#eceef1;font-size:1px;line-height:1px;mso-line-height-rule:exactly;">&nbsp;</td>` : ''}</tr></table></td><td width="28" style="font-size:12px;font-weight:600;width:28px;text-align:right;color:${tone(v)};">${v}</td></tr>`).join('');
   const items = r.issues.map(i => `<tr><td style="padding:0 0 10px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #e7e8eb;border-left:4px solid ${sevColor[i.sev]};border-radius:10px;"><tr><td style="padding:11px 14px;"><p style="margin:0 0 3px;font-size:10px;letter-spacing:1px;font-weight:600;color:#737780;">${sevLabel[i.sev]} · ${escapeHtml(i.area.toUpperCase())}</p><p style="margin:0 0 4px;font-size:14px;line-height:1.55;color:#111214;">${escapeHtml(i.finding)}</p><p style="margin:0;font-size:13px;line-height:1.55;color:#64676d;"><strong style="color:#111214;">Fix:</strong> ${escapeHtml(i.fix)}</p></td></tr></table></td></tr>`).join('');
   const rw = r.rewrite ? `<tr><td style="padding:6px 34px 8px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f7f8fa;border:1px solid #eceef1;border-radius:12px;"><tr><td style="padding:18px 20px;"><p style="margin:0 0 8px;font-size:10px;letter-spacing:1.5px;font-weight:600;color:#737780;">${escapeHtml(r.rewrite.label.toUpperCase())}</p>${r.rewrite.before ? `<p style="margin:0 0 6px;font-size:13px;color:#737780;text-decoration:line-through;">${escapeHtml(r.rewrite.before)}</p>` : ''}<p style="margin:0;font-size:16px;line-height:1.5;font-weight:600;color:#111214;">${escapeHtml(r.rewrite.after)}</p>${(r.rewrite.bullets || []).length ? '<ul style="margin:10px 0 0;padding-left:18px;font-size:13px;line-height:1.6;color:#111214;">' + r.rewrite.bullets.map(b => `<li style="margin:0 0 4px;">${escapeHtml(b)}</li>`).join('') + '</ul>' : ''}${r.rewrite.note ? `<p style="margin:8px 0 0;font-size:12px;color:#64676d;">${escapeHtml(r.rewrite.note)}</p>` : ''}</td></tr></table></td></tr>` : '';
   const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Your store check | Simple Consulting</title></head>
@@ -274,6 +282,8 @@ export async function handleStoreCheck(body, env, origin, reply) {
   if (mode === 'site') {
     target = safeUrl(string('url', 500) || '');
     if (!target) return reply(422, {error: 'invalid_url', message: 'Enter a public store address, like https://yourstore.com.'});
+    const mpHost = marketplaceOf(target.hostname);
+    if (mpHost) return reply(422, {error: 'marketplace_url', marketplace: mpHost, message: `That’s a ${MARKETPLACES[mpHost].name} listing. ${MARKETPLACES[mpHost].name} blocks automated checks, so use the “My marketplace listing” tab and paste the title and bullets.`});
   } else {
     const mp = string('marketplace', 20), title = string('title', 600), desc = string('description', 8000) ?? '';
     const bullets = (string('bullets', 6000) || '').split(/\n+/).map(s => s.replace(/^[\s•\-*·–]+/, '').trim()).filter(Boolean).slice(0, 12);

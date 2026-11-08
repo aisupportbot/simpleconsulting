@@ -891,7 +891,7 @@ def store_check_form(idx='hero'):
 def store_check_report():
     sev={'high':'High impact','med':'Medium','low':'Low'}
     rows=''.join(f'<li class="sc-issue {s}"><span class="sc-sev">{sev[s]} · {a}</span><p>{f}</p><p class="sc-fix"><strong>Fix:</strong> {x}</p></li>' for s,a,f,x in SC_EXAMPLE)
-    bars=''.join(f'<li><span>{n}</span><i style="--v:{v}%"></i><b>{v}</b></li>' for n,v in [('Speed &amp; mobile',52),('First impression',61),('Product pages',44),('Trust',38),('Search basics',70)])
+    bars=''.join(f'<li class="{"good" if v>=75 else "mid" if v>=50 else "low"}"><span>{n}</span><i style="--v:{v}%"></i><b>{v}</b></li>' for n,v in [('Speed &amp; mobile',52),('First impression',61),('Product pages',44),('Trust',38),('Search basics',70)])
     return ('<div class="sc-report" aria-label="Example store check report"><div class="sc-report-head"><div><p class="eyebrow">Example report</p><h3>Sample home goods store</h3><p class="small muted">Illustrates the format. Not a client.</p></div>'
       f'<div class="sc-score" aria-label="Overall score 54 out of 100"><b>54</b><span>/100</span></div></div><ul class="sc-bars">{bars}</ul><ol class="sc-issues">{rows}</ol></div>')
 def store_check_ladder():

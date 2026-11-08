@@ -9,6 +9,13 @@ const req = body => new Request('https://w.example/store-check', {method: 'POST'
 const WEAK = '<html><head><title>Home</title></head><body><h1>Welcome</h1><img src="a.jpg"><img src="b.jpg"><a href="/collections/all">Explore</a></body></html>';
 const GOOD = `<html><head><title>Organic Cotton Baby Sheets | Nestly</title><meta name="description" content="Soft organic cotton crib sheets made in Canada."><meta name="viewport" content="width=device-width"><meta property="og:image" content="x.jpg"><link rel="canonical" href="https://nestly.ca/"><script type="application/ld+json">{"@type":"Product","aggregateRating":{"ratingValue":4.8}}</script></head><body><h1>Organic crib sheets that stay soft</h1>${'<p>Soft breathable organic cotton for better sleep. </p>'.repeat(30)}<img src="a.jpg" alt="Crib sheet"><a href="/collections/best-sellers">Shop best sellers</a><a href="/policies/shipping-policy">Shipping</a><a href="/policies/refund-policy">Returns</a><a href="/pages/contact">Contact</a><a href="https://www.amazon.ca/stores/nestly">Amazon</a><div class="jdgm-widget">judge.me 120 reviews</div></body></html>`;
 
+test('marketplace links are recognised', async () => {
+  const {marketplaceOf} = await import('./store-check.mjs');
+  assert.equal(marketplaceOf('www.amazon.ca'), 'amazon'); assert.equal(marketplaceOf('amzn.to'), 'amazon');
+  assert.equal(marketplaceOf('walmart.ca'), 'walmart'); assert.equal(marketplaceOf('www.bestbuy.ca'), 'bestbuy');
+  assert.equal(marketplaceOf('notamazon.ca'), null); assert.equal(marketplaceOf('shop.ca'), null);
+});
+
 test('safeUrl blocks internal and odd addresses', () => {
   assert.equal(safeUrl('localhost'), null);
   assert.equal(safeUrl('http://127.0.0.1/admin'), null);
@@ -61,6 +68,8 @@ test('handler: validates, verifies, checks the site, emails visitor and Scott', 
   };
   try {
     assert.equal((await worker.fetch(req({mode: 'site', url: 'http://127.0.0.1'}), env)).status, 422);
+    const mpRes = await worker.fetch(req({mode: 'site', url: 'https://www.amazon.ca/dp/B0TEST'}), env);
+    assert.equal(mpRes.status, 422); assert.equal((await mpRes.json()).marketplace, 'amazon');
     assert.equal((await worker.fetch(req({mode: 'site', url: 'weak.ca', consent: false}), env)).status, 422);
     assert.equal(calls.length, 0);
     const res = await worker.fetch(req({mode: 'site', url: 'weak.ca'}), env);
