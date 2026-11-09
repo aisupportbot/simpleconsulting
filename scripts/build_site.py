@@ -109,12 +109,32 @@ def faq(items):
 def service_card(s,n=None):
     number=f'<span class="card-number">{n:02d}</span>' if n else ''
     return f'''<div class="card">{number}<h3>{E(s['label'])}</h3><p>{E(s['fit'])}</p><a class="card-link" href="/{s['slug']}.html">Explore {E(s['label'].lower())} →</a></div>'''
+ORG_DESC='Toronto e-commerce and marketplace consultancy run by Scott Nguyen. Hands-on Amazon, Walmart, Best Buy, Costco and Shopify channel management, listings, advertising, inventory and fulfilment for Canadian and US brands.'
+KNOWS_ABOUT=['Amazon Seller Central','Amazon Vendor Central','Amazon FBA','Amazon PPC','Walmart Marketplace','Walmart Fulfillment Services (WFS)','Walmart Connect','Best Buy Marketplace','Costco.ca vendor onboarding','Wayfair','Shopify','eBay','Marketplace listing optimization','E-commerce SEO','Generative engine optimization','Inventory planning','3PL and fulfilment','Marketplace reimbursements','Google Ads','Google Analytics']
+CREDENTIALS=[('Lean Six Sigma','University of Toronto'),('Google Ads certification','Google'),('Google Analytics certification','Google'),('CompTIA A+','CompTIA')]
+PERSON_SCHEMA={'@type':'Person','@id':SITE+'/about.html#scott','name':'Scott Nguyen','url':SITE+'/about.html','image':SITE+'/assets/scott-nguyen.webp','jobTitle':'Founder & E-commerce Consultant','description':'E-commerce and marketplace consultant with 17+ years in retail and e-commerce, including nine years at Staples Canada. Has grown brands from $700K to $3M+, $20K to $6M and $0 to $2M in sales across Amazon, Walmart, Best Buy, Costco, Wayfair and Shopify.','worksFor':{'@id':SITE+'/#organization'},'homeLocation':{'@type':'Place','name':'Toronto, Ontario, Canada'},'knowsAbout':KNOWS_ABOUT,'hasCredential':[{'@type':'EducationalOccupationalCredential','name':n,'recognizedBy':{'@type':'Organization','name':o}} for n,o in CREDENTIALS],'hasOccupation':{'@type':'Occupation','name':'E-commerce consultant','occupationLocation':{'@type':'Country','name':'Canada'},'skills':'Marketplace management, listing optimization, marketplace advertising, inventory and fulfilment'},'sameAs':['https://www.linkedin.com/in/scott-nguyen-0b97723a0']}
+def faq_items(html):
+    """Question/answer pairs from visible FAQ blocks, for FAQPage markup."""
+    out=[]
+    for block in re.findall(r'<div class="(?:faq|faq-list)"[^>]*>([\s\S]*?)</div>\s*(?:</div>|<a|<p class="guide)',html):
+        for q,a in re.findall(r'<details[^>]*>\s*<summary>([\s\S]*?)</summary>([\s\S]*?)</details>',block):
+            q=plain(re.sub(r'<span[\s\S]*?</span>','',q)); a=plain(a)
+            if q and a and len(a)>20: out.append((q,a))
+    seen=set(); res=[]
+    for q,a in out:
+        if q not in seen: seen.add(q); res.append((q,a))
+    return res
+def faq_schema(html,canonical):
+    items=faq_items(html)
+    if len(items)<2: return None
+    return {'@type':'FAQPage','@id':canonical+'#faq','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in items]}
 def base(file,title,description,body,extra_schema=None,scripts='',robots=None):
     canonical=url(file)
-    org={'@type':'Organization','@id':SITE+'/#organization','name':'Simple Consulting','url':SITE+'/','email':'scott@simpleconsulting.ca','founder':{'@id':SITE+'/about.html#scott'},'areaServed':[{'@type':'Country','name':'Canada'},{'@type':'Country','name':'United States'}],'location':{'@type':'Place','name':'Toronto, Ontario, Canada'},'logo':{'@type':'ImageObject','url':SITE+'/assets/simple-consulting-logo.svg','contentUrl':SITE+'/assets/simple-consulting-logo.svg','caption':'Simple Consulting.'},'sameAs':['https://www.linkedin.com/in/scott-nguyen-0b97723a0','https://www.instagram.com/simpleconsulting.ca/']}
-    person={'@type':'Person','@id':SITE+'/about.html#scott','name':'Scott Nguyen','url':SITE+'/about.html','jobTitle':'E-commerce and marketplace consultant','worksFor':{'@id':SITE+'/#organization'}}
+    org={'@type':['Organization','ProfessionalService'],'@id':SITE+'/#organization','name':'Simple Consulting','legalName':'17700679 Canada Inc.','url':SITE+'/','description':ORG_DESC,'knowsAbout':KNOWS_ABOUT,'address':{'@type':'PostalAddress','addressLocality':'Toronto','addressRegion':'ON','addressCountry':'CA'},'image':SITE+'/assets/scott-nguyen.webp','email':'scott@simpleconsulting.ca','founder':{'@id':SITE+'/about.html#scott'},'areaServed':[{'@type':'Country','name':'Canada'},{'@type':'Country','name':'United States'}],'location':{'@type':'Place','name':'Toronto, Ontario, Canada'},'logo':{'@type':'ImageObject','url':SITE+'/assets/simple-consulting-logo.svg','contentUrl':SITE+'/assets/simple-consulting-logo.svg','caption':'Simple Consulting.'},'sameAs':['https://www.linkedin.com/in/scott-nguyen-0b97723a0','https://www.instagram.com/simpleconsulting.ca/']}
+    person=PERSON_SCHEMA
     page={'@type':'WebPage','@id':canonical+'#page','url':canonical,'name':title,'description':description,'inLanguage':'en-CA','isPartOf':{'@id':SITE+'/#website'},'about':{'@id':SITE+'/#organization'}}
-    graph=[org,person,{'@type':'WebSite','@id':SITE+'/#website','url':SITE+'/','name':'Simple Consulting','publisher':{'@id':SITE+'/#organization'}},page]+(extra_schema or [])
+    fq=faq_schema(body,canonical)
+    graph=[org,person,{'@type':'WebSite','@id':SITE+'/#website','url':SITE+'/','name':'Simple Consulting','publisher':{'@id':SITE+'/#organization'}},page]+(extra_schema or [])+([fq] if fq else [])
     schema=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\\/')
     is_post=file.startswith('blog/')
     text=f'''<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{E(title)}</title><meta name="description" content="{E(description)}"><link rel="canonical" href="{canonical}"><meta name="theme-color" content="#ffffff"><meta name="author" content="Scott Nguyen"><meta property="og:type" content="{'article' if is_post else 'website'}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(description)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Simple Consulting"><meta property="og:locale" content="en_CA"><meta property="og:image" content="{SITE}/assets/scott-nguyen.webp"><meta property="og:image:alt" content="Scott Nguyen, founder of Simple Consulting"><meta property="og:image:width" content="720"><meta property="og:image:height" content="691"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="{E(title)}"><meta name="twitter:description" content="{E(description)}"><meta name="twitter:image" content="{SITE}/assets/scott-nguyen.webp"><link rel="icon" type="image/svg+xml" href="/assessment/favicon.svg"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{schema}</script>{'<meta name="robots" content="'+robots+'">' if robots else ''}<script src="/assets/site.js" defer></script>{scripts}{GOOGLE_TAG}</head><body>{nav(file)}<main id="main">{body}</main>{footer()}</body></html>'''
@@ -164,7 +184,12 @@ def home():
     anchor='<details class="service"><summary><span class="service-name"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/>'
     assert src.count(anchor)==1
     src=src.replace(anchor,STORE_SERVICE+'\n'+anchor)
+    fq=faq_schema(src,SITE+'/')
+    if fq:
+        tag='<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org',**fq},ensure_ascii=False).replace('</','<\\/')+'</script>'
+        src=src.replace('</head>',tag+'</head>',1)
     (ROOT/'index.html').write_text(src)
+    llms_txt()
 
 def pricing_section():
     return '''<section class="section" id="pricing" aria-labelledby="pricing-heading"><div class="container"><div class="section-heading"><p class="eyebrow">Clear scope. Clear pricing.</p><h2 id="pricing-heading">How working together starts</h2><p>Each step is useful on its own. You decide whether to continue after each one.</p></div><ol class="start-steps"><li class="start-step"><span class="start-step-n">Step 1</span><h3>Free introduction call</h3><p class="start-price">Free</p><p>Thirty minutes on your marketplace, the problem and what you have tried. You leave with a practical next step.</p><a class="btn secondary" href="/booking.html#booking">Book a free call</a></li><li class="start-step start-step-feature"><span class="start-step-n">Step 2</span><h3>Channel diagnostic</h3><p class="start-price">CAD $750</p><p>A review of one marketplace channel: listings, advertising and inventory health. You receive a written priority plan with the evidence behind it.</p><p class="start-credit">Start ongoing support within 30 days and the $750 is credited toward your first month.</p><a class="btn" href="/booking.html?service=general#start">Ask about a diagnostic</a></li><li class="start-step"><span class="start-step-n">Step 3</span><h3>Ongoing management</h3><p class="start-price">Quoted</p><p>Recurring account work with agreed responsibilities, a review cadence and clear reporting. Scoped and priced after the diagnostic.</p><a class="btn secondary" href="/booking.html#start">Tell me what needs attention</a></li></ol><p class="small muted">Prices in Canadian dollars. Taxes, advertising spend, marketplace fees and third-party costs are additional.</p></div></section>'''
@@ -544,6 +569,33 @@ def services_hub():
 def about():
     body=f'''<section class="page-hero"><div class="container"><p class="eyebrow">About Scott Nguyen</p><h1>An experienced operator.<br>Your day-to-day partner.</h1><p class="lead">I'm the founder of Simple Consulting, based in Toronto. I help brands, manufacturers and distributors manage marketplace accounts and the inventory, fulfilment and reporting behind them.</p>{btns()}</div></section><section class="section"><div class="container split"><img class="founder-image" src="/assets/scott-nguyen.webp" width="340" height="425" alt="Scott Nguyen, founder of Simple Consulting"><div><h2>A practical perspective, built over 17+ years.</h2><p>My background spans retail, e-commerce and operations, including nine years in progressive roles at Staples Canada. My experience across Amazon, Walmart and other channels has developed through that broader career.</p><p>I work on the details that connect channel performance: listings, advertising, stock availability, purchase orders, fulfilment, returns and reporting. A useful recommendation needs an owner and a way to put it into practice.</p><p>You work with me directly. We agree on responsibilities, access, approvals and the reporting cadence before work begins.</p><a href="https://www.linkedin.com/in/scott-nguyen-0b97723a0">View my professional background on LinkedIn →</a></div></div></section><section class="section soft"><div class="container"><h2>Where I can help</h2><div class="grid"><div class="card"><h3>Marketplaces and retail</h3><p>Amazon Vendor Central, Seller Central and FBA; Walmart Marketplace and WFS; and experience with Best Buy, Costco, Wayfair, Home Depot and other retail channels.</p></div><div class="card"><h3>Operations and process</h3><p>Inventory planning, fulfilment coordination, returns, vendor requirements and practical process improvement informed by Lean Six Sigma training.</p></div><div class="card"><h3>Systems and reporting</h3><p>ERP, Power BI, business-system integration, Google Ads and analytics work that connects the available information to operating decisions.</p></div></div><p class="small muted" style="margin-top:24px"></p></div></section><section class="section"><div class="container"><div class="section-heading"><p class="eyebrow">Working together</p><h2>Clear priorities. Direct communication. Agreed responsibilities.</h2><p class="lead">A project can address one defined issue. Ongoing management can cover recurring channel tasks. Fractional support can coordinate priorities across your wider business.</p><p>Start by telling me what is happening and what you want to improve. We will discuss the right scope and the information needed to assess it.</p></div><a href="/services.html">Explore the services →</a></div></section>{cta()}'''
     base('about.html','Scott Nguyen | E-commerce & Marketplace Consultant Canada','Meet Scott Nguyen, founder of Simple Consulting in Toronto. 17+ years in e-commerce, with brands grown to $3M, $6M and $2M+ in sales. Direct, practical channel support.',body)
+def llms_txt():
+    services=''.join(f"- [{s['label']}]({SITE}/{s['slug']}.html): {s['fit']}\n" for s in SERVICES)
+    results=''.join(f"- {a}: {b} Channels: {c}.\n" for a,b,c in RESULTS)
+    text=f"""# Simple Consulting
+
+> Simple Consulting is a Toronto e-commerce and marketplace consultancy run by Scott Nguyen. It provides hands-on Amazon, Walmart, Best Buy, Costco and Shopify channel management for brands, manufacturers and distributors in Canada and the US.
+
+Scott Nguyen has 17+ years in retail and e-commerce, including nine years at Staples Canada and senior e-commerce roles at consumer-product companies. Clients work with him directly. Credentials: Lean Six Sigma (University of Toronto), Google Ads and Google Analytics certifications, CompTIA A+. Business: 17700679 Canada Inc. o/a Simple Consulting. Contact: scott@simpleconsulting.ca.
+
+## Results (client names confidential)
+{results}- eBay recovery channel for a retail chain: 200K+ items sold in 3 years, 99.7% positive feedback, 24K followers.
+
+## Services
+{services}- [Channel diagnostic]({SITE}/channel-diagnostic.html): CAD $750 review of one marketplace channel (listings, advertising, inventory, account health) with a written priority plan.
+- [Free store check]({SITE}/store-check.html): free automated report on an online store or an Amazon, Walmart or Best Buy listing, with fixes.
+- [Store & listing rebuild]({SITE}/store-check.html#rebuild): fixed-fee project to fix the issues the store check finds.
+
+## Key pages
+- [About Scott Nguyen]({SITE}/about.html)
+- [Selected work and results]({SITE}/selected-work.html)
+- [All services]({SITE}/services.html)
+- [Free tools]({SITE}/tools.html)
+- [Insights and guides]({SITE}/blog.html)
+- [Book a free 30-minute call]({SITE}/booking.html)
+"""
+    (ROOT/'llms.txt').write_text(text)
+
 def booking():
     options=''.join(f'<option value="{s["key"]}">{E(s["label"])}</option>' for s in SERVICES)
     body=f'''<section class="page-hero"><div class="container"><p class="eyebrow" id="contact-eyebrow">Start a conversation</p><h1 id="contact-heading">Let’s get the work moving.</h1><p class="lead" id="contact-intro">Bring one marketplace challenge to a free 30-minute call, or send a short message. We will clarify the issue, identify what needs reviewing and discuss a practical next step for your business.</p><div class="actions"><a class="btn" href="#booking">Book a free call</a><a class="btn secondary" href="#start">Send a message</a></div><p class="hero-note">A short description is enough to start. No presentation or account access needed.</p></div></section>

@@ -34,7 +34,8 @@
       // Route engagement events to GA4 only; the dedicated Ads action stays separate.
       const safeProps = {page_path: location.pathname};
       const allowed = {
-        method: ['form', 'calendar', 'direct', 'embed', 'tool'],
+        method: ['form', 'calendar', 'direct', 'embed', 'tool', 'store_check'],
+        mode: ['site', 'listing'],
         sales_band: ['pre', 'lt10k', '10-50k', '50-250k', '250k+'],
         timeline: ['asap', '1m', '1-3m', 'exploring'],
         service: ['amazon', 'walmart', 'reimbursement', 'operations', 'shopify', 'fractional', 'systems', 'google', 'other'],
@@ -49,6 +50,11 @@
       // contact.js emits it only after Formspree succeeds and prevents duplicates.
       // There is no separate booking label in this repo. A confirmed appointment is
       // appointment_booked on GA4 property G-0DL10SRED9, which Ads can import.
+      // Store check leads get their own GA4 event so they can be imported into
+      // Google Ads as a separate, lower-value lead conversion.
+      if (name === 'generate_lead' && props.method === 'store_check') {
+        window.gtag('event', 'store_check_lead', {...campaign, ...safeProps, value: 0.5, currency: 'CAD', send_to: 'G-0DL10SRED9'});
+      }
       if (name === 'generate_lead' && props.method === 'form') {
         // Weight the enquiry by stated business size so Ads bidding favours
         // enquiries that are more likely to become ongoing clients.

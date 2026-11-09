@@ -27,6 +27,14 @@ test('safeUrl blocks internal and odd addresses', () => {
   assert.equal(safeUrl('yourstore.com').href, 'https://yourstore.com/');
 });
 
+test('decorative images with empty alt are not flagged', () => {
+  const html = '<html><body><h1>Organic crib sheets</h1><img src=a.jpg alt=""><img src=b.jpg alt=""><img src=c.jpg alt="Sheet"></body></html>';
+  const r = siteRules(analyseHtml(html, 'https://x.ca/', html.length), null);
+  assert.ok(!r.issues.some(i => /alt text/.test(i.finding)));
+  const bad = '<html><body><h1>x y z</h1><img src=a.jpg><img src=b.jpg><img src=c.jpg alt="Sheet"></body></html>';
+  assert.ok(siteRules(analyseHtml(bad, 'https://x.ca/', bad.length), null).issues.some(i => /alt text/.test(i.finding)));
+});
+
 test('rules separate a weak store from a strong one', () => {
   const weak = siteRules(analyseHtml(WEAK, 'https://weak.ca/', WEAK.length), null);
   const good = siteRules(analyseHtml(GOOD, 'https://nestly.ca/', GOOD.length), {score: 91, lcp: 1800, cls: 0.01});

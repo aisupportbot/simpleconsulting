@@ -85,7 +85,9 @@ export function analyseHtml(html, finalUrl, bytes) {
   const hasRatingLd = /aggregateRating/i.test(ld);
   const hasOrgLd = /"@type"\s*:\s*"(Organization|Store|OnlineStore|LocalBusiness)"/i.test(ld);
   const imgs = html.match(/<img\b[^>]*>/gi) || [];
-  const noAlt = imgs.filter(t => { const a = attr(t, 'alt'); return a === null || !a.trim(); }).length;
+  // alt="" is the correct markup for decorative images, so only a missing alt counts.
+  const contentImgs = imgs.filter(t => !/aria-hidden=["']?true|role=["']?presentation/i.test(t));
+  const noAlt = contentImgs.filter(t => attr(t, 'alt') === null).length;
   const scripts = (html.match(/<script\b[^>]*\ssrc=/gi) || []).length;
   const text = visibleText(html), words = text.split(/\s+/).filter(Boolean).length;
   const platform = /cdn\.shopify\.com|shopify\.theme|myshopify\.com/i.test(html) ? 'Shopify' : /woocommerce|wp-content/i.test(html) ? 'WooCommerce / WordPress' : /bigcommerce/i.test(html) ? 'BigCommerce' : /squarespace/i.test(html) ? 'Squarespace' : /wix\.com|wixstatic/i.test(html) ? 'Wix' : '';
@@ -127,7 +129,7 @@ export function siteRules(a, ps) {
   if (!a.ogImage) hit('First impression', 10, 'low', 'Links shared on social or in messages show no preview image.', 'Set a share image (Open Graph image) in your store settings.');
   // Product pages
   if (!a.hasProductLd) hit('Product pages', 25, 'med', 'No product data (price, stock, reviews) is marked up for Google on this page.', 'Add Product structured data so Google can show price and stars in search. Most themes and review apps can do this.');
-  if (a.imgs && a.noAlt / a.imgs > 0.3) hit('Product pages', 20, 'med', `${a.noAlt} of ${a.imgs} images have no description (alt text).`, 'Describe each product image in a few words. It helps search, accessibility and AI shopping tools.');
+  if (a.imgs && a.noAlt / a.imgs > 0.3) hit('Product pages', 20, 'med', `${a.noAlt} of ${a.imgs} images have no description (alt text) at all.`, 'Describe each product image in a few words. It helps search, accessibility and AI shopping tools.');
   if (a.words < 150) hit('Product pages', 20, 'med', `Only about ${a.words} words of text are visible on the page.`, 'Add product benefits, sizes, materials and FAQs. Thin pages convert and rank worse.');
   // Trust
   if (!a.reviews) hit('Trust', 35, 'high', 'No customer reviews or ratings are visible.', 'Add a reviews app and show star ratings on product and collection pages.');
