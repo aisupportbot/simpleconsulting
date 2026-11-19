@@ -658,7 +658,10 @@ def blog():
           'how-to-sell-on-costco-canada-what-vendors-need-to-know':('Retail marketplace & vendor onboarding','Need help preparing the operations behind a retailer opportunity?','/retail-marketplace-vendor-onboarding-canada.html'),
           'how-to-sell-on-wayfair-what-you-need-to-know-before-you-apply':('Retail marketplace & vendor onboarding','Need help with product data, fulfilment or onboarding for another retail channel?','/retail-marketplace-vendor-onboarding-canada.html'),
           'how-to-manage-chargebacks-from-major-retailers':('Reimbursement & deduction review','Need help reconciling deductions, evidence and prior credits?','/reimbursement-recovery.html'),
-          'how-to-build-a-returns-management-process-that-recovers-value':('E-commerce operations','Need help designing the returns, inventory and fulfilment handoffs?','/ecommerce-operations.html')
+          'how-to-build-a-returns-management-process-that-recovers-value':('E-commerce operations','Need help designing the returns, inventory and fulfilment handoffs?','/ecommerce-operations.html'),
+          'walmart-wfs-reimbursements-canada':('Reimbursement & deduction review','Need someone to reconcile WFS inventory, returns and settlement records each month?','/reimbursement-recovery.html'),
+          'walmart-wfs-fees-canada':('Walmart WFS consulting','Want your catalogue modelled against WFS fees before you commit inventory?','/walmart-wfs-consultant-canada.html'),
+          'send-inventory-to-walmart-wfs-canada':('Walmart WFS consulting','Need help setting up WFS shipments or the handoff with your 3PL?','/walmart-wfs-consultant-canada.html')
         }
         cta_data=article_ctas.get(p['slug'])
         inline_cta=(f'<aside class="article-inline-cta"><p class="eyebrow">Related support</p><h2>{E(cta_data[0])}</h2><p>{E(cta_data[1])}</p><a href="{cta_data[2]}">Explore this service →</a></aside>' if cta_data else '')
