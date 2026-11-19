@@ -116,7 +116,7 @@ PERSON_SCHEMA={'@type':'Person','@id':SITE+'/about.html#scott','name':'Scott Ngu
 def faq_items(html):
     """Question/answer pairs from visible FAQ blocks, for FAQPage markup."""
     out=[]
-    for block in re.findall(r'<div class="(?:faq|faq-list)"[^>]*>([\s\S]*?)</div>\s*(?:</div>|<a|<p class="guide)',html):
+    for block in re.findall(r'<div class="(?:faq|faq-list)"[^>]*>((?:\s*<details[\s\S]*?</details>)+)\s*</div>',html):
         for q,a in re.findall(r'<details[^>]*>\s*<summary>([\s\S]*?)</summary>([\s\S]*?)</details>',block):
             q=plain(re.sub(r'<span[\s\S]*?</span>','',q)); a=plain(a)
             if q and a and len(a)>20: out.append((q,a))
